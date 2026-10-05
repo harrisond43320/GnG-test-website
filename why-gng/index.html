@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why G'N'G? | Grass 'N' Gardens Landscaping, Richfield OH</title>
+  <meta name="description" content="Real Google reviews from Grass 'N' Gardens customers in Richfield, Ohio. 60 reviews, 5.0 average, 0 under five." />
+  <link rel="icon" href="../brand_assets/logos/monogram.png" />
+  <link rel="stylesheet" href="../brand_assets/tokens.css" />
+  <link rel="stylesheet" href="../brand_assets/components/bundle.css" />
+  <style>
+    /* Page layout only. Colors, fonts, spacing and radius all come from the brand tokens.
+       Flat on purpose: no gradients, no shadows, no texture (brand rule). */
+    :root { --spring: cubic-bezier(.34, 1.56, .64, 1); --mark: #d6ecca; /* lime at ~30% on paper, for highlighted phrases */ }
+    body { margin: 0; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--space-8); }
+    @media (max-width: 640px) { .wrap { padding: 0 var(--space-4); } }
+    section { padding: var(--space-16) 0; }
+    a { color: var(--link); }
+
+    /* Shared interactive states (transform/opacity only for motion) */
+    .gng-btn { transition: transform .35s var(--spring), opacity .2s ease; }
+    .gng-btn:hover { transform: translateY(-2px); }
+    .gng-btn:active { transform: translateY(1px) scale(.98); opacity: .9; }
+    .tlink { font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+    .tlink:hover { text-decoration-color: var(--lime); }
+    .tlink:active { opacity: .7; }
+    .tlink:focus-visible, .nav a:focus-visible, .logo-link:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; border-radius: 4px; }
+
+    /* ---------- Nav ---------- */
+    .nav { border-bottom: 1px solid var(--line); background: var(--paper); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); padding-top: var(--space-3); padding-bottom: var(--space-3); }
+    .nav img { display: block; width: 200px; height: auto; }
+    .nav ul { display: flex; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
+    .nav ul a { color: var(--ink); text-decoration: none; font: 600 15px/18px var(--font-condensed); letter-spacing: .08em; text-transform: uppercase; padding: var(--space-2) 0; border-bottom: 3px solid transparent; }
+    .nav ul a:hover { border-bottom-color: var(--lime); }
+    .nav ul a:active { opacity: .7; }
+    .nav ul a[aria-current="page"] { color: var(--forest); border-bottom-color: var(--forest); }
+    @media (max-width: 900px) { .nav ul, .nav .gng-btn { display: none; } .nav img { width: 180px; } }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: var(--space-16) 0; }
+    .hero .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--space-12); align-items: center; }
+    .hero h1 { font-size: clamp(64px, 11vw, 132px); color: var(--pine); }
+
+    .hero .lede { margin: var(--space-6) 0 var(--space-8); max-width: 36ch; }
+    .hero .ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .hero .gng-record { margin-top: var(--space-8); color: var(--pine); flex-wrap: wrap; }
+
+    /* The scoreboard: jersey-blue panel, pine frame, one giant zero. */
+    .board { background: var(--jersey-blue); border: var(--stroke-frame) solid var(--pine); border-radius: var(--radius-lg); color: var(--pine); overflow: hidden; }
+    .board-top { display: flex; align-items: center; gap: var(--space-6); padding: var(--space-8) var(--space-8) var(--space-6); }
+    .board .zero { font-size: 240px; line-height: .8; transform-origin: 50% 70%; text-shadow: none; -webkit-text-stroke: 14px var(--pine); paint-order: stroke fill; }
+    .board .zero-say { font-family: var(--font-display); text-transform: uppercase; font-size: 34px; line-height: 1; letter-spacing: .01em; margin: 0; }
+    .board-row { display: grid; grid-template-columns: 1fr 1fr; border-top: var(--stroke-outline) solid var(--pine); background: var(--paper); }
+    .board-row div { padding: var(--space-4) var(--space-6); display: flex; align-items: baseline; gap: var(--space-3); }
+    .board-row div + div { border-left: var(--stroke-outline) solid var(--pine); }
+    .board-row .gng-numeral { color: var(--forest); text-shadow: none; font-size: 40px; }
+    .board-row span { font: 600 15px/18px var(--font-condensed); letter-spacing: .12em; text-transform: uppercase; }
+
+    /* One load moment: the zero drops in. */
+    @keyframes drop { 0% { opacity: 0; transform: translateY(-40px) scale(.8); } 100% { opacity: 1; transform: none; } }
+    .board .zero { animation: drop .9s var(--spring) .25s both; }
+
+    @media (max-width: 900px) {
+      .hero .wrap { grid-template-columns: 1fr; }
+      .board .zero { font-size: 170px; -webkit-text-stroke-width: 10px; }
+      .board .zero-say { font-size: 28px; }
+    }
+    @media (max-width: 420px) {
+      .board-top { padding: var(--space-6); gap: var(--space-4); }
+      .board .zero { font-size: 130px; -webkit-text-stroke-width: 8px; }
+      .board .zero-say { font-size: 24px; }
+      .board-row div { padding: var(--space-3) var(--space-4); }
+    }
+
+    /* ---------- Featured review ---------- */
+    .featured { background: var(--surface-raised); }
+    .featured .wrap { display: grid; grid-template-columns: 220px 1fr; gap: var(--space-12); }
+    .featured .who { border-top: var(--stroke-frame) solid var(--pine); padding-top: var(--space-4); }
+    .featured blockquote { margin: 0; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.45; font-weight: 500; color: var(--pine); max-width: 34ch; }
+    .featured .src { margin-top: var(--space-6); }
+    @media (max-width: 760px) { .featured .wrap { grid-template-columns: 1fr; gap: var(--space-6); } }
+
+    mark { background: var(--mark); color: inherit; padding: 0 .12em; border-radius: 2px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+    /* ---------- The log: one row per review, like a roster row ---------- */
+    .log-head { display: flex; justify-content: space-between; align-items: end; gap: var(--space-6); flex-wrap: wrap; margin-bottom: var(--space-8); }
+    .log-head h2 { font-size: clamp(40px, 6vw, 64px); color: var(--pine); }
+    .log { list-style: none; margin: 0; padding: 0; border-top: var(--stroke-frame) solid var(--pine); }
+    .log li { display: grid; grid-template-columns: 260px 1fr; gap: var(--space-8); padding: var(--space-8) 0; border-bottom: 1px solid var(--line); }
+    .log .name { font-family: var(--font-display); text-transform: uppercase; font-size: 28px; line-height: 1; letter-spacing: .01em; color: var(--pine); margin: 0; }
+    .stat { display: flex; flex-wrap: wrap; gap: var(--space-2) 0; margin-top: var(--space-3); font: 600 14px/18px var(--font-condensed); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-muted); }
+    .stat span + span::before { content: "|"; margin: 0 var(--space-2); color: var(--line); }
+    .stat .five { color: var(--forest); }
+    .log blockquote { margin: 0; font-size: 18px; line-height: 29px; max-width: 64ch; }
+    @media (max-width: 760px) { .log li { grid-template-columns: 1fr; gap: var(--space-4); padding: var(--space-6) 0; } }
+
+    /* ---------- Five Before We Drive ---------- */
+    .five-sec { background: var(--surface); color: var(--ink); }
+    .five-sec .wrap { display: grid; grid-template-columns: auto 1fr; gap: var(--space-12); align-items: center; }
+    .five-sec h2 { font-size: clamp(36px, 5vw, 56px); color: var(--paper); }
+    .five-sec .gng-body-lg { color: var(--ink-muted); margin-top: var(--space-4); max-width: 46ch; }
+    .five-sec .gng-five { margin-top: var(--space-8); }
+    .five-sec .gng-five li { background: var(--surface-raised); color: var(--paper); }
+    .five-sec .gng-five .num { color: var(--lime); }
+    .five-sec .remedy { margin-top: var(--space-6); color: var(--jersey-blue); font-weight: 700; }
+    @media (max-width: 900px) {
+      .five-sec .wrap { grid-template-columns: 1fr; }
+      .five-sec .gng-five { flex-wrap: wrap; }
+      .five-sec .gng-five li { flex: 1 1 30%; }
+    }
+
+    /* ---------- The ask ---------- */
+    .ask .wrap { display: grid; grid-template-columns: 1fr auto; gap: var(--space-12); align-items: center; }
+    .ask h2 { font-size: clamp(36px, 5vw, 56px); color: var(--pine); }
+    .ask .gng-body-lg { margin: var(--space-4) 0 var(--space-8); max-width: 44ch; }
+    .ask .phone { display: inline-block; font-family: var(--font-display); font-size: clamp(34px, 5vw, 48px); line-height: 1; color: var(--forest); text-decoration: none; margin-bottom: var(--space-6); }
+    .ask .phone:hover { color: var(--pine); }
+    .ask .phone:active { opacity: .7; }
+    .ask .phone:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 4px; border-radius: 4px; }
+    .ask .ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .ask .qr { display: block; width: 220px; border-radius: var(--radius-lg); }
+    @media (max-width: 760px) { .ask .wrap { grid-template-columns: 1fr; } .ask .qr { width: 180px; } }
+
+    /* ---------- Footer ---------- */
+    footer { background: var(--surface); color: var(--ink-muted); padding: var(--space-12) 0 var(--space-16); }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-8); }
+    footer .tile { background: var(--paper); border-radius: var(--radius-sm); padding: var(--space-2) var(--space-4); display: inline-block; }
+    footer .tile img { display: block; width: 190px; height: auto; }
+    footer .gng-record { color: var(--paper); flex-wrap: wrap; }
+    footer a { color: var(--paper); }
+
+    /* Phone: fixed call bar at the bottom (site rule). */
+    .callbar { display: none; }
+    @media (max-width: 900px) {
+      .callbar { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--forest); color: var(--paper); text-align: center; text-decoration: none;
+        font: 700 16px/20px var(--font-sans); letter-spacing: .12em; text-transform: uppercase; padding: var(--space-4); border-top: var(--stroke-outline) solid var(--pine); }
+      .callbar:active { opacity: .85; }
+      .callbar:focus-visible { outline: 3px solid var(--lime); outline-offset: -6px; }
+      body { padding-bottom: 56px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { .board .zero { animation: none; } .gng-btn { transition: none; } }
+
+    /* ---------- Draft marks ----------
+       Lines with .draft are Claude's wording, waiting on Harrison's OK.
+       When he's approved or replaced them, delete "show-drafts" from <body>. */
+    .show-drafts .draft { text-decoration: underline dashed #c99a1c 2px; text-underline-offset: 5px; }
+    .show-drafts .draft-bar { display: block; }
+    .draft-bar { display: none; background: #fff4d6; color: #5c4610; text-align: center; font-size: 14px; line-height: 20px; padding: var(--space-2) var(--space-4); }
+  </style>
+</head>
+
+<body class="gng show-drafts">
+  <div class="draft-bar"><b>Draft:</b> lines with a dashed gold underline are my wording. Swap in yours or OK them. The reviews are real, word for word from Google.</div>
+
+  <!-- Nav -->
+  <header class="nav">
+    <div class="wrap">
+      <a class="logo-link" href="https://grassngardens.com/"><img src="../brand_assets/logos/lockup-horizontal.png" alt="Grass 'N' Gardens Landscaping, residential and commercial" /></a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#">Mowing</a></li>
+          <li><a href="#">Cleanups</a></li>
+          <li><a href="#">The roster</a></li>
+          <li><a href="#promise">Our promise</a></li>
+          <li><a href="#" aria-current="page">Why G'N'G?</a></li>
+        </ul>
+      </nav>
+      <a class="gng-btn gng-btn-primary gng-btn-pill" href="tel:+14406679642">Call (440) 667-9642</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero: the record is the thesis -->
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <h1 class="gng-display">Why<br />G'N'G?</h1>
+          <p class="gng-body-lg lede draft">Don't take it from me. Here's what our customers wrote on Google.</p>
+          <div class="ctas">
+            <a class="gng-btn gng-btn-primary" href="#log">Read the reviews</a>
+            <a class="gng-btn gng-btn-secondary" href="https://share.google/uGzNJkLJjozxgZWSS">See all 60 on Google</a>
+          </div>
+          <p class="gng-record"><span class="k">Record</span><span class="v">60 reviews<i>·</i>5.0 average<i>·</i>0 under five</span></p>
+        </div>
+
+        <div class="board" role="img" aria-label="Zero reviews under five stars. 60 Google reviews, 5.0 average.">
+          <div class="board-top">
+            <span class="gng-numeral xl zero" aria-hidden="true">0</span>
+            <p class="zero-say" aria-hidden="true">Reviews under five stars</p>
+          </div>
+          <div class="board-row" aria-hidden="true">
+            <div><span class="gng-numeral">60</span><span>Google reviews</span></div>
+            <div><span class="gng-numeral">5.0</span><span>Average</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured: the toughest critic -->
+    <section class="featured" aria-labelledby="feat-name">
+      <div class="wrap">
+        <div class="who">
+          <p class="gng-display" id="feat-name" style="font-size:28px;color:var(--pine)">Kier M.</p>
+          <p class="stat"><span>Weekly mowing</span><span class="five">5.0</span></p>
+          <p class="gng-small gng-muted draft" style="margin-top:var(--space-4)">Works in landscaping himself.</p>
+        </div>
+        <figure style="margin:0">
+          <blockquote>
+            “I work in landscape/hardscape myself. <mark>No one is allowed to cut my grass because they can't mow straight</mark>… But I needed a total knee replacement in April. … Harrison and his crew are respectful to both my needs as a customer, as well as my property. Don't be afraid to give a young entrepreneur an opportunity, you won't be disappointed!”
+          </blockquote>
+          <figcaption class="src gng-small gng-muted">Google review, trimmed for length. <a class="tlink" href="https://share.google/uGzNJkLJjozxgZWSS">Read it in full</a></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- The log -->
+    <section id="log">
+      <div class="wrap">
+        <div class="log-head">
+          <h2 class="gng-display draft">In their words</h2>
+          <a class="tlink" href="https://share.google/uGzNJkLJjozxgZWSS">All 60 reviews on Google</a>
+        </div>
+        <ol class="log">
+          <li>
+            <div>
+              <p class="name">Alex S.</p>
+              <p class="stat"><span>Yard cleanup</span><span class="five">5.0</span></p>
+            </div>
+            <blockquote>“Grass N Gardens did an outstanding job transforming my yard. These young gentlemen removed a massive amount of debris, <mark>including an entire trailer load of thorn bushes, tree branches, old leaves, and mulch.</mark> They were professional, hardworking, and incredibly efficient from start to finish. The entire cleanup was completed much faster than I expected, and the difference is unbelievable — my yard feels cleaner, larger, and completely refreshed. Super fair price as-well! Their attention to detail and work ethic really stood out. I highly recommend Grass N Gardens to anyone looking for a reliable team.”</blockquote>
+          </li>
+          <li>
+            <div>
+              <p class="name">Katie E.</p>
+              <p class="stat"><span>Mulch</span><span class="five">5.0</span></p>
+            </div>
+            <blockquote>“We had a great experience with Grass 'n' Gardens! They were very responsive and had strong communication from start to finish. They showed up on time, <mark>spread over 10 yards of mulch and left everything spotless.</mark> The crew was respectful and clearly takes pride in what they do. We couldn't be happier with the results and would recommend them for your next landscaping project!”</blockquote>
+          </li>
+          <li>
+            <div>
+              <p class="name">Geetha K.</p>
+              <p class="stat"><span>Weekly mowing</span><span class="five">5.0</span></p>
+            </div>
+            <blockquote>“Our lawn looks great this season. Harrison has been doing a great job cutting our grass. <mark>They are reliable and very punctual.</mark> Edging looks good. Overall we are very happy with the service and would recommend them highly. Definitely want them taking care of our lawn in the future too.”</blockquote>
+          </li>
+          <li>
+            <div>
+              <p class="name">Jennifer B.</p>
+              <p class="stat"><span>Beds &amp; plants</span><span class="five">5.0</span></p>
+            </div>
+            <blockquote>“Harrison was responsive, prompt and professional. I was very impressed by his knowledge of various plants and his willingness to tackle a tough job on my property. <mark>The day the crew was there, they were tidy, fast and very kind and respectful!</mark> I will absolutely hire them again.”</blockquote>
+          </li>
+          <li>
+            <div>
+              <p class="name">Tony A.</p>
+              <p class="stat"><span>A few years running</span><span class="five">5.0</span></p>
+            </div>
+            <blockquote>“I've used Grass n' Gardens for the last few years and have been consistently impressed with their efficiency, professionalism, and competitive pricing. Working with them has been seamless as I've been able to <mark>get a quote, agreed price, and had the work scheduled and done in a matter of days.</mark> Highly recommend this company!”</blockquote>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- The promise (pine) -->
+    <section id="promise" class="five-sec" data-theme="dark">
+      <div class="wrap">
+        <div class="gng-seal" aria-hidden="true"><span class="n">5</span><span class="t"><b>Before</b>We Drive</span></div>
+        <div>
+          <h2 class="gng-display">Five Before We Drive</h2>
+          <p class="gng-body-lg">Five things we check before we pull out of your driveway.</p>
+          <ol class="gng-five">
+            <li><div class="num">1</div><div class="word">Edges crisp</div></li>
+            <li><div class="num">2</div><div class="word">Everything blown clean</div></li>
+            <li><div class="num">3</div><div class="word">Nothing left behind</div></li>
+            <li><div class="num">4</div><div class="word">Gates latched</div></li>
+            <li><div class="num">5</div><div class="word">No clumps</div></li>
+          </ol>
+          <p class="remedy">Miss one? Text us and we're back the next day.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The ask -->
+    <section class="ask">
+      <div class="wrap">
+        <div>
+          <h2 class="gng-display">Want yours written out? It's free.</h2>
+          <p class="gng-body-lg">I'll walk your yard and write out your whole year. Takes 20 minutes and you don't have to be home. You get it in a day and it's yours to keep, even if you stay with the guy you have now.</p>
+          <a class="phone" href="tel:+14406679642">(440) 667-9642</a>
+          <div class="ctas">
+            <a class="gng-btn gng-btn-primary gng-btn-lg" href="sms:+14406679642">Get my yard plan</a>
+            <a class="gng-btn gng-btn-secondary gng-btn-lg" href="sms:+14406679642">Text us a photo</a>
+          </div>
+        </div>
+        <img class="qr" src="../brand_assets/logos/qr-scan-me-card.png" alt="QR code that opens grassngardens.com, with the words Scan me" />
+      </div>
+    </section>
+  </main>
+
+  <footer data-theme="dark">
+    <div class="wrap">
+      <span class="tile"><img src="../brand_assets/logos/lockup-horizontal.png" alt="Grass 'N' Gardens Landscaping" /></span>
+      <p class="gng-record"><span class="k">Record</span><span class="v">60 reviews<i>·</i>5.0 average<i>·</i>0 under five</span></p>
+      <p class="gng-small"><a class="tlink" href="tel:+14406679642">(440) 667-9642</a><br />Richfield, Ohio · grassngardens.com</p>
+    </div>
+  </footer>
+
+  <a class="callbar" href="tel:+14406679642">Call (440) 667-9642</a>
+</body>
+</html>

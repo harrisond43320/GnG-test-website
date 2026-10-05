@@ -1,0 +1,59 @@
+/* Grass 'n' Gardens tokens as CSS variables. Built 2026-09-28 from tokens.json.
+   Load this first, then components/bundle.css. Light (Paper) is the default;
+   put data-theme="dark" on a section for the Forest/pine look. */
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Graduate&family=Barlow:wght@500;700&family=Barlow+Condensed:wght@600&display=swap');
+
+:root {
+  /* brand colors (same in both themes) */
+  --forest: #307537;
+  --lime: #66b84a;
+  --pine: #1d4a22;
+  --sky: #c1e3f3;
+  --jersey-blue: #a7cbe0;
+  --paper: #ffffff;
+  --qr-black: #000000;
+
+  /* layout colors, Paper (light) theme */
+  --surface: #ffffff;
+  --surface-raised: #f2f8f2;
+  --surface-tint: #a7cbe0;
+  --line: #cfe0d0;
+  --ink: #1d4a22;
+  --ink-muted: #4f6b52;
+  --accent: #307537;
+  --on-accent: #ffffff;
+  --link: #307537;
+  --focus-ring: #307537;
+  --seal-ring: #66b84a;
+  --seal-fill: #307537;
+
+  /* fonts: pick at most 2 per piece (display + sans, or numeral + condensed) */
+  --font-display: "Alfa Slab One", "Rockwell Extra Bold", "Arial Black", serif;
+  --font-numeral: Graduate, "Alfa Slab One", "Arial Black", serif;
+  --font-sans: Barlow, "Arial Narrow", Arial, sans-serif;
+  --font-condensed: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+
+  /* spacing */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
+
+  /* radius */
+  --radius-sm: 6px; --radius-md: 12px; --radius-lg: 24px; --radius-pill: 999px;
+
+  /* strokes */
+  --stroke-hairline: 1px; --stroke-outline: 3px; --stroke-frame: 6px;
+}
+
+/* Forest (dark) theme */
+[data-theme="dark"] {
+  --surface: #1d4a22;
+  --surface-raised: #25562b;
+  --surface-tint: #307537;
+  --line: #4a8a50;
+  --ink: #ffffff;
+  --ink-muted: #c9e3cb;
+  --accent: #66b84a;
+  --on-accent: #1d4a22;
+  --link: #a7cbe0;
+  --focus-ring: #66b84a;
+}
