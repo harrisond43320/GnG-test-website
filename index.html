@@ -1168,13 +1168,14 @@
     <header class="hero">
       <div class="hero-photo">
         <!-- B-roll (2026-10-06): the brightest real job photos, slow drift + crossfade.
+             Not loading="lazy": they start invisible, so the browser never loaded them and the hero went blank. Low priority instead.
              Lighter shading than before, so the photos read clear; the text keeps its own soft shadow. -->
         <div class="broll" role="img" aria-label="Striped lawns, a stand-on mower, fresh mulch beds and the Grass 'n' Gardens crew on a job">
           <img src="img/gallery-12.jpg" srcset="img/sm/gallery-12.jpg 900w, img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: center 60%" />
-          <img src="img/gallery-16.jpg" srcset="img/sm/gallery-16.jpg 900w, img/gallery-16.jpg 1600w" sizes="100vw" alt="" loading="lazy" style="--pos: center 38%" />
-          <img src="img/gallery-25.jpg" srcset="img/sm/gallery-25.jpg 900w, img/gallery-25.jpg 1600w" sizes="100vw" alt="" loading="lazy" style="--pos: center 55%" />
-          <img src="img/gallery-18.jpg" srcset="img/sm/gallery-18.jpg 900w, img/gallery-18.jpg 1600w" sizes="100vw" alt="" loading="lazy" style="--pos: center 62%" />
-          <img src="img/crew-mulch.jpg" srcset="img/sm/crew-mulch.jpg 900w, img/crew-mulch.jpg 1600w" sizes="100vw" alt="" loading="lazy" style="--pos: center 40%" />
+          <img src="img/gallery-16.jpg" srcset="img/sm/gallery-16.jpg 900w, img/gallery-16.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 38%" />
+          <img src="img/gallery-25.jpg" srcset="img/sm/gallery-25.jpg 900w, img/gallery-25.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
+          <img src="img/gallery-18.jpg" srcset="img/sm/gallery-18.jpg 900w, img/gallery-18.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 62%" />
+          <img src="img/crew-mulch.jpg" srcset="img/sm/crew-mulch.jpg 900w, img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
         </div>
       </div>
       <div class="wrap hero-copy">
@@ -2041,6 +2042,9 @@
         run();
       };
       toggle.addEventListener('click', () => setPaused(!paused));
+      // Hidden slides never trigger lazy loading on their own, so load them all once the reel is near.
+      const loadAll = () => reel.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
+      new IntersectionObserver(([e], o) => { if (e.isIntersecting) { loadAll(); o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(reel);
       new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; run(); }, { threshold: .3 }).observe(reel);
       show(0); setPaused(paused);
     }
