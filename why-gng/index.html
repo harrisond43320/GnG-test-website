@@ -30,13 +30,13 @@
     /* ---------- Nav ---------- */
     .nav { border-bottom: 1px solid var(--line); background: var(--paper); }
     .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); padding-top: var(--space-3); padding-bottom: var(--space-3); }
-    .nav img { display: block; width: 200px; height: auto; }
+    .nav img { display: block; width: 280px; height: auto; }
     .nav ul { display: flex; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
     .nav ul a { color: var(--ink); text-decoration: none; font: 600 15px/18px var(--font-condensed); letter-spacing: .08em; text-transform: uppercase; padding: var(--space-2) 0; border-bottom: 3px solid transparent; }
     .nav ul a:hover { border-bottom-color: var(--lime); }
     .nav ul a:active { opacity: .7; }
     .nav ul a[aria-current="page"] { color: var(--forest); border-bottom-color: var(--forest); }
-    @media (max-width: 900px) { .nav ul, .nav .gng-btn { display: none; } .nav img { width: 180px; } }
+    @media (max-width: 900px) { .nav ul, .nav .gng-btn { display: none; } .nav img { width: 220px; } }
 
     /* ---------- Hero ---------- */
     .hero { padding: var(--space-16) 0; }
@@ -145,27 +145,28 @@
 
     /* ---------- Draft marks ----------
        Lines with .draft are Claude's wording, waiting on Harrison's OK.
-       When he's approved or replaced them, delete "show-drafts" from <body>. */
+       Add ?drafts to the address to see them (2026-10-06: they were showing to every visitor). */
     .show-drafts .draft { text-decoration: underline dashed #c99a1c 2px; text-underline-offset: 5px; }
     .show-drafts .draft-bar { display: block; }
     .draft-bar { display: none; background: #fff4d6; color: #5c4610; text-align: center; font-size: 14px; line-height: 20px; padding: var(--space-2) var(--space-4); }
   </style>
 </head>
 
-<body class="gng show-drafts">
+<body class="gng">
+  <script>if (new URLSearchParams(location.search).has('drafts')) document.body.classList.add('show-drafts');</script>
   <div class="draft-bar"><b>Draft:</b> lines with a dashed gold underline are my wording. Swap in yours or OK them. The reviews are real, word for word from Google.</div>
 
   <!-- Nav -->
   <header class="nav">
     <div class="wrap">
-      <a class="logo-link" href="https://grassngardens.com/"><img src="../brand_assets/logos/lockup-horizontal.png" alt="Grass 'N' Gardens Landscaping, residential and commercial" /></a>
+      <a class="logo-link" href="../"><img src="../brand_assets/logos/lockup-horizontal-web.png" width="600" height="161" alt="Grass 'N' Gardens Landscaping, residential and commercial" /></a>
       <nav aria-label="Main">
         <ul>
-          <li><a href="#">Mowing</a></li>
-          <li><a href="#">Cleanups</a></li>
-          <li><a href="#">The roster</a></li>
+          <li><a href="../#services">Mowing</a></li>
+          <li><a href="../#services">Cleanups</a></li>
+          <li><a href="../#about">The roster</a></li>
           <li><a href="#promise">Our promise</a></li>
-          <li><a href="#" aria-current="page">Why G'N'G?</a></li>
+          <li><a href="./" aria-current="page">Why G'N'G?</a></li>
         </ul>
       </nav>
       <a class="gng-btn gng-btn-primary gng-btn-pill" href="tel:+14406679642">Call (440) 667-9642</a>
@@ -290,7 +291,7 @@
           <p class="gng-body-lg">I'll walk your yard and write out your whole year. Takes 20 minutes and you don't have to be home. You get it in a day and it's yours to keep, even if you stay with the guy you have now.</p>
           <a class="phone" href="tel:+14406679642">(440) 667-9642</a>
           <div class="ctas">
-            <a class="gng-btn gng-btn-primary gng-btn-lg" href="sms:+14406679642">Get my yard plan</a>
+            <a class="gng-btn gng-btn-primary gng-btn-lg" href="../#plan">Get my yard plan</a>
             <a class="gng-btn gng-btn-secondary gng-btn-lg" href="sms:+14406679642">Text us a photo</a>
           </div>
         </div>
@@ -301,9 +302,9 @@
 
   <footer data-theme="dark">
     <div class="wrap">
-      <span class="tile"><img src="../brand_assets/logos/lockup-horizontal.png" alt="Grass 'N' Gardens Landscaping" /></span>
+      <a class="tile" href="../"><img src="../brand_assets/logos/lockup-horizontal-web.png" width="600" height="161" alt="Grass 'N' Gardens Landscaping, home" loading="lazy" /></a>
       <p class="gng-record"><span class="k">Record</span><span class="v">60 reviews<i>·</i>5.0 average<i>·</i>0 under five</span></p>
-      <p class="gng-small"><a class="tlink" href="tel:+14406679642">(440) 667-9642</a><br />Richfield, Ohio · grassngardens.com</p>
+      <p class="gng-small"><a class="tlink" href="tel:+14406679642">(440) 667-9642</a> · <a class="tlink" href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a><br />Richfield, Ohio · <a class="tlink" href="https://www.instagram.com/grass_n_gardens/">Instagram</a> · <a class="tlink" href="https://www.facebook.com/p/Grass-n-Gardens-61591542549375/">Facebook</a> · <a class="tlink" href="https://www.youtube.com/@GrassnGardens">YouTube</a></p>
     </div>
   </footer>
 
