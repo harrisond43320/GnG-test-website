@@ -1958,7 +1958,12 @@
         if (app) app.textContent = onPhone ? 'text' : 'email';
         track('generate_lead', { form: 'yard_plan', needs: needs.join(','), source, method: onPhone ? 'sms' : 'email' });
         card.classList.add('sent');
+        // 2026-10-06: save the ready message for the thank-you page (this browser tab only, never the URL),
+        // open the text/email app, then go to the thank-you page. It has a big "open it again" button
+        // in case the phone blocked the first try. It's also the clean conversion page for Google Ads.
+        try { sessionStorage.setItem('gng_lead', JSON.stringify({ href: lastHref, app: onPhone ? 'text' : 'email', first: val('name').split(/\s+/)[0].slice(0, 30) })); } catch (e) {}
         openApp(lastHref);
+        setTimeout(() => { location.href = 'thank-you/'; }, 700);
       });
       const again = card.querySelector('[data-reopen]');
       if (again) again.addEventListener('click', () => { if (lastHref) openApp(lastHref); });

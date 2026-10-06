@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Almost done | Grass 'n' Gardens</title>
+  <!-- Thank-you page after the yard plan form. Kept out of Google; also the clean "conversion" page for Google Ads. -->
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#141c17" />
+  <link rel="icon" href="../brand_assets/logos/monogram.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* 2026-10-06: same system as home/index.html (tokens, header, cartoon buttons, type rule, footer). */
+    :root {
+      --bg: #141c17; --fg: #ffffff; --coal: #1c2620;
+      --ink: #18201b; --ink-muted: #56605a;
+      --line-dark: rgba(255, 255, 255, .12); --line-light: rgba(24, 32, 27, .14);
+      --lime: #66b84a; --forest: #307537; --pine: #1d4a22; --jersey-blue: #a7cbe0;
+      --font-display: "Alfa Slab One", "Rockwell Extra Bold", "Arial Black", serif;
+      --font-body: Barlow, "Arial Narrow", Arial, sans-serif;
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s6: 24px;
+      --s8: 32px; --s12: 48px; --s16: 64px; --s24: 96px; --s32: 128px;
+      --radius: 12px; --wrap: 1240px;
+      --spring: cubic-bezier(.34, 1.4, .64, 1);
+      --ease-out: cubic-bezier(.22, 1, .36, 1);
+      --shadow-2: 0 2px 4px rgba(6, 20, 10, .08), 0 18px 40px -12px rgba(6, 30, 12, .30), 0 40px 80px -30px rgba(6, 30, 12, .35);
+      --fs-h2: clamp(38px, 5.4vw, 74px);
+      --fs-lead: clamp(21px, 2.3vw, 30px);
+      --fs-h3: clamp(22px, 2vw, 28px);
+      color-scheme: dark;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; font-synthesis: style; }
+    body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s6); }
+    @media (min-width: 768px) { .wrap { padding: 0 var(--s12); } }
+    body::after {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .07; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .eyebrow { font-weight: 700; font-size: 13px; line-height: 1; letter-spacing: .22em; text-transform: uppercase; }
+    .dot { color: var(--lime); }
+    .show-drafts .draft { text-decoration: underline dashed #c99a1c 2px; text-underline-offset: 5px; }
+    .sec-h { font-family: var(--font-body); font-weight: 600; font-size: var(--fs-lead); line-height: 1.2; color: rgba(255,255,255,.88); }
+    .sec-h b { display: block; margin-top: 6px; font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h2); line-height: 1; letter-spacing: .01em; text-transform: uppercase; color: #fff; }
+
+    /* ---------- cartoon buttons ---------- */
+    .btn {
+      position: relative; isolation: isolate; overflow: hidden;
+      display: inline-flex; align-items: center; gap: var(--s3);
+      font-family: var(--font-body); font-weight: 700; font-size: 16px; line-height: 1;
+      padding: 16px 24px; border-radius: 6px; cursor: pointer;
+      border: 2.5px solid var(--pine); box-shadow: 0 4px 0 0 var(--btn-shadow, var(--pine));
+      transition: transform .18s var(--ease-out), box-shadow .18s var(--ease-out), background-color .2s var(--ease-out);
+    }
+    .btn svg { transition: transform .35s var(--spring); }
+    .btn:hover svg { transform: translateX(4px); }
+    .btn::before {
+      content: ""; position: absolute; z-index: -1; top: 50%; left: 0; width: 46px; height: 160%;
+      background: var(--shine, rgba(255, 255, 255, .6)); pointer-events: none;
+      transform: translate(-130%, -50%) rotate(14deg);
+      animation: glint 7s ease-in-out infinite; animation-delay: var(--glint-delay, 2s);
+    }
+    @keyframes glint { 0%, 82% { transform: translate(-130%, -50%) rotate(14deg); } 100% { transform: translate(1500%, -50%) rotate(14deg); } }
+    @keyframes sweep { from { transform: translate(-130%, -50%) rotate(14deg); } to { transform: translate(1500%, -50%) rotate(14deg); } }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 7px 0 0 var(--btn-shadow, var(--pine)); }
+    .btn:hover::before { animation: sweep .6s ease-in-out 1 forwards; }
+    .btn:active { transform: translateY(4px); box-shadow: 0 0 0 0 var(--btn-shadow, var(--pine)); }
+    .btn:focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
+    .site-head .btn:focus-visible, .done-card .btn:focus-visible { outline-color: var(--forest); }
+    .btn-lime { background: var(--lime); color: var(--pine); --btn-shadow: var(--pine); }
+    .btn-lime:hover { background: #74c656; }
+    .btn-ghost { background: #fff; color: var(--pine); --btn-shadow: var(--lime); --shine: rgba(102, 184, 74, .55); }
+    .btn-dark { background: var(--pine); color: #fff; --btn-shadow: var(--lime); --shine: rgba(255, 255, 255, .35); }
+    .btn-dark:hover { background: var(--forest); }
+    .btn-big { font-size: 19px; padding: 20px 28px; }
+    @media (max-width: 480px) { .wide-only { display: none; } }
+
+    /* ---------- header (same as the homepage) ---------- */
+    .site-head { position: sticky; top: 0; z-index: 70; background: #fff; color: var(--pine); border-bottom: 3px solid var(--pine); transition: box-shadow .3s var(--ease-out); }
+    .site-head.scrolled { box-shadow: 0 10px 28px -14px rgba(0, 0, 0, .55); }
+    .head-in { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); height: 80px; }
+    @media (min-width: 900px) { .head-in { height: 104px; } }
+    .brand { display: block; flex: none; border-radius: 8px; transition: transform .35s var(--spring); }
+    .brand:hover { transform: scale(1.03); }
+    .brand:active { transform: scale(.97); }
+    .brand:focus-visible { outline: 3px solid var(--forest); outline-offset: 4px; }
+    .brand img { height: 54px; width: auto; }
+    @media (min-width: 400px) { .brand img { height: 60px; } }
+    @media (min-width: 900px) { .brand img { height: 82px; } }
+    .head-ctas { display: flex; align-items: center; gap: var(--s2); }
+    .site-head .phone { padding: 13px 18px; font-size: 16px; white-space: nowrap; }
+    @media (max-width: 640px) { .site-head .phone { padding: 12px 13px; } .site-head .phone .num { display: none; } }
+    .back-link { font-weight: 700; color: var(--pine); padding: 10px; border-radius: 8px; position: relative; }
+    .back-link::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 4px; height: 3px; border-radius: 2px; background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--spring); }
+    .back-link:hover::after, .back-link:focus-visible::after { transform: scaleX(1); }
+    .back-link:active { transform: translateY(1px); }
+    .back-link:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
+    @media (max-width: 520px) { .back-link { display: none; } }
+
+    /* ---------- almost done (hero) ---------- */
+    .ty { position: relative; overflow: hidden; padding: var(--s16) 0 var(--s24); }
+    .ty-photo { position: absolute; inset: 0; }
+    .ty-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; transform: scale(1.06); animation: settle 2.4s var(--ease-out) forwards; }
+    @keyframes settle { to { transform: scale(1); } }
+    .ty-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 0%, rgba(12,18,14,.78) 40%, rgba(12,18,14,.55) 100%); }
+    .ty-in { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; text-align: center; }
+    .ty .eyebrow { color: var(--jersey-blue); letter-spacing: .24em; font-size: clamp(13px, 1.3vw, 16px); }
+    /* THE signature: logo lettering, once per page */
+    .ty h1 {
+      margin-top: var(--s4);
+      font-family: var(--font-display); font-weight: 400; font-style: italic; text-transform: uppercase;
+      font-size: clamp(52px, 9vw, 120px); line-height: .95; letter-spacing: .03em;
+      color: #fff; -webkit-text-stroke: .1em var(--pine); paint-order: stroke fill; text-shadow: .05em .06em 0 var(--forest);
+    }
+
+    /* 3-step tracker: it's a real sequence, so the order means something */
+    .track { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); margin: var(--s12) auto 0; max-width: 640px; position: relative; }
+    .track::before, .track::after { /* the line behind the dots, and the lime part that's done */
+      content: ""; position: absolute; top: 21px; left: 16.66%; right: 16.66%; height: 4px; border-radius: 4px; background: rgba(255,255,255,.2);
+    }
+    .track::after { right: 50%; background: var(--lime); transform-origin: left; animation: fillline .9s var(--ease-out) .4s both; }
+    @keyframes fillline { from { transform: scaleX(0); } }
+    .track li { position: relative; z-index: 1; display: grid; justify-items: center; gap: var(--s2); font-weight: 700; font-size: 15px; line-height: 1.25; color: rgba(255,255,255,.75); padding: 0 var(--s1); }
+    .track .pip { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--bg); border: 3px solid rgba(255,255,255,.35); color: rgba(255,255,255,.6); font-weight: 800; }
+    .track .done .pip { background: var(--lime); border-color: var(--pine); color: var(--pine); }
+    .track .now { color: #fff; }
+    .track .now .pip { background: #fff; border-color: var(--lime); color: var(--pine); box-shadow: 0 0 0 0 rgba(102,184,74,.7); animation: ping 1.8s var(--ease-out) 1.2s infinite; }
+    @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(102,184,74,.7); } 100% { box-shadow: 0 0 0 16px rgba(102,184,74,0); } }
+
+    /* the sticker card with the one thing to do */
+    .done-card {
+      position: relative; margin: var(--s12) auto 0; max-width: 620px; text-align: left;
+      background: #fff; color: var(--ink); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 9px 9px 0 var(--lime);
+      padding: var(--s8) var(--s6); transform: rotate(-1deg); transition: transform .6s var(--spring);
+    }
+    @media (min-width: 640px) { .done-card { padding: var(--s12); } }
+    .done-card:hover { transform: rotate(0) translateY(-4px); }
+    .done-card .tag {
+      position: absolute; top: -16px; left: var(--s8); padding: 5px 12px; border-radius: 6px;
+      background: var(--jersey-blue); color: var(--pine); border: 2px solid var(--ink);
+      font-weight: 700; font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    }
+    .done-card h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(26px, 3vw, 36px); line-height: 1.05; letter-spacing: .01em; color: var(--pine); text-wrap: balance; }
+    .done-card p { margin-top: var(--s3); font-size: 18px; line-height: 1.5; color: var(--ink-muted); }
+    .done-card .btn { margin-top: var(--s6); width: 100%; justify-content: center; }
+    .done-card .alt { margin-top: var(--s6); padding-top: var(--s4); border-top: 2px dashed var(--line-light); font-size: 15px; }
+    .done-card .alt a { color: var(--forest); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; border-radius: 4px; }
+    .done-card .alt a:hover { color: var(--pine); }
+    .done-card .alt a:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
+    /* no saved message (someone opened this page on its own): show the plain ways to reach us */
+    [data-state="none"] .if-msg, [data-state="msg"] .if-none { display: none; }
+
+    /* ---------- what happens next ---------- */
+    .after { padding: var(--s16) 0 var(--s24); }
+    .next { list-style: none; counter-reset: step; display: grid; gap: var(--s4); margin-top: var(--s12); }
+    @media (min-width: 760px) { .next { grid-template-columns: repeat(3, 1fr); } }
+    .next li {
+      counter-increment: step; padding: var(--s6); border-radius: var(--radius);
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      font-size: 16px; line-height: 1.5; color: rgba(255,255,255,.78);
+    }
+    .next li::before {
+      content: counter(step); display: grid; place-items: center; width: 34px; height: 34px; margin-bottom: var(--s3);
+      border-radius: 50%; background: var(--lime); color: var(--pine); font-weight: 800; font-size: 15px; border: 2px solid var(--pine);
+    }
+    .next li b { display: block; color: #fff; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .01em; font-size: var(--fs-h3); line-height: 1.05; margin-bottom: var(--s2); }
+    .after-grid { display: grid; gap: var(--s8); margin-top: var(--s12); align-items: center; }
+    @media (min-width: 900px) { .after-grid { grid-template-columns: 1fr 1fr; gap: var(--s12); } }
+    .crew { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 3; box-shadow: var(--shadow-2); }
+    .crew img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+    .crew figcaption { position: absolute; left: var(--s4); bottom: var(--s4); padding: 6px 12px; border-radius: 6px; background: var(--lime); color: var(--pine); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+    .mini-quote { padding: var(--s6); border-left: 4px solid var(--jersey-blue); background: rgba(255,255,255,.04); border-radius: 0 var(--radius) var(--radius) 0; }
+    .mini-quote blockquote { font-size: clamp(19px, 1.8vw, 22px); line-height: 1.5; font-weight: 500; color: #fff; }
+    .mini-quote figcaption { margin-top: var(--s3); font-size: 14px; font-weight: 600; color: rgba(255,255,255,.65); }
+    .mini-quote figcaption span { color: #fbbc04; letter-spacing: 2px; margin-left: var(--s2); }
+    .after-ctas { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s8); }
+
+    /* ---------- footer + phone call bar ---------- */
+    footer.site { border-top: 1px solid var(--line-dark); padding: var(--s12) 0 120px; }
+    @media (min-width: 900px) { footer.site { padding-bottom: var(--s12); } }
+    .foot { display: grid; gap: var(--s8); }
+    @media (min-width: 900px) { .foot { grid-template-columns: auto 1fr auto; align-items: center; } }
+    .foot .logo-tile { display: inline-block; background: #fff; border-radius: 10px; padding: 10px 14px; transition: transform .35s var(--spring); }
+    .foot .logo-tile:hover { transform: translateY(-2px); }
+    .foot .logo-tile:active { transform: scale(.97); }
+    .foot .logo-tile img { height: 60px; width: auto; }
+    .foot .rec { font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+    .foot .rec b { color: var(--lime); }
+    .foot .meta { font-size: 14px; color: rgba(255,255,255,.55); line-height: 1.6; }
+    .foot .meta a:hover { color: #fff; }
+    .foot a:focus-visible, .call-bar a:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+    .call-bar {
+      position: fixed; z-index: 60; left: var(--s3); right: var(--s3); bottom: var(--s3);
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); padding: var(--s2); border-radius: 16px;
+      background: rgba(20, 23, 21, .86); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.08); box-shadow: 0 12px 30px -8px rgba(0,0,0,.6);
+    }
+    .call-bar a { justify-content: center; padding: 14px 10px; font-size: 15px; }
+    @media (min-width: 900px) { .call-bar { display: none; } }
+
+    /* load-in: h1, tracker, card arrive in order */
+    .rise { animation: rise .8s var(--ease-out) both; }
+    .rise.d1 { animation-delay: .1s; } .rise.d2 { animation-delay: .2s; } .rise.d3 { animation-delay: .3s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+    .done-card.rise { animation-name: rise-tilt; }
+    @keyframes rise-tilt { from { opacity: 0; transform: translateY(24px) rotate(-1deg); } to { transform: rotate(-1deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .btn::before { display: none; }
+    }
+  </style>
+</head>
+<body data-state="none">
+
+  <header class="site-head">
+    <div class="wrap head-in">
+      <a class="brand" href="../" aria-label="Grass 'n' Gardens home">
+        <img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" />
+      </a>
+      <div class="head-ctas">
+        <a class="back-link" href="../">Back to home</a>
+        <a class="btn btn-lime phone" href="tel:+14406679642" aria-label="Call (440) 667-9642">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span class="num">(440) 667-9642</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ALMOST DONE. The form saved a ready-made text/email in this browser tab (sessionStorage, never the URL).
+         This page gives one big button to open it again, because some phones block the first try. -->
+    <section class="ty">
+      <div class="ty-photo"><img src="../img/sm/gallery-12.jpg" srcset="../img/sm/gallery-12.jpg 900w, ../img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" /></div>
+      <div class="wrap ty-in">
+        <p class="eyebrow rise draft" data-thanks>Thanks!</p>
+        <h1 class="rise d1 if-msg draft">Almost done!</h1>
+        <h1 class="rise d1 if-none draft">Let's get you a yard plan.</h1>
+
+        <ol class="track rise d2 if-msg" aria-label="Your yard plan, step 2 of 3">
+          <li class="done"><span class="pip" aria-hidden="true">&#10003;</span><span class="draft">Filled it out</span></li>
+          <li class="now" aria-current="step"><span class="pip" aria-hidden="true">2</span><span class="draft">Hit send</span></li>
+          <li><span class="pip" aria-hidden="true">3</span><span class="draft">Harrison texts you back</span></li>
+        </ol>
+
+        <div class="done-card rise d3" role="status">
+          <span class="tag">Step 2 of 3</span>
+          <div class="if-msg">
+            <h2 class="draft">Hit send in your <span data-app>text</span> app.</h2>
+            <p class="draft">Your answers are already typed in. Just hit send. Didn't open? Tap the button.</p>
+            <button class="btn btn-lime btn-big" type="button" data-open>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
+              <span>Open my <span data-app>text</span><span class="wide-only"> to Harrison</span></span></button>
+            <p class="alt draft">Already sent it? You're all set. Still stuck? <a href="sms:+14406679642">Text (440) 667-9642</a> or <a href="mailto:grassngardens4u@gmail.com">email us</a>.</p>
+          </div>
+          <div class="if-none">
+            <h2 class="draft">Text Harrison your address.</h2>
+            <p class="draft">Tell him what you need. He texts you back today.</p>
+            <a class="btn btn-lime btn-big" href="sms:+14406679642">Text (440) 667-9642</a>
+            <p class="alt draft">Rather fill out the form? <a href="../#plan">Get my yard plan</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT HAPPENS NEXT (same steps as beside the homepage form) -->
+    <section class="after">
+      <div class="wrap">
+        <h2 class="sec-h">Here's what <b>happens next<span class="dot">.</span></b></h2>
+        <ol class="next">
+          <li><b>You send it.</b> Takes 30 seconds.</li>
+          <li><b>Harrison texts you today.</b> From his own phone.</li>
+          <li><b>We write out your whole year.</b> We walk your yard in about 20 minutes. You don't have to be home.</li>
+        </ol>
+        <div class="after-grid">
+          <figure class="crew">
+            <img src="../img/sm/crew-mulch.jpg" alt="The Grass 'n' Gardens crew by the truck after a mulch job" loading="lazy" />
+            <figcaption>The crew</figcaption>
+          </figure>
+          <div>
+            <figure class="mini-quote">
+              <blockquote>"I've been able to get a quote, agreed price, and had the work scheduled and done in a matter of days."</blockquote>
+              <figcaption>Tony A., Google review <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></figcaption>
+            </figure>
+            <div class="after-ctas">
+              <a class="btn btn-ghost" href="../why-gng/">Read our reviews
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="btn btn-dark" href="../">Back to home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <div class="wrap foot">
+      <a class="logo-tile" href="../" aria-label="Grass 'n' Gardens home"><img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" /></a>
+      <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
+      <p class="meta"><a href="tel:+14406679642">(440) 667-9642</a> &middot; <a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a><br />Richfield, Ohio &middot; <a href="../">Home</a> &middot; <a href="../why-gng/">Reviews</a></p>
+    </div>
+  </footer>
+
+  <div class="call-bar">
+    <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
+    <a class="btn btn-ghost" href="sms:+14406679642">Text us</a>
+  </div>
+
+  <script>
+  (() => {
+    if (new URLSearchParams(location.search).has('drafts')) document.documentElement.classList.add('show-drafts');
+    window.dataLayer = window.dataLayer || [];
+    const track = (event, extra) => window.dataLayer.push(Object.assign({ event }, extra || {}));
+
+    // The homepage form saves { href, app, first } here right before it sends people to this page.
+    let lead = null;
+    try { lead = JSON.parse(sessionStorage.getItem('gng_lead') || 'null'); } catch (e) {}
+    const ok = lead && /^(sms|mailto):/.test(lead.href || '');
+    document.body.dataset.state = ok ? 'msg' : 'none';
+    track('thank_you_view', { has_message: !!ok });
+
+    if (ok) {
+      const app = lead.app === 'email' ? 'email' : 'text';
+      document.querySelectorAll('[data-app]').forEach(el => { el.textContent = app; });
+      if (lead.first) document.querySelector('[data-thanks]').textContent = 'Thanks, ' + lead.first + '.';
+      // opens the text/email app. window.__gngOpen lets a test catch the message instead of opening an app.
+      const openApp = href => (window.__gngOpen || (h => { location.href = h; }))(href);
+      document.querySelector('[data-open]').addEventListener('click', () => { track('lead_reopen', { method: app }); openApp(lead.href); });
+    }
+
+    // Header shadow on scroll
+    const head = document.querySelector('.site-head');
+    const onScroll = () => head.classList.toggle('scrolled', scrollY > 40);
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // Button shine: stagger the idle glint
+    document.querySelectorAll('.btn').forEach((b, i) => b.style.setProperty('--glint-delay', (1.2 + (i * 1.7) % 6).toFixed(1) + 's'));
+
+    // Calls, texts and emails count as leads (same events as the homepage)
+    document.addEventListener('click', e => {
+      const a = e.target.closest('a[href^="tel:"], a[href^="sms:"], a[href^="mailto:"]');
+      if (!a) return;
+      const kind = a.href.startsWith('tel:') ? 'click_to_call' : a.href.startsWith('sms:') ? 'click_to_text' : 'click_email';
+      track(kind, { link_text: a.textContent.trim().slice(0, 40), page: 'thank-you' });
+    });
+  })();
+  </script>
+</body>
+</html>
