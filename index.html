@@ -437,11 +437,22 @@
     }
     .record b { color: var(--forest); }
     /* Google review "screenshots": cartoon sticker look, thick outline + hard shadow + tilt */
-    .gshots { margin-top: var(--s16); columns: 1; column-gap: var(--s8); }
-    @media (min-width: 700px) { .gshots { columns: 2; } }
-    @media (min-width: 1080px) { .gshots { columns: 3; } }
+    /* 2026-10-07: two rows that slide past each other (script moves them; cards keep the sticker look) */
+    .rv-rows { display: grid; gap: var(--s6); margin-top: var(--s16); padding: 14px 0 24px; overflow: hidden; }
+    .rv-track, .rv-copy { display: flex; align-items: center; gap: var(--s8); }
+    .rv-track { position: relative; width: max-content; padding: 0 var(--s4); will-change: transform; }
+    .rv-track .gshot { flex: 0 0 340px; }
+    .rv-track .gshot p { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+    .rv-static .rv-track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 18px; }
+    .rv-static .rv-track .gshot { scroll-snap-align: center; }
+    @media (max-width: 767px) {
+      .rv-rows { gap: var(--s4); margin-top: var(--s8); }
+      .rv-track, .rv-copy { gap: var(--s6); }
+      .rv-track .gshot { flex-basis: min(78vw, 300px); padding: var(--s4); }
+      .rv-track .gshot p { font-size: 14px; -webkit-line-clamp: 4; }
+    }
     .gshot {
-      break-inside: avoid; margin: 0 0 var(--s8); padding: var(--s6);
+      break-inside: avoid; margin: 0; padding: var(--s6);
       background: #fff; color: #202124; border: 3px solid var(--ink); border-radius: 16px;
       box-shadow: 7px 7px 0 var(--ink);
       font-family: Roboto, Arial, sans-serif;
@@ -468,6 +479,34 @@
     .gshot p { margin-top: var(--s3); font-size: 15px; line-height: 1.55; color: #3c4043; }
     @media (prefers-reduced-motion: reduce) { .gshot { transition: none; } }
     .reviews .more { display: flex; justify-content: flex-end; margin-top: var(--s8); }
+    /* send a neighbor (2026-10-07): same sticker language as the reviews and the ticket */
+    .refer {
+      position: relative; display: grid; gap: var(--s6); align-items: center; max-width: 920px; margin: var(--s16) auto 0;
+      padding: var(--s8); background: #fff; border: 3px solid var(--ink); border-radius: 20px;
+      box-shadow: 7px 7px 0 var(--lime); transform: rotate(-.6deg);
+    }
+    .refer.reveal { transform: translateY(16px) rotate(-.6deg); }
+    .refer.reveal.in { transform: rotate(-.6deg); }
+    @media (min-width: 768px) { .refer { grid-template-columns: auto 1fr auto; gap: var(--s8); } }
+    .refer-badge {
+      display: grid; place-items: center; align-content: center; width: 116px; height: 116px; border-radius: 50%;
+      background: var(--lime); border: 3px solid var(--ink); color: var(--pine); transform: rotate(-8deg); text-align: center;
+    }
+    .refer-badge b { font-family: var(--font-display); font-size: 40px; line-height: 1; }
+    .refer-badge span { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-top: 2px; }
+    .refer-tag { font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--forest); }
+    .refer h3 { font-family: var(--font-display); font-size: clamp(24px, 2.6vw, 32px); line-height: 1.1; color: var(--pine); margin-top: var(--s2); }
+    .refer-copy > p:not(.refer-tag) { margin-top: var(--s3); font-size: 17px; line-height: 1.5; }
+    .refer small { display: block; margin-top: var(--s2); font-size: 14px; color: var(--ink-muted); }
+    @media (max-width: 767px) {
+      .refer { margin-top: var(--s12); padding: var(--s6); }
+      .refer-badge { width: 84px; height: 84px; position: absolute; top: -26px; right: 14px; }
+      .refer-badge b { font-size: 28px; }
+      .refer-badge span { font-size: 8px; letter-spacing: .1em; }
+      .refer-copy { padding-right: 72px; }
+      .refer .btn { width: 100%; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) { .refer, .refer.reveal, .refer.reveal.in { transform: none; } }
     .reviews .more .link { color: var(--ink-muted); }
     .reviews .more .link:hover { color: var(--ink); }
 
@@ -664,7 +703,12 @@
     /* "Other" boxes only show once picked */
     .form-card .if-other { display: none; }
     .form-card form:has(#need-other:checked) .other-need,
-    .form-card form:has(select[name="source"] option[value="other"]:checked) .other-source { display: grid; }
+    .form-card form:has(select[name="source"] option[value="other"]:checked) .other-source,
+    .form-card form:has(select[name="source"] option[value="A friend or neighbor"]:checked) .referred { display: grid; }
+    .form-card .referred small.draft { font-size: 13px; font-weight: 600; color: var(--forest); }
+    .form-proof { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink-muted); }
+    .form-proof .stars { color: #fbbc04; letter-spacing: 1px; }
+    .form-proof b { color: var(--ink); }
     .form-card .hp { position: absolute; left: -9999px; }
     .form-card .btn { justify-content: center; margin-top: var(--s2); }
     .form-card .form-done { display: none; margin-top: var(--s6); font-weight: 600; font-size: 18px; color: var(--forest); }
@@ -919,12 +963,6 @@
     .ba-shot.after figcaption { background: var(--lime); color: var(--pine); }
     .ba-cap { grid-column: 1 / -1; font-size: 16px; color: rgba(255,255,255,.75); }
     .ba-cap b { color: #fff; }
-
-    /* phones: 4 reviews, 6 lines each (full text is one tap away on Google) */
-    @media (max-width: 700px) {
-      .gshot p { display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
-      .gshot:nth-child(n+5) { display: none; }
-    }
 
     /* =====================================================================
        2026-10-06 CLEANUP. Last block on purpose: it wins.
@@ -1368,22 +1406,20 @@
       .intro .lede, .ask .lede { margin-top: var(--s4); }
 
       /* side-swipe rows */
-      .svc-row, .vs, .gshots {
+      .svc-row, .vs {
         display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory; scroll-padding: 0 var(--s6); scrollbar-width: none;
         margin-left: calc(-1 * var(--s6)); margin-right: calc(-1 * var(--s6)); padding: 6px var(--s6) 18px;
         columns: auto;
       }
-      .svc-row::-webkit-scrollbar, .vs::-webkit-scrollbar, .gshots::-webkit-scrollbar { display: none; }
-      .svc-row > *, .vs > *, .gshots > * { flex: 0 0 82%; scroll-snap-align: start; margin: 0; }
+      .svc-row::-webkit-scrollbar, .vs::-webkit-scrollbar { display: none; }
+      .svc-row > *, .vs > * { flex: 0 0 82%; scroll-snap-align: start; margin: 0; }
       /* cards off to the side are already "in", so they never pop in mid-swipe */
-      .svc-row .reveal, .gshots .reveal { opacity: 1; transform: none; }
-      .gshots .gshot.reveal { transform: rotate(var(--tilt, -1.2deg)); }
+      .svc-row .reveal { opacity: 1; transform: none; }
       .svc-row { margin-top: var(--s8); }
       .svc { min-height: 300px; }
       .vs { align-items: stretch; margin-top: var(--s8); }
       .vs-card li { padding: 10px 0; font-size: 15px; }
-      .gshots { margin-top: var(--s8); padding-top: 12px; }
       .swipe-hint { display: block; margin-top: 2px; text-align: center; font-size: 13px; font-weight: 600; opacity: .6; }
 
       /* the yard plan: smaller "what happens next" steps */
@@ -1428,6 +1464,12 @@
       .work-grid::-webkit-scrollbar { display: none; }
       .work-grid > * { flex: 0 0 72%; height: 240px; aspect-ratio: auto; scroll-snap-align: start; opacity: 1; transform: none; }
       .work .center { margin-top: var(--s8); }
+
+      /* 2026-10-07 (later): hero = one big thumb-sized button. "Text us a photo" sat half under the
+         call bar, and the bar already has it, always on screen. */
+      .hero-ctas .btn-ghost { display: none; }
+      .hero-ctas .btn-lime { width: 100%; justify-content: center; }
+      .refer small { line-height: 1.4; }
     }
   </style>
 </head>
@@ -1664,7 +1706,7 @@
                 <option>TikTok</option>
                 <option>YouTube</option>
                 <option>Nextdoor</option>
-                <option>A friend or neighbor</option>
+                <option value="A friend or neighbor">A friend or neighbor</option>
                 <option>Saw our truck or trailer</option>
                 <option>Saw our crew working nearby</option>
                 <option>Yard sign</option>
@@ -1673,13 +1715,21 @@
                 <option value="other">Other</option>
               </select></label>
             <label class="if-other other-source">Where? <input name="source_other" placeholder="Type it here" /></label>
+            <!-- 2026-10-07 referral rule (locked 2026-10-03): when you sign a yearly plan, the neighbor who sent you
+                 gets 5% off their next year and you get 5% off your first. This is how Harrison knows who to credit. -->
+            <label class="if-other referred"><span>Who sent you? <small>(optional)</small></span>
+              <input name="referred_by" autocomplete="off" placeholder="Their name" />
+              <small class="draft">Sign a yearly plan and you both save 5%.</small></label>
             <label class="hp" aria-hidden="true">Leave this empty <input name="website" tabindex="-1" autocomplete="off" /></label>
             <!-- ad tracking: filled from the URL by the script below, so every lead shows which ad or campaign sent it -->
             <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" />
             <input type="hidden" name="utm_term" /><input type="hidden" name="gclid" /><input type="hidden" name="landing_page" />
-            <button class="btn btn-lime" type="submit">Send to Harrison
+            <!-- 2026-10-07: proof right where people decide to send -->
+            <p class="form-proof"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <b>5.0</b> from 60 Google reviews. 0 under five.</p>
+            <button class="btn btn-lime" type="submit"><span data-send-word>Send to Harrison</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-            <p class="form-how draft">This opens a text to Harrison with your answers filled in. Just hit send.</p>
+            <p class="form-how draft" data-how-app>This opens a text to Harrison with your answers filled in. Just hit send.</p>
+            <p class="form-how draft" data-how-direct hidden>It goes straight to Harrison. He texts you back today.</p>
           </form>
           <!-- No form service yet, so "Send" opens a ready-made text (phones) or email (computers) to Harrison.
                When a real form service is hooked up, it can post here instead. -->
@@ -1769,8 +1819,11 @@
           <svg class="jersey" viewBox="0 0 120 120" aria-hidden="true">
             <path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="#a7cbe0" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
             <path d="M40 10 Q60 26 80 10" fill="none" stroke="#1d4a22" stroke-width="4" stroke-linecap="round"/>
-            <!-- 2026-10-07: the real G'N'G logo lettering on the chest (Harrison), cut from logos/monogram.png -->
-            <image href="brand_assets/logos/gng-wordmark.png" x="27" y="58" width="66" height="25" preserveAspectRatio="xMidYMid meet"/>
+            <!-- 2026-10-07 (Harrison): the water-drop mark on the chest, like a team crest. Brand rule: the mark
+                 sits on a white tile when it's not on paper, so it's a round white patch with a pine ring. -->
+            <clipPath id="crestClip"><circle cx="60" cy="72" r="25"/></clipPath>
+            <circle cx="60" cy="72" r="27" fill="#fff" stroke="#1d4a22" stroke-width="3"/>
+            <image href="brand_assets/logos/mark-sm.png" x="35" y="48" width="50" height="50" clip-path="url(#crestClip)" preserveAspectRatio="xMidYMid meet"/>
           </svg>
           <div><span class="tag">The team</span>
           <p>Our crew wears jerseys.</p>
@@ -1782,7 +1835,7 @@
         <h2 id="why-title">What makes a landscaper <b>different nowadays?</b></h2>
         <p class="why-hint" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6c0 2-2 2-2 4v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V10c0-2-2-2-2-4V2h12z"/><path d="M6 6h12M12 12v2"/></svg>
-          <span class="mouse">Move your mouse to shine the light</span><span class="touch">Tap anywhere to move the light</span>
+          <span class="mouse">Move your mouse to shine the light</span><span class="touch draft">Keep scrolling. The light follows you.</span>
         </p>
       </div>
     </section>
@@ -1920,17 +1973,37 @@
         <p class="record reveal d1"><span>Record</span><span><b>60</b> reviews</span><span><b>5.0</b> average</span><span><b>0</b> under five</span></p>
       </div>
 
-      <!-- Google review "screenshots", filled from the reviews list in the script below -->
-      <div class="wrap">
-        <div class="gshots" id="gshots"></div>
-        <p class="swipe-hint" aria-hidden="true">Swipe for more &rarr;</p>
+      <!-- 2026-10-07 (Harrison): every Google review, in two rows that slide past each other as you scroll.
+           Row 1 drifts right, row 2 drifts left. Filled from the reviews list in the script below.
+           Reviews from family and crew are left out (FTC rule on insider reviews). -->
+      <div class="rv-rows" role="region" aria-label="Google reviews from our customers">
+        <div class="rv-track" data-dir="1"></div>
+        <div class="rv-track" data-dir="-1"></div>
       </div>
 
       <div class="wrap more">
         <a class="btn btn-dark" href="../why-gng/">Why customers pick us
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-ghost" href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">See all 60 on Google
+        <!-- 2026-10-07: opens the reviews list on Google for anyone (Harrison's own link only works signed in to his account) -->
+        <a class="btn btn-ghost" href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">See all 60 on Google
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+
+      <!-- SEND A NEIGHBOR (2026-10-07). Rule locked 2026-10-03 (brainstorms/2026-10-02-ideal-customer.md):
+           a neighbor signs a yearly plan -> the one who sent them gets 5% off next year (credit, not cash,
+           up to 20% a year) and the neighbor gets 5% off year one. Never tied to reviews. -->
+      <div class="wrap">
+        <aside class="refer reveal" aria-labelledby="refer-title">
+          <p class="refer-badge" aria-hidden="true"><b>5%</b><span>for you both</span></p>
+          <div class="refer-copy">
+            <p class="refer-tag">Send a neighbor</p>
+            <h3 id="refer-title" class="draft">Know someone who'd want this?</h3>
+            <p class="draft">When they sign up for a yearly plan, you get 5% off your next year. They get 5% off their first.</p>
+            <small class="draft">Yearly plans only. It comes off your bill.</small>
+          </div>
+          <button class="btn btn-lime" type="button" data-refer><span data-refer-word>Send them our link</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg></button>
+        </aside>
       </div>
     </section>
 
@@ -2127,7 +2200,7 @@
           <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>YouTube</a></li>
           <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg>TikTok</a></li>
           <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg>Nextdoor</a></li>
-          <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>Google reviews</a></li>
+          <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>Google reviews</a></li>
         </ul>
       </div>
     </section>
@@ -2148,7 +2221,7 @@
             <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a></li>
             <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg></a></li>
             <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener" aria-label="Nextdoor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg></a></li>
-            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
+            <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
           </ul>
         </div>
         <div>
@@ -2178,7 +2251,7 @@
             <li><a href="tel:+14406679642">Call (440) 667-9642</a></li>
             <li><a href="sms:+14406679642">Text (440) 667-9642</a></li>
             <li><a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a></li>
-            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">Google reviews</a></li>
+            <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">Google reviews</a></li>
           </ul>
         </div>
       </div>
@@ -2208,30 +2281,153 @@
     <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
     <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
   </div>
+
+  <script>
+  // VISITOR STATS (2026-10-07). Runs on the live site only, never on localhost.
+  // 1) Vercel Web Analytics: visits, which pages, where people came from, phone or computer.
+  //    Harrison turns it on once: vercel.com -> gng-test-website -> Analytics -> Enable. Free plan = visits.
+  //    The events below (calls, texts, form sends, FAQ opens) show there on Vercel Pro only.
+  // 2) Google Analytics 4 (optional, free, shows the events): paste the G-XXXXXXX id into GA_ID.
+  (() => {
+    const GA_ID = '';
+    if (location.protocol !== 'https:' || /^(localhost|127\.|\[::1\])/.test(location.hostname)) return;
+    const add = src => { const s = document.createElement('script'); s.defer = true; s.src = src; document.head.appendChild(s); };
+    window.dataLayer = window.dataLayer || [];
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    add('/_vercel/insights/script.js');
+    if (GA_ID) {
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date()); window.gtag('config', GA_ID);
+      add('https://www.googletagmanager.com/gtag/js?id=' + GA_ID);
+    }
+    // Every event the pages log in dataLayer also goes to the stats tools (past ones too).
+    const send = o => {
+      if (!o || typeof o.event !== 'string' || o.event.startsWith('gtm')) return;
+      const { event, ...data } = o;
+      window.va('event', { name: event, data });
+      if (GA_ID) window.gtag('event', event, data);
+    };
+    window.dataLayer.slice().forEach(send);
+    const push = window.dataLayer.push.bind(window.dataLayer);
+    window.dataLayer.push = (...items) => { items.forEach(send); return push(...items); };
+  })();
+  </script>
   <!-- /@footer -->
 
   <script>
     if (new URLSearchParams(location.search).has('drafts')) document.documentElement.classList.add('show-drafts');
 
-    // Real Google reviews, full text word for word (copied from grassngardens.com, 2026-10-05).
-    // Drawn as Google review "screenshots". Swap in real screenshot images later if wanted.
+    // Every 5-star Google review with words, word for word (read off his Google profile 2026-10-07; all 60 are 5 stars).
+    // Left out: 5 with no words, and 7 from family or crew (FTC rule on insider reviews). [name, review]
     const reviews = [
-      { n: 'Kier M.', c: '#1a73e8', q: "I work in landscape/hardscape myself. No one is allowed to cut my grass because they can't mow straight out know how to stripe. But I needed a total knee replacement in April. Through another recommendation, I was given contact info for Grass 'n' Gardens. They were very prompt to show up for an estimate and I felt were competitively priced. I'm the spring when weather was unpredictable, they would always call and give me the option to wait for a day or two to dry out if I wanted. Harrison and his crew are respectful to both my needs as a customer, as well as my property. Don't be afraid to give a young entrepreneur an opportunity, you won't be disappointed!" },
-      { n: 'Katie E.', c: '#e8710a', q: "We had a great experience with Grass 'n' Gardens! They were very responsive and had strong communication from start to finish. They showed up on time, spread over 10 yards of mulch and left everything spotless. The crew was respectful and clearly takes pride in what they do. We couldn't be happier with the results and would recommend them for your next landscaping project!" },
-      { n: 'Alex S.', c: '#188038', q: "Grass N Gardens did an outstanding job transforming my yard. These young gentlemen removed a massive amount of debris, including an entire trailer load of thorn bushes, tree branches, old leaves, and mulch. They were professional, hardworking, and incredibly efficient from start to finish. The entire cleanup was completed much faster than I expected, and the difference is unbelievable — my yard feels cleaner, larger, and completely refreshed. Super fair price as-well! Their attention to detail and work ethic really stood out. I highly recommend Grass N Gardens to anyone looking for a reliable team." },
-      { n: 'Jennifer B.', c: '#9334e6', q: "Harrison was responsive, prompt and professional. I was very impressed by his knowledge of various plants and his willingness to tackle a tough job on my property. The day the crew was there, they were tidy, fast and very kind and respectful! I will absolutely hire them again." },
-      { n: 'Tony A.', c: '#d93025', q: "I've used Grass n' Gardens for the last few years and have been consistently impressed with their efficiency, professionalism, and competitive pricing. Working with them has been seamless as I've been able to get a quote, agreed price, and had the work scheduled and done in a matter of days. Highly recommend this company!" },
-      { n: 'Geetha K.', c: '#12858a', q: "Our lawn looks great this season. Harrison has been doing a great job cutting our grass. They are reliable and very punctual. Edging looks good. Overall we are very happy with the service and would recommend them highly. Definitely want them taking care of our lawn in the future too." }
+      ["Kier M.", "I work in landscape/hardscape myself. No one is allowed to cut my grass because they can't mow straight out know how to stripe. But I needed a total knee replacement in April. Through another recommendation, I was given contact info for Grass 'n' Gardens. They were very prompt to show up for an estimate and I felt were competitively priced. I'm the spring when weather was unpredictable, they would always call and give me the option to wait for a day or two to dry out if I wanted. Harrison and his crew are respectful to both my needs as a customer, as well as my property. Don't be afraid to give a young entrepreneur an opportunity, you won't be disappointed!"],
+      ["Clay T.", "What a great team to help us on our Landscaping needs. They were efficient and fast and did everything we contracted for. We could not be more pleased with their work."],
+      ["Katie E.", "They were very responsive and had strong communication from start to finish. They showed up on time, spread over 10 yards of mulch and left everything spotless. The crew was respectful and clearly takes pride in what they do. We couldn’t be happier with the results and would recommend them for your next landscaping project!"],
+      ["Pat M.", "Amazing weeding and mulching plus trim and cleaning up by Grass n Gardens. Love seeing the results even on a rainy day!"],
+      ["Tony A.", "I’ve used Grass n’ Gardens for the last few years and have been consistently impressed with their efficiency, professionalism, and competitive pricing. Working with them has been seamless as I’ve been able to get a quote, agreed price, and had the work scheduled and done in a matter of days. Highly recommend this company!"],
+      ["Lauren W.", "Harrison at Grass N Gardens was super quick to respond to my initial text and communication has been excellent since then! Rare to find someone who immediately gets back to you. At first, I needed a cut in less than 24 hours and they showed up first thing the next morning. They adjusted the height of cut when I asked. Very grateful to have found them and would recommend them to anyone!"],
+      ["Geetha K.", "Our lawn looks great this season. Harrison has been doing a great job cutting our grass. They are reliable and very punctual. Edging looks good. Overall we are very happy with the service and would recommend them highly. Definitely want them taking care of our lawn in the future too."],
+      ["Alex S.", "Grass N Gardens did an outstanding job transforming my yard. These young gentlemen removed a massive amount of debris, including an entire trailer load of thorn bushes, tree branches, old leaves, and mulch. They were professional, hardworking, and incredibly efficient from start to finish. The entire cleanup was completed much faster than I expected, and the difference is unbelievable — my yard feels cleaner, larger, and completely refreshed. Super fair price as-well! Their attention to detail and work ethic really stood out. I highly recommend Grass N Gardens to anyone looking for a reliable team."],
+      ["Jennifer H.", "I would recommend this company to anyone. They are great people with amazing work ethic. Their attention to detail is unmatched. Hire them and you will not be disappointed."],
+      ["Jamie S.", "Our previous landscaper cancelled on us for the season at the very last minute and Harrison and his crew stepped up! They have proven to be very dependable and reliable in providing a high quality mowing service. Highly recommend!"],
+      ["Brendon P.", "I highly recommend this young man for any lawn care work. He is dependable, respectful, and takes pride in doing a thorough job every time he cuts my grass."],
+      ["Jennifer B.", "Harrison was responsive, prompt and professional. I was very impressed by his knowledge of various plants and his willingness to tackle a tough job on my property. The day the crew was there, they were tidy, fast and very kind and respectful! I will absolutely hire them again."],
+      ["Anette", "Harrison had started mowing my lawn this summer. I found his card attached to my mailbox. He is very professional and well mannered. Does my yard as needed. Every time I call, he comes and does a wonderful job. Cannot find a better service than this!"],
+      ["Jesse H.", "I've used this service frequently when we're out of town or when our own lawn mower has been out of commission, and they've always done a great job. They are especially accommodating with last minute requests for service as needed. I’ve been impressed with how organized and professional everything is, from scheduling and text updates to monthly invoicing and online payment. They have a good team and seem to have everything running very smoothly. I’d definitely recommend them to anyone looking for lawn service."],
+      ["Donovan J.", "Absolutely phenomenal job on my front and back yards. They made sure to take the details serious and not miss any little edging or anything. I was very impressed and will be calling with them again!"],
+      ["Brianne C.", "Grass 'n' Gardens did a beautiful job edging and mulching our flower beds! From start to finish Harrison was so professional! He promptly returned my phone call, gave us a quick quote, fast turn around to mulch, and at a great price! He did such an amazing job that we hired him to mow our lawn weekly!! Do not hesitate to go with Harrison and Grass 'n' Gardens!!"],
+      ["Darlene B.", "They do a great job in a timely fashion. Dylan just weeded my beds and did a great job. They are professional and respectful."],
+      ["Ashley F.", "We have been using Grass n Gardens for the past six years, and we couldn’t be happier with their service! Harrison and his crew are always professional, reliable, and do an excellent job every time. They keep our lawn looking great and have also done a fantastic job with our mulching. It’s clear they take pride in their work, and their attention to detail really shows. We highly recommend Harrison and the entire Grass n Gardens team!"],
+      ["Steven D.", "Grass ‘n’ Greens transformed my yard back to its original state after it became too much to maintain and we couldn’t be happier about it. Extremely easy to work with, very reliable and knowledgeable, highly recommended 5 STARS."],
+      ["Sandy K.", "Harrison was very prompt in returning my call and scheduling a quote. Their online system for accepting/approving the quote and scheduling the project was very user-friendly. Dillon arrived timely and did a great job trimming and shaping my trio of arborvitae and removing another arborvitae from the front of my garage. Harrison and Dillon were both professional and friendly and the cost seemed fair."],
+      ["Joe R.", "Did an amazing job mowing and mulching. I Definitely recommend them"],
+      ["Veronica C.", "The team did an excellent job with our landscaping and mulching today. They were professional, efficient, and paid great attention to detail—everything looks clean, fresh, and beautifully finished. They were also respectful of our property and left the area spotless. I would absolutely recommend them and will definitely use them again!"],
+      ["Ricky M.", "Great experience working with Harrison and Grass ‘n’ Gardens. Top of the line landscaping and very flexible schedule!"],
+      ["Shannon J.", "I was so grateful for their help in getting our lawns ready for Spring! They did a fantastic job with all the details to include old leaf removal, cutting and edging both front and back yards... no small feat for the first cut of the season!! We highly recommend Grass N Gardens to anyone."],
+      ["Jacquelyn G.", "Harrison and his crew are doing a fantastic job of mowing our lawn! He is very prompt when responding to any questions and checks in with me to make sure I’m pleased with his work. Wonderful!"],
+      ["Carter C.", "We had no idea what to do with our yard. Harrison drew up a plan and walked us through it. They planted a tree, added flowers, and put down nice gravel. It looks so much better. Would use them again."],
+      ["Zachary O.", "Guys did a great job! Attention to detail was great and did quick, efficient, quality work. Did a great job cleaning up as well."],
+      ["Michelle K.", "Harrison and his crew are hard workers that do beautiful work! I have had my spring clean up and mulching done for two years and I look forward to them coming again this year! I highly recommend this conscientious and meticulous crew for your yard work!"],
+      ["Heather B.", "Highly recommend! Crew was professional, attentive to detail, and hardworking. They completely transformed our beds, and I appreciate how efficient they were!"],
+      ["Stephanie C.", "Brand new to Grass n Gardens. Harrison has been excellent as far a keeping the lines of communication open. That's hard to find these days! His crew is diligent in their work. Much appreciated. Give this company a chance. You won't be sorry!"],
+      ["Sharon M.", "Grass ‘n’ Gardens mulched my flower beds and they look amazing. Super friendly, speedy, efficient and at a great price! Arrived on time and were very professional. I highly recommend this group of young specialists!!"],
+      ["Cathy H.", "I had Grass n Gardens trim shrubs & bushes and weed an extensive area of my yard. They arrived on time & did a great job in just a few hours for a reasonable price. Yard looks great. Give them a try."],
+      ["Diane B.", "We recently had Grass n Gardens trim shrubs, edge and mulch our yard. The team was very polite and worked to ensure we were happy with the completed job. We would certainly call them again in the future."],
+      ["Jay C.", "Hired them from a door to door flyer for a spring clean up and monthly mowing services. They have done a nice job and listen to feedback regarding customer preferences well."],
+      ["Brady H.", "Gave my house a total MAKE OVER!!! They even charged me less than expecting and they were so approachable, I would TOTALLY recommend!!!!"],
+      ["Christopher F.", "Harrison and his team do a fantastic job! They are reliable and trustworthy. Very professional!"],
+      ["Rene Z.", "Great crew and Great experience. Thank you for a much needed clean up and mow."],
+      ["Tom K.", "Harrison and his team are very professional, courteous, and do a great job!"],
+      ["Sean", "The guys have done a great and professional job managing my property"],
+      ["Jake B.", "They did sharp, quick, and efficient work with a tight turn around. Highly recommend."],
+      ["Aaron C.", "No one has ever done my mulch so well!"],
+      ["Brian B.", "Harrison and his crew did an amazing job. Thanks for the hard work fellas!!"],
+      ["Kenneth K.", "Diligent, courteous, hard working and very professional crew."],
+      ["Sydney K.", "Highly recommend- professional, reliable, and did an amazing job!"],
+      ["Marty K.", "Professional and excellent workmanship."],
+      ["Christi E.", "Great team of workers!!!! Hard working!!!"],
+      ["Carson S.", "Very professional and hardworking!"],
+      ["Peter A.", "Great service. Highly recommend"],
+      ["Jake Z.", "These guys do great work"]
     ];
+    const colors = ['#1a73e8', '#e8710a', '#188038', '#9334e6', '#d93025', '#12858a'];
     const star = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>';
     const glogo = '<svg class="glogo" width="22" height="22" viewBox="0 0 48 48" aria-label="Google review"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.2 1.5-5 2.3-8.2 2.3-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>';
     const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-    document.getElementById('gshots').innerHTML = reviews.map(r => `<article class="gshot reveal">
-        <header><span class="av" style="background:${r.c}" aria-hidden="true">${r.n[0]}</span>
-          <span class="who"><b>${esc(r.n)}</b><span>Google review</span></span>${glogo}</header>
+    const card = ([n, q], i) => `<article class="gshot">
+        <header><span class="av" style="background:${colors[i % colors.length]}" aria-hidden="true">${n[0]}</span>
+          <span class="who"><b>${esc(n)}</b><span>Google review</span></span>${glogo}</header>
         <div class="rate" role="img" aria-label="5 out of 5 stars">${star.repeat(5)}</div>
-        <p>${esc(r.q)}</p>
-      </article>`).join('');
+        <p>${esc(q)}</p>
+      </article>`;
+
+    // REVIEW ROWS (2026-10-07, Harrison: "one moving right and one moving left... as you scroll down they pass each other").
+    // Reviews alternate between the 2 rows. Each row holds its cards twice so it loops with no gap.
+    // Motion: a slow drift all the time, plus a push from page scrolling (scroll up = they slide back).
+    // Hovering a row (mouse) or touching it holds it still so people can read. Reduced motion = still rows you swipe.
+    (() => {
+      const tracks = [...document.querySelectorAll('.rv-track')];
+      if (!tracks.length) return;
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      tracks.forEach((t, r) => {
+        const mine = reviews.map((rv, i) => [rv, i]).filter(([, i]) => i % tracks.length === r);
+        const set = mine.map(([rv, i]) => card(rv, i)).join('');
+        t.innerHTML = reduced ? set : set + `<div class="rv-copy" aria-hidden="true" inert>${set}</div>`;
+      });
+      if (reduced) { document.querySelector('.rv-rows').classList.add('rv-static'); return; }
+
+      const DRIFT = 22;   // px per second when nobody is scrolling
+      const PUSH = 0.6;   // px the rows move per px the page scrolls
+      // row 2 starts half a card over, so the cards stagger like bricks instead of lining up in a grid
+      const rows = tracks.map((t, r) => ({ t, dir: +t.dataset.dir || 1, pos: r * 180, w: 0, hold: false, until: 0 }));
+      const measure = () => rows.forEach(o => { o.w = o.t.querySelector('.rv-copy').offsetLeft; });
+      new ResizeObserver(measure).observe(tracks[0]); measure();
+      rows.forEach(o => {
+        o.t.addEventListener('mouseenter', () => { o.hold = true; });
+        o.t.addEventListener('mouseleave', () => { o.hold = false; });
+        o.t.addEventListener('touchstart', () => { o.until = performance.now() + 2500; }, { passive: true });
+      });
+
+      let last = 0, lastY = scrollY, raf = 0, onScreen = false;
+      const step = now => {
+        raf = 0;
+        const dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+        last = now;
+        const dy = scrollY - lastY; lastY = scrollY;
+        rows.forEach(o => {
+          if (!o.w) return;
+          if (!o.hold && now > o.until) o.pos += o.dir * (DRIFT * dt + dy * PUSH);
+          const x = ((o.pos % o.w) + o.w) % o.w - o.w; // always between -w and 0, so the loop never shows a gap
+          o.t.style.transform = `translate3d(${x.toFixed(1)}px,0,0)`;
+        });
+        if (onScreen && !document.hidden) raf = requestAnimationFrame(step);
+      };
+      new IntersectionObserver(([e]) => {
+        onScreen = e.isIntersecting;
+        if (onScreen && !raf) { last = 0; lastY = scrollY; raf = requestAnimationFrame(step); }
+      }, { rootMargin: '100px 0px' }).observe(document.querySelector('.rv-rows'));
+      document.addEventListener('visibilitychange', () => { if (!document.hidden && onScreen && !raf) { last = 0; raf = requestAnimationFrame(step); } });
+    })();
 
     // scroll reveal (2026-10-07: starts as soon as a bit shows, so nothing waits on screen)
     const io = new IntersectionObserver(es => es.forEach(e => {
@@ -2284,8 +2480,8 @@
 
     // Tune here.
     const S = {
-      // how much writing shows with no light on it. Phones have no mouse, so a bit more there.
-      ghost: matchMedia("(hover: none)").matches ? 0.3 : 0.07,
+      // how much writing shows with no light on it. Phones: a bit more, since the light only lights one promise at a time.
+      ghost: matchMedia("(hover: none)").matches ? 0.22 : 0.07,
       radius: 0.42,     // light size, in units of the section's short side
       oval: 1.45,       // the light pool is wider than tall, like a floodlight hitting the ground at an angle
       strength: 1.15,   // light brightness
@@ -2373,6 +2569,29 @@
     // Where the light roams on its own, in -1..1 (y up). Kept off the heading at the top.
     const wanderAt = t => [0.72 * Math.sin(t * 0.33), -0.3 + 0.5 * Math.sin(t * 0.47 + 1.3)];
 
+    // 2026-10-07 (Harrison: on the phone "you can't really even use it"). Phones have no mouse, so the light
+    // follows the scroll instead: it sits at the middle of the screen and slides left/right to whichever
+    // promise is there. Each one lights up as you reach it, no tapping needed.
+    const touch = matchMedia('(hover: none)').matches;
+    const notes = [...section.querySelectorAll('.note')];
+    const scrollTarget = () => {
+      const r = canvas.getBoundingClientRect();
+      const pts = notes.filter(n => n.offsetParent).map(n => {
+        // up/down: the middle of the whole promise; side to side: the middle of its big words (they hug the left on phones)
+        const b = n.getBoundingClientRect(), w = (n.querySelector('p') || n).getBoundingClientRect();
+        return [b.top + b.height / 2, w.left + w.width / 2];
+      });
+      if (!pts.length || !r.height) return [0, -0.2];
+      const y = Math.min(Math.max(innerHeight / 2, pts[0][0]), pts[pts.length - 1][0]);
+      let x = pts[0][1];
+      for (let i = 0; i < pts.length - 1; i++) {
+        const [y0, x0] = pts[i], [y1, x1] = pts[i + 1];
+        if (y >= y0 && y <= y1) { const t = (y - y0) / Math.max(1, y1 - y0); x = x0 + (x1 - x0) * t * t * (3 - 2 * t); break; }
+        if (y > y1) x = x1;
+      }
+      return [(x - r.left) / r.width * 2 - 1, 1 - (y - r.top) / r.height * 2];
+    };
+
     const gl = canvas.getContext('webgl', { antialias: false, alpha: false });
     const compile = () => {
       const prog = gl.createProgram();
@@ -2422,9 +2641,10 @@
       if (moving) { time = (time + dt) % 100; roam += dt; }
       // A tap on a touch screen holds the light there for a few seconds.
       if (pointer.until && now > pointer.until) { pointer.inside = false; pointer.until = 0; }
-      const [tx, ty] = pointer.inside ? [pointer.x, pointer.y] : moving ? wanderAt(roam) : [0, -0.2];
-      // how tightly the light follows: the mouse (2026-10-07: 0.08 -> 0.035, so it stays right under the pointer) / roaming on its own
-      const k = moving ? 1 - Math.exp(-dt / (pointer.inside ? 0.035 : 0.45)) : 1;
+      const [tx, ty] = pointer.inside ? [pointer.x, pointer.y] : touch ? scrollTarget() : moving ? wanderAt(roam) : [0, -0.2];
+      // how tightly the light follows: the mouse (2026-10-07: 0.08 -> 0.035, so it stays right under the pointer) /
+      // the scroll on phones (0.18: a smooth glide, like a stadium light swinging over) / roaming on its own
+      const k = moving ? 1 - Math.exp(-dt / (pointer.inside ? 0.035 : touch ? 0.18 : 0.45)) : 1;
       light.x += (tx - light.x) * k;
       light.y += (ty - light.y) * k;
       presence += (1 - presence) * (moving ? 1 - Math.exp(-dt / 0.25) : 1);
@@ -2461,7 +2681,9 @@
       kick();
     };
     addEventListener('pointermove', e => { if (e.pointerType === 'mouse') place(e); }, { passive: true });
-    section.addEventListener('pointerdown', place);
+    // phones: no tap-to-move, or every swipe to scroll would yank the light to the finger
+    if (!touch) section.addEventListener('pointerdown', place);
+    if (touch) addEventListener('scroll', kick, { passive: true }); // reduced-motion phones: no loop, so redraw on scroll
     document.documentElement.addEventListener('pointerleave', () => { pointer.inside = false; kick(); });
     document.addEventListener('visibilitychange', () => { if (!document.hidden) { last = 0; kick(); } });
     reduced.addEventListener('change', kick);
@@ -2517,8 +2739,17 @@
     if (!seen.landing_page) seen.landing_page = location.pathname + location.search;
     try { sessionStorage.setItem('gng_src', JSON.stringify(seen)); } catch (e) {}
 
+    // 2026-10-07 REAL FORM SERVICE. Paste the Web3Forms access key between the quotes (free, 250 a month:
+    // web3forms.com -> type grassngardens4u@gmail.com -> the key comes by email). With a key, "Send" saves the
+    // lead straight to that inbox: no second step for the customer, and no lead lost if they never hit send.
+    // Empty = the old way (opens a ready-made text/email). If the service ever fails, it falls back to that too.
+    const FORM_KEY = '';
+    // A neighbor's share link (?ref=neighbor) picks "A friend or neighbor" so the referral box shows.
+    if (params.get('ref') === 'neighbor') document.querySelectorAll('.lead-form select[name="source"]').forEach(s => { s.value = 'A friend or neighbor'; });
+
     document.querySelectorAll('.lead-form').forEach(form => {
       Object.keys(seen).forEach(k => { const f = form.querySelector('[name="' + k + '"]'); if (f) f.value = seen[k]; });
+      if (FORM_KEY) { form.querySelector('[data-how-app]').hidden = true; form.querySelector('[data-how-direct]').hidden = false; }
       // 2026-10-06: there's no form service yet, so "Send" writes the answers into a text to Harrison's
       // phone (on phones) or an email (on computers) and opens it. The person just hits send.
       // Before this, the form showed "Got it" and sent nothing.
@@ -2526,13 +2757,16 @@
       const card = form.closest('.form-card');
       // opens the text/email app. window.__gngOpen lets a test catch the message instead of opening an app.
       const openApp = href => (window.__gngOpen || (h => { location.href = h; }))(href);
-      form.addEventListener('submit', e => {
+      let sending = false;
+      form.addEventListener('submit', async e => {
         e.preventDefault();
+        if (sending) return;
         if (form.querySelector('[name="website"]').value) return; // bot filled the hidden field
         const val = n => (form.querySelector('[name="' + n + '"]') || {}).value?.trim() || '';
         const needs = [...form.querySelectorAll('[name="need"]:checked')].map(c => c.nextElementSibling.textContent.trim());
         if (val('need_other')) needs.push(val('need_other'));
         const source = val('source') === 'other' ? val('source_other') : val('source');
+        const referred = source === 'A friend or neighbor' ? val('referred_by') : '';
         const lines = [
           "Hi Harrison, I'd like a yard plan.",
           'Name: ' + val('name'),
@@ -2540,8 +2774,41 @@
           'Address: ' + val('address'),
           needs.length ? 'I need: ' + needs.join(', ') : '',
           val('email') ? 'Email: ' + val('email') : '',
-          source ? 'Heard about you from: ' + source : ''
+          source ? 'Heard about you from: ' + source : '',
+          referred ? 'Sent by: ' + referred : ''
         ].filter(Boolean);
+        const first = val('name').split(/\s+/)[0].slice(0, 30);
+
+        if (FORM_KEY) {
+          sending = true;
+          const word = form.querySelector('[data-send-word]'), was = word.textContent;
+          word.textContent = 'Sending...';
+          try {
+            const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), 8000);
+            const res = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST', signal: ctl.signal,
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              body: JSON.stringify({
+                access_key: FORM_KEY, subject: 'New yard plan: ' + val('name'), from_name: "G'N'G website",
+                name: val('name'), phone: val('phone'), address: val('address'), email: val('email') || undefined,
+                needs: needs.join(', '), heard_from: source, sent_by: referred,
+                utm_source: val('utm_source'), utm_medium: val('utm_medium'), utm_campaign: val('utm_campaign'),
+                utm_term: val('utm_term'), gclid: val('gclid'), landing_page: val('landing_page'), message: lines.join('\n')
+              })
+            });
+            clearTimeout(timer);
+            const out = await res.json().catch(() => ({}));
+            if (res.ok && out.success) {
+              track('generate_lead', { form: 'yard_plan', needs: needs.join(','), source, method: 'form' });
+              try { sessionStorage.setItem('gng_lead', JSON.stringify({ sent: true, first })); } catch (e) {}
+              location.href = 'thank-you/';
+              return;
+            }
+          } catch (err) {}
+          // the service didn't answer: fall back to the ready-made text/email below, so the lead still gets out
+          sending = false; word.textContent = was;
+          track('form_service_fail', {});
+        }
         const body = encodeURIComponent(lines.join('\n'));
         const onPhone = matchMedia('(pointer: coarse)').matches;
         lastHref = onPhone
@@ -2554,13 +2821,27 @@
         // 2026-10-06: save the ready message for the thank-you page (this browser tab only, never the URL),
         // open the text/email app, then go to the thank-you page. It has a big "open it again" button
         // in case the phone blocked the first try. It's also the clean conversion page for Google Ads.
-        try { sessionStorage.setItem('gng_lead', JSON.stringify({ href: lastHref, app: onPhone ? 'text' : 'email', first: val('name').split(/\s+/)[0].slice(0, 30) })); } catch (e) {}
+        try { sessionStorage.setItem('gng_lead', JSON.stringify({ href: lastHref, app: onPhone ? 'text' : 'email', first })); } catch (e) {}
         openApp(lastHref);
         setTimeout(() => { location.href = 'thank-you/'; }, 700);
       });
       const again = card.querySelector('[data-reopen]');
       if (again) again.addEventListener('click', () => { if (lastHref) openApp(lastHref); });
     });
+
+    // Send a neighbor (2026-10-07): phones open their own share menu (text, Messenger, email...).
+    // Computers copy the link. The link carries ?ref=neighbor, which picks "A friend or neighbor" on the form.
+    document.querySelectorAll('[data-refer]').forEach(b => b.addEventListener('click', async () => {
+      const url = new URL('./?ref=neighbor', location.href).href;
+      const text = "This is who does our yard. Grass 'n' Gardens in Richfield. Tell them I sent you and we both save 5%.";
+      const word = b.querySelector('[data-refer-word]');
+      if (navigator.share) {
+        try { await navigator.share({ title: "Grass 'n' Gardens", text, url }); track('referral_share', { method: 'share' }); } catch (e) {}
+        return;
+      }
+      try { await navigator.clipboard.writeText(text + ' ' + url); word.textContent = 'Link copied. Paste it to them.'; track('referral_share', { method: 'copy' }); }
+      catch (e) { location.href = 'sms:?&body=' + encodeURIComponent(text + ' ' + url); track('referral_share', { method: 'sms' }); }
+    }));
 
     // Calls, texts and emails count as leads too.
     document.addEventListener('click', e => {

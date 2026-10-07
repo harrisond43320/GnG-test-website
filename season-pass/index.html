@@ -308,7 +308,7 @@
             <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a></li>
             <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg></a></li>
             <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener" aria-label="Nextdoor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg></a></li>
-            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
+            <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
           </ul>
         </div>
         <div>
@@ -338,7 +338,7 @@
             <li><a href="tel:+14406679642">Call (440) 667-9642</a></li>
             <li><a href="sms:+14406679642">Text (440) 667-9642</a></li>
             <li><a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a></li>
-            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">Google reviews</a></li>
+            <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">Google reviews</a></li>
           </ul>
         </div>
       </div>
@@ -368,6 +368,37 @@
     <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
     <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
   </div>
+
+  <script>
+  // VISITOR STATS (2026-10-07). Runs on the live site only, never on localhost.
+  // 1) Vercel Web Analytics: visits, which pages, where people came from, phone or computer.
+  //    Harrison turns it on once: vercel.com -> gng-test-website -> Analytics -> Enable. Free plan = visits.
+  //    The events below (calls, texts, form sends, FAQ opens) show there on Vercel Pro only.
+  // 2) Google Analytics 4 (optional, free, shows the events): paste the G-XXXXXXX id into GA_ID.
+  (() => {
+    const GA_ID = '';
+    if (location.protocol !== 'https:' || /^(localhost|127\.|\[::1\])/.test(location.hostname)) return;
+    const add = src => { const s = document.createElement('script'); s.defer = true; s.src = src; document.head.appendChild(s); };
+    window.dataLayer = window.dataLayer || [];
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    add('/_vercel/insights/script.js');
+    if (GA_ID) {
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date()); window.gtag('config', GA_ID);
+      add('https://www.googletagmanager.com/gtag/js?id=' + GA_ID);
+    }
+    // Every event the pages log in dataLayer also goes to the stats tools (past ones too).
+    const send = o => {
+      if (!o || typeof o.event !== 'string' || o.event.startsWith('gtm')) return;
+      const { event, ...data } = o;
+      window.va('event', { name: event, data });
+      if (GA_ID) window.gtag('event', event, data);
+    };
+    window.dataLayer.slice().forEach(send);
+    const push = window.dataLayer.push.bind(window.dataLayer);
+    window.dataLayer.push = (...items) => { items.forEach(send); return push(...items); };
+  })();
+  </script>
   <!-- /@footer -->
 
   <script src="../site.js" defer></script>
