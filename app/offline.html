@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- Shown by the app (sw.js) when the phone has no internet and the page isn't saved yet. 2026-10-06.
+     Calls and texts still work with no internet, so those are the two buttons. Wording is draft. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#141c17" />
+  <title>You're offline | Grass 'n' Gardens</title>
+  <style>
+    :root { --pine: #1d4a22; --forest: #307537; --lime: #66b84a; --bg: #141c17; }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      min-height: 100svh; display: grid; place-items: center; padding: 24px 16px calc(24px + env(safe-area-inset-bottom));
+      background: var(--bg); color: #fff; font: 500 17px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; text-align: center;
+    }
+    main { max-width: 360px; width: 100%; }
+    img { width: 96px; height: 96px; border-radius: 22px; }
+    h1 { margin-top: 24px; font-size: 30px; line-height: 1.1; font-weight: 800; text-transform: uppercase; letter-spacing: .01em; }
+    p { margin-top: 12px; color: rgba(255,255,255,.8); }
+    .btns { display: grid; gap: 12px; margin-top: 28px; }
+    a {
+      display: block; padding: 16px; border-radius: 10px; font-weight: 700; font-size: 18px; text-decoration: none;
+      border: 2.5px solid var(--pine); box-shadow: 0 5px 0 var(--pine); transition: transform .15s ease-out, box-shadow .15s ease-out;
+    }
+    a:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--pine); }
+    a:focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
+    .call { background: var(--lime); color: var(--pine); }
+    .text { background: #fff; color: var(--pine); box-shadow: 0 5px 0 var(--lime); }
+    .text:active { box-shadow: 0 1px 0 var(--lime); }
+    button { margin-top: 20px; background: none; border: 0; color: rgba(255,255,255,.75); font: inherit; text-decoration: none; padding: 10px; border-radius: 8px; cursor: pointer; }
+    button:hover { color: #fff; } button:focus-visible { outline: 3px solid var(--lime); }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="icon-192.png" alt="Grass 'n' Gardens" width="96" height="96" />
+    <h1>You're offline</h1>
+    <p>This page needs the internet. Calling or texting Harrison doesn't.</p>
+    <div class="btns">
+      <a class="call" href="tel:+14406679642">Call (440) 667-9642</a>
+      <a class="text" href="sms:+14406679642">Text Harrison</a>
+    </div>
+    <button type="button" onclick="location.reload()">Try again</button>
+  </main>
+</body>
+</html>

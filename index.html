@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Grass 'n' Gardens | Lawn Care in Richfield, Ohio</title>
-  <meta name="description" content="Weekly mowing and cleanups in Richfield, Bath, Hinckley and Brecksville. Five checks on every yard before we leave. Miss one and we're back the next day, free. 60 Google reviews, 0 under five." />
+  <!-- 2026-10-07: cut to ~150 characters so Google shows all of it (it was 192 and got cut off) -->
+  <meta name="description" content="Weekly mowing and cleanups in Richfield, Bath, Hinckley and Brecksville, Ohio. Five checks on every yard before we leave. 60 Google reviews, 0 under five." />
   <meta property="og:title" content="Grass 'n' Gardens | Lawn Care in Richfield, Ohio" />
   <meta property="og:description" content="Five checks on every yard before we leave. Miss one and we're back the next day, free." />
   <meta property="og:type" content="website" />
   <!-- share previews (texts, Facebook) need the full web address of the picture -->
-  <meta property="og:image" content="https://gng-test-website.vercel.app/img/gallery-12.jpg" />
+  <meta property="og:image" content="https://gng-test-website.vercel.app/img/gbp-mower-stripes.jpg" />
   <meta property="og:url" content="https://gng-test-website.vercel.app/" />
+  <!-- 2026-10-07 SEO: one address per page (drops ?need= and ad tags), big photo previews allowed. Change the address with the domain. -->
+  <link rel="canonical" href="https://gng-test-website.vercel.app/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#141c17" />
   <!-- Business facts for Google (local search). No review stars here: Google ignores self-posted ratings. -->
@@ -18,8 +22,12 @@
   {
     "@context": "https://schema.org",
     "@type": "LandscapingBusiness",
+    "@id": "https://gng-test-website.vercel.app/#business",
     "name": "Grass 'n' Gardens",
     "url": "https://grassngardens.com/",
+    "logo": "https://gng-test-website.vercel.app/brand_assets/logos/lockup-horizontal-web.png",
+    "image": ["https://gng-test-website.vercel.app/img/gbp-mower-stripes.jpg", "https://gng-test-website.vercel.app/img/gbp-mower-house.jpg", "https://gng-test-website.vercel.app/img/crew-mulch.jpg"],
+    "hasMap": "https://share.google/uGzNJkLJjozxgZWSS",
     "telephone": "+1-440-667-9642",
     "email": "grassngardens4u@gmail.com",
     "founder": { "@type": "Person", "name": "Harrison Drvenkar" },
@@ -27,14 +35,34 @@
     "address": { "@type": "PostalAddress", "addressLocality": "Richfield", "addressRegion": "OH", "addressCountry": "US" },
     "areaServed": ["Richfield", "Bath", "Hinckley", "Granger", "Brecksville", "Broadview Heights", "North Royalton", "Akron", "Medina"],
     "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "06:30" },
-    "sameAs": ["https://www.instagram.com/grass_n_gardens/", "https://www.facebook.com/p/Grass-n-Gardens-61591542549375/", "https://www.youtube.com/@GrassnGardens"]
+    "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Lawn care and landscaping services", "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Weekly lawn mowing", "url": "https://gng-test-website.vercel.app/lawn-mowing/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fall cleanup and leaf removal", "url": "https://gng-test-website.vercel.app/fall-cleanup/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Spring cleanup", "url": "https://gng-test-website.vercel.app/spring-cleanup/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mulching, bed care and bush trimming", "url": "https://gng-test-website.vercel.app/mulch-beds/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom yard design and planting", "url": "https://gng-test-website.vercel.app/yard-design/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Edging and trimming" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aeration and fertilizing" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Retaining walls and paver patios" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Snow plowing" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial and HOA property care" } }
+    ] },
+    "sameAs": ["https://www.instagram.com/grass_n_gardens/", "https://www.facebook.com/p/Grass-n-Gardens-61591542549375/", "https://www.youtube.com/@GrassnGardens", "https://www.tiktok.com/@grass_n_gardens", "https://nextdoor.com/pages/grass-n-gardens-richfield-oh/"]
   }
   </script>
-  <link rel="icon" href="brand_assets/logos/monogram.png" />
-  <link rel="preload" as="image" href="img/gallery-12.jpg" imagesrcset="img/sm/gallery-12.jpg 900w, img/gallery-12.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
+  <link rel="icon" href="brand_assets/logos/favicon-64.png" sizes="64x64" type="image/png" />
+  <!-- Phone app (2026-10-06): add to home screen, own icon, opens full screen. Files: home/manifest.json, home/sw.js, home/app/ -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="app/apple-touch-icon.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="G'N'G" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/sm/gbp-mower-stripes.jpg 900w, img/gbp-mower-stripes.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- 2026-10-07: shared header dropdown + footer columns (same file on every page) -->
+  <link rel="stylesheet" href="chrome.css" />
   <style>
     /* Layout from the reference site, content and logo are Grass 'n' Gardens.
        Harrison picked "full reference style" on 2026-10-05: dark ground, glows, grain. */
@@ -88,13 +116,7 @@
     .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s6); }
     @media (min-width: 768px) { .wrap { padding: 0 var(--s12); } }
 
-    /* grain over everything, very light */
-    body::after {
-      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100;
-      opacity: .07; mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
+    /* 2026-10-07: the full-screen grain layer is gone (it re-blended the whole screen on every scroll frame = stutter on phones; the brand says flat anyway) */
     /* ---------- type ---------- */
     .stack { font-family: var(--font-display); text-align: center; letter-spacing: -0.03em; }
     .stack .thin { display: block; font-weight: 250; font-size: clamp(28px, 4.4vw, 52px); line-height: 1.1; letter-spacing: -0.02em; }
@@ -107,7 +129,8 @@
     .lede { font-size: 18px; line-height: 1.7; max-width: 34em; }
 
     /* draft wording: add ?drafts to the URL to see which lines are mine, not Harrison's */
-    .show-drafts .draft { text-decoration: underline dashed #c99a1c 2px; text-underline-offset: 5px; }
+    /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
+    .show-drafts .draft { text-shadow: 0 0 8px rgba(232, 180, 40, .5) !important; }
 
     /* ---------- buttons ---------- */
     .btn {
@@ -154,7 +177,7 @@
     .brand:active { transform: scale(.97); }
     .brand:focus-visible { outline: 3px solid var(--forest); outline-offset: 4px; }
     .brand img { height: 54px; width: auto; }
-    @media (min-width: 400px) { .brand img { height: 60px; } }
+    @media (min-width: 420px) { .brand img { height: 60px; } } /* was 400px: 400-410 wide pushed the Menu button off the edge */
     @media (min-width: 900px) { .brand img { height: 82px; } }
     .menu { display: none; }
     .menu ul { list-style: none; display: flex; gap: var(--s1); }
@@ -299,15 +322,16 @@
       background: var(--lime); color: #1d4a22; padding: 5px 9px; border-radius: 999px;
     }
 
-    /* ---------- why us: flashlight wall ----------
-       Ported from the "Flashlight Text Reveal" React component (21st.dev) to plain JS.
-       The wall is a WebGL shader; the writing is real text, masked to the light. */
+    /* ---------- why us: night field under a stadium light (2026-10-06) ----------
+       Was a flashlight wall (the 21st.dev "Flashlight Text Reveal"). Now a mowed lawn at night, drawn in a
+       WebGL shader: the stripes flip light/dark with the angle of the light, like real mowing stripes.
+       The writing is real text, painted on the grass, masked to the same light. */
     .why {
       position: relative; overflow: hidden; isolation: isolate;
-      height: clamp(720px, 100svh, 960px); background: #0a140e;
+      height: clamp(720px, 100svh, 960px); background: #030604;
     }
     .why-wall { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
-    .why-wall.fallback { background: radial-gradient(circle at 50% 55%, #24402f 0%, #0a140e 55%); }
+    .why-wall.fallback { background: radial-gradient(ellipse 60% 45% at 50% 55%, #1d3a1c 0%, #030604 70%); }
     .why-writing {
       position: absolute; inset: 0; z-index: 1;
       display: flex; flex-direction: column; justify-content: center; gap: clamp(20px, 4vh, 40px);
@@ -428,7 +452,7 @@
     .gshot:nth-child(3n) { --tilt: -.6deg; }
     .gshot:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
     /* keep the tilt through the scroll reveal */
-    .gshot.reveal { transform: translateY(28px) rotate(var(--tilt, -1.2deg)); transition: opacity .9s var(--ease-out), transform .6s var(--spring); }
+    .gshot.reveal { transform: translateY(16px) rotate(var(--tilt, -1.2deg)); transition: opacity .5s var(--ease-out), transform .6s var(--spring); }
     .gshot.reveal.in { transform: rotate(var(--tilt, -1.2deg)); }
     .gshot.reveal.in:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
     .gshot header { display: flex; align-items: center; gap: var(--s3); }
@@ -534,9 +558,9 @@
     @media (min-width: 900px) { .call-bar { display: none; } }
 
     /* ---------- reveal ---------- */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease-out), transform 1s var(--ease-out); }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s var(--ease-out), transform .6s var(--ease-out); }
     .reveal.in { opacity: 1; transform: none; }
-    .reveal.d1 { transition-delay: .08s; } .reveal.d2 { transition-delay: .16s; } .reveal.d3 { transition-delay: .24s; }
+    .reveal.d1 { transition-delay: .05s; } .reveal.d2 { transition-delay: .1s; } .reveal.d3 { transition-delay: .15s; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -559,7 +583,7 @@
     .stack .heavy, .hero h1, .svc h3, .step h3, .why-top h2 b, .work h2 b, .roster h2 b, .about h2 b, .plan h2 b { text-transform: uppercase; }
     .stack .heavy { font-size: clamp(44px, 8.2vw, 112px); line-height: 1; }
     .hero h1 { font-size: clamp(42px, 7.4vw, 100px); line-height: .98; }
-    /* flashlight wall: notes scattered on a dark wall, tilted like they were scrawled there */
+    /* night field: promises painted on the lawn, a little crooked like hand-painted field lettering */
     .why { height: 1260px; }
     .why-writing { display: block; padding: 0; line-height: 1.05; letter-spacing: .01em; color: #fff; }
     .why-writing .note { position: absolute; width: 38%; }
@@ -578,7 +602,8 @@
     .why-writing .n5 { top: 73%; left: 6%;  transform: rotate(-1.5deg); }
     .why-writing .n6 { top: 74%; right: 6%; width: 42%; transform: rotate(2deg); display: flex; align-items: center; gap: var(--s6); }
     .why-writing .n2 small, .why-writing .n4 small { margin-left: auto; }
-    .why-writing .n1 p, .why-writing .n2 p { color: var(--lime); }
+    /* white like field paint (lime vanished on the lit grass); a hard little shadow keeps it crisp in the light */
+    .why-writing .note p, .why-writing .note small { color: #f4f7ee; text-shadow: 0 2px 0 rgba(3, 6, 4, .45); }
     @media (max-width: 767px) {
       .why { height: auto; min-height: 1500px; }
       .why-writing { padding: 360px var(--s6) var(--s16); display: flex; flex-direction: column; gap: 56px; position: relative; }
@@ -972,18 +997,69 @@
     .work .work-ask { flex-direction: column; align-items: center; gap: var(--s3); }
     .work-ask p { font-weight: 600; font-size: 18px; color: rgba(255,255,255,.85); }
 
-    /* ---------- the 2027 ticket ---------- */
+    /* ---------- the 2027 ticket (copy of the block in site.css; keep them the same) ---------- */
     .season { padding: var(--s16) 0 var(--s8); overflow-x: clip; } /* the tilt + shadow never push the page sideways */
+    .ticket .stack-list { margin-top: var(--s6); }
+    /* ---------- the ticket (homepage season card + the season pass page) ----------
+       2026-10-07: notches are real cut-outs now (masks), so the outline and the lime shadow follow the notch.
+       Before, a circle was laid over the edge and the shadow ran straight under it. --ny is set by the script on phones. */
     .ticket {
-      --stub: 360px;
-      position: relative; display: grid; background: #fff; color: var(--ink);
-      border: 3px solid var(--ink); border-radius: 18px; box-shadow: 9px 9px 0 var(--lime);
-      transform: rotate(-.6deg); transition: transform .6s var(--spring), opacity .9s var(--ease-out);
+      --stub: 360px; --ny: -999px; --sh: 12px;
+      position: relative; display: block; color: var(--ink);
+      /* room for the hard shadow inside the box, so the hole mask below can cut the shadow too */
+      padding: 0 var(--sh) var(--sh) 0; margin: 0 calc(var(--sh) * -1) calc(var(--sh) * -1) 0;
+      transform: rotate(-.6deg); transition: transform .6s var(--spring), opacity .5s var(--ease-out);
+      cursor: pointer;
+      /* the two holes go right through the ticket AND its shadow (phones: left + right edge, at --ny) */
+      -webkit-mask: radial-gradient(circle at 0 calc(var(--ny) + 3px), transparent 18.6px, #000 19.1px) left / 50.5% 100% no-repeat,
+                    radial-gradient(circle at calc(100% - var(--sh)) calc(var(--ny) + 3px), transparent 18.6px, #000 19.1px) right / 50.5% 100% no-repeat;
+              mask: radial-gradient(circle at 0 calc(var(--ny) + 3px), transparent 18.6px, #000 19.1px) left / 50.5% 100% no-repeat,
+                    radial-gradient(circle at calc(100% - var(--sh)) calc(var(--ny) + 3px), transparent 18.6px, #000 19.1px) right / 50.5% 100% no-repeat;
     }
-    @media (min-width: 900px) { .ticket { grid-template-columns: 1fr var(--stub); transform: rotate(-1deg); } }
-    .ticket.reveal { transform: translateY(28px) rotate(-1deg); }
+    @media (min-width: 900px) {
+      .ticket {
+        transform: rotate(-1deg);
+        -webkit-mask: radial-gradient(circle at calc(100% - var(--sh) - var(--stub) - 1.5px) 0, transparent 18.6px, #000 19.1px) top / 100% 50.5% no-repeat,
+                      radial-gradient(circle at calc(100% - var(--sh) - var(--stub) - 1.5px) calc(100% - var(--sh)), transparent 18.6px, #000 19.1px) bottom / 100% 50.5% no-repeat;
+                mask: radial-gradient(circle at calc(100% - var(--sh) - var(--stub) - 1.5px) 0, transparent 18.6px, #000 19.1px) top / 100% 50.5% no-repeat,
+                      radial-gradient(circle at calc(100% - var(--sh) - var(--stub) - 1.5px) calc(100% - var(--sh)), transparent 18.6px, #000 19.1px) bottom / 100% 50.5% no-repeat;
+      }
+    }
+    .ticket.reveal { transform: translateY(16px) rotate(-1deg); }
     .ticket.reveal.in { transform: rotate(-1deg); }
-    .ticket.reveal.in:hover { transform: rotate(0deg) translateY(-4px); }
+    .ticket:hover, .ticket.reveal.in:hover { transform: rotate(0deg) translateY(-4px); }
+    .ticket:active, .ticket.reveal.in:active { transform: rotate(0deg) translateY(-1px) scale(.995); }
+    .tk-drop { filter: drop-shadow(9px 9px 0 var(--lime)); }
+    /* ink outline: its hole is 3px smaller than the white/pine part's hole, so a 3px ink rim wraps each notch */
+    .tk-shape {
+      padding: 3px; border-radius: 18px; background: var(--ink);
+      -webkit-mask: radial-gradient(circle at 0 calc(var(--ny) + 3px), transparent 18px, #000 18.5px) left / 50.5% 100% no-repeat,
+                    radial-gradient(circle at 100% calc(var(--ny) + 3px), transparent 18px, #000 18.5px) right / 50.5% 100% no-repeat;
+              mask: radial-gradient(circle at 0 calc(var(--ny) + 3px), transparent 18px, #000 18.5px) left / 50.5% 100% no-repeat,
+                    radial-gradient(circle at 100% calc(var(--ny) + 3px), transparent 18px, #000 18.5px) right / 50.5% 100% no-repeat;
+    }
+    .tk-in {
+      position: relative; display: grid; border-radius: 15px; overflow: hidden; background: #fff;
+      -webkit-mask: radial-gradient(circle at -3px var(--ny), transparent 21px, #000 21.5px) left / 50.5% 100% no-repeat,
+                    radial-gradient(circle at calc(100% + 3px) var(--ny), transparent 21px, #000 21.5px) right / 50.5% 100% no-repeat;
+              mask: radial-gradient(circle at -3px var(--ny), transparent 21px, #000 21.5px) left / 50.5% 100% no-repeat,
+                    radial-gradient(circle at calc(100% + 3px) var(--ny), transparent 21px, #000 21.5px) right / 50.5% 100% no-repeat;
+    }
+    @media (min-width: 900px) {
+      .tk-shape {
+        -webkit-mask: radial-gradient(circle at calc(100% - var(--stub) - 1.5px) 0, transparent 18px, #000 18.5px) top / 100% 50.5% no-repeat,
+                      radial-gradient(circle at calc(100% - var(--stub) - 1.5px) 100%, transparent 18px, #000 18.5px) bottom / 100% 50.5% no-repeat;
+                mask: radial-gradient(circle at calc(100% - var(--stub) - 1.5px) 0, transparent 18px, #000 18.5px) top / 100% 50.5% no-repeat,
+                      radial-gradient(circle at calc(100% - var(--stub) - 1.5px) 100%, transparent 18px, #000 18.5px) bottom / 100% 50.5% no-repeat;
+      }
+      .tk-in {
+        grid-template-columns: 1fr var(--stub);
+        -webkit-mask: radial-gradient(circle at calc(100% - var(--stub) + 1.5px) -3px, transparent 21px, #000 21.5px) top / 100% 50.5% no-repeat,
+                      radial-gradient(circle at calc(100% - var(--stub) + 1.5px) calc(100% + 3px), transparent 21px, #000 21.5px) bottom / 100% 50.5% no-repeat;
+                mask: radial-gradient(circle at calc(100% - var(--stub) + 1.5px) -3px, transparent 21px, #000 21.5px) top / 100% 50.5% no-repeat,
+                      radial-gradient(circle at calc(100% - var(--stub) + 1.5px) calc(100% + 3px), transparent 21px, #000 21.5px) bottom / 100% 50.5% no-repeat;
+      }
+    }
     .tk-main { padding: var(--s8) var(--s6); }
     @media (min-width: 900px) { .tk-main { padding: var(--s12) var(--s12) var(--s8); } }
     .tk-top {
@@ -992,9 +1068,7 @@
       font-size: 12px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--forest);
     }
     .tk-admit { background: var(--pine); color: #fff; padding: 5px 10px; border-radius: 4px; }
-    .ticket .stack-list { margin-top: var(--s6); }
     .ticket .dot { color: var(--lime); }
-    /* the barcode is mowing stripes */
     .tk-code { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3) var(--s4); margin-top: var(--s8); }
     .tk-code .bars {
       width: 170px; height: 46px; border-radius: 3px;
@@ -1006,46 +1080,64 @@
     .tk-stub {
       position: relative; display: flex; flex-direction: column; gap: var(--s4);
       padding: var(--s8) var(--s6); background: var(--pine); color: #fff;
-      border-top: 3px dashed rgba(255,255,255,.55); border-radius: 0 0 15px 15px;
+      border-top: 3px dashed rgba(255,255,255,.55);
     }
-    @media (min-width: 900px) {
-      .tk-stub { justify-content: center; padding: var(--s12) var(--s8); border-top: 0; border-left: 3px dashed rgba(255,255,255,.55); border-radius: 0 15px 15px 0; }
-    }
-    /* the two notches where the ticket tears */
-    .tk-stub::before, .tk-stub::after {
-      content: ""; position: absolute; width: 36px; height: 36px; border-radius: 50%;
-      background: var(--bg); border: 3px solid var(--ink); z-index: 2;
-    }
-    /* each notch is a circle centred on the ticket's outer edge; clip-path keeps only the half inside the ticket */
-    .tk-stub::before { top: -22.5px; left: -24px; clip-path: inset(-4px -4px -4px 50%); }   /* phones: left notch */
-    .tk-stub::after  { top: -22.5px; right: -24px; clip-path: inset(-4px 50% -4px -4px); }  /* phones: right notch */
-    @media (min-width: 900px) {
-      .tk-stub::before { top: -24px; left: -22.5px; clip-path: inset(50% -4px -4px -4px); }   /* top notch */
-      .tk-stub::after  { top: auto; bottom: -24px; right: auto; left: -22.5px; clip-path: inset(-4px -4px 50% -4px); } /* bottom notch */
-    }
+    @media (min-width: 900px) { .tk-stub { justify-content: center; padding: var(--s12) var(--s8); border-top: 0; border-left: 3px dashed rgba(255,255,255,.55); } }
     .tk-stub .pass-label { color: var(--jersey-blue); font-weight: 700; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; }
     .tk-stamp {
       align-self: flex-start; display: grid; place-content: center; justify-items: center; gap: 2px;
       width: 156px; height: 156px; border-radius: 50%; margin: var(--s2) 0 var(--s2) var(--s2);
       border: 4px solid var(--lime); outline: 2px dashed rgba(102,184,74,.85); outline-offset: -13px;
-      color: var(--lime); text-transform: uppercase; text-align: center; line-height: 1;
-      transform: rotate(-12deg);
+      color: var(--lime); text-transform: uppercase; text-align: center; line-height: 1; transform: rotate(-12deg);
     }
     .tk-stamp span { font-size: 12px; font-weight: 800; letter-spacing: .2em; }
     .tk-stamp b { font-family: var(--font-display); font-weight: 400; font-size: 60px; line-height: .95; color: #fff; }
-    .ticket.in .tk-stamp { animation: stamp .55s var(--spring) .35s both; }
-    @keyframes stamp { from { opacity: 0; transform: rotate(-12deg) scale(1.7); } to { opacity: 1; transform: rotate(-12deg) scale(1); } }
-    .tk-count {
-      align-self: flex-start; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.1);
-      font-weight: 700; font-size: 15px;
-    }
+    .ticket.in .tk-stamp, .ticket.no-reveal .tk-stamp { animation: tk-stamp .55s var(--spring) .35s both; }
+    @keyframes tk-stamp { from { opacity: 0; transform: rotate(-12deg) scale(1.7); } to { opacity: 1; transform: rotate(-12deg) scale(1); } }
+    .tk-count { align-self: flex-start; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.1); font-weight: 700; font-size: 15px; }
     .tk-count b { color: var(--lime); font-size: 19px; }
     .tk-stub .pass-scarce { color: rgba(255,255,255,.9); font-size: 16px; font-weight: 600; line-height: 1.5; }
     .tk-stub .btn { align-self: flex-start; }
-    .tk-stub .pass-call { color: #fff; font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; border-radius: 4px; }
-    .tk-stub .pass-call:hover { color: var(--lime); }
+    /* the whole ticket is one big link: a hit area under everything (mouse/touch only; the button is the real link
+       for keyboards and screen readers). The button and the call link sit on top of it. */
+    .tk-in { isolation: isolate; }
+    .tk-hit { position: absolute; inset: 0; z-index: 1; }
+    .tk-stub .btn { position: relative; z-index: 2; }
+    .tk-stub .pass-call { position: relative; z-index: 2; display: inline-flex; align-items: center; min-height: 44px; align-self: flex-start; color: #fff; font-weight: 700; font-size: 15px; border-radius: 6px; padding: 0 8px; margin-left: -8px; background: rgba(255,255,255,.08); }
+    .tk-stub .pass-call:hover { background: rgba(255,255,255,.16); color: var(--lime); }
     .tk-stub .pass-call:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
-    @media (prefers-reduced-motion: reduce) { .ticket, .ticket.reveal, .ticket.reveal.in { transform: none; } }
+    .tk-more {
+      display: inline-flex; align-items: center; gap: 6px; margin-top: var(--s6); padding: 8px 14px; border-radius: 999px;
+      background: var(--mist); border: 2px solid var(--line-light); font-size: 14px; font-weight: 700; color: var(--forest);
+      transition: background-color .2s var(--ease-out), border-color .2s var(--ease-out);
+    }
+    .tk-more svg { transition: transform .35s var(--spring); }
+    .ticket:hover .tk-more { background: #eaf5e4; border-color: var(--lime); }
+    .ticket:hover .tk-more svg { transform: translateX(4px); }
+    .ticket:has(.tk-go:focus-visible) { outline: 3px solid var(--lime); outline-offset: 8px; border-radius: 20px; }
+    @media (prefers-reduced-motion: reduce) { .ticket, .ticket.reveal, .ticket.reveal.in, .ticket:hover { transform: none; } }
+    
+
+    /* FAQ extras (2026-10-07): "Most asked" tag + link rows */
+    .qa-q { display: grid; gap: 6px; }
+    .qa-pop { justify-self: start; padding: 3px 9px; border-radius: 999px; background: rgba(102, 184, 74, .18); color: var(--forest); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; line-height: 1.4; }
+    .qa-a .qa-links { margin-top: var(--s3); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 15px; }
+    /* links inside the how-it-starts steps */
+    .how span a { color: var(--lime); font-weight: 700; padding: 0 4px; border-radius: 4px; background: rgba(102,184,74,.15); }
+    .light .how span a { color: var(--forest); }
+    .how span a:hover { background: rgba(102,184,74,.28); }
+    .how span a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+    
+
+    /* FAQ extras (2026-10-07): "Most asked" tag + link rows */
+    .qa-q { display: grid; gap: 6px; }
+    .qa-pop { justify-self: start; padding: 3px 9px; border-radius: 999px; background: rgba(102, 184, 74, .18); color: var(--forest); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; line-height: 1.4; }
+    .qa-a .qa-links { margin-top: var(--s3); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 15px; }
+    /* links inside the how-it-starts steps */
+    .how span a { color: var(--lime); font-weight: 700; padding: 0 4px; border-radius: 4px; background: rgba(102,184,74,.15); }
+    .light .how span a { color: var(--forest); }
+    .how span a:hover { background: rgba(102,184,74,.28); }
+    .how span a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
 
     /* ---------- photo reel (stands in for the video) ---------- */
     .reel {
@@ -1105,6 +1197,154 @@
     /* ---------- why us: brighter wall (see the script) ---------- */
     .why-writing .note small { color: rgba(255,255,255,.92); }
     .why-top .eyebrow { color: var(--jersey-blue); }
+
+    /* ---------- FAQ (2026-10-06) ----------
+       Real <details>, so every answer is in the page for Google and AI answers even when closed.
+       Questions are long sentences, so they're Barlow (type rule); the heading follows the section recipe. */
+    .faq { padding: var(--s24) 0; border-top: 1px solid var(--line-light); }
+    .faq-grid { display: grid; gap: var(--s12); }
+    @media (min-width: 960px) { .faq-grid { grid-template-columns: .8fr 1.6fr; gap: var(--s16); align-items: start; } .faq-side { position: sticky; top: 140px; } }
+    .faq h2 { margin-top: var(--s3); font-family: var(--font-body); font-weight: 600; font-size: var(--fs-lead); line-height: 1.2; color: var(--ink); }
+    .faq h2 b { display: block; margin-top: 6px; font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h2); line-height: 1; letter-spacing: .01em; text-transform: uppercase; color: var(--pine); }
+    .faq-side p:not(.eyebrow) { margin-top: var(--s4); max-width: 30ch; font-size: 17px; line-height: 1.5; color: var(--ink-muted); }
+    .faq-side .btn { margin-top: var(--s6); }
+    .faq-list { background: #fff; border: 2px solid var(--pine); border-radius: var(--radius); overflow: hidden; }
+    .qa + .qa { border-top: 1px solid var(--line-light); }
+    .qa summary {
+      list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: var(--s4);
+      padding: 20px var(--s6); font-weight: 700; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.3; color: var(--ink);
+      transition: background-color .2s var(--ease-out);
+    }
+    .qa summary::-webkit-details-marker { display: none; }
+    .qa summary h3 { font: inherit; }
+    .qa summary:hover { background: var(--mist); }
+    .qa summary:focus-visible { outline: 3px solid var(--forest); outline-offset: -3px; }
+    .qa[open] summary { color: var(--forest); }
+    .qa-ic {
+      flex: none; position: relative; width: 34px; height: 34px; border-radius: 50%;
+      background: var(--lime); border: 2px solid var(--pine);
+      transition: transform .35s var(--spring);
+    }
+    .qa-ic::before, .qa-ic::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 2.5px; margin: -1.25px 0 0 -7px; border-radius: 2px; background: var(--pine); }
+    .qa-ic::after { transform: rotate(90deg); }
+    .qa[open] .qa-ic { transform: rotate(135deg); }
+    .qa summary:active .qa-ic { transform: scale(.88); }
+    .qa[open] summary:active .qa-ic { transform: rotate(135deg) scale(.88); }
+    .qa-a { padding: 0 var(--s6) var(--s6); max-width: 64ch; font-size: 17px; line-height: 1.6; color: var(--ink-muted); }
+    .qa[open] .qa-a { animation: qa-in .35s var(--ease-out); }
+    @keyframes qa-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+    /* links in answers: a light lime highlight instead of an underline (calmer; underlines read like corrections) */
+    .qa-a a {
+      color: var(--forest); font-weight: 700; text-decoration: none;
+      padding: 1px 6px; border-radius: 5px; background: rgba(102, 184, 74, .15);
+      -webkit-box-decoration-break: clone; box-decoration-break: clone;
+      transition: background-color .2s var(--ease-out), color .2s var(--ease-out);
+    }
+    .qa-a a:hover { color: var(--pine); background: rgba(102, 184, 74, .28); }
+    .qa-a a:active { background: rgba(102, 184, 74, .4); }
+    .qa-a a:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; border-radius: 3px; }
+    @media (max-width: 599px) { .qa summary { padding: 18px var(--s4); } .qa-a { padding: 0 var(--s4) var(--s4); } }
+    @media (prefers-reduced-motion: reduce) { .qa-ic, .qa[open] .qa-a { transition: none; animation: none; } }
+    /* "Put G'N'G on your phone": a quiet card, not a shouty banner */
+    .app-get {
+      display: flex; align-items: center; gap: var(--s3); width: 100%; max-width: 360px; margin-top: var(--s6);
+      padding: 12px 14px; border-radius: 12px; text-align: left; cursor: pointer; font: inherit;
+      background: rgba(255, 255, 255, .06); border: 1px solid var(--line-dark); color: #fff;
+      transition: background-color .2s var(--ease-out), transform .2s var(--spring);
+    }
+    .app-get[hidden] { display: none; }
+    .app-get img { flex: none; width: 36px; height: 36px; border-radius: 9px; }
+    .app-get b { display: block; font-weight: 700; font-size: 15px; }
+    .app-get small { display: block; font-size: 13px; color: rgba(255, 255, 255, .7); }
+    .app-get:hover { background: rgba(255, 255, 255, .1); }
+    .app-get:active { transform: scale(.98); }
+    .app-get:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+    .menu-panel .app-get { background: var(--mist); border-color: var(--line-light); color: var(--ink); }
+    .menu-panel .app-get small { color: var(--ink-muted); }
+    .menu-panel .app-get:focus-visible { outline-color: var(--forest); }
+    .foot .app-get { margin-left: auto; margin-right: auto; }
+    .app-sheet {
+      width: min(92vw, 380px); margin: auto auto calc(16px + env(safe-area-inset-bottom)); padding: var(--s6);
+      border: 0; border-radius: 18px; background: #fff; color: var(--ink); text-align: center;
+      box-shadow: 0 24px 60px -12px rgba(0, 0, 0, .5);
+    }
+    .app-sheet::backdrop { background: rgba(10, 14, 11, .55); }
+    .app-sheet[open] { animation: sheet-up .35s var(--ease-out); }
+    @keyframes sheet-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    .app-sheet img { width: 64px; height: 64px; border-radius: 15px; }
+    .app-sheet h2 { margin-top: var(--s3); font-family: var(--font-display); font-weight: 400; font-size: 24px; line-height: 1.1; text-transform: uppercase; color: var(--pine); }
+    .app-sheet ol { margin: var(--s4) 0 0; padding-left: 1.3em; text-align: left; font-size: 17px; line-height: 1.5; }
+    .app-sheet li + li { margin-top: var(--s2); }
+    .app-sheet li svg { vertical-align: -3px; color: #1a73e8; }
+    .app-sheet .btn { margin-top: var(--s6); width: 100%; justify-content: center; }
+    @media (prefers-reduced-motion: reduce) { .app-sheet[open] { animation: none; } }
+    /* inside the installed app: no "put it on your phone" ask */
+    @media (display-mode: standalone) { .app-get { display: none !important; } }
+    /* phone polish (2026-10-06): every tap spot at least ~44px tall (Apple's thumb size) */
+    @media (max-width: 899px) {
+      .reel-toggle { width: 44px; height: 44px; }
+      .tk-stub .pass-call { display: inline-flex; align-items: center; min-height: 44px; }
+      .ask .big-phone { padding: 6px 4px; }
+      .foot .meta { line-height: 2.4; }
+      .foot .meta a { padding: 8px 2px; }
+    }
+    /* phone app + notch phones (2026-10-06): keep the call bar above the home bar */
+    .call-bar { bottom: calc(var(--s3) + env(safe-area-inset-bottom)); left: calc(var(--s3) + env(safe-area-inset-left)); right: calc(var(--s3) + env(safe-area-inset-right)); }
+    html { -webkit-tap-highlight-color: transparent; }
+
+    /* =====================================================================
+       2026-10-07 round (Harrison's list): service cards open pages, night field labels,
+       Five Before We Drive check boxes, FAQ "Most asked"
+       ===================================================================== */
+    /* service cards: 5 now, each opens its own page */
+    @media (min-width: 1024px) { .svc-row { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1180px) { .svc-row { grid-template-columns: repeat(5, 1fr); } .svc h3 { font-size: 24px; } }
+    .svc .go { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--s3); font-weight: 700; font-size: 14px; color: var(--lime); }
+    .svc .go svg { transition: transform .35s var(--spring); }
+    .svc:hover .go svg { transform: translateX(4px); }
+    .svc:focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
+
+    /* night field: labels were lime on green grass (hard to read). Now white "field paint" chips with pine letters. */
+    .why-writing .tag { background: #fff; color: var(--pine); box-shadow: 0 2px 0 rgba(3, 6, 4, .45); }
+    .why-writing .jersey { color: var(--jersey-blue); filter: drop-shadow(0 3px 0 rgba(3, 6, 4, .5)); }
+
+    /* Five Before We Drive: a box per check that ticks itself as you scroll to it */
+    .step .eyebrow { display: flex; align-items: center; gap: var(--s3); }
+    .step .ck {
+      flex: none; position: relative; width: 28px; height: 28px; border-radius: 7px;
+      border: 2.5px solid var(--line-light); background: #fff;
+      transition: background-color .3s var(--ease-out), border-color .3s var(--ease-out);
+    }
+    .step .ck::after {
+      content: ""; position: absolute; left: 8px; top: 3px; width: 7px; height: 13px;
+      border: solid var(--pine); border-width: 0 3.5px 3.5px 0; transform: rotate(45deg) scale(0); transform-origin: 60% 60%;
+      transition: transform .45s var(--spring);
+    }
+    .step.ok .ck { background: var(--lime); border-color: var(--pine); }
+    .step.ok .ck::after { transform: rotate(45deg) scale(1); }
+    .step.ok .eyebrow { color: var(--forest); }
+    .five-done {
+      position: absolute; left: var(--s8); right: var(--s8); bottom: calc(var(--s8) + 22px);
+      font-weight: 700; font-size: 17px; color: rgba(255,255,255,.85); text-align: center;
+      opacity: 0; transform: translateY(10px); transition: opacity .4s var(--ease-out), transform .5s var(--spring);
+    }
+    .five-done b { color: var(--lime); }
+    .five-card.all .five-done { opacity: 1; transform: none; }
+    .five-card.all .numeral.on { transform: translateY(-14px); }
+    @media (prefers-reduced-motion: reduce) { .step .ck::after { transition: none; } }
+
+    /* FAQ: the most-searched questions first, with a quiet tag */
+    .qa-q { display: grid; gap: 6px; }
+    .qa-pop {
+      justify-self: start; padding: 3px 9px; border-radius: 999px; background: rgba(102, 184, 74, .18); color: var(--forest);
+      font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; line-height: 1.4;
+    }
+    .qa.top summary { background: rgba(102, 184, 74, .05); }
+    .qa.top summary:hover { background: rgba(102, 184, 74, .1); }
+    .qa-a .qa-links { margin-top: var(--s3); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 15px; }
+    .cmp-note a { text-decoration: none !important; padding: 1px 6px; border-radius: 5px; background: rgba(255,255,255,.1); color: #fff; font-weight: 700; }
+    .cmp-note a:hover { background: rgba(255,255,255,.2); }
+    .faq-upd { margin-top: var(--s4) !important; font-size: 13px !important; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
   </style>
 </head>
 <body>
@@ -1114,21 +1354,35 @@
     <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="#season">Save my spot</a></p>
   </div>
 
-  <!-- HEADER (2026-10-06): white bar so the logo sits on white (brand rule) and reads big.
-       The logo file is the trimmed web copy (lockup-horizontal-web.png), so the whole height is logo, not white space. -->
+  <!-- @header -->
+  <!-- HEADER (2026-10-07: one header for every page; edit _partials/header.html, then run sync-partials.ps1).
+       White bar so the logo sits on white (brand rule). Services opens a list of the service pages. -->
   <header class="site-head">
     <div class="wrap head-in">
-      <a class="brand" href="#top" aria-label="Grass 'n' Gardens home">
+      <a class="brand" href="./" aria-current="page" aria-label="Grass 'n' Gardens home">
         <img src="brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" />
       </a>
       <nav class="menu" aria-label="Main">
         <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#why">Why us</a></li>
-          <li><a href="#five">Our promise</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#work">Our work</a></li>
-          <li><a href="#about">About</a></li>
+          <!-- 2026-10-07: a plain Home link (Harrison: not everyone knows the logo goes home) -->
+          <li><a href="./" aria-current="page">Home</a></li>
+          <li class="has-sub">
+            <button class="sub-btn" type="button" aria-expanded="false" aria-controls="sub-services">Services
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="sub" id="sub-services">
+              <a href="../lawn-mowing/"><span>Weekly mowing<small>Same crew, same day every week</small></span></a>
+              <a href="../fall-cleanup/"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
+              <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
+              <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
+              <a href="../yard-design/"><span>Yard design and planting<small>The right plant in the right spot</small></span></a>
+              <a class="sub-all" href="./#services">See every service</a>
+            </div>
+          </li>
+          <li><a href="../season-pass/">2027 Season Pass</a></li>
+          <li><a href="../why-gng/">Why G'N'G</a></li>
+          <li><a href="./#five">Our promise</a></li>
+          <li><a href="./#about">About</a></li>
+          <li><a href="./#faq">Questions</a></li>
         </ul>
       </nav>
       <div class="head-ctas">
@@ -1145,22 +1399,33 @@
     <div class="menu-panel" id="menu-panel" hidden>
       <nav class="wrap" aria-label="Main, small screens">
         <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#why">Why us</a></li>
-          <li><a href="#five">Our promise</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#work">Our work</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#area">Where we work</a></li>
+          <li><a href="./" aria-current="page">Home</a></li>
+          <li class="grp" aria-hidden="true">Services</li>
+          <li class="sub-li"><a href="../lawn-mowing/">Weekly mowing</a></li>
+          <li class="sub-li"><a href="../fall-cleanup/">Fall cleanups</a></li>
+          <li class="sub-li"><a href="../spring-cleanup/">Spring cleanups</a></li>
+          <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
+          <li class="sub-li"><a href="../yard-design/">Yard design and planting</a></li>
+          <li><a href="../season-pass/">2027 Season Pass</a></li>
+          <li><a href="../why-gng/">Why G'N'G</a></li>
+          <li><a href="./#five">Our promise</a></li>
+          <li><a href="./#about">About</a></li>
+          <li><a href="./#faq">Questions</a></li>
         </ul>
         <div class="menu-ctas">
-          <a class="btn btn-lime" href="#plan">Get my yard plan
+          <a class="btn btn-lime" href="./#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
         </div>
+        <!-- Shown by the script only on phones that can add it (and never inside the app itself) -->
+        <button class="app-get" type="button" data-app-get hidden>
+          <img src="./app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
+          <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
+        </button>
       </nav>
     </div>
   </header>
+  <!-- /@header -->
 
   <main id="top">
 
@@ -1171,11 +1436,12 @@
              Not loading="lazy": they start invisible, so the browser never loaded them and the hero went blank. Low priority instead.
              Lighter shading than before, so the photos read clear; the text keeps its own soft shadow. -->
         <div class="broll" role="img" aria-label="Striped lawns, a stand-on mower, fresh mulch beds and the Grass 'n' Gardens crew on a job">
-          <img src="img/gallery-12.jpg" srcset="img/sm/gallery-12.jpg 900w, img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: center 60%" />
-          <img src="img/gallery-16.jpg" srcset="img/sm/gallery-16.jpg 900w, img/gallery-16.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 38%" />
-          <img src="img/gallery-25.jpg" srcset="img/sm/gallery-25.jpg 900w, img/gallery-25.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
-          <img src="img/gallery-18.jpg" srcset="img/sm/gallery-18.jpg 900w, img/gallery-18.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 62%" />
-          <img src="img/crew-mulch.jpg" srcset="img/sm/crew-mulch.jpg 900w, img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
+          <!-- 2026-10-06: swapped to Harrison's own Google Business photos ("By owner" only, his OK). gbp-* = cropped to 4:3. -->
+          <img src="img/gbp-mower-stripes.jpg" srcset="img/sm/gbp-mower-stripes.jpg 900w, img/gbp-mower-stripes.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: 70% 55%" />
+          <img data-src="img/gallery-12.jpg" data-srcset="img/sm/gallery-12.jpg 900w, img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
+          <img data-src="img/gbp-crew-mowing.jpg" data-srcset="img/sm/gbp-crew-mowing.jpg 900w, img/gbp-crew-mowing.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
+          <img data-src="img/gbp-mower-house.jpg" data-srcset="img/sm/gbp-mower-house.jpg 900w, img/gbp-mower-house.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
+          <img data-src="img/crew-mulch.jpg" data-srcset="img/sm/crew-mulch.jpg 900w, img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
         </div>
       </div>
       <div class="wrap hero-copy">
@@ -1203,28 +1469,35 @@
         <!-- The ticket (2026-10-06, Harrison: "make this 2027 mowing ticket look a little more fun").
              Same sticker language as the review cards he likes: thick outline, hard shadow, a little tilt.
              Notches + perforation, a rubber-stamp 5%, a barcode made of mowing stripes, a live day count. -->
+        <!-- 2026-10-07 (Harrison: "click on the ticket"): the whole ticket opens the Season Pass page.
+             Notches are real cut-outs now (masks), so the outline and lime shadow follow them. -->
         <div class="ticket reveal">
-          <div class="tk-main">
-            <p class="tk-top"><span class="tk-admit draft">Admit one yard</span><span class="tk-season">2027 season pass</span></p>
-            <h2>Lock in next year's <b>mowing now<span class="dot">.</span></b></h2>
-            <ul class="stack-list">
-              <li>Weekly mowing, the same day every week</li>
-              <li>Five Before We Drive on every visit</li>
-              <li>Miss one? We're back the next day, free</li>
-              <li>30 days from your first mow to be sure. Not happy? Get back what you didn't use.</li>
-              <li>Moving mid-season? Get back what's left, minus the 5%</li>
-            </ul>
-            <div class="tk-code" aria-hidden="true"><span class="bars"></span><span class="code">GNG &middot; 2027 &middot; WEEKLY MOWING</span></div>
-          </div>
-          <div class="tk-stub">
-            <p class="pass-label">Pay the season up front</p>
-            <p class="tk-stamp" aria-label="Save 5 percent"><span>Save</span><b>5%</b><span>by Mar 31</span></p>
-            <p class="tk-count" data-countdown hidden><b data-days></b> <span data-days-word>days</span> left to save</p>
-            <p class="pass-scarce">Pay for the whole 2027 season by March 31. That's the day before we start mowing.</p>
-            <a class="btn btn-lime" href="#plan">Save my 2027 spot
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            <a class="pass-call" href="tel:+14406679642">Or call Harrison: (440) 667-9642</a>
-          </div>
+          <div class="tk-drop"><div class="tk-shape"><div class="tk-in">
+            <a class="tk-hit" href="../season-pass/" tabindex="-1" aria-hidden="true"></a>
+            <div class="tk-main">
+              <p class="tk-top"><span class="tk-admit draft">Admit one yard</span><span class="tk-season">2027 season pass</span></p>
+              <h2>Lock in next year's <b>mowing now<span class="dot">.</span></b></h2>
+              <ul class="stack-list">
+                <li>Weekly mowing, the same day every week</li>
+                <li>Five Before We Drive on every visit</li>
+                <li>Miss one? We're back the next day, free</li>
+                <li>30 days from your first mow to be sure. Not happy? Get back what you didn't use.</li>
+                <li>Moving mid-season? Get back what's left, minus the 5%</li>
+              </ul>
+              <div class="tk-code" aria-hidden="true"><span class="bars"></span><span class="code">GNG &middot; 2027 &middot; WEEKLY MOWING</span></div>
+              <span class="tk-more draft" aria-hidden="true">Tap the ticket to see how it works
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </div>
+            <div class="tk-stub">
+              <p class="pass-label">Pay the season up front</p>
+              <p class="tk-stamp" aria-label="Save 5 percent"><span>Save</span><b>5%</b><span>by Mar 31</span></p>
+              <p class="tk-count" data-countdown hidden><b data-days></b> <span data-days-word>days</span> left to save</p>
+              <p class="pass-scarce">Pay for the whole 2027 season by March 31. That's the day before we start mowing.</p>
+              <a class="btn btn-lime tk-go" href="../season-pass/">Save my 2027 spot
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="pass-call" href="tel:+14406679642">Or call Harrison: (440) 667-9642</a>
+            </div>
+          </div></div></div>
         </div>
       </div>
     </section>
@@ -1240,11 +1513,11 @@
           <!-- Photo reel of real 2026 jobs (2026-10-06). Stands in for the "what we got done in one year" video;
                when the video is filmed, put it here. Plays by itself, pause button for anyone who wants it still. -->
           <div class="reel" role="region" aria-roledescription="slideshow" aria-label="Our 2026 season in photos">
-            <figure class="reel-slide is-on"><img src="img/sm/gallery-16.jpg" alt="Stand-on mower cutting fresh stripes into a lawn" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gallery-19.jpg" alt="Curved black mulch bed with round shrubs" loading="lazy" /><figcaption>Mulch and beds</figcaption></figure>
+            <figure class="reel-slide is-on"><img loading="lazy" src="img/sm/gbp-mower-lines.jpg" alt="Stand-on mower cutting fresh stripes into a big back lawn" /><figcaption>Weekly mowing</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-weeping-mulch.jpg" alt="Fresh black mulch bed curving around a weeping tree" loading="lazy" /><figcaption>Mulch and beds</figcaption></figure>
             <figure class="reel-slide"><img src="img/sm/leaf-after.jpg" alt="Beds and stone walk cleared after a fall cleanup" loading="lazy" /><figcaption>Fall cleanup</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gallery-18.jpg" alt="Fresh diagonal mowing stripes in a backyard" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gallery-24.jpg" alt="New mulch ring around evergreens by a house number post" loading="lazy" /><figcaption>Mulch and beds</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-stripes-sky.jpg" alt="Long mowing stripes running back to a row of evergreens" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-planter-boxes.jpg" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" /><figcaption>Beds and planters</figcaption></figure>
             <figure class="reel-slide"><img src="img/sm/edge-curve.jpg" alt="Sharp curved edge between the lawn and a bed" loading="lazy" /><figcaption>Edging</figcaption></figure>
             <div class="reel-bar">
               <span class="reel-title">Our 2026 season</span>
@@ -1270,7 +1543,7 @@
 
         <div class="form-card reveal d1" id="plan-form">
           <div class="form-head">
-            <img src="brand_assets/logos/mark.png" alt="" width="52" height="52" />
+            <img src="brand_assets/logos/mark-sm.png" alt="" width="52" height="52" loading="lazy" />
             <div><h3>Get my yard plan</h3>
             <p class="draft">Takes 30 seconds. Harrison texts you back today.</p></div>
           </div>
@@ -1283,6 +1556,7 @@
               <label><input type="checkbox" name="need" value="mulch" /><span>Mulch</span></label>
               <label><input type="checkbox" name="need" value="bushes" /><span>Bush trimming</span></label>
               <label><input type="checkbox" name="need" value="spring" /><span>Spring cleanup</span></label>
+              <label><input type="checkbox" name="need" value="design" /><span>Custom design and planting</span></label>
               <label><input type="checkbox" name="need" value="aeration" /><span>Aeration and overseeding</span></label>
               <label><input type="checkbox" name="need" value="unsure" /><span>Not sure yet</span></label>
               <label><input type="checkbox" name="need" value="other" id="need-other" /><span>Other</span></label>
@@ -1344,32 +1618,38 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
+        <!-- 2026-10-07 (Harrison: "click on these sections to go more in depth"): each card opens its own page. -->
         <div class="svc-row">
-          <a class="svc reveal" href="#ask">
-            <img src="img/sm/gallery-16.jpg" alt="Stand-on mower cutting fresh stripes into a green lawn" loading="lazy" />
-            <div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p></div>
+          <a class="svc reveal" href="../lawn-mowing/">
+            <img src="img/sm/gbp-mower-lines.jpg" alt="Stand-on mower cutting straight stripes into a big lawn" loading="lazy" />
+            <div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc reveal d1" href="#ask">
+          <a class="svc reveal d1" href="../fall-cleanup/">
             <span class="tag">Fall Pass</span>
             <img src="img/sm/leaf-after.jpg" alt="Beds and stone walk cleared of leaves after a fall cleanup" loading="lazy" />
-            <div class="svc-body"><h3>Fall cleanups</h3><p>One price for the whole leaf season. We keep coming back till it's clear.</p></div>
+            <div class="svc-body"><h3>Fall cleanups</h3><p>One price for the whole leaf season. We keep coming back till it's clear.</p><span class="go">See the Fall Pass <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc reveal d2" href="#ask">
-            <img src="img/sm/gallery-8.jpg" alt="Red Japanese maple and lamp post in a fresh mulch bed" loading="lazy" />
-            <div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p></div>
+          <a class="svc reveal d2" href="../mulch-beds/">
+            <img src="img/sm/gbp-curved-bed.jpg" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" />
+            <div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
-          <a class="svc reveal d3" href="#ask">
+          <a class="svc reveal d3" href="../spring-cleanup/">
             <img src="img/sm/gallery-14.jpg" alt="Fresh mulch bed with hostas along a ranch home" loading="lazy" />
-            <div class="svc-body"><h3>Spring cleanups</h3><p class="draft">Sticks and dead leaves gone before your first mow.</p></div>
+            <div class="svc-body"><h3>Spring cleanups</h3><p class="draft">Sticks and dead leaves gone before your first mow.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+          </a>
+          <a class="svc reveal d1" href="../yard-design/">
+            <span class="tag">Custom</span>
+            <img src="img/sm/gbp-planter-boxes.jpg" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" />
+            <div class="svc-body"><h3>Yard design</h3><p class="draft">The right plant in the right spot. Planned before we plant.</p><span class="go">Get a custom design <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- WHY US: flashlight wall. The writing is only readable where the light falls. -->
+    <!-- WHY US: a striped lawn at night under a stadium light. The promises are painted on the grass
+         and only really show where the light lands. -->
     <section class="why" id="why" aria-labelledby="why-title">
       <canvas class="why-wall" aria-hidden="true"></canvas>
-      <!-- Notes scattered on a dark wall. Only readable where the light lands. -->
       <div class="why-writing">
         <!-- Facts from the locked 3-part guarantee (brainstorms/2026-09-30-scaling-roadmap.md Q9)
              and the prepay plan. "Prepay", not "financing": real financing has legal rules. -->
@@ -1399,10 +1679,12 @@
           <small>Pay for the season before it starts. It's all covered by the guarantee.</small>
         </div>
         <div class="note n6">
-          <!-- PLACEHOLDER jersey drawing. Swap for a photo of the real G'N'G jersey when it's made. -->
+          <!-- PLACEHOLDER jersey drawing. Swap for a photo of the real G'N'G jersey when it's made.
+               2026-10-07 (Harrison: "green on green, hard to see"): jersey blue with a white outline, so it shows on the grass. -->
           <svg class="jersey" viewBox="0 0 120 120" aria-hidden="true">
-            <path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
-            <text x="60" y="90" text-anchor="middle" fill="currentColor" font-size="46" font-family="Alfa Slab One, serif">5</text>
+            <path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="#a7cbe0" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M40 10 Q60 26 80 10" fill="none" stroke="#1d4a22" stroke-width="4" stroke-linecap="round"/>
+            <text x="60" y="84" text-anchor="middle" fill="#1d4a22" font-size="24" font-family="Alfa Slab One, serif" letter-spacing="1">G'N'G</text>
           </svg>
           <div><span class="tag">The team</span>
           <p>Our crew wears jerseys.</p>
@@ -1465,13 +1747,16 @@
             <a class="btn btn-lime" href="#plan">Get my yard plan
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </article>
+          <!-- 2026-10-07 re-checked with Tavily: local crews (e.g. Advanced Quality Lawn: no contracts, flexible days)
+               and mowing apps (LawnStarter, LawnGuru: a pro from the app, report problems within days for a re-mow).
+               So "season contract" is "some", and the crew can change on the apps. -->
           <article class="vs-card">
-            <h3>Most other crews</h3>
+            <h3 class="draft">Other crews and mowing apps</h3>
             <ul>
               <li><i class="ic part" aria-label="Sometimes"></i>Sometimes a checklist</li>
-              <li><i class="ic no" aria-label="No"></i>Missed it? Call and wait</li>
-              <li><i class="ic part" aria-label="Sometimes"></i>Often a season contract</li>
-              <li><i class="ic part" aria-label="Sometimes"></i>Whoever is free</li>
+              <li><i class="ic no" aria-label="No"></i><span class="draft">Missed it? Report it and wait</span></li>
+              <li><i class="ic part" aria-label="Sometimes"></i><span class="draft">Some want a season contract</span></li>
+              <li><i class="ic part" aria-label="Sometimes"></i><span class="draft">Apps send whoever is free</span></li>
               <li><i class="ic yes" aria-label="Yes"></i>Mowing</li>
               <li><i class="ic part" aria-label="Sometimes"></i>Some do cleanups</li>
               <li><i class="ic part" aria-label="Sometimes"></i>Some do beds</li>
@@ -1479,7 +1764,7 @@
             </ul>
           </article>
         </div>
-        <p class="cmp-note reveal">Compared October 2026, from what local crews list on their own sites. Rather talk it through? Call Harrison at <a href="tel:+14406679642">(440) 667-9642</a>.</p>
+        <p class="cmp-note reveal">Compared October 2026, from what local crews and mowing apps list on their own sites. Rather talk it through? Call Harrison at <a href="tel:+14406679642">(440) 667-9642</a>.</p>
       </div>
     </section>
 
@@ -1496,37 +1781,38 @@
                 <span class="numeral on">1</span><span class="numeral">2</span><span class="numeral">3</span><span class="numeral">4</span><span class="numeral">5</span>
               </div>
               <div class="pips"><span class="done"></span><span></span><span></span><span></span><span></span></div>
+              <p class="five-done draft">All 5 checked. <b>Now we drive.</b></p>
             </div>
           </div>
 
           <ol class="steps" style="list-style:none">
             <li class="step" data-step="0">
               <span class="mini" aria-hidden="true">1</span>
-              <p class="eyebrow">Check 1 of 5</p>
+              <p class="eyebrow"><span class="ck" aria-hidden="true"></span>Check 1 of 5</p>
               <h3>Edges crisp</h3>
               <p class="draft">Every walk, drive and bed gets a sharp line.</p>
             </li>
             <li class="step" data-step="1">
               <span class="mini" aria-hidden="true">2</span>
-              <p class="eyebrow">Check 2 of 5</p>
+              <p class="eyebrow"><span class="ck" aria-hidden="true"></span>Check 2 of 5</p>
               <h3>Everything blown clean</h3>
               <p class="draft">No clippings on the drive, the walk or the porch.</p>
             </li>
             <li class="step" data-step="2">
               <span class="mini" aria-hidden="true">3</span>
-              <p class="eyebrow">Check 3 of 5</p>
+              <p class="eyebrow"><span class="ck" aria-hidden="true"></span>Check 3 of 5</p>
               <h3>Nothing left behind</h3>
               <p class="draft">We take our stuff and the trash with us.</p>
             </li>
             <li class="step" data-step="3">
               <span class="mini" aria-hidden="true">4</span>
-              <p class="eyebrow">Check 4 of 5</p>
+              <p class="eyebrow"><span class="ck" aria-hidden="true"></span>Check 4 of 5</p>
               <h3>Gates latched</h3>
               <p class="draft">Your dog stays in. We check every gate on the way out.</p>
             </li>
             <li class="step" data-step="4">
               <span class="mini" aria-hidden="true">5</span>
-              <p class="eyebrow">Check 5 of 5</p>
+              <p class="eyebrow"><span class="ck" aria-hidden="true"></span>Check 5 of 5</p>
               <h3>No clumps</h3>
               <p class="draft">No piles of wet grass sitting on your lawn.</p>
             </li>
@@ -1571,9 +1857,9 @@
           <p class="ba-cap"><b>Fall cleanup.</b> One visit. Beds cleared, leaves gone, walk blown clean.</p>
         </div>
         <div class="work-grid">
-          <figure class="shot tall reveal"><img src="img/sm/gallery-19.jpg" alt="Curved black mulch bed with round shrubs along a driveway" loading="lazy" /><figcaption>Mulch</figcaption></figure>
-          <figure class="shot wide reveal d1"><img src="img/sm/gallery-12.jpg" alt="Freshly striped backyard lawn bordered by evergreens" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
-          <figure class="shot reveal d2"><img src="img/sm/gallery-20.jpg" alt="Mulched island bed with a young tree and round shrubs" loading="lazy" /><figcaption>Beds</figcaption></figure>
+          <figure class="shot tall reveal"><img src="img/sm/gbp-curved-mulch.jpg" alt="Curved black mulch bed with round shrubs along a driveway" loading="lazy" /><figcaption>Mulch</figcaption></figure>
+          <figure class="shot wide reveal d1"><img src="img/sm/gbp-mower-yard.jpg" alt="Stand-on mower on a freshly striped front lawn" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
+          <figure class="shot reveal d2"><img src="img/sm/gbp-tree-ring.jpg" alt="Clean ring of fresh mulch around a lawn tree" loading="lazy" /><figcaption>Beds</figcaption></figure>
           <figure class="shot reveal d1"><img src="img/sm/edge-curve.jpg" alt="Crisp curved edge between the lawn and a fresh bed" loading="lazy" /><figcaption>Edging</figcaption></figure>
           <figure class="shot wide reveal d2"><img src="img/sm/gallery-21.jpg" alt="Trimmed shrubs and fresh mulch along a front walkway" loading="lazy" /><figcaption>Shrubs and beds</figcaption></figure>
         </div>
@@ -1591,8 +1877,8 @@
       <div class="wrap roster-grid">
         <div class="jersey-photo reveal">
           <img src="img/harrison-founder.webp" alt="Harrison Drvenkar, owner of Grass 'n' Gardens, at his graduation with his parents" loading="lazy" />
-          <span class="jersey-num" aria-hidden="true">5</span>
-          <p class="jersey-name"><b>Harrison</b><span>Owner, #5</span></p>
+          <!-- 2026-10-07: the "5" and "#5" came off (Harrison: "I'm not number five") -->
+          <p class="jersey-name"><b>Harrison</b><span>Owner</span></p>
         </div>
         <div class="about-copy reveal d1">
           <p class="eyebrow">Meet the owner</p>
@@ -1630,6 +1916,95 @@
       </div>
     </section>
 
+    <!-- FAQ (2026-10-06). Harrison's 7 questions from the old grassngardens.com, answers word for word
+         (only the town list and the quote steps updated to match this site), plus 6 buyer questions from
+         Tavily research (cost, rain, being home, locked in, fall cleanup, Five Before We Drive).
+         New wording is class="draft". Answers lead with the fact and the business name (that's what
+         Google's AI answers quote). KEEP THE FAQ JSON-LD AT THE END OF THE PAGE IN SYNC WITH THIS TEXT. -->
+    <section class="light faq" id="faq" aria-labelledby="faq-title">
+      <div class="wrap faq-grid">
+        <div class="faq-side reveal">
+          <p class="eyebrow">Questions</p>
+          <h2 id="faq-title"><span class="draft">Got questions?</span> <b class="draft">Straight answers<span class="dot">.</span></b></h2>
+          <p class="draft">Don't see yours? Text Harrison. He texts back from his own phone.</p>
+          <a class="btn btn-dark" href="sms:+14406679642">Text Harrison
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="faq-upd">Updated October 2026</p>
+        </div>
+        <!-- 2026-10-07 (Harrison: "highlight the ones most likely for SEO"): the 4 most-searched questions go first with a
+             "Most asked" tag (Tavily: cost, area, insured and services are what people type and what AI answers quote).
+             Answers link to the service pages so Google sees how the site fits together. -->
+        <div class="faq-list reveal d1">
+          <details class="qa top" open>
+            <summary><span class="qa-q"><span class="qa-pop">Most asked</span><h3 class="draft">How much does lawn mowing cost in Richfield?</h3></span><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">It depends on your yard: how big it is and how much we trim around. Send us your address and Harrison looks your yard up on the map and texts you a price today. You don't have to be home, and nobody has to come out first. <a href="#plan">Get my yard plan</a></p></div>
+          </details>
+          <details class="qa top">
+            <summary><span class="qa-q"><span class="qa-pop">Most asked</span><h3>What areas does Grass 'n' Gardens serve?</h3></span><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Grass 'n' Gardens is based in Richfield, Ohio<span class="draft">. We serve Richfield and nearby towns, including Bath, Hinckley, Granger, Brecksville, Broadview Heights, North Royalton, Akron, and Medina.</span> Not on the list? Call us. We might still come out.</p></div>
+          </details>
+          <details class="qa top">
+            <summary><span class="qa-q"><span class="qa-pop">Most asked</span><h3>Is Grass 'n' Gardens insured?</h3></span><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Yes. Grass 'n' Gardens is insured.</p></div>
+          </details>
+          <details class="qa top">
+            <summary><span class="qa-q"><span class="qa-pop">Most asked</span><h3>What landscaping services does Grass 'n' Gardens offer?</h3></span><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Lawn mowing and weekly maintenance, garden design and planting, mulching and bed cleanup, spring and fall cleanups, edging and trimming, shrub and hedge pruning, leaf removal, commercial property care, retaining wall installation, paver patios, and custom landscape design and construction.</p>
+              <p class="qa-links draft">More on each: <a href="../lawn-mowing/">Weekly mowing</a> <a href="../fall-cleanup/">Fall cleanups</a> <a href="../spring-cleanup/">Spring cleanups</a> <a href="../mulch-beds/">Mulch and beds</a> <a href="../yard-design/">Yard design</a></p></div>
+          </details>
+          <details class="qa">
+            <summary><span class="qa-q"><h3 class="draft">When does Grass 'n' Gardens start mowing?</h3></span><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">Our 2027 mowing season starts April 1. Pay for the whole season by March 31 and save 5%. <a href="../season-pass/">See the Season Pass</a></p></div>
+          </details>
+          <details class="qa">
+            <summary><span class="qa-q"><h3 class="draft">Does Grass 'n' Gardens aerate, fertilize and plow snow?</h3></span><span class="qa-ic" aria-hidden="true"></span></summary>
+            <!-- answer = Harrison's own words from his Google Business Profile description (2026-10-07) -->
+            <div class="qa-a"><p>Yes. We mow, trim bushes, lay mulch, aerate, fertilize, clean up leaves, cut small trees and plow snow. It all goes on one plan for the whole year.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>How do I get a quote from Grass 'n' Gardens?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Call <span class="draft">or text</span> <a href="tel:+14406679642">(440) 667-9642</a>, email <a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a>, or <span class="draft">fill out the <a href="#plan">yard plan form</a> on this page</span>. Estimates are free and we respond promptly.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3 class="draft">What if it rains on my mowing day?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">We come the next dry day. That's our guarantee: if we ever miss your mow, we're back the next day, free.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3 class="draft">Do I have to be home?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">No. We look your yard up on the map to price it. If we walk your yard, it takes about 20 minutes, and you don't have to be home for that either.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3 class="draft">Am I locked in for the whole season?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">No. You get 30 days from your first mow to be sure. Not happy? Cancel and get back what you didn't use.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3 class="draft">When should I book a fall cleanup?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">As soon as the leaves start coming down. Ohio State says leaves shouldn't sit on grass for more than two weeks, or the grass under them gets weak and yellow. Our Fall Pass is one price for the whole leaf season. We keep coming back till it's clear. <a href="../fall-cleanup/">See the Fall Pass</a></p></div>
+          </details>
+          <details class="qa">
+            <summary><h3 class="draft">What is Five Before We Drive?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">It's our promise. Before we pull out of your driveway, we check your yard 5 ways: edges crisp, everything blown clean, nothing left behind, gates latched, and no clumps. <a href="#five">See the 5 checks</a></p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>What are Grass 'n' Gardens' hours?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>The crew starts at 6:30 AM, Monday through Saturday.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>Does Grass 'n' Gardens work with commercial properties?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Yes. We maintain both residential and commercial properties across Summit and Medina counties, including regular mowing, bed care, and seasonal cleanups.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>Does Grass 'n' Gardens do hardscaping?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Yes. We build retaining walls and paver patios and handle full custom landscape design and construction alongside routine lawn and garden care. <a href="../yard-design/">See yard design</a></p></div>
+          </details>
+          <details class="qa">
+            <summary><h3>Who owns Grass 'n' Gardens?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p>Grass 'n' Gardens was founded by Harrison Drvenkar, a Richfield, Ohio local, and holds a 5.0-star Google rating<span class="draft"> across 60 reviews</span>. <a href="#about">Meet Harrison</a></p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- THE ASK -->
     <section class="ask" id="ask">
       <div class="wrap">
@@ -1655,29 +2030,95 @@
         </div>
         <p class="hours reveal">Crew starts at 6:30 AM, Monday to Saturday.</p>
 
-        <!-- socials. TikTok and X came out 2026-10-06 (no links yet, they went nowhere). Add them back when Harrison sends the links. -->
+        <!-- socials. TikTok and Nextdoor added 2026-10-07 (links found on the Google profile). X: add when Harrison sends the link. -->
         <ul class="socials reveal" aria-label="Grass 'n' Gardens on social media">
           <li><a href="https://www.instagram.com/grass_n_gardens/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>Instagram</a></li>
           <li><a href="https://www.facebook.com/p/Grass-n-Gardens-61591542549375/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a></li>
           <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>YouTube</a></li>
+          <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg>TikTok</a></li>
+          <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg>Nextdoor</a></li>
           <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>Google reviews</a></li>
         </ul>
       </div>
     </section>
   </main>
 
+  <!-- @footer -->
+  <!-- FOOTER (2026-10-07: one footer for every page; edit _partials/footer.html, then run sync-partials.ps1).
+       Social links: Instagram, Facebook, YouTube, TikTok, Nextdoor (TikTok and Nextdoor found on the Google profile 2026-10-07). Add more when Harrison sends them. -->
   <footer class="site">
-    <div class="wrap foot">
-      <a class="logo-tile" href="#top" aria-label="Back to top"><img src="brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" /></a>
-      <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
-      <p class="meta"><a href="tel:+14406679642">(440) 667-9642</a> &middot; <a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a><br />Richfield, Ohio &middot; <a href="../why-gng/">Why customers pick us</a> &middot; <a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">Google reviews</a><br /><a href="https://www.instagram.com/grass_n_gardens/" target="_blank" rel="noopener">Instagram</a> &middot; <a href="https://www.facebook.com/p/Grass-n-Gardens-61591542549375/" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener">YouTube</a></p>
+    <div class="wrap">
+      <div class="foot-cols">
+        <div class="fc-brand">
+          <a class="logo-tile" href="./" aria-current="page" aria-label="Grass 'n' Gardens home"><img src="brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" /></a>
+          <p class="draft">Lawn care out of Richfield, Ohio. Five checks before we drive, every yard.</p>
+          <ul class="soc" aria-label="Grass 'n' Gardens on social media">
+            <li><a href="https://www.instagram.com/grass_n_gardens/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a></li>
+            <li><a href="https://www.facebook.com/p/Grass-n-Gardens-61591542549375/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></li>
+            <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a></li>
+            <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg></a></li>
+            <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener" aria-label="Nextdoor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg></a></li>
+            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Services</h2>
+          <ul>
+            <li><a href="../lawn-mowing/">Weekly mowing</a></li>
+            <li><a href="../fall-cleanup/">Fall cleanups</a></li>
+            <li><a href="../spring-cleanup/">Spring cleanups</a></li>
+            <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
+            <li><a href="../yard-design/">Yard design and planting</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>G'N'G</h2>
+          <ul>
+            <li><a href="../why-gng/">Why G'N'G</a></li>
+            <li><a href="../season-pass/">2027 Season Pass</a></li>
+            <li><a href="./#five">Our promise</a></li>
+            <li><a href="./#about">Meet Harrison</a></li>
+            <li><a href="./#area">Where we work</a></li>
+            <li><a href="./#faq">Questions</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Reach us</h2>
+          <ul>
+            <li><a href="tel:+14406679642">Call (440) 667-9642</a></li>
+            <li><a href="sms:+14406679642">Text (440) 667-9642</a></li>
+            <li><a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a></li>
+            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">Google reviews</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot">
+        <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
+        <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
+        <button class="app-get" type="button" data-app-get hidden>
+          <img src="./app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
+          <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
+        </button>
+      </div>
     </div>
   </footer>
+
+  <!-- iPhone: Apple has no install button, so this shows the 2 taps. -->
+  <dialog class="app-sheet" aria-labelledby="app-sheet-title">
+    <img src="./app/icon-192.png" alt="" width="64" height="64" loading="lazy" />
+    <h2 id="app-sheet-title" class="draft">Add G'N'G to your home screen</h2>
+    <ol>
+      <li class="draft">Tap the <b>Share</b> button <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share icon"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> at the bottom of Safari.</li>
+      <li class="draft">Scroll down and tap <b>Add to Home Screen</b>.</li>
+    </ol>
+    <form method="dialog"><button class="btn btn-dark" type="submit">Got it</button></form>
+  </dialog>
 
   <div class="call-bar">
     <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
     <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
   </div>
+  <!-- /@footer -->
 
   <script>
     if (new URLSearchParams(location.search).has('drafts')) document.documentElement.classList.add('show-drafts');
@@ -1702,18 +2143,30 @@
         <p>${esc(r.q)}</p>
       </article>`).join('');
 
-    // scroll reveal
+    // scroll reveal (2026-10-07: starts as soon as a bit shows, so nothing waits on screen)
     const io = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+    }), { threshold: .05, rootMargin: '0px 0px -16px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Hero photos 2-5 load after the page is ready, so the first photo and the words show up fast (2026-10-07)
+    const later = () => document.querySelectorAll('img[data-src]').forEach(i => {
+      if (i.dataset.srcset) i.srcset = i.dataset.srcset;
+      i.src = i.dataset.src; i.removeAttribute('data-src');
+    });
+    if (document.readyState === 'complete') later(); else addEventListener('load', later);
 
     // Five Before We Drive: big numeral follows the step in view
     const nums = [...document.querySelectorAll('.numeral')];
     const pips = [...document.querySelectorAll('.pips span')];
+    // 2026-10-07: each step's box gets ticked as you reach it; at 5 the card says "Now we drive."
+    const stepEls = [...document.querySelectorAll('.five .step')];
+    const fiveCard = document.querySelector('.five-card');
     const setStep = i => {
       nums.forEach((n, k) => { n.classList.toggle('on', k === i); n.classList.toggle('past', k < i); });
       pips.forEach((p, k) => p.classList.toggle('done', k <= i));
+      stepEls.forEach((s, k) => s.classList.toggle('ok', k <= i));
+      if (fiveCard) fiveCard.classList.toggle('all', i === stepEls.length - 1);
     };
     const so = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) setStep(+e.target.dataset.step);
@@ -1722,10 +2175,13 @@
   </script>
 
   <script>
-  // WHY US: flashlight wall. Plain-JS port of "Flashlight Text Reveal" (21st.dev).
-  // The wall is the "Mesh drift" shader cut down to what this section uses
-  // (blobs, blur, contrast, brightness, drift, grain, spotlight). The writing is
-  // masked to the same falloff as the spotlight, so text and wall light up together.
+  // WHY US: night field under a stadium light (2026-10-06).
+  // Harrison: the old wall (21st.dev "Flashlight Text Reveal", blobby green) was too easy to read in the dark
+  // and the notes felt "lame"; he wanted it darker, more mysterious, and something nobody else has.
+  // Now: a mowed lawn at night. The shader draws mowing stripes whose light/dark flips with the angle of the
+  // light, the way real stripes do (the grass leans one way on one pass, the other way on the next).
+  // Off the light it's almost black. The writing is masked to the same oval of light, and the mask carries
+  // thin streaks so the letters read like paint on grass.
   (() => {
     const section = document.querySelector('.why');
     if (!section) return;
@@ -1733,17 +2189,16 @@
     const writing = section.querySelector('.why-writing');
 
     // Tune here.
-    // 2026-10-06 (Harrison: "not good when it comes to the darkness of it"): the wall is now a deep
-    // pine green instead of black, every note stays readable with no light on it (ghost), and the
-    // light is bigger and brighter. The light still makes the notes pop where it lands.
     const S = {
-      colors: ['#0a140e', '#11211a', '#1b3326'], // wall, low to high: deep pine greens
-      // how much writing shows with no light on it. Phones have no mouse, so show more there.
-      ghost: matchMedia("(hover: none)").matches ? 0.75 : 0.5,
-      radius: 0.55,     // light size, in units of the section's short side
-      strength: 0.85,   // how much the light brightens the wall
-      speed: 0.8, scale: 2.5, intensity: 0.59, drift: 0.03,
-      contrast: 1.0, brightness: 0.02, blur: 0.016, grain: 0.06, seed: 1
+      // how much writing shows with no light on it. Phones have no mouse, so a bit more there.
+      ghost: matchMedia("(hover: none)").matches ? 0.3 : 0.07,
+      radius: 0.42,     // light size, in units of the section's short side
+      oval: 1.45,       // the light pool is wider than tall, like a floodlight hitting the ground at an angle
+      strength: 1.15,   // light brightness
+      ambient: 0.04,    // how much of the lawn shows with no light (moonlight)
+      stripe: 0.13,     // stripe width, in units of the short side
+      flip: 0.55,       // how hard the stripes flip light/dark with the light's angle
+      grain: 0.035
     };
 
     const VERT = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
@@ -1753,60 +2208,73 @@
       #else
       precision mediump float;
       #endif
-      uniform vec3 u_colors[8];
-      uniform vec4 u_scene;   // res.xy, time, colour count
-      uniform vec4 u_shape;   // scale, intensity, blur, grain
-      uniform vec4 u_post;    // contrast, brightness, drift, seed
+      uniform vec4 u_scene;   // res.xy, time, oval
       uniform vec4 u_light;   // pos.xy (-1..1), presence, strength
+      uniform vec4 u_look;    // ambient, stripe width, flip, grain
       uniform float u_radius;
 
-      float grainHash(vec2 p){
+      float hash(vec2 p){
         vec3 p3 = fract(vec3(p.xyx) * 0.1031);
         p3 += dot(p3, p3.yzx + 33.33);
         return fract((p3.x + p3.y) * p3.z);
       }
-      vec3 shade(vec2 p, float t){
-        vec3 acc = u_colors[0] * 0.15; float total = 0.15;
-        for (int i = 0; i < 8; i++) {
-          if (float(i) >= u_scene.w) break;
-          float fi = float(i);
-          vec2 c = vec2(sin(t * (0.21 + fi * 0.071) + fi * 2.4 + u_post.w),
-                        cos(t * (0.17 + fi * 0.093) + fi * 1.7)) * (0.45 + u_shape.y * 0.35);
-          float w = exp(-dot(p - c, p - c) * 6.0);
-          acc += u_colors[i] * w; total += w;
-        }
-        return acc / total;
+      float vnoise(vec2 p){
+        vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+        return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
       }
       void main(){
-        vec2 res = u_scene.xy; float t = u_scene.z; float m = min(res.x, res.y);
-        vec2 p = (gl_FragCoord.xy - 0.5 * res) / m;
+        vec2 res = u_scene.xy; float m = min(res.x, res.y);
+        vec2 p = (gl_FragCoord.xy - 0.5 * res) / m;          // y up
         vec2 cursor = (0.5 * u_light.xy * res) / m;
-        float mask = u_light.z * (1.0 - smoothstep(0.0, u_radius, length(p - cursor)));
-        p *= u_shape.x;
-        p += u_post.z * vec2(sin(t * 0.31), cos(t * 0.23));
-        vec3 col;
-        if (u_shape.z > 0.0) {
-          float pe = u_shape.z * u_shape.x;
-          col  = shade(p, t) * 0.36;
-          col += shade(p + vec2(pe, 0.0), t) * 0.16;
-          col += shade(p - vec2(pe, 0.0), t) * 0.16;
-          col += shade(p + vec2(0.0, pe), t) * 0.16;
-          col += shade(p - vec2(0.0, pe), t) * 0.16;
-        } else col = shade(p, t);
-        col = (col - 0.5) * u_post.x + 0.5;
-        col += u_post.y;
-        col += (vec3(0.10, 0.17, 0.11) + col * 0.15) * mask * u_light.w; /* warm green light, not grey */
-        col += (grainHash(gl_FragCoord.xy + vec2(u_post.w * 17.0, u_post.w * 31.0)) - 0.5) * u_shape.w;
+
+        // Mowing lanes run up the page and pinch a little toward the top, like a field seen from the stands.
+        float persp = 1.0 + p.y * 0.28;
+        float lane = p.x / persp / u_look.y;
+        float side = mod(floor(lane), 2.0) * 2.0 - 1.0;      // +1 / -1: which way this pass leans
+        float edge = smoothstep(0.0, 0.06, fract(lane)) * smoothstep(0.0, 0.06, 1.0 - fract(lane));
+
+        // The light pool: an oval, bright core + soft wide halo.
+        vec2 d = (p - cursor) * vec2(1.0, u_scene.w);
+        float dist = length(d);
+        float pool = 1.0 - smoothstep(0.0, u_radius, dist);
+        float halo = exp(-dist * dist * 4.5) * 0.22;
+        float lit = u_light.z * u_light.w * (pool * pool * 0.85 + pool * 0.25 + halo);
+
+        // Stripe sheen: grass leaning away from the light shines, leaning toward it goes dark.
+        vec2 ld = (p - cursor) / max(length(p - cursor), 0.0001);
+        float face = side * mix(0.0, ld.y, smoothstep(0.02, 0.22, length(p - cursor)));
+        float sheen = 1.0 + u_look.z * (0.2 * side + 0.8 * face) * mix(0.6, 1.0, edge);
+
+        // Grass: long thin blade streaks (staggered so they don't line up in rows) + clumps + slow mottling.
+        vec2 g = gl_FragCoord.xy / vec2(2.0, 13.0);
+        float blades = hash(floor(g + vec2(0.0, hash(vec2(floor(g.x), 7.0)))));
+        float clump = vnoise(p * vec2(60.0, 22.0));
+        float mott = vnoise(p * 6.0) * 0.6 + vnoise(p * 19.0) * 0.4;
+        vec3 grass = mix(vec3(0.07, 0.2, 0.06), vec3(0.26, 0.5, 0.17), mott * 0.45 + clump * 0.25 + blades * 0.3);
+
+        vec3 lamp = vec3(1.0, 1.0, 0.93);                    // stadium white, a touch warm
+        vec3 moon = vec3(0.55, 0.75, 1.0);                   // the faint cool fill everywhere else
+        vec3 col = grass * sheen * (lamp * lit * 1.35 + moon * u_look.x);
+        col += (hash(gl_FragCoord.xy + u_scene.z) - 0.5) * u_look.w * (0.4 + lit);
         gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
       }`;
 
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-    const FALLOFF = [1, 0.84375, 0.5, 0.15625, 0]; // 1 - smoothstep(0, r, d) sampled at quarters
+    const FALLOFF = [1, 0.66, 0.3, 0.07, 0]; // same shape as the shader's pool, sampled at quarters
+    let lastMask = '';
     const setMask = (x, y, r, presence) => {
+      // skip the repaint when the light hasn't really moved (2026-10-07 speed)
+      const key = `${Math.round(x)},${Math.round(y)},${Math.round(r)},${presence.toFixed(2)}`;
+      if (key === lastMask) return;
+      lastMask = key;
       const stops = FALLOFF.map((f, i) =>
         `rgba(0,0,0,${(S.ghost + (1 - S.ghost) * f * presence).toFixed(3)}) ${i * 25}%`).join(', ');
-      const m = `radial-gradient(circle ${Math.max(r, 1).toFixed(1)}px at ${x.toFixed(1)}px ${y.toFixed(1)}px, ${stops})`;
+      const rx = Math.max(r, 1), ry = Math.max(r / S.oval, 1);
+      // Layer 2 = thin vertical streaks, so the letters look painted on grass, not floating over it.
+      const m = `radial-gradient(ellipse ${rx.toFixed(1)}px ${ry.toFixed(1)}px at ${x.toFixed(1)}px ${y.toFixed(1)}px, ${stops}), ` +
+        'repeating-linear-gradient(90deg, #000 0 2px, rgba(0,0,0,.72) 2px 3px, #000 3px 5px, rgba(0,0,0,.85) 5px 6px)';
       writing.style.maskImage = m; writing.style.webkitMaskImage = m;
+      writing.style.maskComposite = 'intersect'; writing.style.webkitMaskComposite = 'source-in';
     };
     // Where the light roams on its own, in -1..1 (y up). Kept off the heading at the top.
     const wanderAt = t => [0.72 * Math.sin(t * 0.33), -0.3 + 0.5 * Math.sin(t * 0.47 + 1.3)];
@@ -1839,10 +2307,7 @@
     gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
     gl.useProgram(prog);
     const U = n => gl.getUniformLocation(prog, n);
-    const loc = { colors: U('u_colors'), scene: U('u_scene'), shape: U('u_shape'), post: U('u_post'), light: U('u_light'), radius: U('u_radius') };
-    const hex = h => { const n = parseInt(h.slice(1), 16); return [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255]; };
-    const colorData = new Float32Array(24);
-    S.colors.slice(0, 8).forEach((h, i) => colorData.set(hex(h), i * 3));
+    const loc = { scene: U('u_scene'), light: U('u_light'), look: U('u_look'), radius: U('u_radius') };
 
     const pointer = { x: 0, y: 0, inside: false, until: 0 };
     const light = { x: 0, y: -0.2 };
@@ -1852,28 +2317,29 @@
       raf = 0;
       const dt = last ? Math.min((now - last) / 1000, 0.05) : 0.016;
       last = now;
-      const dpr = Math.min(devicePixelRatio || 1, 2);
+      // 2026-10-07 speed: draw at screen size, never 2x (4x less work on sharp screens), and cap big screens
+      // at ~1.1 million pixels. The grass is grain and soft light, so it looks the same; the light moves smoother.
       const cw = canvas.clientWidth, ch = canvas.clientHeight;
+      const dpr = Math.min(devicePixelRatio || 1, 1, Math.sqrt(1.1e6 / Math.max(1, cw * ch)));
       const w = Math.max(1, Math.round(cw * dpr)), h = Math.max(1, Math.round(ch * dpr));
       if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
 
       const moving = !reduced.matches;
-      if (moving) { time += dt * S.speed; roam += dt; }
+      if (moving) { time = (time + dt) % 100; roam += dt; }
       // A tap on a touch screen holds the light there for a few seconds.
       if (pointer.until && now > pointer.until) { pointer.inside = false; pointer.until = 0; }
       const [tx, ty] = pointer.inside ? [pointer.x, pointer.y] : moving ? wanderAt(roam) : [0, -0.2];
-      const k = moving ? 1 - Math.exp(-dt / (pointer.inside ? 0.08 : 0.6)) : 1;
+      // how tightly the light follows: the mouse (2026-10-07: 0.08 -> 0.035, so it stays right under the pointer) / roaming on its own
+      const k = moving ? 1 - Math.exp(-dt / (pointer.inside ? 0.035 : 0.45)) : 1;
       light.x += (tx - light.x) * k;
       light.y += (ty - light.y) * k;
       presence += (1 - presence) * (moving ? 1 - Math.exp(-dt / 0.25) : 1);
 
       const radius = S.radius * (cw < 700 ? 1.6 : 1); // bigger light on narrow phones
       gl.viewport(0, 0, w, h);
-      gl.uniform3fv(loc.colors, colorData);
-      gl.uniform4f(loc.scene, w, h, time, S.colors.length);
-      gl.uniform4f(loc.shape, S.scale, S.intensity, S.blur, S.grain);
-      gl.uniform4f(loc.post, S.contrast, S.brightness, S.drift, S.seed);
+      gl.uniform4f(loc.scene, w, h, Math.floor(time * 12), S.oval); // grain re-rolls 12x a second, like film
       gl.uniform4f(loc.light, light.x, light.y, presence, S.strength);
+      gl.uniform4f(loc.look, S.ambient, S.stripe, S.flip, S.grain);
       gl.uniform1f(loc.radius, radius);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
 
@@ -1914,6 +2380,39 @@
   (() => {
     window.dataLayer = window.dataLayer || [];
     const track = (event, extra) => window.dataLayer.push(Object.assign({ event }, extra || {}));
+
+    // Phone app (2026-10-06). Android/Chrome: the real install prompt. iPhone: a 2-step how-to sheet.
+    // Only on touch phones, and never inside the installed app.
+    (() => {
+      const btns = [...document.querySelectorAll('[data-app-get]')];
+      const inApp = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+      if (inApp) { track('app_open'); return; }
+      if (!matchMedia('(pointer: coarse)').matches) return;
+      const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      let prompt = null;
+      const show = on => btns.forEach(b => { b.hidden = !on; });
+      addEventListener('beforeinstallprompt', e => { e.preventDefault(); prompt = e; show(true); });
+      if (ios) show(true);
+      btns.forEach(b => b.addEventListener('click', async () => {
+        track('app_install_tap', { how: prompt ? 'prompt' : 'ios_steps' });
+        if (prompt) {
+          prompt.prompt();
+          const { outcome } = await prompt.userChoice;
+          track('app_install_' + outcome);
+          prompt = null; show(false);
+        } else {
+          document.querySelector('.app-sheet').showModal();
+        }
+      }));
+      addEventListener('appinstalled', () => { show(false); track('app_installed'); });
+    })();
+
+    // FAQ: which questions people open = which worries come up before they call (2026-10-06).
+    // Skips the toggle the browser fires for the first question, which starts open.
+    let faqReady = false; setTimeout(() => { faqReady = true; }, 1500);
+    document.querySelectorAll('.qa').forEach(d => d.addEventListener('toggle', () => {
+      if (faqReady && d.open) track('faq_open', { question: d.querySelector('h3').textContent.trim() });
+    }));
 
     // Remember where this visitor came from (ad, campaign, Google click), for the whole visit.
     const params = new URLSearchParams(location.search);
@@ -2024,6 +2523,28 @@
       }
     }
 
+    // 2026-10-07: ticket notches. On phones the stub sits under the main part, so the notches go where the two meet.
+    document.querySelectorAll('.ticket').forEach(t => {
+      const inner = t.querySelector('.tk-in'), stub = t.querySelector('.tk-stub');
+      if (!inner || !stub) return;
+      const place = () => t.style.setProperty('--ny', (stub.offsetTop + 1.5) + 'px');
+      new ResizeObserver(place).observe(inner); place();
+    });
+
+    // 2026-10-07: Services dropdown in the header (hover opens it by CSS; click/Enter here for touch + keyboards)
+    document.querySelectorAll('.sub-btn').forEach(b => {
+      const sub = document.getElementById(b.getAttribute('aria-controls'));
+      const set = open => { b.setAttribute('aria-expanded', open); sub.classList.toggle('open', open); };
+      b.addEventListener('click', () => set(b.getAttribute('aria-expanded') !== 'true'));
+      document.addEventListener('click', e => { if (!e.target.closest('.has-sub')) set(false); });
+      b.closest('.has-sub').addEventListener('keydown', e => { if (e.key === 'Escape') { set(false); b.focus(); } });
+      b.closest('.has-sub').addEventListener('focusout', e => { if (!e.currentTarget.contains(e.relatedTarget)) set(false); });
+    });
+
+    // 2026-10-07: service pages link here with ?need=mowing (etc.), so the right box is already ticked
+    const need = new URLSearchParams(location.search).get('need');
+    if (need) need.split(',').forEach(v => { const c = document.querySelector('.lead-form [name="need"][value="' + v.replace(/[^a-z0-9]/gi, '') + '"]'); if (c) c.checked = true; });
+
     // Photo reel: crossfade every 4.5s while it's on screen. Pause button stops it.
     const reel = document.querySelector('.reel');
     if (reel) {
@@ -2055,5 +2576,145 @@
     }
   })();
   </script>
-</body>
+  <!-- FAQ for Google / AI answers. Built from the FAQ section by websites/faq-jsonld.ps1; rebuild after editing the FAQ. -->
+  <script type="application/ld+json" id="faq-ld">
+{
+    "@context":  "https://schema.org",
+    "@type":  "FAQPage",
+    "mainEntity":  [
+                       {
+                           "@type":  "Question",
+                           "name":  "How much does lawn mowing cost in Richfield?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "It depends on your yard: how big it is and how much we trim around. Send us your address and Harrison looks your yard up on the map and texts you a price today. You don\u0027t have to be home, and nobody has to come out first."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "What areas does Grass \u0027n\u0027 Gardens serve?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Grass \u0027n\u0027 Gardens is based in Richfield, Ohio. We serve Richfield and nearby towns, including Bath, Hinckley, Granger, Brecksville, Broadview Heights, North Royalton, Akron, and Medina. Not on the list? Call us. We might still come out."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Is Grass \u0027n\u0027 Gardens insured?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Yes. Grass \u0027n\u0027 Gardens is insured."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "What landscaping services does Grass \u0027n\u0027 Gardens offer?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Lawn mowing and weekly maintenance, garden design and planting, mulching and bed cleanup, spring and fall cleanups, edging and trimming, shrub and hedge pruning, leaf removal, commercial property care, retaining wall installation, paver patios, and custom landscape design and construction."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "When does Grass \u0027n\u0027 Gardens start mowing?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Our 2027 mowing season starts April 1. Pay for the whole season by March 31 and save 5%."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Does Grass \u0027n\u0027 Gardens aerate, fertilize and plow snow?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Yes. We mow, trim bushes, lay mulch, aerate, fertilize, clean up leaves, cut small trees and plow snow. It all goes on one plan for the whole year."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "How do I get a quote from Grass \u0027n\u0027 Gardens?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Call or text (440) 667-9642, email grassngardens4u@gmail.com, or fill out the yard plan form on this page. Estimates are free and we respond promptly."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "What if it rains on my mowing day?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "We come the next dry day. That\u0027s our guarantee: if we ever miss your mow, we\u0027re back the next day, free."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Do I have to be home?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "No. We look your yard up on the map to price it. If we walk your yard, it takes about 20 minutes, and you don\u0027t have to be home for that either."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Am I locked in for the whole season?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "No. You get 30 days from your first mow to be sure. Not happy? Cancel and get back what you didn\u0027t use."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "When should I book a fall cleanup?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "As soon as the leaves start coming down. Ohio State says leaves shouldn\u0027t sit on grass for more than two weeks, or the grass under them gets weak and yellow. Our Fall Pass is one price for the whole leaf season. We keep coming back till it\u0027s clear."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "What is Five Before We Drive?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "It\u0027s our promise. Before we pull out of your driveway, we check your yard 5 ways: edges crisp, everything blown clean, nothing left behind, gates latched, and no clumps."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "What are Grass \u0027n\u0027 Gardens\u0027 hours?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "The crew starts at 6:30 AM, Monday through Saturday."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Does Grass \u0027n\u0027 Gardens work with commercial properties?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Yes. We maintain both residential and commercial properties across Summit and Medina counties, including regular mowing, bed care, and seasonal cleanups."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Does Grass \u0027n\u0027 Gardens do hardscaping?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Yes. We build retaining walls and paver patios and handle full custom landscape design and construction alongside routine lawn and garden care."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Who owns Grass \u0027n\u0027 Gardens?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Grass \u0027n\u0027 Gardens was founded by Harrison Drvenkar, a Richfield, Ohio local, and holds a 5.0-star Google rating across 60 reviews."
+                                              }
+                       }
+                   ]
+}
+  </script>
+  <script>
+    // Phone app helper: saves the site for fast opening and a no-internet screen (see sw.js).
+    if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  </script></body>
 </html>

@@ -2,21 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Why G'N'G? | Real Google Reviews | Grass 'n' Gardens, Richfield OH</title>
   <meta name="description" content="Real Google reviews from Grass 'n' Gardens customers in Richfield, Ohio. 60 reviews, 5.0 average, 0 under five." />
   <meta property="og:title" content="Why G'N'G? | Grass 'n' Gardens reviews" />
   <meta property="og:description" content="60 Google reviews. 0 under five. Read what Richfield customers wrote." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://gng-test-website.vercel.app/img/gallery-18.jpg" />
+  <meta property="og:image" content="https://gng-test-website.vercel.app/img/gbp-stripes-sky.jpg" />
   <meta property="og:url" content="https://gng-test-website.vercel.app/why-gng/" />
+  <!-- 2026-10-07 SEO: one address per page (drops ?need= and ad tags), big photo previews allowed. Change the address with the domain. -->
+  <link rel="canonical" href="https://gng-test-website.vercel.app/why-gng/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#141c17" />
-  <link rel="icon" href="../brand_assets/logos/monogram.png" />
-  <link rel="preload" as="image" href="../img/gallery-18.jpg" imagesrcset="../img/sm/gallery-18.jpg 900w, ../img/gallery-18.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
+  <link rel="icon" href="../brand_assets/logos/favicon-64.png" sizes="64x64" type="image/png" />
+  <!-- Phone app (2026-10-06): add to home screen, own icon, opens full screen. Files: home/manifest.json, home/sw.js, home/app/ -->
+  <link rel="manifest" href="../manifest.json" />
+  <link rel="apple-touch-icon" href="../app/apple-touch-icon.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="G'N'G" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="../img/gbp-stripes-sky.jpg" imagesrcset="../img/sm/gbp-stripes-sky.jpg 900w, ../img/gbp-stripes-sky.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../chrome.css" />
   <style>
     /* 2026-10-06: restyled to match the new homepage (Harrison: "using this style and picture onto the next page").
        Tokens, header, buttons, type rule, review cards and the Five block are copied from home/index.html.
@@ -70,13 +80,7 @@
     @media (min-width: 768px) { .wrap { padding: 0 var(--s12); } }
     .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-    /* grain over everything, very light (same as the homepage) */
-    body::after {
-      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100;
-      opacity: .07; mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
+    /* 2026-10-07: the full-screen grain layer is gone (it re-blended the whole screen on every scroll frame = stutter on phones; the brand says flat anyway) */
     /* ---------- type ---------- */
     .eyebrow { font-weight: 700; font-size: 13px; line-height: 1; letter-spacing: .22em; text-transform: uppercase; }
     .lede { font-size: 18px; line-height: 1.7; max-width: 34em; }
@@ -98,7 +102,8 @@
     .light .stack .heavy, .light .sec-h b { color: var(--pine); }
 
     /* draft wording: add ?drafts to the URL to see which lines are mine, not Harrison's */
-    .show-drafts .draft { text-decoration: underline dashed #c99a1c 2px; text-underline-offset: 5px; }
+    /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
+    .show-drafts .draft { text-shadow: 0 0 8px rgba(232, 180, 40, .5) !important; }
 
     /* ---------- cartoon buttons (homepage 2026-10-05/06) ---------- */
     .btn {
@@ -152,7 +157,7 @@
     .brand:active { transform: scale(.97); }
     .brand:focus-visible { outline: 3px solid var(--forest); outline-offset: 4px; }
     .brand img { height: 54px; width: auto; }
-    @media (min-width: 400px) { .brand img { height: 60px; } }
+    @media (min-width: 420px) { .brand img { height: 60px; } } /* was 400px: 400-410 wide pushed the Menu button off the edge */
     @media (min-width: 900px) { .brand img { height: 82px; } }
     .menu { display: none; }
     .menu ul { list-style: none; display: flex; gap: var(--s1); }
@@ -243,7 +248,7 @@
       transform: rotate(1.5deg); max-width: 460px; width: 100%; justify-self: center;
     }
     @media (min-width: 960px) { .score { justify-self: end; } }
-    .score.reveal { transform: translateY(28px) rotate(1.5deg); transition: opacity .9s var(--ease-out), transform .6s var(--spring); }
+    .score.reveal { transform: translateY(16px) rotate(1.5deg); transition: opacity .5s var(--ease-out), transform .6s var(--spring); }
     .score.reveal.in { transform: rotate(1.5deg); }
     .score.reveal.in:hover { transform: rotate(0) translateY(-4px); }
     .sc-top {
@@ -313,6 +318,20 @@
       position: absolute; left: var(--s4); bottom: var(--s4); padding: 6px 12px; border-radius: 6px;
       background: var(--lime); color: var(--pine); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
     }
+    /* Video slot: these only show once a real video is filled in (data-video). The photo is the cover. */
+    .feat-photo video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--pine); }
+    .vid-play {
+      position: absolute; inset: 0; margin: auto; width: 92px; height: 92px; border-radius: 50%; z-index: 2;
+      display: grid; place-items: center; cursor: pointer;
+      background: var(--lime); color: var(--pine); border: 3px solid var(--pine); box-shadow: 5px 6px 0 var(--pine);
+      transition: transform .4s var(--spring), box-shadow .2s var(--ease-out), opacity .3s var(--ease-out);
+    }
+    .vid-play svg { margin-left: 6px; }
+    .vid-play:hover { transform: scale(1.07) rotate(-3deg); }
+    .vid-play:active { transform: translate(4px, 5px); box-shadow: 1px 1px 0 var(--pine); }
+    .vid-play:focus-visible { outline: 3px solid var(--lime); outline-offset: 5px; }
+    .vid-who { position: absolute; right: var(--s4); top: var(--s4); padding: 6px 12px; border-radius: 6px; background: var(--pine); color: #fff; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+    .feat-photo.playing .vid-play, .feat-photo.playing .vid-who, .feat-photo.playing figcaption { opacity: 0; pointer-events: none; }
     @media (min-width: 960px) { .feat-card { margin-left: calc(var(--s16) * -1); position: relative; z-index: 2; } }
     /* 2026-10-06 (Harrison: "have them slide into each other"): the photo comes in from the left, the review
        from the right, tied to the scroll (--p goes 0 -> 1, set by the script). When they meet, the card
@@ -361,7 +380,7 @@
     .gshots .gshot:nth-child(3n+2) { --tilt: 1.4deg; }
     .gshots .gshot:nth-child(3n) { --tilt: -.6deg; }
     .gshot:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
-    .gshot.reveal { transform: translateY(28px) rotate(var(--tilt, -1.2deg)); transition: opacity .9s var(--ease-out), transform .6s var(--spring); }
+    .gshot.reveal { transform: translateY(16px) rotate(var(--tilt, -1.2deg)); transition: opacity .5s var(--ease-out), transform .6s var(--spring); }
     .gshot.reveal.in { transform: rotate(var(--tilt, -1.2deg)); }
     .gshot.reveal.in:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
     .gshot header { display: flex; align-items: center; gap: var(--s3); }
@@ -484,6 +503,13 @@
     .foot .rec { font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); }
     .foot .rec b { color: var(--lime); }
     .foot .meta { font-size: 14px; color: rgba(255,255,255,.55); line-height: 1.6; }
+    /* phone polish (2026-10-06): tap spots at least ~44px tall */
+    @media (max-width: 899px) {
+      .foot .meta { line-height: 2.4; }
+      .foot .meta a { padding: 8px 2px; }
+      .gshot.big .feat-src a { display: inline-block; padding: 6px 0; }
+      .ask .big-phone { padding: 6px 4px; }
+    }
     .foot .meta a:hover { color: #fff; }
     .foot a:focus-visible, .call-bar a:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
     .call-bar {
@@ -496,9 +522,9 @@
     @media (min-width: 900px) { .call-bar { display: none; } }
 
     /* ---------- reveal ---------- */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease-out), transform 1s var(--ease-out); }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s var(--ease-out), transform .6s var(--ease-out); }
     .reveal.in { opacity: 1; transform: none; }
-    .reveal.d1 { transition-delay: .08s; } .reveal.d2 { transition-delay: .16s; } .reveal.d3 { transition-delay: .24s; }
+    .reveal.d1 { transition-delay: .05s; } .reveal.d2 { transition-delay: .1s; } .reveal.d3 { transition-delay: .15s; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -510,7 +536,72 @@
       .tape ul { flex-wrap: wrap; justify-content: center; }
       html { scroll-behavior: auto; }
     }
+    /* ---------- what you get (2026-10-07): replaces the review grid + the Five block ---------- */
+    .perks { padding: var(--s24) 0; }
+    .perk-grid { display: grid; gap: var(--s4); margin-top: var(--s12); grid-template-columns: 1fr; }
+    @media (min-width: 700px) { .perk-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1080px) { .perk-grid { grid-template-columns: repeat(3, 1fr); } }
+    .perk {
+      position: relative; display: flex; flex-direction: column; gap: var(--s2); padding: var(--s8) var(--s6);
+      background: #fff; color: var(--ink); border: 2px solid var(--line-light); border-radius: 18px;
+      transition: transform .5s var(--spring), border-color .25s var(--ease-out);
+    }
+    a.perk:hover { transform: translateY(-4px); border-color: var(--lime); }
+    a.perk:active { transform: translateY(-1px) scale(.99); }
+    a.perk:focus-visible { outline: 3px solid var(--forest); outline-offset: 4px; }
+    .pk-tag { align-self: flex-start; padding: 4px 10px; border-radius: 6px; background: var(--mist); color: var(--forest); font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .perk h3 { margin-top: var(--s2); font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h3); line-height: 1.1; letter-spacing: .01em; text-transform: uppercase; color: var(--pine); }
+    .perk p { font-size: 17px; line-height: 1.5; color: var(--ink-muted); }
+    .pk-go { margin-top: auto; padding-top: var(--s3); display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 15px; color: var(--forest); }
+    .pk-go svg { transition: transform .35s var(--spring); }
+    a.perk:hover .pk-go svg { transform: translateX(4px); }
+    @media (min-width: 1080px) { .perk-wide { grid-column: span 2; } .perk-pass { grid-column: span 2; } }
+    /* the Season Pass card looks like the ticket's stub: pine, a rubber stamp, a hard lime shadow */
+    .perk-pass { background: var(--pine); border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--lime); padding-right: 200px; min-height: 250px; }
+    .perk-pass .pk-tag { background: rgba(255,255,255,.12); color: var(--jersey-blue); }
+    .perk-pass h3 { color: #fff; font-size: clamp(28px, 3vw, 40px); }
+    .perk-pass p { color: rgba(255,255,255,.85); max-width: 30ch; }
+    .perk-pass .pk-go { color: var(--lime); }
+    .pk-stamp {
+      position: absolute; right: var(--s8); top: 50%; display: grid; place-content: center; justify-items: center; gap: 2px;
+      width: 140px; height: 140px; margin-top: -70px; border-radius: 50%;
+      border: 4px solid var(--lime); outline: 2px dashed rgba(102,184,74,.85); outline-offset: -12px;
+      color: var(--lime); text-transform: uppercase; text-align: center; line-height: 1; transform: rotate(-12deg);
+    }
+    .pk-stamp span { font-size: 11px; font-weight: 800; letter-spacing: .2em; }
+    .pk-stamp b { font-family: var(--font-display); font-weight: 400; font-size: 52px; line-height: .95; color: #fff; }
+    .perk-pass.in .pk-stamp { animation: pk-stamp-in .55s var(--spring) .3s both; }
+    @keyframes pk-stamp-in { from { opacity: 0; transform: rotate(-12deg) scale(1.8); } to { opacity: 1; transform: rotate(-12deg) scale(1); } }
+    @media (max-width: 560px) { .perk-pass { padding-right: var(--s6); padding-top: 150px; } .pk-stamp { top: var(--s6); right: var(--s6); margin-top: 0; width: 116px; height: 116px; } .pk-stamp b { font-size: 42px; } }
+    .pk-checks { list-style: none; display: grid; gap: 6px; margin-top: var(--s2); counter-reset: pk; }
+    .pk-checks li { counter-increment: pk; display: flex; align-items: center; gap: var(--s3); font-weight: 700; font-size: 16px; }
+    .pk-checks li::before { content: counter(pk); display: grid; place-items: center; flex: none; width: 26px; height: 26px; border-radius: 7px; background: var(--lime); color: var(--pine); border: 2px solid var(--pine); font-family: var(--font-display); font-size: 13px; }
+    .perk-app img { width: 56px; height: 56px; border-radius: 13px; margin-top: var(--s2); }
+    .perk-app .btn { align-self: flex-start; margin-top: var(--s3); }
+    .perk-app .btn[hidden] { display: none; }
+    .pk-hint { font-size: 14px !important; font-weight: 600; }
+    @media (pointer: coarse) { .pk-hint { display: none; } }
+    .perk-60 { background: var(--lime); border: 3px solid var(--pine); box-shadow: 7px 7px 0 var(--pine); text-align: center; align-items: center; justify-content: center; color: var(--pine); }
+    .perk-60 .n { font-family: var(--font-display); font-size: 96px; line-height: .9; }
+    .perk-60 .t { font-weight: 700; font-size: 20px; line-height: 1.3; }
+    .perk-60 .pk-go { margin-top: var(--s3); padding: 10px 16px; border-radius: 6px; background: #fff; border: 2.5px solid var(--pine); color: var(--pine); }
+    .perk-60:focus-visible { outline-color: var(--pine); }
+
+    /* phone app + notch phones (2026-10-06): keep the call bar above the home bar */
+    .call-bar { bottom: calc(var(--s3) + env(safe-area-inset-bottom)); left: calc(var(--s3) + env(safe-area-inset-left)); right: calc(var(--s3) + env(safe-area-inset-right)); }
+    html { -webkit-tap-highlight-color: transparent; }
   </style>
+  <!-- 2026-10-07 SEO: tells Google where this page sits in the site -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gng-test-website.vercel.app/" },
+      { "@type": "ListItem", "position": 2, "name": "Why G'N'G", "item": "https://gng-test-website.vercel.app/why-gng/" }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -519,7 +610,9 @@
     <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../#season">Save my spot</a></p>
   </div>
 
-  <!-- HEADER: same as the homepage. Links go back to the homepage sections; "Reviews" is this page. -->
+  <!-- @header -->
+  <!-- HEADER (2026-10-07: one header for every page; edit _partials/header.html, then run sync-partials.ps1).
+       White bar so the logo sits on white (brand rule). Services opens a list of the service pages. -->
   <header class="site-head">
     <div class="wrap head-in">
       <a class="brand" href="../" aria-label="Grass 'n' Gardens home">
@@ -527,12 +620,25 @@
       </a>
       <nav class="menu" aria-label="Main">
         <ul>
-          <li><a href="../#services">Services</a></li>
-          <li><a href="../#why">Why us</a></li>
+          <!-- 2026-10-07: a plain Home link (Harrison: not everyone knows the logo goes home) -->
+          <li><a href="../">Home</a></li>
+          <li class="has-sub">
+            <button class="sub-btn" type="button" aria-expanded="false" aria-controls="sub-services">Services
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="sub" id="sub-services">
+              <a href="../lawn-mowing/"><span>Weekly mowing<small>Same crew, same day every week</small></span></a>
+              <a href="../fall-cleanup/"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
+              <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
+              <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
+              <a href="../yard-design/"><span>Yard design and planting<small>The right plant in the right spot</small></span></a>
+              <a class="sub-all" href="../#services">See every service</a>
+            </div>
+          </li>
+          <li><a href="../season-pass/">2027 Season Pass</a></li>
+          <li><a href="../why-gng/" aria-current="page">Why G'N'G</a></li>
           <li><a href="../#five">Our promise</a></li>
-          <li><a href="./" aria-current="page">Reviews</a></li>
-          <li><a href="../#work">Our work</a></li>
           <li><a href="../#about">About</a></li>
+          <li><a href="../#faq">Questions</a></li>
         </ul>
       </nav>
       <div class="head-ctas">
@@ -545,25 +651,37 @@
         </button>
       </div>
     </div>
+    <!-- phone + tablet menu -->
     <div class="menu-panel" id="menu-panel" hidden>
       <nav class="wrap" aria-label="Main, small screens">
         <ul>
           <li><a href="../">Home</a></li>
-          <li><a href="../#services">Services</a></li>
-          <li><a href="../#why">Why us</a></li>
+          <li class="grp" aria-hidden="true">Services</li>
+          <li class="sub-li"><a href="../lawn-mowing/">Weekly mowing</a></li>
+          <li class="sub-li"><a href="../fall-cleanup/">Fall cleanups</a></li>
+          <li class="sub-li"><a href="../spring-cleanup/">Spring cleanups</a></li>
+          <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
+          <li class="sub-li"><a href="../yard-design/">Yard design and planting</a></li>
+          <li><a href="../season-pass/">2027 Season Pass</a></li>
+          <li><a href="../why-gng/" aria-current="page">Why G'N'G</a></li>
           <li><a href="../#five">Our promise</a></li>
-          <li><a href="./" aria-current="page">Reviews</a></li>
-          <li><a href="../#work">Our work</a></li>
           <li><a href="../#about">About</a></li>
+          <li><a href="../#faq">Questions</a></li>
         </ul>
         <div class="menu-ctas">
           <a class="btn btn-lime" href="../#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
         </div>
+        <!-- Shown by the script only on phones that can add it (and never inside the app itself) -->
+        <button class="app-get" type="button" data-app-get hidden>
+          <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
+          <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
+        </button>
       </nav>
     </div>
   </header>
+  <!-- /@header -->
 
   <main id="top">
 
@@ -572,11 +690,11 @@
     <section class="hero" aria-labelledby="why-title">
       <div class="hero-photo">
         <div class="broll" role="img" aria-label="Striped lawns, fresh mulch beds and the Grass 'n' Gardens crew on a job">
-          <img src="../img/gallery-18.jpg" srcset="../img/sm/gallery-18.jpg 900w, ../img/gallery-18.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: center 62%" />
-          <img src="../img/gallery-25.jpg" srcset="../img/sm/gallery-25.jpg 900w, ../img/gallery-25.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
-          <img src="../img/crew-mulch.jpg" srcset="../img/sm/crew-mulch.jpg 900w, ../img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
-          <img src="../img/gallery-12.jpg" srcset="../img/sm/gallery-12.jpg 900w, ../img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
-          <img src="../img/gallery-17.jpg" srcset="../img/sm/gallery-17.jpg 900w, ../img/gallery-17.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
+          <img src="../img/gbp-stripes-sky.jpg" srcset="../img/sm/gbp-stripes-sky.jpg 900w, ../img/gbp-stripes-sky.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: center 55%" />
+          <img data-src="../img/gallery-12.jpg" data-srcset="../img/sm/gallery-12.jpg 900w, ../img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
+          <img data-src="../img/gbp-crew-mowing.jpg" data-srcset="../img/sm/gbp-crew-mowing.jpg 900w, ../img/gbp-crew-mowing.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
+          <img data-src="../img/gbp-mower-house.jpg" data-srcset="../img/sm/gbp-mower-house.jpg 900w, ../img/gbp-mower-house.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
+          <img data-src="../img/crew-mulch.jpg" data-srcset="../img/sm/crew-mulch.jpg 900w, ../img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
         </div>
       </div>
       <div class="wrap hero-in">
@@ -631,8 +749,13 @@
       <div class="wrap">
         <h2 class="sec-h reveal"><span class="draft">He does this for a living.</span> <b class="draft">The toughest critic<span class="dot">.</span></b></h2>
         <div class="feat-grid">
-          <figure class="feat-photo feat-slide">
-            <img src="../img/sm/gallery-16.jpg" alt="Stand-on mower cutting straight stripes into a lawn" loading="lazy" />
+          <!-- VIDEO SLOT (2026-10-06, Harrison wants customer video reviews here later).
+               Today it's just the photo. No play button until a real video exists.
+               To add a video: put the .mp4 in websites/home/video/ (phone video is fine, keep it under ~20 MB),
+               then fill in data-video="../video/FILE.mp4" and data-who="Name". Optional: data-captions="../video/FILE.vtt".
+               The photo becomes the cover and a real play button shows up. The deploy copy script picks the file up. -->
+          <figure class="feat-photo feat-slide" data-video="" data-who="" data-captions="">
+            <img src="../img/sm/gbp-mower-lines.jpg" alt="Stand-on mower cutting straight stripes into a big back lawn" loading="lazy" style="object-position: 35% center" />
             <figcaption>Weekly mowing</figcaption>
           </figure>
           <div class="feat-card feat-slide">
@@ -652,45 +775,85 @@
       </div>
     </section>
 
-    <!-- ALL THE REVIEWS: real Google reviews, full text word for word (copied from grassngardens.com, 2026-10-05).
-         Same cards as the homepage. The highlighter marks the line that matters most. -->
-    <section class="light reviews" id="reviews">
+    <!-- WHAT YOU GET (2026-10-07, Harrison: "make this more interesting and why to use us instead of adding
+         the five before we drive again... we have an app, we have the five before we drive, we can finance mowing,
+         here's the ticket"). Replaced the review grid (same reviews as the homepage) and the full Five block.
+         Lines already approved elsewhere stay as they are; new wording is class="draft". -->
+    <section class="light perks" id="perks">
       <div class="wrap">
-        <h2 class="stack reveal"><span class="thin">60 reviews.</span><span class="heavy">0 under five<span class="dot">.</span></span></h2>
-        <p class="record reveal d1"><span>Record</span><span><b>60</b> reviews</span><span><b>5.0</b> average</span><span><b>0</b> under five</span></p>
+        <h2 class="sec-h reveal" style="text-align:center"><span class="draft">That's what they say.</span> <b class="draft">Here's what you get<span class="dot">.</span></b></h2>
+        <div class="perk-grid">
 
-        <div class="gshots">
-          <article class="gshot reveal">
-            <header><span class="av" style="background:#188038" aria-hidden="true">A</span><span class="who"><b>Alex S.</b><span>Google review</span></span><span class="g"></span></header>
-            <div class="rate" role="img" aria-label="5 out of 5 stars"><span class="stars"></span><span class="job">Yard cleanup</span></div>
-            <p>Grass N Gardens did an outstanding job transforming my yard. These young gentlemen removed a massive amount of debris, <mark>including an entire trailer load of thorn bushes, tree branches, old leaves, and mulch.</mark> They were professional, hardworking, and incredibly efficient from start to finish. The entire cleanup was completed much faster than I expected, and the difference is unbelievable — my yard feels cleaner, larger, and completely refreshed. Super fair price as-well! Their attention to detail and work ethic really stood out. I highly recommend Grass N Gardens to anyone looking for a reliable team.</p>
-          </article>
-          <article class="gshot reveal d1">
-            <header><span class="av" style="background:#e8710a" aria-hidden="true">K</span><span class="who"><b>Katie E.</b><span>Google review</span></span><span class="g"></span></header>
-            <div class="rate" role="img" aria-label="5 out of 5 stars"><span class="stars"></span><span class="job">Mulch</span></div>
-            <p>We had a great experience with Grass 'n' Gardens! They were very responsive and had strong communication from start to finish. They showed up on time, <mark>spread over 10 yards of mulch and left everything spotless.</mark> The crew was respectful and clearly takes pride in what they do. We couldn't be happier with the results and would recommend them for your next landscaping project!</p>
-          </article>
-          <article class="gshot reveal d2">
-            <header><span class="av" style="background:#12858a" aria-hidden="true">G</span><span class="who"><b>Geetha K.</b><span>Google review</span></span><span class="g"></span></header>
-            <div class="rate" role="img" aria-label="5 out of 5 stars"><span class="stars"></span><span class="job">Weekly mowing</span></div>
-            <p>Our lawn looks great this season. Harrison has been doing a great job cutting our grass. <mark>They are reliable and very punctual.</mark> Edging looks good. Overall we are very happy with the service and would recommend them highly. Definitely want them taking care of our lawn in the future too.</p>
-          </article>
-          <article class="gshot reveal">
-            <header><span class="av" style="background:#9334e6" aria-hidden="true">J</span><span class="who"><b>Jennifer B.</b><span>Google review</span></span><span class="g"></span></header>
-            <div class="rate" role="img" aria-label="5 out of 5 stars"><span class="stars"></span><span class="job">Beds and plants</span></div>
-            <p>Harrison was responsive, prompt and professional. I was very impressed by his knowledge of various plants and his willingness to tackle a tough job on my property. <mark>The day the crew was there, they were tidy, fast and very kind and respectful!</mark> I will absolutely hire them again.</p>
-          </article>
-          <article class="gshot reveal d1">
-            <header><span class="av" style="background:#d93025" aria-hidden="true">T</span><span class="who"><b>Tony A.</b><span>Google review</span></span><span class="g"></span></header>
-            <div class="rate" role="img" aria-label="5 out of 5 stars"><span class="stars"></span><span class="job">Repeat customer</span></div>
-            <p>I've used Grass n' Gardens for the last few years and have been consistently impressed with their efficiency, professionalism, and competitive pricing. Working with them has been seamless as I've been able to <mark>get a quote, agreed price, and had the work scheduled and done in a matter of days.</mark> Highly recommend this company!</p>
-          </article>
-          <a class="gshot all reveal d2" href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">
+          <a class="perk perk-pass reveal" href="../season-pass/" data-offer-only>
+            <span class="pk-tag">2027 Season Pass</span>
+            <span class="pk-stamp" aria-hidden="true"><span>Save</span><b>5%</b><span>by Mar 31</span></span>
+            <h3>Pay up front. Save 5%.</h3>
+            <p>Pay for your 2027 mowing by March 31. That's the day before we start mowing.</p>
+            <span class="pk-go">See the Season Pass <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+
+          <a class="perk perk-five reveal d1" href="../#five">
+            <span class="pk-tag">Our promise</span>
+            <h3>Five Before We Drive</h3>
+            <ol class="pk-checks">
+              <li>Edges crisp</li><li>Everything blown clean</li><li>Nothing left behind</li><li>Gates latched</li><li>No clumps</li>
+            </ol>
+            <span class="pk-go">See the 5 checks <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+
+          <div class="perk reveal">
+            <span class="pk-tag">Guaranteed</span>
+            <h3>Miss one? We're back free.</h3>
+            <p>The next day. If it rains, the next dry day.</p>
+          </div>
+
+          <div class="perk reveal d1">
+            <span class="pk-tag draft">Straight to Harrison</span>
+            <h3 class="draft">He texts you back.</h3>
+            <p><span class="draft">Send your address.</span> Harrison texts you today. From his own phone.</p>
+          </div>
+
+          <div class="perk perk-app reveal d2">
+            <span class="pk-tag draft">On your phone</span>
+            <img src="../app/icon-192.png" alt="" width="56" height="56" />
+            <h3 class="draft">Put G'N'G on your phone.</h3>
+            <p class="draft">It sits on your home screen like an app. One tap to text Harrison next time.</p>
+            <button class="btn btn-dark" type="button" data-app-get hidden>Add it to my phone</button>
+            <p class="pk-hint draft">Open this page on your phone to add it.</p>
+          </div>
+
+          <div class="perk reveal">
+            <span class="pk-tag">Try us</span>
+            <h3>30 days to be sure.</h3>
+            <p>Not happy in the first 30 days? Cancel and get back what you didn't use.</p>
+          </div>
+
+          <!-- Harrison's own words from his Google Business Profile description -->
+          <div class="perk perk-wide reveal d1">
+            <span class="pk-tag draft">One plan</span>
+            <h3 class="draft">Your whole year, one plan.</h3>
+            <p>We mow, trim bushes, lay mulch, aerate, fertilize, clean up leaves, cut small trees and plow snow. It all goes on one plan for the whole year.</p>
+          </div>
+
+          <a class="perk reveal" href="../yard-design/">
+            <span class="pk-tag draft">Design</span>
+            <h3 class="draft">We know what grows where.</h3>
+            <p class="draft">We check sun, shade and soil before we plant.</p>
+            <span class="pk-go">See yard design <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </a>
+
+          <div class="perk reveal d1">
+            <span class="pk-tag">The team</span>
+            <h3>Our crew wears jerseys.</h3>
+            <p>You earn yours. Name and number on the back.</p>
+          </div>
+
+          <a class="perk perk-60 reveal d2" href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">
             <span class="n">60</span>
             <span class="t">reviews on Google.<br /><span class="draft">Read every one.</span></span>
-            <span class="go">See them on Google
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+            <span class="pk-go">See them on Google <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
           </a>
+
         </div>
       </div>
     </section>
@@ -706,44 +869,15 @@
           <p class="ba-cap"><b>Fall cleanup.</b> One visit. Beds cleared, leaves gone, walk blown clean.</p>
         </div>
         <div class="shots">
-          <figure class="shot reveal"><img src="../img/sm/gallery-19.jpg" alt="Curved black mulch bed with round shrubs along a driveway" loading="lazy" /><figcaption>Mulch</figcaption></figure>
+          <figure class="shot reveal"><img src="../img/sm/gbp-curved-mulch.jpg" alt="Curved black mulch bed with round shrubs along a driveway" loading="lazy" /><figcaption>Mulch</figcaption></figure>
           <figure class="shot reveal d1"><img src="../img/sm/edge-curve.jpg" alt="Crisp curved edge between the lawn and a fresh bed" loading="lazy" /><figcaption>Edging</figcaption></figure>
-          <figure class="shot reveal d2"><img src="../img/sm/gallery-22.jpg" alt="Shade bed with hostas and fresh mulch under a deck" loading="lazy" /><figcaption>Beds</figcaption></figure>
-          <figure class="shot reveal d3"><img src="../img/sm/gallery-12.jpg" alt="Freshly striped backyard lawn bordered by evergreens" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
+          <figure class="shot reveal d2"><img src="../img/sm/gbp-weeping-mulch.jpg" alt="Fresh black mulch bed curving around a weeping tree" loading="lazy" /><figcaption>Beds</figcaption></figure>
+          <figure class="shot reveal d3"><img src="../img/sm/gbp-mower-yard.jpg" alt="Stand-on mower on a freshly striped front lawn" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
         </div>
         <div class="work-ask reveal">
           <p>Want yours to look like this?</p>
           <a class="btn btn-lime" href="sms:+14406679642">Text us a photo
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FIVE BEFORE WE DRIVE: same block and scroll animation as the homepage -->
-    <section class="light five" id="five">
-      <div class="wrap">
-        <h2 class="stack reveal"><span class="thin">Five checks before</span><span class="heavy">we drive<span class="dot">.</span></span></h2>
-        <div class="five-grid">
-          <div class="five-sticky" aria-hidden="true">
-            <div class="five-card">
-              <p class="eyebrow">Five Before We Drive</p>
-              <div class="numeral-box">
-                <span class="numeral on">1</span><span class="numeral">2</span><span class="numeral">3</span><span class="numeral">4</span><span class="numeral">5</span>
-              </div>
-              <div class="pips"><span class="done"></span><span></span><span></span><span></span><span></span></div>
-            </div>
-          </div>
-          <ol class="steps">
-            <li class="step" data-step="0"><span class="mini" aria-hidden="true">1</span><p class="eyebrow">Check 1 of 5</p><h3>Edges crisp</h3><p class="draft">Every walk, drive and bed gets a sharp line.</p></li>
-            <li class="step" data-step="1"><span class="mini" aria-hidden="true">2</span><p class="eyebrow">Check 2 of 5</p><h3>Everything blown clean</h3><p class="draft">No clippings on the drive, the walk or the porch.</p></li>
-            <li class="step" data-step="2"><span class="mini" aria-hidden="true">3</span><p class="eyebrow">Check 3 of 5</p><h3>Nothing left behind</h3><p class="draft">We take our stuff and the trash with us.</p></li>
-            <li class="step" data-step="3"><span class="mini" aria-hidden="true">4</span><p class="eyebrow">Check 4 of 5</p><h3>Gates latched</h3><p class="draft">Your dog stays in. We check every gate on the way out.</p></li>
-            <li class="step" data-step="4"><span class="mini" aria-hidden="true">5</span><p class="eyebrow">Check 5 of 5</p><h3>No clumps</h3><p class="draft">No piles of wet grass sitting on your lawn.</p></li>
-          </ol>
-        </div>
-        <div class="remedy reveal">
-          <p><b>Miss one?</b> Text us. We're back the next day, for free. If it rains, the next dry day.</p>
-          <a class="btn btn-dark" href="sms:+14406679642">Text (440) 667-9642</a>
         </div>
       </div>
     </section>
@@ -763,39 +897,92 @@
     </section>
   </main>
 
+  <!-- @footer -->
+  <!-- FOOTER (2026-10-07: one footer for every page; edit _partials/footer.html, then run sync-partials.ps1).
+       Social links: Instagram, Facebook, YouTube, TikTok, Nextdoor (TikTok and Nextdoor found on the Google profile 2026-10-07). Add more when Harrison sends them. -->
   <footer class="site">
-    <div class="wrap foot">
-      <a class="logo-tile" href="../" aria-label="Grass 'n' Gardens home"><img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" /></a>
-      <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
-      <p class="meta"><a href="tel:+14406679642">(440) 667-9642</a> &middot; <a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a><br />Richfield, Ohio &middot; <a href="../">Home</a> &middot; <a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">Google reviews</a><br /><a href="https://www.instagram.com/grass_n_gardens/" target="_blank" rel="noopener">Instagram</a> &middot; <a href="https://www.facebook.com/p/Grass-n-Gardens-61591542549375/" target="_blank" rel="noopener">Facebook</a> &middot; <a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener">YouTube</a></p>
+    <div class="wrap">
+      <div class="foot-cols">
+        <div class="fc-brand">
+          <a class="logo-tile" href="../" aria-label="Grass 'n' Gardens home"><img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" /></a>
+          <p class="draft">Lawn care out of Richfield, Ohio. Five checks before we drive, every yard.</p>
+          <ul class="soc" aria-label="Grass 'n' Gardens on social media">
+            <li><a href="https://www.instagram.com/grass_n_gardens/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a></li>
+            <li><a href="https://www.facebook.com/p/Grass-n-Gardens-61591542549375/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></li>
+            <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a></li>
+            <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg></a></li>
+            <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener" aria-label="Nextdoor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg></a></li>
+            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Services</h2>
+          <ul>
+            <li><a href="../lawn-mowing/">Weekly mowing</a></li>
+            <li><a href="../fall-cleanup/">Fall cleanups</a></li>
+            <li><a href="../spring-cleanup/">Spring cleanups</a></li>
+            <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
+            <li><a href="../yard-design/">Yard design and planting</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>G'N'G</h2>
+          <ul>
+            <li><a href="../why-gng/" aria-current="page">Why G'N'G</a></li>
+            <li><a href="../season-pass/">2027 Season Pass</a></li>
+            <li><a href="../#five">Our promise</a></li>
+            <li><a href="../#about">Meet Harrison</a></li>
+            <li><a href="../#area">Where we work</a></li>
+            <li><a href="../#faq">Questions</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Reach us</h2>
+          <ul>
+            <li><a href="tel:+14406679642">Call (440) 667-9642</a></li>
+            <li><a href="sms:+14406679642">Text (440) 667-9642</a></li>
+            <li><a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a></li>
+            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">Google reviews</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot">
+        <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
+        <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
+        <button class="app-get" type="button" data-app-get hidden>
+          <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
+          <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
+        </button>
+      </div>
     </div>
   </footer>
+
+  <!-- iPhone: Apple has no install button, so this shows the 2 taps. -->
+  <dialog class="app-sheet" aria-labelledby="app-sheet-title">
+    <img src="../app/icon-192.png" alt="" width="64" height="64" loading="lazy" />
+    <h2 id="app-sheet-title" class="draft">Add G'N'G to your home screen</h2>
+    <ol>
+      <li class="draft">Tap the <b>Share</b> button <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share icon"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> at the bottom of Safari.</li>
+      <li class="draft">Scroll down and tap <b>Add to Home Screen</b>.</li>
+    </ol>
+    <form method="dialog"><button class="btn btn-dark" type="submit">Got it</button></form>
+  </dialog>
 
   <div class="call-bar">
     <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
     <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
   </div>
+  <!-- /@footer -->
 
+  <!-- 2026-10-07: menu, reveal, drafts, lead tracking, phone-app card and the offer date now come from the shared site.js -->
+  <script src="../site.js" defer></script>
   <script>
   (() => {
-    if (new URLSearchParams(location.search).has('drafts')) document.documentElement.classList.add('show-drafts');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // Stars + Google logo on every review card (kept out of the HTML so the reviews stay easy to read and edit)
-    const star = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>';
-    const glogo = '<svg class="glogo" width="22" height="22" viewBox="0 0 48 48" aria-label="Google review"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.2 1.5-5 2.3-8.2 2.3-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>';
-    document.querySelectorAll('.gshots .stars').forEach(s => { s.outerHTML = star.repeat(5); });
-    document.querySelectorAll('.gshots .g').forEach(g => { g.outerHTML = glogo; });
 
     // The tape: second copy of the lines so the loop has no gap
     const tape = document.querySelector('.tape-track');
     if (tape) tape.children[1].innerHTML = tape.children[0].innerHTML;
-
-    // Scroll reveal
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     // Scorecard: 60 and 5.0 count up when it lands
     const score = document.querySelector('.score');
@@ -818,6 +1005,30 @@
       }, { threshold: .4 }).observe(score);
     }
 
+    // Video slot: only turns on when data-video has a real file. Photo = cover, real play button, native controls after.
+    document.querySelectorAll('[data-video]').forEach(slot => {
+      const file = slot.dataset.video.trim();
+      if (!file) return;
+      const who = slot.dataset.who.trim();
+      const cover = slot.querySelector('img');
+      const v = document.createElement('video');
+      v.src = file; v.preload = 'none'; v.playsInline = true; v.poster = cover.currentSrc || cover.src;
+      if (slot.dataset.captions) {
+        const tr = document.createElement('track');
+        tr.kind = 'captions'; tr.srclang = 'en'; tr.label = 'English'; tr.src = slot.dataset.captions; tr.default = true;
+        v.appendChild(tr);
+      }
+      const play = document.createElement('button');
+      play.type = 'button'; play.className = 'vid-play';
+      play.setAttribute('aria-label', who ? `Play ${who}'s video review` : 'Play the video review');
+      play.innerHTML = '<svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
+      cover.replaceWith(v);
+      slot.append(play);
+      if (who) { const tag = document.createElement('span'); tag.className = 'vid-who'; tag.textContent = who; slot.append(tag); }
+      play.addEventListener('click', () => { v.controls = true; slot.classList.add('playing'); v.play(); (window.dataLayer = window.dataLayer || []).push({ event: 'video_review_play', who, page: 'why-gng' }); });
+      v.addEventListener('ended', () => slot.classList.remove('playing'));
+    });
+
     // Toughest critic: photo and review slide into each other as you scroll (--p: 0 apart, 1 together)
     const fg = document.querySelector('.feat-grid');
     if (fg && !reduced) {
@@ -836,46 +1047,6 @@
       addEventListener('resize', slide);
       slide();
     }
-
-    // Five Before We Drive: big numeral follows the step in view (same as the homepage)
-    const numerals = [...document.querySelectorAll('.numeral')];
-    const pips = [...document.querySelectorAll('.pips span')];
-    const setStep = i => {
-      numerals.forEach((n, k) => { n.classList.toggle('on', k === i); n.classList.toggle('past', k < i); });
-      pips.forEach((p, k) => p.classList.toggle('done', k <= i));
-    };
-    const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setStep(+e.target.dataset.step); }), { rootMargin: '-45% 0px -45% 0px' });
-    document.querySelectorAll('.step').forEach(s => so.observe(s));
-
-    // Header shadow on scroll + phone/tablet menu
-    const head = document.querySelector('.site-head');
-    const onScroll = () => head.classList.toggle('scrolled', scrollY > 40);
-    addEventListener('scroll', onScroll, { passive: true }); onScroll();
-    const btn = document.querySelector('.menu-btn');
-    const panel = document.getElementById('menu-panel');
-    const setMenu = open => {
-      btn.setAttribute('aria-expanded', open); panel.hidden = !open;
-      btn.querySelector('.menu-word').textContent = open ? 'Close' : 'Menu';
-    };
-    btn.addEventListener('click', () => setMenu(panel.hidden));
-    panel.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
-    addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { setMenu(false); btn.focus(); } });
-    matchMedia('(min-width: 1180px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
-
-    // Button shine: stagger the idle glint so buttons don't all flash together
-    document.querySelectorAll('.btn').forEach((b, i) => b.style.setProperty('--glint-delay', (1.2 + (i * 1.7) % 6).toFixed(1) + 's'));
-
-    // Calls, texts and emails count as leads (same events as the homepage)
-    window.dataLayer = window.dataLayer || [];
-    document.addEventListener('click', e => {
-      const a = e.target.closest('a[href^="tel:"], a[href^="sms:"], a[href^="mailto:"]');
-      if (!a) return;
-      const kind = a.href.startsWith('tel:') ? 'click_to_call' : a.href.startsWith('sms:') ? 'click_to_text' : 'click_email';
-      window.dataLayer.push({ event: kind, link_text: a.textContent.trim().slice(0, 40), page: 'why-gng' });
-    });
-
-    // The 5% prepay ends March 31, 2027. From April 1 the top bar swaps to its data-after text.
-    if (new Date() >= new Date(2027, 3, 1)) document.querySelectorAll('[data-after]').forEach(el => { el.innerHTML = el.dataset.after; });
   })();
   </script>
 </body>

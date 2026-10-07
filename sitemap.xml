@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2026-10-07. Every page Google should find (thank-you is left out on purpose: it's noindex). Change the address when the site moves to grassngardens.com. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://gng-test-website.vercel.app/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://gng-test-website.vercel.app/lawn-mowing/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://gng-test-website.vercel.app/fall-cleanup/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://gng-test-website.vercel.app/spring-cleanup/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://gng-test-website.vercel.app/mulch-beds/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://gng-test-website.vercel.app/yard-design/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://gng-test-website.vercel.app/season-pass/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://gng-test-website.vercel.app/why-gng/</loc><lastmod>2026-10-07</lastmod></url>
+</urlset>

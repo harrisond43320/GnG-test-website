@@ -1,0 +1,23 @@
+{
+  "name": "Grass 'n' Gardens",
+  "short_name": "G'N'G",
+  "description": "Lawn care in Richfield, Ohio. Text Harrison, get your yard plan, see the reviews.",
+  "id": "./",
+  "start_url": "./?utm_source=homescreen&utm_medium=app",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#327439",
+  "theme_color": "#141c17",
+  "lang": "en-US",
+  "categories": ["business", "lifestyle"],
+  "icons": [
+    { "src": "app/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "app/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "app/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Get my yard plan", "short_name": "Yard plan", "url": "./?utm_source=homescreen&utm_medium=app#plan", "icons": [{ "src": "app/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Questions", "short_name": "Questions", "url": "./?utm_source=homescreen&utm_medium=app#faq", "icons": [{ "src": "app/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

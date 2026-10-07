@@ -1,0 +1,114 @@
+/* G'N'G shared header dropdown + footer columns (2026-10-07). Every page links this file.
+   Goes with _partials/header.html and _partials/footer.html. */
+/* ---------- header: Services dropdown (desktop) ---------- */
+.menu li { position: relative; }
+.menu .sub-btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 10px; border-radius: 8px; border: 0; background: none; cursor: pointer;
+  font: inherit; font-size: 16px; font-weight: 700; color: var(--pine); white-space: nowrap;
+}
+.menu .sub-btn svg { transition: transform .3s var(--spring); }
+.menu .sub-btn:hover, .menu .has-sub:focus-within .sub-btn { color: var(--forest); }
+.menu .sub-btn[aria-expanded="true"] svg, .menu .has-sub:hover .sub-btn svg { transform: rotate(180deg); }
+.menu .sub-btn:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
+.menu .sub-btn:active { transform: translateY(1px); }
+.menu .sub {
+  position: absolute; top: 100%; left: -8px; z-index: 5; min-width: 290px; padding: 10px;
+  background: #fff; border: 2.5px solid var(--pine); border-radius: 12px; box-shadow: 6px 6px 0 var(--lime);
+  display: none;
+}
+.menu .has-sub:hover .sub, .menu .sub.open { display: block; animation: drop .25s var(--ease-out); }
+.menu .has-sub::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 10px; } /* hover bridge */
+/* 2026-10-07: the Home link made the bar too wide on smaller laptops (1180-1339px), so the logo and links tighten there.
+   The phone number stays: desktop visitors have to read the digits. */
+@media (min-width: 1180px) and (max-width: 1339px) {
+  .site-head .brand img { height: 72px; }
+  .site-head .menu ul { gap: 0; }
+  .site-head .menu > ul > li > a, .site-head .menu .sub-btn { padding: 10px 7px; font-size: 15px; }
+  .site-head .head-ctas .phone { padding-left: 16px; padding-right: 16px; }
+}
+.menu .sub a { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; font-size: 16px; }
+.menu .sub a::after { display: none; }
+.menu .sub a img { flex: none; width: 40px; height: 40px; border-radius: 8px; object-fit: cover; }
+.menu .sub a small { display: block; font-weight: 500; font-size: 13px; color: var(--ink-muted); line-height: 1.3; }
+.menu .sub a:hover, .menu .sub a[aria-current="page"] { background: var(--mist); color: var(--forest); }
+.menu .sub .sub-all { margin-top: 4px; border-top: 1px solid var(--line-light); border-radius: 0 0 8px 8px; font-size: 14px; color: var(--forest); }
+
+/* phone menu: services grouped under a small label */
+.menu-panel .grp { padding: 14px 4px 4px; font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-muted); }
+.menu-panel li.sub-li a { padding-left: 18px; font-size: 18px; font-weight: 600; }
+
+/* ---------- footer: more links + social icons (every page) ---------- */
+.foot-cols { display: grid; gap: var(--s8); grid-template-columns: repeat(2, 1fr); padding-bottom: var(--s12); border-bottom: 1px solid var(--line-dark); margin-bottom: var(--s12); }
+@media (min-width: 900px) { .foot-cols { grid-template-columns: 1.3fr 1fr 1fr 1fr; } }
+.foot-cols .fc-brand { grid-column: 1 / -1; }
+@media (min-width: 900px) { .foot-cols .fc-brand { grid-column: auto; } }
+.foot-cols h2 { font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.foot-cols ul { list-style: none; display: grid; gap: 2px; margin-top: var(--s3); }
+.foot-cols li a { display: inline-block; padding: 6px 0; font-size: 15px; font-weight: 600; color: rgba(255,255,255,.82); border-radius: 4px; transition: color .2s var(--ease-out); }
+.foot-cols li a:hover { color: var(--lime); }
+.foot-cols li a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+.foot-cols .fc-brand p { margin-top: var(--s4); max-width: 30ch; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.65); }
+@media (max-width: 899px) { .foot-cols li a { padding: 10px 0; } }
+.soc { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s6); list-style: none; }
+.soc a {
+  display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px;
+  background: rgba(255,255,255,.06); border: 1px solid var(--line-dark); color: #fff;
+  transition: transform .3s var(--spring), background-color .2s var(--ease-out), border-color .2s var(--ease-out), color .2s var(--ease-out);
+}
+.soc a:hover { transform: translateY(-3px); background: var(--lime); border-color: var(--lime); color: var(--pine); }
+.soc a:active { transform: scale(.94); }
+.soc a:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+.soc svg { width: 22px; height: 22px; }
+
+/* logo tile in the footer's first column */
+.fc-brand .logo-tile { display: inline-block; background: #fff; border-radius: 10px; padding: 10px 14px; transition: transform .35s var(--spring); }
+.fc-brand .logo-tile:hover { transform: translateY(-2px); }
+.fc-brand .logo-tile:active { transform: scale(.97); }
+.fc-brand .logo-tile:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+.fc-brand .logo-tile img { height: 56px; width: auto; }
+
+/* phone-app card + iPhone how-to sheet (copied from the homepage 2026-10-06 block) */
+/* "Put G'N'G on your phone": a quiet card, not a shouty banner */
+.app-get {
+  display: flex; align-items: center; gap: var(--s3); width: 100%; max-width: 360px; margin-top: var(--s6);
+  padding: 12px 14px; border-radius: 12px; text-align: left; cursor: pointer; font: inherit;
+  background: rgba(255, 255, 255, .06); border: 1px solid var(--line-dark); color: #fff;
+  transition: background-color .2s var(--ease-out), transform .2s var(--spring);
+}
+.app-get[hidden] { display: none; }
+.app-get img { flex: none; width: 36px; height: 36px; border-radius: 9px; }
+.app-get b { display: block; font-weight: 700; font-size: 15px; }
+.app-get small { display: block; font-size: 13px; color: rgba(255, 255, 255, .7); }
+.app-get:hover { background: rgba(255, 255, 255, .1); }
+.app-get:active { transform: scale(.98); }
+.app-get:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+.menu-panel .app-get { background: var(--mist); border-color: var(--line-light); color: var(--ink); }
+.menu-panel .app-get small { color: var(--ink-muted); }
+.menu-panel .app-get:focus-visible { outline-color: var(--forest); }
+.foot .app-get { margin-left: auto; margin-right: auto; }
+.app-sheet {
+  width: min(92vw, 380px); margin: auto auto calc(16px + env(safe-area-inset-bottom)); padding: var(--s6);
+  border: 0; border-radius: 18px; background: #fff; color: var(--ink); text-align: center;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, .5);
+}
+.app-sheet::backdrop { background: rgba(10, 14, 11, .55); }
+.app-sheet[open] { animation: sheet-up .35s var(--ease-out); }
+@keyframes sheet-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+.app-sheet img { width: 64px; height: 64px; border-radius: 15px; }
+.app-sheet h2 { margin-top: var(--s3); font-family: var(--font-display); font-weight: 400; font-size: 24px; line-height: 1.1; text-transform: uppercase; color: var(--pine); }
+.app-sheet ol { margin: var(--s4) 0 0; padding-left: 1.3em; text-align: left; font-size: 17px; line-height: 1.5; }
+.app-sheet li + li { margin-top: var(--s2); }
+.app-sheet li svg { vertical-align: -3px; color: #1a73e8; }
+.app-sheet .btn { margin-top: var(--s6); width: 100%; justify-content: center; }
+@media (prefers-reduced-motion: reduce) { .app-sheet[open] { animation: none; } }
+/* inside the installed app: no "put it on your phone" ask */
+@media (display-mode: standalone) { .app-get { display: none !important; } }
+
+/* social icons sit in a row (beat the footer column list rules) */
+.foot-cols .soc { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s6); }
+.foot-cols .soc a { display: grid; place-items: center; padding: 0; color: #fff; }
+.foot-cols .soc a:hover { color: var(--pine); }
+
+/* calm links (Harrison: no underlines): a soft highlight chip instead */
+.topbar p a { text-decoration: none; padding: 2px 8px; border-radius: 5px; background: rgba(29, 74, 34, .12); transition: background-color .2s; }
+.topbar p a:hover { background: rgba(29, 74, 34, .22); color: var(--pine); }

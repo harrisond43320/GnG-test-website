@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Almost done | Grass 'n' Gardens</title>
   <!-- Thank-you page after the yard plan form. Kept out of Google; also the clean "conversion" page for Google Ads. -->
   <meta name="robots" content="noindex" />
   <meta name="theme-color" content="#141c17" />
-  <link rel="icon" href="../brand_assets/logos/monogram.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="icon" href="../brand_assets/logos/favicon-64.png" sizes="64x64" type="image/png" />
+  <!-- Phone app (2026-10-06): add to home screen, own icon, opens full screen. Files: home/manifest.json, home/sw.js, home/app/ -->
+  <link rel="manifest" href="../manifest.json" />
+  <link rel="apple-touch-icon" href="../app/apple-touch-icon.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="G'N'G" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../chrome.css" />
   <style>
     /* 2026-10-06: same system as home/index.html (tokens, header, cartoon buttons, type rule, footer). */
     :root {
@@ -38,13 +45,11 @@
     a { color: inherit; text-decoration: none; }
     .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s6); }
     @media (min-width: 768px) { .wrap { padding: 0 var(--s12); } }
-    body::after {
-      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .07; mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
+    /* 2026-10-07: the full-screen grain layer is gone (it re-blended the whole screen on every scroll frame = stutter on phones; the brand says flat anyway) */
     .eyebrow { font-weight: 700; font-size: 13px; line-height: 1; letter-spacing: .22em; text-transform: uppercase; }
     .dot { color: var(--lime); }
-    .show-drafts .draft { text-decoration: underline dashed #c99a1c 2px; text-underline-offset: 5px; }
+    /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
+    .show-drafts .draft { text-shadow: 0 0 8px rgba(232, 180, 40, .5) !important; }
     .sec-h { font-family: var(--font-body); font-weight: 600; font-size: var(--fs-lead); line-height: 1.2; color: rgba(255,255,255,.88); }
     .sec-h b { display: block; margin-top: 6px; font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h2); line-height: 1; letter-spacing: .01em; text-transform: uppercase; color: #fff; }
 
@@ -90,7 +95,7 @@
     .brand:active { transform: scale(.97); }
     .brand:focus-visible { outline: 3px solid var(--forest); outline-offset: 4px; }
     .brand img { height: 54px; width: auto; }
-    @media (min-width: 400px) { .brand img { height: 60px; } }
+    @media (min-width: 420px) { .brand img { height: 60px; } } /* was 400px: 400-410 wide pushed the Menu button off the edge */
     @media (min-width: 900px) { .brand img { height: 82px; } }
     .head-ctas { display: flex; align-items: center; gap: var(--s2); }
     .site-head .phone { padding: 13px 18px; font-size: 16px; white-space: nowrap; }
@@ -213,6 +218,9 @@
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .btn::before { display: none; }
     }
+    /* phone app + notch phones (2026-10-06): keep the call bar above the home bar */
+    .call-bar { bottom: calc(var(--s3) + env(safe-area-inset-bottom)); left: calc(var(--s3) + env(safe-area-inset-left)); right: calc(var(--s3) + env(safe-area-inset-right)); }
+    html { -webkit-tap-highlight-color: transparent; }
   </style>
 </head>
 <body data-state="none">
@@ -298,22 +306,85 @@
     </section>
   </main>
 
+  <!-- @footer -->
+  <!-- FOOTER (2026-10-07: one footer for every page; edit _partials/footer.html, then run sync-partials.ps1).
+       Social links: Instagram, Facebook, YouTube, TikTok, Nextdoor (TikTok and Nextdoor found on the Google profile 2026-10-07). Add more when Harrison sends them. -->
   <footer class="site">
-    <div class="wrap foot">
-      <a class="logo-tile" href="../" aria-label="Grass 'n' Gardens home"><img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" /></a>
-      <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
-      <p class="meta"><a href="tel:+14406679642">(440) 667-9642</a> &middot; <a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a><br />Richfield, Ohio &middot; <a href="../">Home</a> &middot; <a href="../why-gng/">Reviews</a></p>
+    <div class="wrap">
+      <div class="foot-cols">
+        <div class="fc-brand">
+          <a class="logo-tile" href="../" aria-label="Grass 'n' Gardens home"><img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" /></a>
+          <p class="draft">Lawn care out of Richfield, Ohio. Five checks before we drive, every yard.</p>
+          <ul class="soc" aria-label="Grass 'n' Gardens on social media">
+            <li><a href="https://www.instagram.com/grass_n_gardens/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a></li>
+            <li><a href="https://www.facebook.com/p/Grass-n-Gardens-61591542549375/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></li>
+            <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a></li>
+            <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg></a></li>
+            <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener" aria-label="Nextdoor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg></a></li>
+            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Services</h2>
+          <ul>
+            <li><a href="../lawn-mowing/">Weekly mowing</a></li>
+            <li><a href="../fall-cleanup/">Fall cleanups</a></li>
+            <li><a href="../spring-cleanup/">Spring cleanups</a></li>
+            <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
+            <li><a href="../yard-design/">Yard design and planting</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>G'N'G</h2>
+          <ul>
+            <li><a href="../why-gng/">Why G'N'G</a></li>
+            <li><a href="../season-pass/">2027 Season Pass</a></li>
+            <li><a href="../#five">Our promise</a></li>
+            <li><a href="../#about">Meet Harrison</a></li>
+            <li><a href="../#area">Where we work</a></li>
+            <li><a href="../#faq">Questions</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Reach us</h2>
+          <ul>
+            <li><a href="tel:+14406679642">Call (440) 667-9642</a></li>
+            <li><a href="sms:+14406679642">Text (440) 667-9642</a></li>
+            <li><a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a></li>
+            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">Google reviews</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot">
+        <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
+        <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
+        <button class="app-get" type="button" data-app-get hidden>
+          <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
+          <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
+        </button>
+      </div>
     </div>
   </footer>
 
+  <!-- iPhone: Apple has no install button, so this shows the 2 taps. -->
+  <dialog class="app-sheet" aria-labelledby="app-sheet-title">
+    <img src="../app/icon-192.png" alt="" width="64" height="64" loading="lazy" />
+    <h2 id="app-sheet-title" class="draft">Add G'N'G to your home screen</h2>
+    <ol>
+      <li class="draft">Tap the <b>Share</b> button <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share icon"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> at the bottom of Safari.</li>
+      <li class="draft">Scroll down and tap <b>Add to Home Screen</b>.</li>
+    </ol>
+    <form method="dialog"><button class="btn btn-dark" type="submit">Got it</button></form>
+  </dialog>
+
   <div class="call-bar">
     <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
-    <a class="btn btn-ghost" href="sms:+14406679642">Text us</a>
+    <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
   </div>
+  <!-- /@footer -->
 
   <script>
   (() => {
-    if (new URLSearchParams(location.search).has('drafts')) document.documentElement.classList.add('show-drafts');
     window.dataLayer = window.dataLayer || [];
     const track = (event, extra) => window.dataLayer.push(Object.assign({ event }, extra || {}));
 
@@ -333,22 +404,8 @@
       document.querySelector('[data-open]').addEventListener('click', () => { track('lead_reopen', { method: app }); openApp(lead.href); });
     }
 
-    // Header shadow on scroll
-    const head = document.querySelector('.site-head');
-    const onScroll = () => head.classList.toggle('scrolled', scrollY > 40);
-    addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-    // Button shine: stagger the idle glint
-    document.querySelectorAll('.btn').forEach((b, i) => b.style.setProperty('--glint-delay', (1.2 + (i * 1.7) % 6).toFixed(1) + 's'));
-
-    // Calls, texts and emails count as leads (same events as the homepage)
-    document.addEventListener('click', e => {
-      const a = e.target.closest('a[href^="tel:"], a[href^="sms:"], a[href^="mailto:"]');
-      if (!a) return;
-      const kind = a.href.startsWith('tel:') ? 'click_to_call' : a.href.startsWith('sms:') ? 'click_to_text' : 'click_email';
-      track(kind, { link_text: a.textContent.trim().slice(0, 40), page: 'thank-you' });
-    });
   })();
   </script>
-</body>
+  <!-- 2026-10-07: shared script (drafts, header shadow, button shine, call/text tracking, phone-app card, offline helper) -->
+  <script src="../site.js" defer></script></body>
 </html>
