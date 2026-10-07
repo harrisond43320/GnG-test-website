@@ -18,6 +18,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#141c17" />
   <!-- Business facts for Google (local search). No review stars here: Google ignores self-posted ratings. -->
+  <!-- 2026-10-07 (late): WebSite data = the site name Google shows above the result ("Grass 'n' Gardens", not the web address).
+       Change the address with the domain. -->
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "WebSite", "@id": "https://gng-test-website.vercel.app/#website",
+   "name": "Grass 'n' Gardens", "alternateName": ["Grass N Gardens", "G'N'G"], "url": "https://gng-test-website.vercel.app/",
+   "publisher": {"@id": "https://gng-test-website.vercel.app/#business"}}
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -57,7 +64,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/sm/gbp-mower-stripes.jpg 900w, img/gbp-mower-stripes.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -130,7 +137,7 @@
 
     /* draft wording: add ?drafts to the URL to see which lines are mine, not Harrison's */
     /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
-    .show-drafts .draft { text-shadow: 0 0 8px rgba(232, 180, 40, .5) !important; }
+    .show-drafts .draft { text-shadow: 0 0 6px rgba(102, 184, 74, .38) !important; }
 
     /* ---------- buttons ---------- */
     .btn {
@@ -437,11 +444,22 @@
     }
     .record b { color: var(--forest); }
     /* Google review "screenshots": cartoon sticker look, thick outline + hard shadow + tilt */
-    .gshots { margin-top: var(--s16); columns: 1; column-gap: var(--s8); }
-    @media (min-width: 700px) { .gshots { columns: 2; } }
-    @media (min-width: 1080px) { .gshots { columns: 3; } }
+    /* 2026-10-07: two rows that slide past each other (script moves them; cards keep the sticker look) */
+    .rv-rows { display: grid; gap: var(--s6); margin-top: var(--s16); padding: 14px 0 24px; overflow: hidden; }
+    .rv-track, .rv-copy { display: flex; align-items: center; gap: var(--s8); }
+    .rv-track { position: relative; width: max-content; padding: 0 var(--s4); will-change: transform; }
+    .rv-track .gshot { flex: 0 0 340px; }
+    .rv-track .gshot p { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+    .rv-static .rv-track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 18px; }
+    .rv-static .rv-track .gshot { scroll-snap-align: center; }
+    @media (max-width: 767px) {
+      .rv-rows { gap: var(--s4); margin-top: var(--s8); }
+      .rv-track, .rv-copy { gap: var(--s6); }
+      .rv-track .gshot { flex-basis: min(78vw, 300px); padding: var(--s4); }
+      .rv-track .gshot p { font-size: 14px; -webkit-line-clamp: 4; }
+    }
     .gshot {
-      break-inside: avoid; margin: 0 0 var(--s8); padding: var(--s6);
+      break-inside: avoid; margin: 0; padding: var(--s6);
       background: #fff; color: #202124; border: 3px solid var(--ink); border-radius: 16px;
       box-shadow: 7px 7px 0 var(--ink);
       font-family: Roboto, Arial, sans-serif;
@@ -464,10 +482,45 @@
     .gshot .who b { display: block; font-size: 15px; font-weight: 700; }
     .gshot .who span { font-size: 13px; color: #5f6368; }
     .gshot .glogo { flex: none; }
-    .gshot .rate { display: flex; gap: 2px; margin-top: var(--s4); color: #fbbc04; }
+    /* 2026-10-07 speed: sections far down the page aren't drawn until you scroll near them (the browser keeps
+       their real size once seen). Not on the night field, Five or reviews: those animate with the scroll. */
+    .compare, .work, .area, .faq { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+    .gshot .rate { margin-top: var(--s4); color: #fbbc04; font-size: 19px; line-height: 1; letter-spacing: 2px; font-family: Arial, sans-serif; }
     .gshot p { margin-top: var(--s3); font-size: 15px; line-height: 1.55; color: #3c4043; }
     @media (prefers-reduced-motion: reduce) { .gshot { transition: none; } }
     .reviews .more { display: flex; justify-content: flex-end; margin-top: var(--s8); }
+    /* send a neighbor (2026-10-07): same sticker language as the reviews and the ticket */
+    .refer {
+      position: relative; display: grid; gap: var(--s6); align-items: center; max-width: 920px; margin: var(--s16) auto 0;
+      padding: var(--s8); background: #fff; border: 3px solid var(--ink); border-radius: 20px;
+      box-shadow: 7px 7px 0 var(--lime); transform: rotate(-.6deg);
+    }
+    .refer.reveal { transform: translateY(16px) rotate(-.6deg); }
+    .refer.reveal.in { transform: rotate(-.6deg); }
+    @media (min-width: 768px) { .refer { grid-template-columns: auto 1fr auto; gap: var(--s8); } }
+    .refer-badge {
+      display: grid; place-items: center; align-content: center; width: 116px; height: 116px; border-radius: 50%;
+      background: var(--lime); border: 3px solid var(--ink); color: var(--pine); transform: rotate(-8deg); text-align: center;
+    }
+    .refer-badge b { font-family: var(--font-display); font-size: 40px; line-height: 1; }
+    .refer-badge span { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-top: 2px; }
+    .refer-tag { font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--forest); }
+    .refer h3 { font-family: var(--font-display); font-size: clamp(24px, 2.6vw, 32px); line-height: 1.1; color: var(--pine); margin-top: var(--s2); }
+    .refer-copy > p:not(.refer-tag) { margin-top: var(--s3); font-size: 17px; line-height: 1.5; }
+    .refer small { display: block; margin-top: var(--s2); font-size: 14px; color: var(--ink-muted); }
+    /* 2026-10-07: link to the full referral page, as a soft highlight chip (no underline) */
+    .refer-more { display: inline-block; margin-left: 4px; padding: 2px 8px; border-radius: 5px; background: rgba(29, 74, 34, .1); color: var(--pine); font-weight: 700; text-decoration: none; transition: background-color .2s; }
+    .refer-more:hover { background: rgba(29, 74, 34, .2); }
+    .refer-more:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
+    @media (max-width: 767px) {
+      .refer { margin-top: var(--s12); padding: var(--s6); }
+      .refer-badge { width: 84px; height: 84px; position: absolute; top: -26px; right: 14px; }
+      .refer-badge b { font-size: 28px; }
+      .refer-badge span { font-size: 8px; letter-spacing: .1em; }
+      .refer-copy { padding-right: 72px; }
+      .refer .btn { width: 100%; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) { .refer, .refer.reveal, .refer.reveal.in { transform: none; } }
     .reviews .more .link { color: var(--ink-muted); }
     .reviews .more .link:hover { color: var(--ink); }
 
@@ -638,7 +691,7 @@
     .form-card label { display: grid; gap: var(--s1); font-size: 14px; font-weight: 600; }
     .form-card label small { font-size: 13px; font-weight: 500; color: var(--ink-muted); }
     .form-card .row2 { display: grid; gap: var(--s4); }
-    @media (min-width: 480px) { .form-card .row2 { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 340px) { .form-card .row2 { grid-template-columns: 1fr 1fr; gap: var(--s3); } } /* 2026-10-07 late: side by side on phones too = shorter form */
     .form-card input:not([type="checkbox"]), .form-card select {
       width: 100%; font: inherit; font-weight: 500; font-size: 16px; color: var(--ink);
       background: #fff; border: 2px solid var(--line-light); border-radius: 10px; padding: 12px 14px;
@@ -663,8 +716,14 @@
     .chips input:focus-visible + span { outline: 3px solid var(--forest); outline-offset: 2px; }
     /* "Other" boxes only show once picked */
     .form-card .if-other { display: none; }
+    .chips .chip-extra:not(:has(input:checked)) { display: none; }
     .form-card form:has(#need-other:checked) .other-need,
-    .form-card form:has(select[name="source"] option[value="other"]:checked) .other-source { display: grid; }
+    .form-card form:has(select[name="source"] option[value="other"]:checked) .other-source,
+    .form-card form:has(select[name="source"] option[value="A friend or neighbor"]:checked) .referred { display: grid; }
+    .form-card .referred small.draft { font-size: 13px; font-weight: 600; color: var(--forest); }
+    .form-proof { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink-muted); }
+    .form-proof .stars { color: #fbbc04; letter-spacing: 1px; }
+    .form-proof b { color: var(--ink); }
     .form-card .hp { position: absolute; left: -9999px; }
     .form-card .btn { justify-content: center; margin-top: var(--s2); }
     .form-card .form-done { display: none; margin-top: var(--s6); font-weight: 600; font-size: 18px; color: var(--forest); }
@@ -747,6 +806,13 @@
       padding: 8px 14px; border-radius: 6px; background: #fff; border: 2px solid var(--pine);
       font-weight: 700; font-size: 15px; color: var(--pine);
     }
+    /* 2026-10-07 night: towns with their own page are lime chips that link there */
+    .towns li:has(a) { padding: 0; background: var(--lime); }
+    .towns a { display: block; padding: 8px 14px; border-radius: 4px; color: var(--pine); text-decoration: none; transition: transform .3s var(--spring); }
+    .towns a::after { content: " →"; }
+    .towns a:hover { background: #7fc865; }
+    .towns a:active { transform: scale(.95); }
+    .towns a:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
     .area-note { margin-top: var(--s4); color: var(--ink-muted); font-size: 16px; }
     .hoa-card {
       background: #fff; color: var(--ink); border: 3px solid var(--pine); border-radius: var(--radius);
@@ -755,6 +821,7 @@
     .hoa-card h3 { margin-top: var(--s3); font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 30px; line-height: 1.05; letter-spacing: .01em; }
     .hoa-card p:not(.eyebrow) { margin-top: var(--s3); font-size: 17px; line-height: 1.5; color: var(--ink-muted); }
     .hoa-card .btn { margin-top: var(--s6); }
+    .hoa-card .btn + .btn { margin-left: var(--s2); }
     /* ---------- top bar (always visible, like TruGreen's offer bar) ---------- */
     /* scrolls away with the page (2026-10-06); the white header sticks instead */
     .topbar {
@@ -816,6 +883,9 @@
     .five .stack .heavy, .reviews .stack .heavy, .about-copy h2 b, .area h2 b, .ticket h2 b { color: var(--pine); }
     .dot { color: var(--lime); }
     .light .dot { color: var(--forest); }
+    /* 2026-10-07 (Harrison: the hero period "looks a little off"): a lime dot inside the pine outline read as a
+       muddy blob next to the white letters. Now it's lettered like the letters: white with the pine outline. */
+    .hero h1 .dot { color: #fff; }
 
     /* 2. color: blue only as an accent */
     .trust svg, .reach-tile svg { color: var(--lime); }
@@ -916,12 +986,6 @@
     .ba-shot.after figcaption { background: var(--lime); color: var(--pine); }
     .ba-cap { grid-column: 1 / -1; font-size: 16px; color: rgba(255,255,255,.75); }
     .ba-cap b { color: #fff; }
-
-    /* phones: 4 reviews, 6 lines each (full text is one tap away on Google) */
-    @media (max-width: 700px) {
-      .gshot p { display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
-      .gshot:nth-child(n+5) { display: none; }
-    }
 
     /* =====================================================================
        2026-10-06 CLEANUP. Last block on purpose: it wins.
@@ -1345,6 +1409,123 @@
     .cmp-note a { text-decoration: none !important; padding: 1px 6px; border-radius: 5px; background: rgba(255,255,255,.1); color: #fff; font-weight: 700; }
     .cmp-note a:hover { background: rgba(255,255,255,.2); }
     .faq-upd { margin-top: var(--s4) !important; font-size: 13px !important; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+
+    /* =====================================================================
+       2026-10-07 PHONE TIGHTEN. Harrison: on phones it's "too clumpy and big, takes too long to get to the point".
+       The page was ~29 phone screens. Same content, much less scrolling: less air between sections,
+       side-swipe rows for services / comparison / reviews (the next card peeks in, so people know to swipe),
+       compact steps, the first 6 questions with a "See more" button. Phones only; desktop is untouched.
+       ===================================================================== */
+    .faq-more, .swipe-hint { display: none; }
+    @media (max-width: 767px) {
+      .intro { padding: 56px 0 64px; }
+      .plan { padding: 40px 0 56px; }
+      .five { padding: 64px 0 40px; }
+      .reviews, .faq, .compare { padding: 56px 0; }
+      .work { padding: 56px 0 48px; }
+      .area { padding: 48px 0 56px; }
+      .ask { padding: 64px 0 48px; }
+      .stack .heavy { font-size: 46px; }
+      .intro .lede, .ask .lede { margin-top: var(--s4); }
+
+      /* side-swipe rows */
+      .svc-row, .vs {
+        display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory; scroll-padding: 0 var(--s6); scrollbar-width: none;
+        margin-left: calc(-1 * var(--s6)); margin-right: calc(-1 * var(--s6)); padding: 6px var(--s6) 18px;
+        columns: auto;
+      }
+      .svc-row::-webkit-scrollbar, .vs::-webkit-scrollbar { display: none; }
+      .svc-row > *, .vs > * { flex: 0 0 82%; scroll-snap-align: start; margin: 0; }
+      /* cards off to the side are already "in", so they never pop in mid-swipe */
+      .svc-row .reveal { opacity: 1; transform: none; }
+      .svc-row { margin-top: var(--s8); }
+      .svc { min-height: 300px; }
+      .vs { align-items: stretch; margin-top: var(--s8); }
+      .vs-card li { padding: 10px 0; font-size: 15px; }
+      .swipe-hint { display: block; margin-top: 2px; text-align: center; font-size: 13px; font-weight: 600; opacity: .6; }
+
+      /* the yard plan: smaller "what happens next" steps */
+      .next { gap: var(--s2); margin-top: var(--s6); }
+      .next li { display: grid; grid-template-columns: 32px 1fr; column-gap: 12px; align-items: start; padding: 14px 16px; }
+      .next li::before { grid-row: span 2; margin: 0; }
+      .next li b { margin: 4px 0 0; }
+
+      /* night field: notes closer together */
+      .why-top { padding-top: 72px; }
+      .why-writing { padding-top: 300px; gap: 36px; }
+      .why { min-height: 0; }
+      .why-writing .note p { font-size: 26px; }
+
+      /* Five Before We Drive: number beside the step, not above it */
+      .five-grid { margin-top: var(--s8); }
+      .step { display: grid; grid-template-columns: 52px 1fr; column-gap: 14px; padding: 20px 0; }
+      .step .mini { grid-row: span 3; font-size: 54px; margin: 0; }
+      .step h3 { font-size: 26px; margin-top: 6px; }
+      .step p { margin-top: 6px; font-size: 16px; }
+      .remedy { margin-top: var(--s6); }
+
+      /* questions: first 6 show, the rest open with one tap (they stay in the page for Google) */
+      .faq-list.short .qa:nth-of-type(n+7) { display: none; }
+      .faq-more { display: flex; justify-content: center; margin-top: var(--s4); }
+
+      /* reach out: one row of 3 small tiles (the big number is right above) and no repeat social row (it's in the footer) */
+      .reach { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: var(--s8); }
+      .reach-tile { justify-items: center; text-align: center; padding: 14px 6px; }
+      .reach-tile svg { margin: 0; }
+      .reach-tile b { font-size: 18px; }
+      .reach-tile span { display: none; }
+      .ask .socials { display: none; }
+
+      /* our work: before + after side by side, then the rest of the photos as a swipe row */
+      .ba { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: var(--s8); }
+      .ba-shot { aspect-ratio: 3 / 4; }
+      .work-grid {
+        display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+        scroll-padding: 0 var(--s6); margin: var(--s6) calc(-1 * var(--s6)) 0; padding: 0 var(--s6) 6px;
+      }
+      .work-grid::-webkit-scrollbar { display: none; }
+      .work-grid > * { flex: 0 0 72%; height: 240px; aspect-ratio: auto; scroll-snap-align: start; opacity: 1; transform: none; }
+      .work .center { margin-top: var(--s8); }
+
+      /* 2026-10-07 (later): hero = one big thumb-sized button. "Text us a photo" sat half under the
+         call bar, and the bar already has it, always on screen. */
+      .hero-ctas .btn-ghost { display: none; }
+      .hero-ctas .btn-lime { width: 100%; justify-content: center; }
+      .refer small { line-height: 1.4; }
+    }
+
+    /* 2026-10-07 (late) QUICK LINKS under the hero (Harrison: "create site links ... add to the home page").
+       One row of plain chips to every page. Phones swipe it sideways (the next chip peeks); computers see it centered.
+       Same links as the footer, up top where people decide. Clear page names also help Google pick sitelinks. */
+    .jump { background: var(--surface-raised, #f2f8f2); border-bottom: 1px solid var(--line, #cfe0d0); padding: var(--s4) 0; }
+    .jump .wrap { display: flex; align-items: center; gap: var(--s3); }
+    .jump-label { flex: none; font-size: 14px; font-weight: 600; color: var(--ink-muted); }
+    .jump ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s2); }
+    .jump a {
+      display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px;
+      border: 2px solid var(--line, #cfe0d0); background: #fff; color: var(--pine); font-size: 15px; font-weight: 600;
+      text-decoration: none; white-space: nowrap;
+      transition: transform .3s var(--spring), border-color .2s var(--ease-out), background-color .2s var(--ease-out);
+    }
+    .jump a svg { flex: none; color: var(--forest); }
+    .jump a:hover { border-color: var(--forest); }
+    .jump a:active { transform: scale(.95); }
+    .jump a:focus-visible { outline: 3px solid var(--focus-ring, #307537); outline-offset: 2px; }
+    .jump a.hot { background: var(--lime); border-color: var(--pine); }
+    .jump a.hot svg { color: var(--pine); }
+    @media (max-width: 767px) {
+      .jump { padding: var(--s3) 0; }
+      .jump .wrap { padding-right: 0; }
+      .jump-label { display: none; }
+      .jump ul {
+        flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
+        padding-right: var(--s4);
+      }
+      .jump ul::-webkit-scrollbar { display: none; }
+      .jump li { scroll-snap-align: start; }
+    }
+    @media (prefers-reduced-motion: reduce) { .jump a { transition: none; } }
   </style>
 </head>
 <body>
@@ -1375,6 +1556,9 @@
               <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
               <a href="../yard-design/"><span>Yard design and planting<small>The right plant in the right spot</small></span></a>
+              <a href="../aeration-fertilizer/"><span>Aeration and fertilizer<small>Try the screwdriver test</small></span></a>
+              <a href="../hoa-commercial/"><span>HOA and commercial<small>Common areas and business properties</small></span></a>
+              <a href="../your-year/"><span>Build your year<small>See every month of your plan</small></span></a>
               <a class="sub-all" href="./#services">See every service</a>
             </div>
           </li>
@@ -1406,11 +1590,16 @@
           <li class="sub-li"><a href="../spring-cleanup/">Spring cleanups</a></li>
           <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
           <li class="sub-li"><a href="../yard-design/">Yard design and planting</a></li>
+          <li class="sub-li"><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
+          <li class="sub-li"><a href="../hoa-commercial/">HOA and commercial</a></li>
+          <li class="sub-li"><a href="../your-year/">Build your year</a></li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
           <li><a href="./#five">Our promise</a></li>
           <li><a href="./#about">About</a></li>
           <li><a href="./#faq">Questions</a></li>
+          <li><a href="../join-the-crew/">Join the crew</a></li>
+          <li><a href="../refer/">Send a neighbor</a></li>
         </ul>
         <div class="menu-ctas">
           <a class="btn btn-lime" href="./#plan">Get my yard plan
@@ -1437,11 +1626,11 @@
              Lighter shading than before, so the photos read clear; the text keeps its own soft shadow. -->
         <div class="broll" role="img" aria-label="Striped lawns, a stand-on mower, fresh mulch beds and the Grass 'n' Gardens crew on a job">
           <!-- 2026-10-06: swapped to Harrison's own Google Business photos ("By owner" only, his OK). gbp-* = cropped to 4:3. -->
-          <img src="img/gbp-mower-stripes.jpg" srcset="img/sm/gbp-mower-stripes.jpg 900w, img/gbp-mower-stripes.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: 70% 55%" />
-          <img data-src="img/gallery-12.jpg" data-srcset="img/sm/gallery-12.jpg 900w, img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
-          <img data-src="img/gbp-crew-mowing.jpg" data-srcset="img/sm/gbp-crew-mowing.jpg 900w, img/gbp-crew-mowing.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
-          <img data-src="img/gbp-mower-house.jpg" data-srcset="img/sm/gbp-mower-house.jpg 900w, img/gbp-mower-house.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
-          <img data-src="img/crew-mulch.jpg" data-srcset="img/sm/crew-mulch.jpg 900w, img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
+          <img src="img/gbp-mower-stripes.jpg" srcset="img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: 70% 55%" />
+          <img data-src="img/gallery-12.jpg" data-srcset="img/sm/gallery-12.jpg 900w, img/md/gallery-12.jpg 1200w, img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
+          <img data-src="img/gbp-crew-mowing.jpg" data-srcset="img/sm/gbp-crew-mowing.jpg 900w, img/md/gbp-crew-mowing.jpg 1200w, img/gbp-crew-mowing.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
+          <img data-src="img/gbp-mower-house.jpg" data-srcset="img/sm/gbp-mower-house.jpg 900w, img/md/gbp-mower-house.jpg 1200w, img/gbp-mower-house.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
+          <img data-src="img/crew-mulch.jpg" data-srcset="img/sm/crew-mulch.jpg 900w, img/md/crew-mulch.jpg 1200w, img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
         </div>
       </div>
       <div class="wrap hero-copy">
@@ -1460,6 +1649,27 @@
         </div>
       </div>
     </header>
+
+    <!-- QUICK LINKS (2026-10-07, late): every page one tap from the top. Same names as the footer. -->
+    <nav class="jump" aria-label="Quick links">
+      <div class="wrap">
+        <span class="jump-label">Jump to</span>
+        <ul>
+          <li><a href="../lawn-mowing/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V9M9 20V6M14 20V9M19 20V5"/></svg>Weekly mowing</a></li>
+          <li><a class="hot" href="../season-pass/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v8a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2z"/><path d="M15 6v12" stroke-dasharray="2 2.5"/></svg>2027 Season Pass</a></li>
+          <li><a href="../your-year/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 15h3"/></svg>Build your year</a></li>
+          <li><a href="../fall-cleanup/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19l8-8"/></svg>Fall cleanups</a></li>
+          <li><a href="../mulch-beds/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="13" r="4"/><circle cx="16" cy="12" r="5"/><path d="M2 20h20"/></svg>Mulch, beds and bushes</a></li>
+          <li><a href="../spring-cleanup/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20v-8"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg>Spring cleanups</a></li>
+          <li><a href="../yard-design/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></svg>Yard design</a></li>
+          <li><a href="../aeration-fertilizer/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13M9 16h6l-3 5z"/><path d="M3 12h4M17 12h4"/></svg>Aeration and fertilizer</a></li>
+          <li><a href="../hoa-commercial/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg>HOA and commercial</a></li>
+          <li><a href="../why-gng/"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>60 reviews</a></li>
+          <li><a href="../refer/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg>Send a neighbor</a></li>
+          <li><a href="#faq"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg>Questions</a></li>
+        </ul>
+      </div>
+    </nav>
 
     <!-- 2027 MOWING SEASON OFFER (the TruGreen "save X% on the season" move, done with our guarantee).
          Terms = the locked 3-part guarantee + 5% prepay (brainstorms/2026-09-30-scaling-roadmap.md Q2, Q9).
@@ -1513,12 +1723,12 @@
           <!-- Photo reel of real 2026 jobs (2026-10-06). Stands in for the "what we got done in one year" video;
                when the video is filmed, put it here. Plays by itself, pause button for anyone who wants it still. -->
           <div class="reel" role="region" aria-roledescription="slideshow" aria-label="Our 2026 season in photos">
-            <figure class="reel-slide is-on"><img loading="lazy" src="img/sm/gbp-mower-lines.jpg" alt="Stand-on mower cutting fresh stripes into a big back lawn" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-weeping-mulch.jpg" alt="Fresh black mulch bed curving around a weeping tree" loading="lazy" /><figcaption>Mulch and beds</figcaption></figure>
+            <figure class="reel-slide is-on"><img loading="lazy" src="img/sm/gbp-house-stripes.jpg" alt="Fresh mowing stripes across a front lawn up to a stone and siding house" /><figcaption>Weekly mowing</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-front-bed.jpg" alt="Long fresh mulch bed with shrubs and a red maple along the front of a house" loading="lazy" /><figcaption>Mulch and beds</figcaption></figure>
             <figure class="reel-slide"><img src="img/sm/leaf-after.jpg" alt="Beds and stone walk cleared after a fall cleanup" loading="lazy" /><figcaption>Fall cleanup</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-stripes-sky.jpg" alt="Long mowing stripes running back to a row of evergreens" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-planter-boxes.jpg" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" /><figcaption>Beds and planters</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/edge-curve.jpg" alt="Sharp curved edge between the lawn and a bed" loading="lazy" /><figcaption>Edging</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-mower-drive.jpg" alt="Mower on a freshly striped front lawn by the driveway" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-hedge.jpg" alt="Tall hedge trimmed flat and square along the side of a house" loading="lazy" /><figcaption>Bush trimming</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-walk-beds.jpg" alt="Curved walkway lined with fresh mulch beds and shrubs" loading="lazy" /><figcaption>Beds and edging</figcaption></figure>
             <div class="reel-bar">
               <span class="reel-title">Our 2026 season</span>
               <span class="reel-pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -1545,31 +1755,35 @@
           <div class="form-head">
             <img src="brand_assets/logos/mark-sm.png" alt="" width="52" height="52" loading="lazy" />
             <div><h3>Get my yard plan</h3>
-            <p class="draft">Takes 30 seconds. Harrison texts you back today.</p></div>
+            <p class="draft">Takes 30 seconds. You don't have to be home.</p></div>
           </div>
           <form class="lead-form">
+            <!-- 2026-10-07 (late): form cut down (Harrison: "make it shorter, don't make it look so complex").
+                 5 chips + "Something else" (was 10), no email box, no address helper line. Spring cleanup and
+                 Custom design stay in the page but only show when a service page link ticks them (?need=spring / design). -->
             <fieldset class="chips">
-              <legend>What do you need? <span>Tap all that fit</span></legend>
+              <legend>What do you need?</legend>
               <label><input type="checkbox" name="need" value="season2027" /><span data-after="2027 mowing">2027 mowing (save 5%)</span></label>
               <label><input type="checkbox" name="need" value="mowing" /><span>Weekly mowing</span></label>
               <label><input type="checkbox" name="need" value="leaves" /><span>Leaf cleanup</span></label>
-              <label><input type="checkbox" name="need" value="mulch" /><span>Mulch</span></label>
+              <label><input type="checkbox" name="need" value="mulch" /><span>Mulch and beds</span></label>
               <label><input type="checkbox" name="need" value="bushes" /><span>Bush trimming</span></label>
-              <label><input type="checkbox" name="need" value="spring" /><span>Spring cleanup</span></label>
-              <label><input type="checkbox" name="need" value="design" /><span>Custom design and planting</span></label>
-              <label><input type="checkbox" name="need" value="aeration" /><span>Aeration and overseeding</span></label>
-              <label><input type="checkbox" name="need" value="unsure" /><span>Not sure yet</span></label>
-              <label><input type="checkbox" name="need" value="other" id="need-other" /><span>Other</span></label>
+              <label class="chip-extra"><input type="checkbox" name="need" value="spring" /><span>Spring cleanup</span></label>
+              <label class="chip-extra"><input type="checkbox" name="need" value="design" /><span>Custom design and planting</span></label>
+              <!-- 2026-10-07 (night): ticked by the new pages (aeration-fertilizer, hoa-commercial, your-year) -->
+              <label class="chip-extra"><input type="checkbox" name="need" value="aeration" /><span>Aeration and fertilizer</span></label>
+              <label class="chip-extra"><input type="checkbox" name="need" value="soilcheck" /><span>Free Soil Check</span></label>
+              <label class="chip-extra"><input type="checkbox" name="need" value="trees" /><span>Small tree work</span></label>
+              <label class="chip-extra"><input type="checkbox" name="need" value="hoa" /><span>HOA or business property</span></label>
+              <label><input type="checkbox" name="need" value="other" id="need-other" /><span>Something else</span></label>
             </fieldset>
             <label class="if-other other-need">What else? <input name="need_other" placeholder="Type it here" /></label>
             <div class="row2">
               <label>Name <input name="name" autocomplete="name" required /></label>
               <label>Phone <input name="phone" type="tel" autocomplete="tel" required /></label>
             </div>
-            <label>Address <input name="address" autocomplete="street-address" required />
-              <small class="draft">We look your yard up on the map. You don't have to be home.</small></label>
-            <label><span>Email <small>(optional)</small></span> <input name="email" type="email" autocomplete="email" /></label>
-            <label><span>How did you hear about us? <small>(optional)</small></span>
+            <label>Address <input name="address" autocomplete="street-address" required /></label>
+            <label><span>How'd you find us? <small>(optional)</small></span>
               <select name="source">
                 <option value="" selected>Pick one</option>
                 <!-- every channel we market on, so leads can be tracked by source (KPI) -->
@@ -1580,7 +1794,7 @@
                 <option>TikTok</option>
                 <option>YouTube</option>
                 <option>Nextdoor</option>
-                <option>A friend or neighbor</option>
+                <option value="A friend or neighbor">A friend or neighbor</option>
                 <option>Saw our truck or trailer</option>
                 <option>Saw our crew working nearby</option>
                 <option>Yard sign</option>
@@ -1589,13 +1803,21 @@
                 <option value="other">Other</option>
               </select></label>
             <label class="if-other other-source">Where? <input name="source_other" placeholder="Type it here" /></label>
+            <!-- 2026-10-07 referral rule (locked 2026-10-03): when you sign a yearly plan, the neighbor who sent you
+                 gets 5% off their next year and you get 5% off your first. This is how Harrison knows who to credit. -->
+            <label class="if-other referred"><span>Who sent you? <small>(optional)</small></span>
+              <input name="referred_by" autocomplete="off" placeholder="Their name" />
+              <small class="draft">Sign a yearly plan and you both save 5%.</small></label>
             <label class="hp" aria-hidden="true">Leave this empty <input name="website" tabindex="-1" autocomplete="off" /></label>
             <!-- ad tracking: filled from the URL by the script below, so every lead shows which ad or campaign sent it -->
             <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" />
             <input type="hidden" name="utm_term" /><input type="hidden" name="gclid" /><input type="hidden" name="landing_page" />
-            <button class="btn btn-lime" type="submit">Send to Harrison
+            <!-- 2026-10-07: proof right where people decide to send -->
+            <p class="form-proof"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <b>5.0</b> from 60 Google reviews</p>
+            <button class="btn btn-lime" type="submit"><span data-send-word>Send to Harrison</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-            <p class="form-how draft">This opens a text to Harrison with your answers filled in. Just hit send.</p>
+            <p class="form-how draft" data-how-app>This opens a text to Harrison with your answers filled in. Just hit send.</p>
+            <p class="form-how draft" data-how-direct hidden>It goes straight to Harrison. He texts you back today.</p>
           </form>
           <!-- No form service yet, so "Send" opens a ready-made text (phones) or email (computers) to Harrison.
                When a real form service is hooked up, it can post here instead. -->
@@ -1621,7 +1843,7 @@
         <!-- 2026-10-07 (Harrison: "click on these sections to go more in depth"): each card opens its own page. -->
         <div class="svc-row">
           <a class="svc reveal" href="../lawn-mowing/">
-            <img src="img/sm/gbp-mower-lines.jpg" alt="Stand-on mower cutting straight stripes into a big lawn" loading="lazy" />
+            <img src="img/sm/gbp-stone-house.jpg" alt="Fresh mowing stripes across the front lawn of a stone-front house" loading="lazy" />
             <div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
           <a class="svc reveal d1" href="../fall-cleanup/">
@@ -1643,6 +1865,7 @@
             <div class="svc-body"><h3>Yard design</h3><p class="draft">The right plant in the right spot. Planned before we plant.</p><span class="go">Get a custom design <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
         </div>
+        <p class="swipe-hint" aria-hidden="true">Swipe for more &rarr;</p>
       </div>
     </section>
 
@@ -1684,7 +1907,11 @@
           <svg class="jersey" viewBox="0 0 120 120" aria-hidden="true">
             <path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="#a7cbe0" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
             <path d="M40 10 Q60 26 80 10" fill="none" stroke="#1d4a22" stroke-width="4" stroke-linecap="round"/>
-            <text x="60" y="84" text-anchor="middle" fill="#1d4a22" font-size="24" font-family="Alfa Slab One, serif" letter-spacing="1">G'N'G</text>
+            <!-- 2026-10-07 (Harrison): the water-drop mark on the chest, like a team crest. Brand rule: the mark
+                 sits on a white tile when it's not on paper, so it's a round white patch with a pine ring. -->
+            <clipPath id="crestClip"><circle cx="60" cy="72" r="25"/></clipPath>
+            <circle cx="60" cy="72" r="27" fill="#fff" stroke="#1d4a22" stroke-width="3"/>
+            <image href="brand_assets/logos/mark-sm.png" x="35" y="48" width="50" height="50" clip-path="url(#crestClip)" preserveAspectRatio="xMidYMid meet"/>
           </svg>
           <div><span class="tag">The team</span>
           <p>Our crew wears jerseys.</p>
@@ -1696,7 +1923,7 @@
         <h2 id="why-title">What makes a landscaper <b>different nowadays?</b></h2>
         <p class="why-hint" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6c0 2-2 2-2 4v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V10c0-2-2-2-2-4V2h12z"/><path d="M6 6h12M12 12v2"/></svg>
-          <span class="mouse">Move your mouse to shine the light</span><span class="touch">Tap anywhere to move the light</span>
+          <span class="mouse">Move your mouse to shine the light</span><span class="touch draft">Keep scrolling. The light follows you.</span>
         </p>
       </div>
     </section>
@@ -1764,6 +1991,7 @@
             </ul>
           </article>
         </div>
+        <p class="swipe-hint" aria-hidden="true">Swipe for more &rarr;</p>
         <p class="cmp-note reveal">Compared October 2026, from what local crews and mowing apps list on their own sites. Rather talk it through? Call Harrison at <a href="tel:+14406679642">(440) 667-9642</a>.</p>
       </div>
     </section>
@@ -1833,16 +2061,37 @@
         <p class="record reveal d1"><span>Record</span><span><b>60</b> reviews</span><span><b>5.0</b> average</span><span><b>0</b> under five</span></p>
       </div>
 
-      <!-- Google review "screenshots", filled from the reviews list in the script below -->
-      <div class="wrap">
-        <div class="gshots" id="gshots"></div>
+      <!-- 2026-10-07 (Harrison): every Google review, in two rows that slide past each other as you scroll.
+           Row 1 drifts right, row 2 drifts left. Filled from the reviews list in the script below.
+           Reviews from family and crew are left out (FTC rule on insider reviews). -->
+      <div class="rv-rows" role="region" aria-label="Google reviews from our customers">
+        <div class="rv-track" data-dir="1"></div>
+        <div class="rv-track" data-dir="-1"></div>
       </div>
 
       <div class="wrap more">
         <a class="btn btn-dark" href="../why-gng/">Why customers pick us
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-ghost" href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">See all 60 on Google
+        <!-- 2026-10-07: opens the reviews list on Google for anyone (Harrison's own link only works signed in to his account) -->
+        <a class="btn btn-ghost" href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">See all 60 on Google
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+
+      <!-- SEND A NEIGHBOR (2026-10-07). Rule locked 2026-10-03 (brainstorms/2026-10-02-ideal-customer.md):
+           a neighbor signs a yearly plan -> the one who sent them gets 5% off next year (credit, not cash,
+           up to 20% a year) and the neighbor gets 5% off year one. Never tied to reviews. -->
+      <div class="wrap">
+        <aside class="refer reveal" aria-labelledby="refer-title">
+          <p class="refer-badge" aria-hidden="true"><b>5%</b><span>for you both</span></p>
+          <div class="refer-copy">
+            <p class="refer-tag">Send a neighbor</p>
+            <h3 id="refer-title" class="draft">Know someone who'd want this?</h3>
+            <p class="draft">When they sign up for a yearly plan, you get 5% off your next year. They get 5% off their first.</p>
+            <small class="draft">Yearly plans only. It comes off your bill. <a class="refer-more" href="../refer/">How it works</a></small>
+          </div>
+          <button class="btn btn-lime" type="button" data-refer><span data-refer-word>Send them our link</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg></button>
+        </aside>
       </div>
     </section>
 
@@ -1857,11 +2106,11 @@
           <p class="ba-cap"><b>Fall cleanup.</b> One visit. Beds cleared, leaves gone, walk blown clean.</p>
         </div>
         <div class="work-grid">
-          <figure class="shot tall reveal"><img src="img/sm/gbp-curved-mulch.jpg" alt="Curved black mulch bed with round shrubs along a driveway" loading="lazy" /><figcaption>Mulch</figcaption></figure>
-          <figure class="shot wide reveal d1"><img src="img/sm/gbp-mower-yard.jpg" alt="Stand-on mower on a freshly striped front lawn" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
+          <figure class="shot tall reveal"><img src="img/sm/gbp-shrub-island.jpg" alt="Island bed of round trimmed shrubs in fresh black mulch" loading="lazy" /><figcaption>Bush trimming</figcaption></figure>
+          <figure class="shot wide reveal d1"><img src="img/sm/gbp-brick-stripes.jpg" alt="Stand-on mower on fresh stripes in front of a big brick house" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
           <figure class="shot reveal d2"><img src="img/sm/gbp-tree-ring.jpg" alt="Clean ring of fresh mulch around a lawn tree" loading="lazy" /><figcaption>Beds</figcaption></figure>
           <figure class="shot reveal d1"><img src="img/sm/edge-curve.jpg" alt="Crisp curved edge between the lawn and a fresh bed" loading="lazy" /><figcaption>Edging</figcaption></figure>
-          <figure class="shot wide reveal d2"><img src="img/sm/gallery-21.jpg" alt="Trimmed shrubs and fresh mulch along a front walkway" loading="lazy" /><figcaption>Shrubs and beds</figcaption></figure>
+          <figure class="shot wide reveal d2"><img src="img/sm/gbp-brick-beds.jpg" alt="Fresh mulch beds and trimmed shrubs across the front of a brick house" loading="lazy" /><figcaption>Front beds</figcaption></figure>
         </div>
         <div class="center work-ask">
           <p>Want yours to look like this?</p>
@@ -1902,8 +2151,8 @@
           <p class="eyebrow">Where we work</p>
           <h2>Richfield <b>and nearby<span class="dot">.</span></b></h2>
           <ul class="towns">
-            <li>Richfield</li><li>Bath</li><li>Hinckley</li><li>Granger</li><li>Brecksville</li>
-            <li>Broadview Heights</li><li>North Royalton</li><li>Akron</li><li>Medina</li>
+            <li><a href="../richfield-oh/">Richfield</a></li><li>Bath</li><li>Hinckley</li><li>Granger</li><li><a href="../brecksville-oh/">Brecksville</a></li>
+            <li><a href="../broadview-heights-oh/">Broadview Heights</a></li><li>North Royalton</li><li>Akron</li><li>Medina</li>
           </ul>
           <p class="area-note">Not on the list? Call us. We might still come out.</p>
         </div>
@@ -1911,7 +2160,8 @@
           <p class="eyebrow">HOA or business property?</p>
           <h3>Talk to Harrison directly.</h3>
           <p class="draft">Same five checks. Same guarantee. One contract for the whole property.</p>
-          <a class="btn btn-dark" href="tel:+14406679642">Call (440) 667-9642</a>
+          <a class="btn btn-dark" href="../hoa-commercial/">See what our bid includes</a>
+          <a class="btn btn-ghost" href="tel:+14406679642">Call (440) 667-9642</a>
         </div>
       </div>
     </section>
@@ -1934,7 +2184,7 @@
         <!-- 2026-10-07 (Harrison: "highlight the ones most likely for SEO"): the 4 most-searched questions go first with a
              "Most asked" tag (Tavily: cost, area, insured and services are what people type and what AI answers quote).
              Answers link to the service pages so Google sees how the site fits together. -->
-        <div class="faq-list reveal d1">
+        <div class="faq-list short reveal d1">
           <details class="qa top" open>
             <summary><span class="qa-q"><span class="qa-pop">Most asked</span><h3 class="draft">How much does lawn mowing cost in Richfield?</h3></span><span class="qa-ic" aria-hidden="true"></span></summary>
             <div class="qa-a"><p class="draft">It depends on your yard: how big it is and how much we trim around. Send us your address and Harrison looks your yard up on the map and texts you a price today. You don't have to be home, and nobody has to come out first. <a href="#plan">Get my yard plan</a></p></div>
@@ -2002,6 +2252,8 @@
             <div class="qa-a"><p>Grass 'n' Gardens was founded by Harrison Drvenkar, a Richfield, Ohio local, and holds a 5.0-star Google rating<span class="draft"> across 60 reviews</span>. <a href="#about">Meet Harrison</a></p></div>
           </details>
         </div>
+        <!-- phones: questions 7-16 wait behind this button (2026-10-07) -->
+        <p class="faq-more"><button class="btn btn-dark" type="button">See more questions</button></p>
       </div>
     </section>
 
@@ -2037,7 +2289,7 @@
           <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>YouTube</a></li>
           <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg>TikTok</a></li>
           <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg>Nextdoor</a></li>
-          <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>Google reviews</a></li>
+          <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>Google reviews</a></li>
         </ul>
       </div>
     </section>
@@ -2058,7 +2310,7 @@
             <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a></li>
             <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg></a></li>
             <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener" aria-label="Nextdoor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg></a></li>
-            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
+            <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
           </ul>
         </div>
         <div>
@@ -2069,6 +2321,8 @@
             <li><a href="../spring-cleanup/">Spring cleanups</a></li>
             <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
             <li><a href="../yard-design/">Yard design and planting</a></li>
+            <li><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
+            <li><a href="../hoa-commercial/">HOA and commercial</a></li>
           </ul>
         </div>
         <div>
@@ -2080,6 +2334,9 @@
             <li><a href="./#about">Meet Harrison</a></li>
             <li><a href="./#area">Where we work</a></li>
             <li><a href="./#faq">Questions</a></li>
+            <li><a href="../your-year/">Build your year</a></li>
+            <li><a href="../refer/">Send a neighbor (5% off)</a></li>
+            <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
         </div>
         <div>
@@ -2088,13 +2345,14 @@
             <li><a href="tel:+14406679642">Call (440) 667-9642</a></li>
             <li><a href="sms:+14406679642">Text (440) 667-9642</a></li>
             <li><a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a></li>
-            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">Google reviews</a></li>
+            <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">Google reviews</a></li>
           </ul>
         </div>
       </div>
       <div class="foot">
         <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
+        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a></p>
         <button class="app-get" type="button" data-app-get hidden>
           <img src="./app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
@@ -2118,30 +2376,104 @@
     <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
     <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
   </div>
+
+  <script>
+  // VISITOR STATS (2026-10-07). Runs on the live site only, never on localhost.
+  // 1) Vercel Web Analytics: visits, which pages, where people came from, phone or computer.
+  //    Harrison turns it on once: vercel.com -> gng-test-website -> Analytics -> Enable. Free plan = visits.
+  //    The events below (calls, texts, form sends, FAQ opens) show there on Vercel Pro only.
+  // 2) Google Analytics 4 (optional, free, shows the events): paste the G-XXXXXXX id into GA_ID.
+  (() => {
+    const GA_ID = '';
+    if (location.protocol !== 'https:' || /^(localhost|127\.|\[::1\])/.test(location.hostname)) return;
+    const add = src => { const s = document.createElement('script'); s.defer = true; s.src = src; document.head.appendChild(s); };
+    window.dataLayer = window.dataLayer || [];
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    add('/_vercel/insights/script.js');
+    if (GA_ID) {
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date()); window.gtag('config', GA_ID);
+      add('https://www.googletagmanager.com/gtag/js?id=' + GA_ID);
+    }
+    // Every event the pages log in dataLayer also goes to the stats tools (past ones too).
+    const send = o => {
+      if (!o || typeof o.event !== 'string' || o.event.startsWith('gtm')) return;
+      const { event, ...data } = o;
+      window.va('event', { name: event, data });
+      if (GA_ID) window.gtag('event', event, data);
+    };
+    window.dataLayer.slice().forEach(send);
+    const push = window.dataLayer.push.bind(window.dataLayer);
+    window.dataLayer.push = (...items) => { items.forEach(send); return push(...items); };
+  })();
+  </script>
   <!-- /@footer -->
 
+  <script src="reviews.js"></script>
   <script>
     if (new URLSearchParams(location.search).has('drafts')) document.documentElement.classList.add('show-drafts');
 
-    // Real Google reviews, full text word for word (copied from grassngardens.com, 2026-10-05).
-    // Drawn as Google review "screenshots". Swap in real screenshot images later if wanted.
-    const reviews = [
-      { n: 'Kier M.', c: '#1a73e8', q: "I work in landscape/hardscape myself. No one is allowed to cut my grass because they can't mow straight out know how to stripe. But I needed a total knee replacement in April. Through another recommendation, I was given contact info for Grass 'n' Gardens. They were very prompt to show up for an estimate and I felt were competitively priced. I'm the spring when weather was unpredictable, they would always call and give me the option to wait for a day or two to dry out if I wanted. Harrison and his crew are respectful to both my needs as a customer, as well as my property. Don't be afraid to give a young entrepreneur an opportunity, you won't be disappointed!" },
-      { n: 'Katie E.', c: '#e8710a', q: "We had a great experience with Grass 'n' Gardens! They were very responsive and had strong communication from start to finish. They showed up on time, spread over 10 yards of mulch and left everything spotless. The crew was respectful and clearly takes pride in what they do. We couldn't be happier with the results and would recommend them for your next landscaping project!" },
-      { n: 'Alex S.', c: '#188038', q: "Grass N Gardens did an outstanding job transforming my yard. These young gentlemen removed a massive amount of debris, including an entire trailer load of thorn bushes, tree branches, old leaves, and mulch. They were professional, hardworking, and incredibly efficient from start to finish. The entire cleanup was completed much faster than I expected, and the difference is unbelievable — my yard feels cleaner, larger, and completely refreshed. Super fair price as-well! Their attention to detail and work ethic really stood out. I highly recommend Grass N Gardens to anyone looking for a reliable team." },
-      { n: 'Jennifer B.', c: '#9334e6', q: "Harrison was responsive, prompt and professional. I was very impressed by his knowledge of various plants and his willingness to tackle a tough job on my property. The day the crew was there, they were tidy, fast and very kind and respectful! I will absolutely hire them again." },
-      { n: 'Tony A.', c: '#d93025', q: "I've used Grass n' Gardens for the last few years and have been consistently impressed with their efficiency, professionalism, and competitive pricing. Working with them has been seamless as I've been able to get a quote, agreed price, and had the work scheduled and done in a matter of days. Highly recommend this company!" },
-      { n: 'Geetha K.', c: '#12858a', q: "Our lawn looks great this season. Harrison has been doing a great job cutting our grass. They are reliable and very punctual. Edging looks good. Overall we are very happy with the service and would recommend them highly. Definitely want them taking care of our lawn in the future too." }
-    ];
-    const star = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>';
-    const glogo = '<svg class="glogo" width="22" height="22" viewBox="0 0 48 48" aria-label="Google review"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.2 1.5-5 2.3-8.2 2.3-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>';
+    const reviews = window.GNG_REVIEWS || []; // the list lives in reviews.js (shared with every page)
+    const colors = ['#1a73e8', '#e8710a', '#188038', '#9334e6', '#d93025', '#12858a'];
+    // 2026-10-07 speed: the Google logo is drawn once (a hidden <symbol>) and every card reuses it, and the
+    // 5 stars are one line of text. 98 cards used to carry ~1,200 extra drawing parts.
+    document.body.insertAdjacentHTML('afterbegin', '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="g-logo" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.2 1.5-5 2.3-8.2 2.3-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></symbol></svg>');
+    const glogo = '<svg class="glogo" width="22" height="22" aria-label="Google review"><use href="#g-logo"/></svg>';
     const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-    document.getElementById('gshots').innerHTML = reviews.map(r => `<article class="gshot reveal">
-        <header><span class="av" style="background:${r.c}" aria-hidden="true">${r.n[0]}</span>
-          <span class="who"><b>${esc(r.n)}</b><span>Google review</span></span>${glogo}</header>
-        <div class="rate" role="img" aria-label="5 out of 5 stars">${star.repeat(5)}</div>
-        <p>${esc(r.q)}</p>
-      </article>`).join('');
+    const card = ([n, q], i) => `<article class="gshot">
+        <header><span class="av" style="background:${colors[i % colors.length]}" aria-hidden="true">${n[0]}</span>
+          <span class="who"><b>${esc(n)}</b><span>Google review</span></span>${glogo}</header>
+        <div class="rate" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>${esc(q)}</p>
+      </article>`;
+
+    // REVIEW ROWS (2026-10-07, Harrison: "one moving right and one moving left... as you scroll down they pass each other").
+    // Reviews alternate between the 2 rows. Each row holds its cards twice so it loops with no gap.
+    // Motion: a slow drift all the time, plus a push from page scrolling (scroll up = they slide back).
+    // Hovering a row (mouse) or touching it holds it still so people can read. Reduced motion = still rows you swipe.
+    (() => {
+      const tracks = [...document.querySelectorAll('.rv-track')];
+      if (!tracks.length) return;
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      tracks.forEach((t, r) => {
+        const mine = reviews.map((rv, i) => [rv, i]).filter(([, i]) => i % tracks.length === r);
+        const set = mine.map(([rv, i]) => card(rv, i)).join('');
+        t.innerHTML = reduced ? set : set + `<div class="rv-copy" aria-hidden="true">${set}</div>`;
+      });
+      if (reduced) { document.querySelector('.rv-rows').classList.add('rv-static'); return; }
+
+      const DRIFT = 22;   // px per second when nobody is scrolling
+      const PUSH = 0.6;   // px the rows move per px the page scrolls
+      // row 2 starts half a card over, so the cards stagger like bricks instead of lining up in a grid
+      const rows = tracks.map((t, r) => ({ t, dir: +t.dataset.dir || 1, pos: r * 180, w: 0, hold: false, until: 0 }));
+      const measure = () => rows.forEach(o => { o.w = o.t.querySelector('.rv-copy').offsetLeft; });
+      new ResizeObserver(measure).observe(tracks[0]); measure();
+      rows.forEach(o => {
+        o.t.addEventListener('mouseenter', () => { o.hold = true; });
+        o.t.addEventListener('mouseleave', () => { o.hold = false; });
+        o.t.addEventListener('touchstart', () => { o.until = performance.now() + 2500; }, { passive: true });
+      });
+
+      let last = 0, lastY = scrollY, raf = 0, onScreen = false;
+      const step = now => {
+        raf = 0;
+        const dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+        last = now;
+        const dy = scrollY - lastY; lastY = scrollY;
+        rows.forEach(o => {
+          if (!o.w) return;
+          if (!o.hold && now > o.until) o.pos += o.dir * (DRIFT * dt + dy * PUSH);
+          const x = ((o.pos % o.w) + o.w) % o.w - o.w; // always between -w and 0, so the loop never shows a gap
+          o.t.style.transform = `translate3d(${x.toFixed(1)}px,0,0)`;
+        });
+        if (onScreen && !document.hidden) raf = requestAnimationFrame(step);
+      };
+      new IntersectionObserver(([e]) => {
+        onScreen = e.isIntersecting;
+        if (onScreen && !raf) { last = 0; lastY = scrollY; raf = requestAnimationFrame(step); }
+      }, { rootMargin: '100px 0px' }).observe(document.querySelector('.rv-rows'));
+      document.addEventListener('visibilitychange', () => { if (!document.hidden && onScreen && !raf) { last = 0; raf = requestAnimationFrame(step); } });
+    })();
 
     // scroll reveal (2026-10-07: starts as soon as a bit shows, so nothing waits on screen)
     const io = new IntersectionObserver(es => es.forEach(e => {
@@ -2149,12 +2481,30 @@
     }), { threshold: .05, rootMargin: '0px 0px -16px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // Hero photos 2-5 load after the page is ready, so the first photo and the words show up fast (2026-10-07)
-    const later = () => document.querySelectorAll('img[data-src]').forEach(i => {
-      if (i.dataset.srcset) i.srcset = i.dataset.srcset;
-      i.src = i.dataset.src; i.removeAttribute('data-src');
-    });
+    // Hero photos 2-5 wait until the page is ready (2026-10-07). Later the same day, more speed: each one loads
+    // ~3s before its turn in the slideshow, and only while the hero is on screen. Someone who scrolls right past
+    // the top no longer downloads ~2.6 MB of photos they never see. Keep the same code in site.js.
+    const later = () => {
+      const load = i => { if (!i.dataset.src) return; if (i.dataset.srcset) i.srcset = i.dataset.srcset; i.src = i.dataset.src; i.removeAttribute('data-src'); };
+      const imgs = [...document.querySelectorAll('img[data-src]')];
+      imgs.filter(i => !i.closest('.broll')).forEach(load);
+      const roll = imgs.filter(i => i.closest('.broll'));
+      if (!roll.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return; // still hero = photo 1 only
+      let on = true;
+      const check = () => {
+        const t = performance.now() / 1000;
+        roll.forEach(i => { if (on && t >= (parseFloat(getComputedStyle(i).animationDelay) || 0) - 3) load(i); });
+        if (!roll.some(i => i.dataset.src)) clearInterval(timer);
+      };
+      const timer = setInterval(check, 1000);
+      new IntersectionObserver(([e]) => { on = e.isIntersecting; if (on) check(); }).observe(roll[0].closest('.broll'));
+      check();
+    };
     if (document.readyState === 'complete') later(); else addEventListener('load', later);
+
+    // Phones: the rest of the questions open with one tap (2026-10-07)
+    const more = document.querySelector('.faq-more button');
+    if (more) more.addEventListener('click', () => { document.querySelector('.faq-list').classList.remove('short'); more.parentElement.remove(); });
 
     // Five Before We Drive: big numeral follows the step in view
     const nums = [...document.querySelectorAll('.numeral')];
@@ -2190,8 +2540,8 @@
 
     // Tune here.
     const S = {
-      // how much writing shows with no light on it. Phones have no mouse, so a bit more there.
-      ghost: matchMedia("(hover: none)").matches ? 0.3 : 0.07,
+      // how much writing shows with no light on it. Phones: a bit more, since the light only lights one promise at a time.
+      ghost: matchMedia("(hover: none)").matches ? 0.22 : 0.07,
       radius: 0.42,     // light size, in units of the section's short side
       oval: 1.45,       // the light pool is wider than tall, like a floodlight hitting the ground at an angle
       strength: 1.15,   // light brightness
@@ -2276,8 +2626,28 @@
       writing.style.maskImage = m; writing.style.webkitMaskImage = m;
       writing.style.maskComposite = 'intersect'; writing.style.webkitMaskComposite = 'source-in';
     };
-    // Where the light roams on its own, in -1..1 (y up). Kept off the heading at the top.
-    const wanderAt = t => [0.72 * Math.sin(t * 0.33), -0.3 + 0.5 * Math.sin(t * 0.47 + 1.3)];
+    // 2026-10-07 (Harrison: on the phone "you can't really even use it"). Phones have no mouse, so the light
+    // follows the scroll instead: it sits at the middle of the screen and slides left/right to whichever
+    // promise is there. Each one lights up as you reach it, no tapping needed.
+    const touch = matchMedia('(hover: none)').matches;
+    const notes = [...section.querySelectorAll('.note')];
+    const scrollTarget = () => {
+      const r = canvas.getBoundingClientRect();
+      const pts = notes.filter(n => n.offsetParent).map(n => {
+        // up/down: the middle of the whole promise; side to side: the middle of its big words (they hug the left on phones)
+        const b = n.getBoundingClientRect(), w = (n.querySelector('p') || n).getBoundingClientRect();
+        return [b.top + b.height / 2, w.left + w.width / 2];
+      });
+      if (!pts.length || !r.height) return [0, -0.2];
+      const y = Math.min(Math.max(innerHeight / 2, pts[0][0]), pts[pts.length - 1][0]);
+      let x = pts[0][1];
+      for (let i = 0; i < pts.length - 1; i++) {
+        const [y0, x0] = pts[i], [y1, x1] = pts[i + 1];
+        if (y >= y0 && y <= y1) { const t = (y - y0) / Math.max(1, y1 - y0); x = x0 + (x1 - x0) * t * t * (3 - 2 * t); break; }
+        if (y > y1) x = x1;
+      }
+      return [(x - r.left) / r.width * 2 - 1, 1 - (y - r.top) / r.height * 2];
+    };
 
     const gl = canvas.getContext('webgl', { antialias: false, alpha: false });
     const compile = () => {
@@ -2309,7 +2679,14 @@
     const U = n => gl.getUniformLocation(prog, n);
     const loc = { scene: U('u_scene'), light: U('u_light'), look: U('u_look'), radius: U('u_radius') };
 
-    const pointer = { x: 0, y: 0, inside: false, until: 0 };
+    const pointer = { x: 0, y: 0, cx: 0, cy: 0, seen: false, inside: false, until: 0 };
+    const mapPointer = () => {
+      if (!pointer.seen) { pointer.inside = false; return; }
+      const r = canvas.getBoundingClientRect();
+      pointer.inside = pointer.cx >= r.left && pointer.cx <= r.right && pointer.cy >= r.top && pointer.cy <= r.bottom;
+      pointer.x = (pointer.cx - r.left) / r.width * 2 - 1;
+      pointer.y = 1 - (pointer.cy - r.top) / r.height * 2;
+    };
     const light = { x: 0, y: -0.2 };
     let presence = 0, time = 0, roam = 0, last = 0, raf = 0, visible = false;
 
@@ -2327,10 +2704,15 @@
       const moving = !reduced.matches;
       if (moving) { time = (time + dt) % 100; roam += dt; }
       // A tap on a touch screen holds the light there for a few seconds.
-      if (pointer.until && now > pointer.until) { pointer.inside = false; pointer.until = 0; }
-      const [tx, ty] = pointer.inside ? [pointer.x, pointer.y] : moving ? wanderAt(roam) : [0, -0.2];
-      // how tightly the light follows: the mouse (2026-10-07: 0.08 -> 0.035, so it stays right under the pointer) / roaming on its own
-      const k = moving ? 1 - Math.exp(-dt / (pointer.inside ? 0.035 : 0.45)) : 1;
+      if (pointer.until && now > pointer.until) { pointer.seen = false; pointer.until = 0; }
+      // 2026-10-07 (Harrison: on a laptop the light stayed put while he scrolled). The mouse is kept in screen
+      // spots and mapped onto the field every frame, so when the page scrolls under a still mouse the light
+      // stays right under it. With the mouse off the field, the light follows the scroll like on phones.
+      mapPointer();
+      const [tx, ty] = pointer.inside ? [pointer.x, pointer.y] : scrollTarget();
+      // how tightly the light follows: the mouse (2026-10-07: 0.08 -> 0.035, so it stays right under the pointer) /
+      // the scroll on phones (0.18: a smooth glide, like a stadium light swinging over) / roaming on its own
+      const k = moving ? 1 - Math.exp(-dt / (pointer.inside ? 0.035 : touch ? 0.18 : 0.45)) : 1;
       light.x += (tx - light.x) * k;
       light.y += (ty - light.y) * k;
       presence += (1 - presence) * (moving ? 1 - Math.exp(-dt / 0.25) : 1);
@@ -2359,16 +2741,16 @@
 
     // Text sits over the canvas, so track the pointer on the window and map it in.
     const place = e => {
-      const r = canvas.getBoundingClientRect();
-      pointer.inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
-      pointer.x = (e.clientX - r.left) / r.width * 2 - 1;
-      pointer.y = 1 - (e.clientY - r.top) / r.height * 2;
+      pointer.cx = e.clientX; pointer.cy = e.clientY; pointer.seen = true;
+      mapPointer();
       pointer.until = e.pointerType === 'mouse' ? 0 : (pointer.inside ? performance.now() + 4000 : 0);
       kick();
     };
     addEventListener('pointermove', e => { if (e.pointerType === 'mouse') place(e); }, { passive: true });
-    section.addEventListener('pointerdown', place);
-    document.documentElement.addEventListener('pointerleave', () => { pointer.inside = false; kick(); });
+    // phones: no tap-to-move, or every swipe to scroll would yank the light to the finger
+    if (!touch) section.addEventListener('pointerdown', place);
+    addEventListener('scroll', kick, { passive: true }); // the field moves under the mouse (and reduced-motion has no loop)
+    document.documentElement.addEventListener('pointerleave', () => { pointer.seen = false; pointer.inside = false; kick(); });
     document.addEventListener('visibilitychange', () => { if (!document.hidden) { last = 0; kick(); } });
     reduced.addEventListener('change', kick);
   })();
@@ -2423,8 +2805,17 @@
     if (!seen.landing_page) seen.landing_page = location.pathname + location.search;
     try { sessionStorage.setItem('gng_src', JSON.stringify(seen)); } catch (e) {}
 
+    // 2026-10-07 REAL FORM SERVICE. Paste the Web3Forms access key between the quotes (free, 250 a month:
+    // web3forms.com -> type grassngardens4u@gmail.com -> the key comes by email). With a key, "Send" saves the
+    // lead straight to that inbox: no second step for the customer, and no lead lost if they never hit send.
+    // Empty = the old way (opens a ready-made text/email). If the service ever fails, it falls back to that too.
+    const FORM_KEY = '';
+    // A neighbor's share link (?ref=neighbor) picks "A friend or neighbor" so the referral box shows.
+    if (params.get('ref') === 'neighbor') document.querySelectorAll('.lead-form select[name="source"]').forEach(s => { s.value = 'A friend or neighbor'; });
+
     document.querySelectorAll('.lead-form').forEach(form => {
       Object.keys(seen).forEach(k => { const f = form.querySelector('[name="' + k + '"]'); if (f) f.value = seen[k]; });
+      if (FORM_KEY) { form.querySelector('[data-how-app]').hidden = true; form.querySelector('[data-how-direct]').hidden = false; }
       // 2026-10-06: there's no form service yet, so "Send" writes the answers into a text to Harrison's
       // phone (on phones) or an email (on computers) and opens it. The person just hits send.
       // Before this, the form showed "Got it" and sent nothing.
@@ -2432,13 +2823,16 @@
       const card = form.closest('.form-card');
       // opens the text/email app. window.__gngOpen lets a test catch the message instead of opening an app.
       const openApp = href => (window.__gngOpen || (h => { location.href = h; }))(href);
-      form.addEventListener('submit', e => {
+      let sending = false;
+      form.addEventListener('submit', async e => {
         e.preventDefault();
+        if (sending) return;
         if (form.querySelector('[name="website"]').value) return; // bot filled the hidden field
         const val = n => (form.querySelector('[name="' + n + '"]') || {}).value?.trim() || '';
         const needs = [...form.querySelectorAll('[name="need"]:checked')].map(c => c.nextElementSibling.textContent.trim());
         if (val('need_other')) needs.push(val('need_other'));
         const source = val('source') === 'other' ? val('source_other') : val('source');
+        const referred = source === 'A friend or neighbor' ? val('referred_by') : '';
         const lines = [
           "Hi Harrison, I'd like a yard plan.",
           'Name: ' + val('name'),
@@ -2446,8 +2840,41 @@
           'Address: ' + val('address'),
           needs.length ? 'I need: ' + needs.join(', ') : '',
           val('email') ? 'Email: ' + val('email') : '',
-          source ? 'Heard about you from: ' + source : ''
+          source ? 'Heard about you from: ' + source : '',
+          referred ? 'Sent by: ' + referred : ''
         ].filter(Boolean);
+        const first = val('name').split(/\s+/)[0].slice(0, 30);
+
+        if (FORM_KEY) {
+          sending = true;
+          const word = form.querySelector('[data-send-word]'), was = word.textContent;
+          word.textContent = 'Sending...';
+          try {
+            const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), 8000);
+            const res = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST', signal: ctl.signal,
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              body: JSON.stringify({
+                access_key: FORM_KEY, subject: 'New yard plan: ' + val('name'), from_name: "G'N'G website",
+                name: val('name'), phone: val('phone'), address: val('address'), email: val('email') || undefined,
+                needs: needs.join(', '), heard_from: source, sent_by: referred,
+                utm_source: val('utm_source'), utm_medium: val('utm_medium'), utm_campaign: val('utm_campaign'),
+                utm_term: val('utm_term'), gclid: val('gclid'), landing_page: val('landing_page'), message: lines.join('\n')
+              })
+            });
+            clearTimeout(timer);
+            const out = await res.json().catch(() => ({}));
+            if (res.ok && out.success) {
+              track('generate_lead', { form: 'yard_plan', needs: needs.join(','), source, method: 'form' });
+              try { sessionStorage.setItem('gng_lead', JSON.stringify({ sent: true, first })); } catch (e) {}
+              location.href = 'thank-you/';
+              return;
+            }
+          } catch (err) {}
+          // the service didn't answer: fall back to the ready-made text/email below, so the lead still gets out
+          sending = false; word.textContent = was;
+          track('form_service_fail', {});
+        }
         const body = encodeURIComponent(lines.join('\n'));
         const onPhone = matchMedia('(pointer: coarse)').matches;
         lastHref = onPhone
@@ -2460,13 +2887,27 @@
         // 2026-10-06: save the ready message for the thank-you page (this browser tab only, never the URL),
         // open the text/email app, then go to the thank-you page. It has a big "open it again" button
         // in case the phone blocked the first try. It's also the clean conversion page for Google Ads.
-        try { sessionStorage.setItem('gng_lead', JSON.stringify({ href: lastHref, app: onPhone ? 'text' : 'email', first: val('name').split(/\s+/)[0].slice(0, 30) })); } catch (e) {}
+        try { sessionStorage.setItem('gng_lead', JSON.stringify({ href: lastHref, app: onPhone ? 'text' : 'email', first })); } catch (e) {}
         openApp(lastHref);
         setTimeout(() => { location.href = 'thank-you/'; }, 700);
       });
       const again = card.querySelector('[data-reopen]');
       if (again) again.addEventListener('click', () => { if (lastHref) openApp(lastHref); });
     });
+
+    // Send a neighbor (2026-10-07): phones open their own share menu (text, Messenger, email...).
+    // Computers copy the link. The link carries ?ref=neighbor, which picks "A friend or neighbor" on the form.
+    document.querySelectorAll('[data-refer]').forEach(b => b.addEventListener('click', async () => {
+      const url = new URL('./?ref=neighbor', location.href).href;
+      const text = "This is who does our yard. Grass 'n' Gardens in Richfield. Tell them I sent you and we both save 5%.";
+      const word = b.querySelector('[data-refer-word]');
+      if (navigator.share) {
+        try { await navigator.share({ title: "Grass 'n' Gardens", text, url }); track('referral_share', { method: 'share' }); } catch (e) {}
+        return;
+      }
+      try { await navigator.clipboard.writeText(text + ' ' + url); word.textContent = 'Link copied. Paste it to them.'; track('referral_share', { method: 'copy' }); }
+      catch (e) { location.href = 'sms:?&body=' + encodeURIComponent(text + ' ' + url); track('referral_share', { method: 'sms' }); }
+    }));
 
     // Calls, texts and emails count as leads too.
     document.addEventListener('click', e => {

@@ -2,7 +2,7 @@
 // Pages: always try the internet first (so a new push shows up right away), fall back to the saved copy,
 // then to app/offline.html. Photos, CSS and fonts: show the saved copy fast, refresh it in the background.
 // Bump VERSION if this file's rules change. Lives next to the homepage, so in the repo it covers the whole site.
-const VERSION = 'gng-v2'; // 2026-10-07: v2 so returning visitors get the faster CSS/JS right away
+const VERSION = 'gng-v4'; // 2026-10-07: v4 (late) = reviews.js + review zoom styles; v3 = site.js photo loading + green draft glow
 const PAGES = VERSION + '-pages';
 const FILES = VERSION + '-files';
 const CORE = ['./', 'app/offline.html', 'app/icon-192.png'];

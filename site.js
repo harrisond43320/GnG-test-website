@@ -12,11 +12,24 @@
   }), { threshold: .05, rootMargin: '0px 0px -16px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Slideshow photos 2-5 load after the page is ready, so the first photo and the words show up fast (2026-10-07)
-  const later = () => document.querySelectorAll('img[data-src]').forEach(i => {
-    if (i.dataset.srcset) i.srcset = i.dataset.srcset;
-    i.src = i.dataset.src; i.removeAttribute('data-src');
-  });
+  // Slideshow photos 2-5 wait until the page is ready (2026-10-07). Later the same day, more speed: each one loads
+  // ~3s before its turn, and only while the slideshow is on screen (same code as the homepage).
+  const later = () => {
+    const load = i => { if (!i.dataset.src) return; if (i.dataset.srcset) i.srcset = i.dataset.srcset; i.src = i.dataset.src; i.removeAttribute('data-src'); };
+    const imgs = [...document.querySelectorAll('img[data-src]')];
+    imgs.filter(i => !i.closest('.broll')).forEach(load);
+    const roll = imgs.filter(i => i.closest('.broll'));
+    if (!roll.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return; // still hero = photo 1 only
+    let on = true;
+    const check = () => {
+      const t = performance.now() / 1000;
+      roll.forEach(i => { if (on && t >= (parseFloat(getComputedStyle(i).animationDelay) || 0) - 3) load(i); });
+      if (!roll.some(i => i.dataset.src)) clearInterval(timer);
+    };
+    const timer = setInterval(check, 1000);
+    new IntersectionObserver(([e]) => { on = e.isIntersecting; if (on) check(); }).observe(roll[0].closest('.broll'));
+    check();
+  };
   if (document.readyState === 'complete') later(); else addEventListener('load', later);
 
   // Header shadow + phone/tablet menu

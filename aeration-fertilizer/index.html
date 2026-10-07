@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Spring Cleanup in Richfield, OH | Grass 'n' Gardens</title>
-  <meta name="description" content="Spring yard cleanup in Richfield, Ohio and nearby towns. Sticks and dead leaves gone, beds cleared and edged, all before your first mow." />
-  <meta property="og:title" content="Spring Cleanup in Richfield, OH | Grass 'n' Gardens" />
-  <meta property="og:description" content="Sticks and dead leaves gone before your first mow." />
+  <title>Lawn Aeration and Fertilizer in Richfield, OH | Grass 'n' Gardens</title>
+  <meta name="description" content="Core aeration, overseeding and fertilizer in Richfield, Ohio and nearby towns. Try the screwdriver test, or get a Free Soil Check with a photo from your own yard." />
+  <meta property="og:title" content="Lawn Aeration and Fertilizer in Richfield, OH | Grass 'n' Gardens" />
+  <meta property="og:description" content="Try the screwdriver test on your own lawn. Packed soil? We fix it every fall." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://gng-test-website.vercel.app/img/gallery-21.jpg" />
-  <meta property="og:url" content="https://gng-test-website.vercel.app/spring-cleanup/" />
-  <!-- 2026-10-07 SEO: one address per page (drops ?need= and ad tags), big photo previews allowed. Change the address with the domain. -->
-  <link rel="canonical" href="https://gng-test-website.vercel.app/spring-cleanup/" />
+  <meta property="og:image" content="https://gng-test-website.vercel.app/img/gbp-wide-stripes.jpg" />
+  <meta property="og:url" content="https://gng-test-website.vercel.app/aeration-fertilizer/" />
+  <link rel="canonical" href="https://gng-test-website.vercel.app/aeration-fertilizer/" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#141c17" />
@@ -21,7 +20,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <link rel="preload" as="image" href="../img/gallery-21.jpg" imagesrcset="../img/sm/gallery-21.jpg 900w, ../img/md/gallery-21.jpg 1200w, ../img/gallery-21.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/gbp-wide-stripes.jpg" imagesrcset="../img/sm/gbp-wide-stripes.jpg 900w, ../img/md/gbp-wide-stripes.jpg 1200w, ../img/gbp-wide-stripes.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -33,10 +32,10 @@
     "@graph": [
       {
         "@type": "Service",
-        "name": "Spring cleanup",
-        "serviceType": "Spring yard cleanup",
-        "url": "https://gng-test-website.vercel.app/spring-cleanup/",
-        "description": "Spring yard cleanup in Richfield, Ohio. Sticks and dead leaves gone, beds cleared and edged, before your first mow.",
+        "name": "Lawn aeration and fertilizer",
+        "serviceType": "Core aeration, overseeding and lawn fertilizer",
+        "url": "https://gng-test-website.vercel.app/aeration-fertilizer/",
+        "description": "Core aeration, overseeding and fertilizer for lawns in Richfield, Ohio and nearby towns, with a Free Soil Check.",
         "provider": { "@type": "LandscapingBusiness", "@id": "https://gng-test-website.vercel.app/#business", "name": "Grass 'n' Gardens", "telephone": "+1-440-667-9642", "address": { "@type": "PostalAddress", "addressLocality": "Richfield", "addressRegion": "OH", "addressCountry": "US" } },
         "areaServed": ["Richfield", "Bath", "Hinckley", "Granger", "Brecksville", "Broadview Heights", "North Royalton", "Akron", "Medina"]
       },
@@ -44,12 +43,40 @@
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gng-test-website.vercel.app/" },
-          { "@type": "ListItem", "position": 2, "name": "Spring cleanups", "item": "https://gng-test-website.vercel.app/spring-cleanup/" }
+          { "@type": "ListItem", "position": 2, "name": "Aeration and fertilizer", "item": "https://gng-test-website.vercel.app/aeration-fertilizer/" }
         ]
       }
     ]
   }
   </script>
+  <style>
+    /* 2026-10-07 (night) SOIL TEST: the "software" version of the Free Soil Check lead magnet
+       (lead-magnet-packages/aeration-screwdriver-test.md). Slide = how far the screwdriver went in.
+       6 inches or more = loose soil. 2-3 inches = packed. Only transform/opacity animate. */
+    .soil-grid { display: grid; gap: var(--s12); align-items: center; margin-top: var(--s8); }
+    @media (min-width: 960px) { .soil-grid { grid-template-columns: 1fr 1fr; gap: var(--s16); } }
+    .soil-steps { list-style: none; counter-reset: st; display: grid; gap: var(--s3); margin-top: var(--s6); }
+    .soil-steps li { counter-increment: st; display: grid; grid-template-columns: 36px 1fr; gap: var(--s3); align-items: start; font-size: 17px; line-height: 1.5; }
+    .soil-steps li::before { content: counter(st); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--pine); color: #fff; font-family: var(--font-display); font-size: 16px; }
+    .soil-card { background: #fff; border: 3px solid var(--ink); border-radius: 22px; box-shadow: 9px 9px 0 var(--lime); padding: var(--s6); }
+    .soil-pic { display: block; width: 100%; max-width: 340px; height: auto; margin: 0 auto; }
+    .soil-pic .sd { transition: transform .45s var(--spring); }
+    .soil-ctrl { margin-top: var(--s4); }
+    .soil-ctrl label { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s3); font-weight: 600; font-size: 16px; }
+    .soil-ctrl output { font-family: var(--font-display); font-size: 22px; color: var(--pine); }
+    .soil-ctrl input[type="range"] { width: 100%; height: 44px; margin-top: var(--s2); accent-color: var(--forest); cursor: pointer; }
+    .soil-ctrl input[type="range"]:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; border-radius: 8px; }
+    .soil-result { margin-top: var(--s4); padding: var(--s4); border-radius: 14px; background: var(--mist); border: 2px solid var(--line-light); }
+    .soil-result b { display: block; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 22px; line-height: 1.1; color: var(--pine); }
+    .soil-result p { margin-top: 6px; font-size: 16px; line-height: 1.5; color: var(--ink-muted); }
+    .soil-result[data-state="fail"] { background: #fff4e5; border-color: #f0c98a; }
+    .soil-result[data-state="mid"] { background: #fffbe6; border-color: #eadc8f; }
+    .soil-result[data-state="pass"] { background: #eef8ea; border-color: #b9dfa9; }
+    .soil-result .btns { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s3); }
+    .soil-result .btns[hidden] { display: none; }
+    .soil-note { margin-top: var(--s4); font-size: 14px; line-height: 1.5; color: var(--ink-muted); }
+    @media (prefers-reduced-motion: reduce) { .soil-pic .sd { transition: none; } }
+  </style>
 </head>
 <body>
 
@@ -75,10 +102,10 @@
             <div class="sub" id="sub-services">
               <a href="../lawn-mowing/"><span>Weekly mowing<small>Same crew, same day every week</small></span></a>
               <a href="../fall-cleanup/"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
-              <a href="../spring-cleanup/" aria-current="page"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
+              <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
               <a href="../yard-design/"><span>Yard design and planting<small>The right plant in the right spot</small></span></a>
-              <a href="../aeration-fertilizer/"><span>Aeration and fertilizer<small>Try the screwdriver test</small></span></a>
+              <a href="../aeration-fertilizer/" aria-current="page"><span>Aeration and fertilizer<small>Try the screwdriver test</small></span></a>
               <a href="../hoa-commercial/"><span>HOA and commercial<small>Common areas and business properties</small></span></a>
               <a href="../your-year/"><span>Build your year<small>See every month of your plan</small></span></a>
               <a class="sub-all" href="../#services">See every service</a>
@@ -109,10 +136,10 @@
           <li class="grp" aria-hidden="true">Services</li>
           <li class="sub-li"><a href="../lawn-mowing/">Weekly mowing</a></li>
           <li class="sub-li"><a href="../fall-cleanup/">Fall cleanups</a></li>
-          <li class="sub-li"><a href="../spring-cleanup/" aria-current="page">Spring cleanups</a></li>
+          <li class="sub-li"><a href="../spring-cleanup/">Spring cleanups</a></li>
           <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
           <li class="sub-li"><a href="../yard-design/">Yard design and planting</a></li>
-          <li class="sub-li"><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
+          <li class="sub-li"><a href="../aeration-fertilizer/" aria-current="page">Aeration and fertilizer</a></li>
           <li class="sub-li"><a href="../hoa-commercial/">HOA and commercial</a></li>
           <li class="sub-li"><a href="../your-year/">Build your year</a></li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
@@ -139,55 +166,122 @@
   <!-- /@header -->
 
   <main id="top">
-    <!-- 2026-10-07: new page. What's in a spring cleanup is my draft (class="draft"); Harrison to confirm the list. -->
+    <!-- 2026-10-07 (night): new page. Facts from lead-magnet-packages/aeration-screwdriver-test.md + Tavily (Ohio State
+         fall timing). New wording is class="draft". No weed control promises: the Ohio applicator license is still open. -->
     <header class="page-hero">
-      <div class="hero-photo"><img src="../img/gallery-21.jpg" srcset="../img/sm/gallery-21.jpg 900w, ../img/md/gallery-21.jpg 1200w, ../img/gallery-21.jpg 1600w" sizes="100vw" alt="Trimmed shrubs and fresh mulch along a front walkway" fetchpriority="high" style="--pos: center 60%" /></div>
+      <div class="hero-photo"><img src="../img/gbp-wide-stripes.jpg" srcset="../img/sm/gbp-wide-stripes.jpg 900w, ../img/md/gbp-wide-stripes.jpg 1200w, ../img/gbp-wide-stripes.jpg 1600w" sizes="100vw" alt="Thick green lawn mowed in wide stripes, with trees behind" fetchpriority="high" style="--pos: center 60%" /></div>
       <div class="wrap hero-in">
-        <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Spring cleanups</li></ol>
+        <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Aeration and fertilizer</li></ol>
         <p class="eyebrow reveal">Richfield, Ohio</p>
-        <h1 class="reveal d1">Spring cleanups</h1>
-        <p class="lede reveal d2 draft">Grass 'n' Gardens does spring cleanups in Richfield and nearby towns. Sticks and dead leaves gone before your first mow.</p>
+        <h1 class="reveal d1">Aeration and fertilizer</h1>
+        <p class="lede reveal d2 draft">Grass 'n' Gardens aerates, overseeds and feeds lawns in Richfield and nearby towns. Thicker grass and deeper roots, year after year.</p>
         <ul class="facts reveal d2">
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span class="draft">Done before your first mow</span></li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="draft">Beds ready for mulch</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span class="draft">Every fall, when it works best</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="draft">Free Soil Check with a photo</span></li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>5 checks before we drive</li>
         </ul>
         <div class="hero-ctas reveal d3">
-          <a class="btn btn-lime" href="../?need=spring#plan">Get my yard plan
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
+          <a class="btn btn-lime" href="#soil-test">Try the screwdriver test
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+          <a class="btn btn-ghost" href="../?need=soilcheck,aeration#plan">Get a Free Soil Check</a>
         </div>
       </div>
     </header>
 
-    <section class="light sec">
+    <!-- THE SOIL TEST (signature of this page) -->
+    <section class="light sec" id="soil-test">
       <div class="wrap">
-        <div class="split">
+        <div class="soil-grid">
           <div class="reveal">
-            <p class="eyebrow">What you get</p>
-            <h2 class="sec-h left" style="margin-top:12px"><span class="draft">Winter leaves a mess.</span> <b class="draft">We clear it out<span class="dot">.</span></b></h2>
-            <ul class="gets">
-              <li><b class="draft">Sticks and branches picked up</b><span class="draft">Off the lawn, so the first mow is clean.</span></li>
-              <li><b class="draft">Dead leaves cleared</b><span class="draft">Out of the beds and off the grass.</span></li>
-              <li><b class="draft">Bed edges cut fresh</b><span class="draft">So new mulch goes down clean.</span></li>
-              <li><b class="draft">Walks and drive blown clean</b><span class="draft">Nothing left on the hard spots.</span></li>
-              <li><b class="draft">Five checks before we drive</b><span class="draft">Same as every visit. <a href="../#five">See the 5 checks</a></span></li>
-            </ul>
+            <p class="eyebrow">Try it in your yard</p>
+            <h2 class="sec-h left" style="margin-top:12px"><span class="draft">Grab a screwdriver.</span> <b class="draft">Push it in<span class="dot">.</span></b></h2>
+            <ol class="soil-steps">
+              <li><span class="draft">Wait for a day after rain, or water a spot first. The test needs damp ground.</span></li>
+              <li><span class="draft">Push a long screwdriver straight down with one steady hand. Don't lean on it.</span></li>
+              <li><span class="draft">See how far it went. Try 3 spots: the front, the back, and where people walk.</span></li>
+            </ol>
+            <p class="soil-note draft">Healthy soil lets it slide in 6 inches or more. If it stops at 2 or 3 inches, the soil is packed down. It's a quick check, not a lab test. If you'd rather we do it, ask for a Free Soil Check. A crew member does it when we're on your street, and we text you the photos.</p>
           </div>
-          <figure class="split-photo reveal d1"><img src="../img/sm/gallery-14.jpg" alt="Fresh mulch bed with hostas along a ranch home" loading="lazy" /><figcaption>Spring beds</figcaption></figure>
+          <div class="soil-card reveal d1">
+            <svg class="soil-pic" viewBox="0 -232 320 486" role="img" aria-labelledby="soil-pic-t">
+              <title id="soil-pic-t">A screwdriver pushed into the ground next to a ruler. The green line is 6 inches deep.</title>
+              <!-- soil: 30px = 1 inch, ground at y=0 -->
+              <rect x="0" y="0" width="320" height="254" rx="0" fill="#6a513a" />
+              <rect x="0" y="90" width="320" height="164" fill="#5b4431" />
+              <rect x="0" y="180" width="320" height="74" fill="#4d3929" />
+              <g fill="#4a3626" opacity=".55"><circle cx="40" cy="40" r="5"/><circle cx="260" cy="70" r="4"/><circle cx="90" cy="140" r="6"/><circle cx="230" cy="200" r="5"/><circle cx="60" cy="220" r="4"/></g>
+              <!-- grass -->
+              <rect x="0" y="-10" width="320" height="12" fill="#3f8a3a" />
+              <path d="M6 -10l4-16 4 16M30 -10l5-20 3 20M58 -10l3-14 5 14M86 -10l4-18 4 18M200 -10l4-17 4 17M228 -10l5-21 3 21M256 -10l3-15 5 15M284 -10l4-19 4 19M308 -10l4-14 3 14" fill="#4fa046" />
+              <!-- 6 inch line -->
+              <line x1="0" y1="180" x2="320" y2="180" stroke="#66b84a" stroke-width="4" stroke-dasharray="10 7" />
+              <rect x="186" y="160" width="128" height="20" rx="4" fill="#66b84a" />
+              <text x="250" y="175" text-anchor="middle" font-family="Barlow, Arial, sans-serif" font-weight="700" font-size="13" fill="#1d4a22">6 IN. = HEALTHY</text>
+              <!-- ruler -->
+              <rect x="16" y="0" width="34" height="246" fill="#f6f7f4" stroke="#1d4a22" stroke-width="2" />
+              <g stroke="#1d4a22" stroke-width="2">
+                <line x1="16" y1="30" x2="32" y2="30"/><line x1="16" y1="60" x2="32" y2="60"/><line x1="16" y1="90" x2="32" y2="90"/><line x1="16" y1="120" x2="32" y2="120"/>
+                <line x1="16" y1="150" x2="32" y2="150"/><line x1="16" y1="180" x2="32" y2="180"/><line x1="16" y1="210" x2="32" y2="210"/><line x1="16" y1="240" x2="32" y2="240"/>
+              </g>
+              <g font-family="Barlow, Arial, sans-serif" font-weight="700" font-size="12" fill="#1d4a22" text-anchor="middle">
+                <text x="42" y="34">1</text><text x="42" y="64">2</text><text x="42" y="94">3</text><text x="42" y="124">4</text>
+                <text x="42" y="154">5</text><text x="42" y="184">6</text><text x="42" y="214">7</text><text x="42" y="244">8</text>
+              </g>
+              <!-- screwdriver: tip sits on the ground at 0 inches; the script moves it down 30px per inch -->
+              <g class="sd">
+                <rect x="153" y="-168" width="10" height="160" fill="#c9cfcb" stroke="#1d4a22" stroke-width="2" />
+                <path d="M153 -8 L163 -8 L158 2 Z" fill="#c9cfcb" stroke="#1d4a22" stroke-width="2" stroke-linejoin="round" />
+                <rect x="139" y="-228" width="38" height="64" rx="12" fill="#66b84a" stroke="#1d4a22" stroke-width="3" />
+                <line x1="151" y1="-218" x2="151" y2="-174" stroke="#1d4a22" stroke-width="2" opacity=".5" />
+                <line x1="165" y1="-218" x2="165" y2="-174" stroke="#1d4a22" stroke-width="2" opacity=".5" />
+              </g>
+            </svg>
+            <div class="soil-ctrl">
+              <label for="soil-depth"><span class="draft">How far did it go in?</span> <output for="soil-depth" id="soil-out">0 in.</output></label>
+              <input type="range" id="soil-depth" min="0" max="8" step="0.5" value="0" />
+            </div>
+            <div class="soil-result" data-state="idle" aria-live="polite">
+              <b data-r-title class="draft">Slide to your number</b>
+              <p data-r-text class="draft">Move the slider to how far your screwdriver went in.</p>
+              <div class="btns" data-r-btns hidden>
+                <a class="btn btn-lime" href="../?need=soilcheck,aeration#plan">Get a Free Soil Check
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="btn btn-ghost" data-r-sms href="sms:+14406679642">Text us your photo</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="sec">
       <div class="wrap">
-        <h2 class="sec-h reveal" style="text-align:center"><span class="draft">Getting started</span> <b class="draft">is easy<span class="dot">.</span></b></h2>
-        <ol class="how reveal d1" style="--n:4">
-          <li><b>Send your address.</b><span class="draft">Use the form or text us. Takes 30 seconds.</span></li>
-          <li><b>Harrison texts you today.</b><span>From his own phone.</span></li>
-          <li><b class="draft">We clean it up.</b><span class="draft">Before your first mow of the year.</span></li>
-          <li><b class="draft">Add fresh mulch if you want.</b><span class="draft">Most beds look best with mulch right after. <a href="../mulch-beds/">See mulch and beds</a></span></li>
+        <div class="split">
+          <div class="reveal">
+            <p class="eyebrow">What you get</p>
+            <h2 class="sec-h left" style="margin-top:12px"><span class="draft">Fertilized, aerated</span> <b class="draft">and overseeded every year<span class="dot">.</span></b></h2>
+            <ul class="gets">
+              <li><b class="draft">Core aeration</b><span class="draft">A machine pulls small plugs of dirt out of the lawn. Water, air and food can reach the roots again.</span></li>
+              <li><b class="draft">Overseeding</b><span class="draft">New grass seed goes down right after, so it lands in the holes and fills thin spots.</span></li>
+              <li><b class="draft">Fertilizer at the right time</b><span class="draft">Ohio State says fall is the most important time to feed grass here. We plan yours around that.</span></li>
+              <li><b class="draft">A photo from your own yard</b><span class="draft">The Free Soil Check shows you the problem before you pay for anything. If your yard passes, we tell you.</span></li>
+              <li><b class="draft">Five checks before we drive</b><span class="draft">Same as every visit. <a href="../#five">See the 5 checks</a></span></li>
+            </ul>
+          </div>
+          <figure class="split-photo reveal d1"><img src="../img/sm/gbp-big-yard.jpg" alt="Wide back lawn with fresh mowing stripes under a blue sky" loading="lazy" /><figcaption>Thick grass</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="light sec">
+      <div class="wrap">
+        <h2 class="sec-h reveal" style="text-align:center"><span class="draft">When it happens</span> <b class="draft">in Ohio<span class="dot">.</span></b></h2>
+        <ol class="how reveal d1" style="--n:3">
+          <li><b class="draft">Spring (April and May)</b><span class="draft">A light feeding as the grass wakes up. Aeration works in spring too, if it can't wait.</span></li>
+          <li><b class="draft">Early fall (late August and September)</b><span class="draft">The best time to aerate and overseed. The ground is warm, nights are cool, and new grass has time to root before winter.</span></li>
+          <li><b class="draft">Late fall (November)</b><span class="draft">One more feeding before the cold. The roots store it and the lawn greens up faster in spring.</span></li>
         </ol>
+        <p class="sec-intro reveal d2 draft" style="margin-inline:auto; text-align:center">Most yards around here sit on clay. Clay packs down hard, so we aerate every fall.</p>
       </div>
     </section>
 
@@ -203,26 +297,15 @@
       </div>
     </section>
 
-    <section class="sec coal">
-      <div class="wrap">
-        <h2 class="sec-h reveal"><span class="draft">Real yards, ready for spring.</span> <b>Our work<span class="dot">.</span></b></h2>
-        <div class="pics">
-          <figure class="reveal"><img src="../img/sm/gbp-white-house-beds.jpg" alt="Fresh mulch beds and shrubs along a white house" loading="lazy" /><figcaption>Beds</figcaption></figure>
-          <figure class="wide reveal d1"><img src="../img/sm/gbp-shrub-mulch.jpg" alt="Trimmed shrubs in fresh black mulch by a front porch" loading="lazy" /><figcaption>Front walk</figcaption></figure>
-          <figure class="reveal d2"><img src="../img/sm/gallery-20.jpg" alt="Round shrubs in a fresh mulch bed beside a lawn" loading="lazy" /><figcaption>Shrubs</figcaption></figure>
-        </div>
-      </div>
-    </section>
-
     <section class="light sec">
       <div class="wrap">
         <h2 class="stack reveal"><span class="thin">60 reviews.</span><span class="heavy">0 under five<span class="dot">.</span></span></h2>
         <div class="one-review">
           <article class="gshot reveal">
-            <header><span class="av" style="background:#d93025" aria-hidden="true">T</span><span class="who"><b>Tony A.</b><span>Google review</span></span>
+            <header><span class="av" style="background:#1e8e3e" aria-hidden="true">G</span><span class="who"><b>Geetha K.</b><span>Google review</span></span>
               <svg class="glogo" width="22" height="22" viewBox="0 0 48 48" aria-label="Google review"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.2 1.5-5 2.3-8.2 2.3-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg></header>
-            <div class="rate" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><span class="job">Repeat customer</span></div>
-            <p>I've used Grass n' Gardens for the last few years and have been consistently impressed with their efficiency, professionalism, and competitive pricing. Working with them has been seamless as I've been able to <mark>get a quote, agreed price, and had the work scheduled and done in a matter of days.</mark> Highly recommend this company!</p>
+            <div class="rate" role="img" aria-label="5 out of 5 stars"><span aria-hidden="true" style="color:#fbbc04; letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="job">Weekly mowing</span></div>
+            <p>Our lawn looks great this season. Harrison has been doing a great job cutting our grass. They are reliable and very punctual. Edging looks good. Overall we are very happy with the service and would recommend them highly. <mark>Definitely want them taking care of our lawn in the future too.</mark></p>
           </article>
         </div>
         <p style="text-align:center; margin-top: var(--s8)"><a class="btn btn-dark" href="../why-gng/">Why customers pick us
@@ -234,27 +317,35 @@
       <div class="wrap faq-grid">
         <div class="faq-side reveal">
           <p class="eyebrow">Questions</p>
-          <h2 id="faq-title"><span class="draft">Spring questions,</span> <b class="draft">straight answers<span class="dot">.</span></b></h2>
+          <h2 id="faq-title"><span class="draft">Lawn questions,</span> <b class="draft">straight answers<span class="dot">.</span></b></h2>
           <p class="draft">Don't see yours? Text Harrison. He texts back from his own phone.</p>
           <a class="btn btn-dark" href="sms:+14406679642">Text Harrison
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
         <div class="faq-list reveal d1">
           <details class="qa" open>
-            <summary><h3 class="draft">When should I get a spring cleanup?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">Before the first mow. Grass 'n' Gardens starts mowing April 1, so March is a good time to book your spring cleanup.</p></div>
+            <summary><h3 class="draft">When is the best time to aerate a lawn in Ohio?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">Early fall, from late August through September. Grass 'n' Gardens aerates and overseeds lawns in Richfield then, because new seed has time to root before winter. Spring is second best.</p></div>
           </details>
           <details class="qa">
-            <summary><h3 class="draft">Can you lay mulch at the same time?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">Yes. Tell us when you book, and we'll plan both. <a href="../mulch-beds/">See mulch and beds</a></p></div>
+            <summary><h3 class="draft">What is the Free Soil Check?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">Text us your address. When a crew is on your street that week, they push a screwdriver into your lawn in 3 spots and text you the photos next to a 6-inch mark. It takes about 5 minutes and you don't have to be home. If your yard passes, we tell you. <a href="../?need=soilcheck#plan">Get a Free Soil Check</a></p></div>
           </details>
           <details class="qa">
-            <summary><h3 class="draft">Can my spring cleanup go on my yearly plan?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <summary><h3 class="draft">Does aeration leave a mess?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">It leaves small plugs of dirt on the lawn. They break down on their own after a few mows and a little rain. We blow them off your drive and walks before we leave.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3 class="draft">Do I have to be home?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">No. Just tell us about any sprinkler heads or buried lines so we can mark them first.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3 class="draft">Can aeration and fertilizer go on my yearly plan?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
             <div class="qa-a"><p><span class="draft">Yes.</span> It all goes on one plan for the whole year.</p></div>
           </details>
           <details class="qa">
-            <summary><h3 class="draft">How much does a spring cleanup cost?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">It depends on your yard. Send us your address and Harrison texts you the price today. <a href="../?need=spring#plan">Get my yard plan</a></p></div>
+            <summary><h3 class="draft">How much does aeration cost?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">It depends on how big your lawn is. Send us your address and Harrison texts you the price today. <a href="../?need=aeration#plan">Get my yard plan</a></p></div>
           </details>
         </div>
       </div>
@@ -267,7 +358,7 @@
           <a class="svc reveal" href="../lawn-mowing/"><img src="../img/sm/gbp-backyard-stripes.jpg" alt="Backyard mowed in straight stripes beside a wooden playset" loading="lazy" /><div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
           <a class="svc reveal d1" href="../fall-cleanup/"><span class="tag">Fall Pass</span><img src="../img/sm/leaf-after.jpg" alt="Beds and stone walk cleared of leaves after a fall cleanup" loading="lazy" /><div class="svc-body"><h3>Fall cleanups</h3><p>One price for the whole leaf season. We keep coming back till it's clear.</p><span class="go">See the Fall Pass <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
           <a class="svc reveal d2" href="../mulch-beds/"><img src="../img/sm/gbp-curved-bed.jpg" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" /><div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-          <a class="svc reveal d3" href="../yard-design/"><span class="tag">Custom</span><img src="../img/sm/gbp-planter-boxes.jpg" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" /><div class="svc-body"><h3>Yard design</h3><p class="draft">The right plant in the right spot. Planned before we plant.</p><span class="go">Get a custom design <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal d3" href="../your-year/"><span class="tag">New</span><img src="../img/sm/gbp-front-bed.jpg" alt="Long fresh mulch bed with shrubs and a red maple along the front of a house" loading="lazy" /><div class="svc-body"><h3 class="draft">Build your year</h3><p class="draft">Pick what you want done. See every month of your year on one page.</p><span class="go">Build mine <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
         </div>
       </div>
     </section>
@@ -278,7 +369,7 @@
         <p class="lede reveal d1">I'll walk your yard and write out your whole year. Takes 20 minutes and you don't have to be home. You get it in a day and it's yours to keep, even if you stay with the guy you have now.</p>
         <a class="big-phone reveal d2" href="tel:+14406679642">(440) 667-9642</a>
         <div class="center reveal d3">
-          <a class="btn btn-lime" href="../?need=spring#plan">Get my yard plan
+          <a class="btn btn-lime" href="../?need=aeration#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
         </div>
@@ -309,10 +400,10 @@
           <ul>
             <li><a href="../lawn-mowing/">Weekly mowing</a></li>
             <li><a href="../fall-cleanup/">Fall cleanups</a></li>
-            <li><a href="../spring-cleanup/" aria-current="page">Spring cleanups</a></li>
+            <li><a href="../spring-cleanup/">Spring cleanups</a></li>
             <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
             <li><a href="../yard-design/">Yard design and planting</a></li>
-            <li><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
+            <li><a href="../aeration-fertilizer/" aria-current="page">Aeration and fertilizer</a></li>
             <li><a href="../hoa-commercial/">HOA and commercial</a></li>
           </ul>
         </div>
@@ -402,6 +493,40 @@
 
   <script src="../reviews.js" defer></script>
   <script src="../site.js" defer></script>
+  <script>
+    // Soil test: 30px per inch in the drawing. Pushes "soil_test" to dataLayer once the person lets go of the slider.
+    (() => {
+      const range = document.getElementById('soil-depth');
+      if (!range) return;
+      const out = document.getElementById('soil-out');
+      const sd = document.querySelector('.soil-pic .sd');
+      const box = document.querySelector('.soil-result');
+      const title = box.querySelector('[data-r-title]');
+      const text = box.querySelector('[data-r-text]');
+      const btns = box.querySelector('[data-r-btns]');
+      const sms = box.querySelector('[data-r-sms]');
+      const say = {
+        idle: ['Slide to your number', 'Move the slider to how far your screwdriver went in.'],
+        fail: ['Packed tight', "Water and food can't get down to the roots, so the grass stays thin and browns first in summer. Aeration fixes this."],
+        mid: ['A little packed', 'Your grass is working harder than it should. Aeration and overseeding this fall would help.'],
+        pass: ['Your soil is loose', "Nice. That's healthy. If your grass still looks thin, text us a photo and we'll tell you what we see."]
+      };
+      const show = () => {
+        const d = parseFloat(range.value);
+        out.textContent = (d % 1 ? d.toFixed(1) : d) + ' in.';
+        sd.style.transform = 'translateY(' + (d * 30) + 'px)';
+        const s = d === 0 ? 'idle' : d < 3.5 ? 'fail' : d < 6 ? 'mid' : 'pass';
+        box.dataset.state = s;
+        title.textContent = say[s][0];
+        text.textContent = say[s][1];
+        btns.hidden = s === 'idle';
+        sms.href = 'sms:+14406679642?&body=' + encodeURIComponent('Hi Harrison, I did the screwdriver test. It went in ' + out.textContent.replace(' in.', ' inches') + '. My address is ');
+      };
+      range.addEventListener('input', show);
+      range.addEventListener('change', () => { (window.dataLayer = window.dataLayer || []).push({ event: 'soil_test', depth: parseFloat(range.value) }); });
+      show();
+    })();
+  </script>
   <!-- FAQ for Google / AI answers. Built from the FAQ section by websites/faq-jsonld.ps1; rebuild after editing the FAQ. -->
   <script type="application/ld+json" id="faq-ld">
 {
@@ -410,23 +535,39 @@
     "mainEntity":  [
                        {
                            "@type":  "Question",
-                           "name":  "When should I get a spring cleanup?",
+                           "name":  "When is the best time to aerate a lawn in Ohio?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "Before the first mow. Grass \u0027n\u0027 Gardens starts mowing April 1, so March is a good time to book your spring cleanup."
+                                                  "text":  "Early fall, from late August through September. Grass \u0027n\u0027 Gardens aerates and overseeds lawns in Richfield then, because new seed has time to root before winter. Spring is second best."
                                               }
                        },
                        {
                            "@type":  "Question",
-                           "name":  "Can you lay mulch at the same time?",
+                           "name":  "What is the Free Soil Check?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "Yes. Tell us when you book, and we\u0027ll plan both."
+                                                  "text":  "Text us your address. When a crew is on your street that week, they push a screwdriver into your lawn in 3 spots and text you the photos next to a 6-inch mark. It takes about 5 minutes and you don\u0027t have to be home. If your yard passes, we tell you."
                                               }
                        },
                        {
                            "@type":  "Question",
-                           "name":  "Can my spring cleanup go on my yearly plan?",
+                           "name":  "Does aeration leave a mess?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "It leaves small plugs of dirt on the lawn. They break down on their own after a few mows and a little rain. We blow them off your drive and walks before we leave."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Do I have to be home?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "No. Just tell us about any sprinkler heads or buried lines so we can mark them first."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Can aeration and fertilizer go on my yearly plan?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
                                                   "text":  "Yes. It all goes on one plan for the whole year."
@@ -434,10 +575,10 @@
                        },
                        {
                            "@type":  "Question",
-                           "name":  "How much does a spring cleanup cost?",
+                           "name":  "How much does aeration cost?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "It depends on your yard. Send us your address and Harrison texts you the price today."
+                                                  "text":  "It depends on how big your lawn is. Send us your address and Harrison texts you the price today."
                                               }
                        }
                    ]

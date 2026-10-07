@@ -49,7 +49,7 @@
     .eyebrow { font-weight: 700; font-size: 13px; line-height: 1; letter-spacing: .22em; text-transform: uppercase; }
     .dot { color: var(--lime); }
     /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
-    .show-drafts .draft { text-shadow: 0 0 8px rgba(232, 180, 40, .5) !important; }
+    .show-drafts .draft { text-shadow: 0 0 6px rgba(102, 184, 74, .38) !important; }
     .sec-h { font-family: var(--font-body); font-weight: 600; font-size: var(--fs-lead); line-height: 1.2; color: rgba(255,255,255,.88); }
     .sec-h b { display: block; margin-top: 6px; font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h2); line-height: 1; letter-spacing: .01em; text-transform: uppercase; color: #fff; }
 
@@ -159,6 +159,9 @@
     .done-card .alt a:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
     /* no saved message (someone opened this page on its own): show the plain ways to reach us */
     [data-state="none"] .if-msg, [data-state="msg"] .if-none { display: none; }
+    /* 2026-10-07: "sent" = the form service already delivered it */
+    body:not([data-state="sent"]) .if-sent, [data-state="sent"] .if-msg, [data-state="sent"] .if-none { display: none; }
+    [data-state="sent"] .done-card .tag { display: none; }
 
     /* ---------- what happens next ---------- */
     .after { padding: var(--s16) 0 var(--s24); }
@@ -244,11 +247,19 @@
     <!-- ALMOST DONE. The form saved a ready-made text/email in this browser tab (sessionStorage, never the URL).
          This page gives one big button to open it again, because some phones block the first try. -->
     <section class="ty">
-      <div class="ty-photo"><img src="../img/sm/gallery-12.jpg" srcset="../img/sm/gallery-12.jpg 900w, ../img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" /></div>
+      <div class="ty-photo"><img src="../img/sm/gallery-12.jpg" srcset="../img/sm/gallery-12.jpg 900w, ../img/md/gallery-12.jpg 1200w, ../img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" /></div>
       <div class="wrap ty-in">
         <p class="eyebrow rise draft" data-thanks>Thanks!</p>
         <h1 class="rise d1 if-msg draft">Almost done!</h1>
         <h1 class="rise d1 if-none draft">Let's get you a yard plan.</h1>
+        <h1 class="rise d1 if-sent draft">Got it!</h1>
+
+        <!-- 2026-10-07: the form sent it by itself (form service on), so step 2 is already done -->
+        <ol class="track rise d2 if-sent" aria-label="Your yard plan, step 3 of 3">
+          <li class="done"><span class="pip" aria-hidden="true">&#10003;</span><span class="draft">Filled it out</span></li>
+          <li class="done"><span class="pip" aria-hidden="true">&#10003;</span><span class="draft">Sent to Harrison</span></li>
+          <li class="now" aria-current="step"><span class="pip" aria-hidden="true">3</span><span class="draft">Harrison texts you back</span></li>
+        </ol>
 
         <ol class="track rise d2 if-msg" aria-label="Your yard plan, step 2 of 3">
           <li class="done"><span class="pip" aria-hidden="true">&#10003;</span><span class="draft">Filled it out</span></li>
@@ -265,6 +276,11 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
               <span>Open my <span data-app>text</span><span class="wide-only"> to Harrison</span></span></button>
             <p class="alt draft">Already sent it? You're all set. Still stuck? <a href="sms:+14406679642">Text (440) 667-9642</a> or <a href="mailto:grassngardens4u@gmail.com">email us</a>.</p>
+          </div>
+          <div class="if-sent">
+            <h2 class="draft">Harrison has it.</h2>
+            <p class="draft">He texts you back today from his own phone. You don't have to be home when we look at your yard.</p>
+            <a class="btn btn-lime btn-big" href="tel:+14406679642">Want it faster? Call (440) 667-9642</a>
           </div>
           <div class="if-none">
             <h2 class="draft">Text Harrison your address.</h2>
@@ -321,7 +337,7 @@
             <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a></li>
             <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg></a></li>
             <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener" aria-label="Nextdoor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg></a></li>
-            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
+            <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
           </ul>
         </div>
         <div>
@@ -332,6 +348,8 @@
             <li><a href="../spring-cleanup/">Spring cleanups</a></li>
             <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
             <li><a href="../yard-design/">Yard design and planting</a></li>
+            <li><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
+            <li><a href="../hoa-commercial/">HOA and commercial</a></li>
           </ul>
         </div>
         <div>
@@ -343,6 +361,9 @@
             <li><a href="../#about">Meet Harrison</a></li>
             <li><a href="../#area">Where we work</a></li>
             <li><a href="../#faq">Questions</a></li>
+            <li><a href="../your-year/">Build your year</a></li>
+            <li><a href="../refer/">Send a neighbor (5% off)</a></li>
+            <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
         </div>
         <div>
@@ -351,13 +372,14 @@
             <li><a href="tel:+14406679642">Call (440) 667-9642</a></li>
             <li><a href="sms:+14406679642">Text (440) 667-9642</a></li>
             <li><a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a></li>
-            <li><a href="https://share.google/uGzNJkLJjozxgZWSS" target="_blank" rel="noopener">Google reviews</a></li>
+            <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">Google reviews</a></li>
           </ul>
         </div>
       </div>
       <div class="foot">
         <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
+        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a></p>
         <button class="app-get" type="button" data-app-get hidden>
           <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
@@ -381,6 +403,37 @@
     <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
     <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
   </div>
+
+  <script>
+  // VISITOR STATS (2026-10-07). Runs on the live site only, never on localhost.
+  // 1) Vercel Web Analytics: visits, which pages, where people came from, phone or computer.
+  //    Harrison turns it on once: vercel.com -> gng-test-website -> Analytics -> Enable. Free plan = visits.
+  //    The events below (calls, texts, form sends, FAQ opens) show there on Vercel Pro only.
+  // 2) Google Analytics 4 (optional, free, shows the events): paste the G-XXXXXXX id into GA_ID.
+  (() => {
+    const GA_ID = '';
+    if (location.protocol !== 'https:' || /^(localhost|127\.|\[::1\])/.test(location.hostname)) return;
+    const add = src => { const s = document.createElement('script'); s.defer = true; s.src = src; document.head.appendChild(s); };
+    window.dataLayer = window.dataLayer || [];
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    add('/_vercel/insights/script.js');
+    if (GA_ID) {
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date()); window.gtag('config', GA_ID);
+      add('https://www.googletagmanager.com/gtag/js?id=' + GA_ID);
+    }
+    // Every event the pages log in dataLayer also goes to the stats tools (past ones too).
+    const send = o => {
+      if (!o || typeof o.event !== 'string' || o.event.startsWith('gtm')) return;
+      const { event, ...data } = o;
+      window.va('event', { name: event, data });
+      if (GA_ID) window.gtag('event', event, data);
+    };
+    window.dataLayer.slice().forEach(send);
+    const push = window.dataLayer.push.bind(window.dataLayer);
+    window.dataLayer.push = (...items) => { items.forEach(send); return push(...items); };
+  })();
+  </script>
   <!-- /@footer -->
 
   <script>
@@ -392,8 +445,10 @@
     let lead = null;
     try { lead = JSON.parse(sessionStorage.getItem('gng_lead') || 'null'); } catch (e) {}
     const ok = lead && /^(sms|mailto):/.test(lead.href || '');
-    document.body.dataset.state = ok ? 'msg' : 'none';
-    track('thank_you_view', { has_message: !!ok });
+    const sent = !!(lead && lead.sent); // 2026-10-07: the form service already delivered it
+    document.body.dataset.state = sent ? 'sent' : ok ? 'msg' : 'none';
+    track('thank_you_view', { has_message: !!ok, sent });
+    if (sent && lead.first) document.querySelector('[data-thanks]').textContent = 'Thanks, ' + lead.first + '.';
 
     if (ok) {
       const app = lead.app === 'email' ? 'email' : 'text';

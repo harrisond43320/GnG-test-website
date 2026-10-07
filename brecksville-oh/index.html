@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Fall Leaf Cleanup in Richfield, OH | The Fall Pass | Grass 'n' Gardens</title>
-  <meta name="description" content="Fall leaf cleanup in Richfield, Ohio and nearby towns. The Fall Pass is one price for the whole leaf season. We keep coming back till it's clear, through the end of November." />
-  <meta property="og:title" content="Fall Leaf Cleanup in Richfield, OH | The Fall Pass" />
-  <meta property="og:description" content="One price for the whole leaf season. We keep coming back till it's clear." />
+  <title>Lawn Care in Brecksville, OH | Grass 'n' Gardens</title>
+  <meta name="description" content="Lawn mowing, cleanups, mulch, aeration and fertilizer in Brecksville, Ohio. Grass 'n' Gardens takes care of 8 Brecksville yards, with 60 five-star Google reviews." />
+  <meta property="og:title" content="Lawn Care in Brecksville, OH | Grass 'n' Gardens" />
+  <meta property="og:description" content="Same crew, same day every week. Brecksville yards from a Richfield crew." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://gng-test-website.vercel.app/img/leaf-after.jpg" />
-  <meta property="og:url" content="https://gng-test-website.vercel.app/fall-cleanup/" />
-  <!-- 2026-10-07 SEO: one address per page (drops ?need= and ad tags), big photo previews allowed. Change the address with the domain. -->
-  <link rel="canonical" href="https://gng-test-website.vercel.app/fall-cleanup/" />
+  <meta property="og:image" content="https://gng-test-website.vercel.app/img/gbp-white-house-beds.jpg" />
+  <meta property="og:url" content="https://gng-test-website.vercel.app/brecksville-oh/" />
+  <link rel="canonical" href="https://gng-test-website.vercel.app/brecksville-oh/" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#141c17" />
@@ -21,7 +20,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <link rel="preload" as="image" href="../img/leaf-after.jpg" imagesrcset="../img/sm/leaf-after.jpg 900w, ../img/leaf-after.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/gbp-white-house-beds.jpg" imagesrcset="../img/sm/gbp-white-house-beds.jpg 900w, ../img/md/gbp-white-house-beds.jpg 1200w, ../img/gbp-white-house-beds.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -33,23 +32,49 @@
     "@graph": [
       {
         "@type": "Service",
-        "name": "Fall cleanup and the Fall Pass",
-        "serviceType": "Leaf removal and fall cleanup",
-        "url": "https://gng-test-website.vercel.app/fall-cleanup/",
-        "description": "Fall leaf cleanup in Richfield, Ohio. The Fall Pass is one price for the whole leaf season. We keep coming back till it's clear, through the end of November.",
+        "name": "Lawn care in Brecksville, Ohio",
+        "serviceType": "Lawn mowing, cleanups, mulch, aeration and fertilizer",
+        "url": "https://gng-test-website.vercel.app/brecksville-oh/",
+        "description": "Lawn mowing, cleanups, mulch, aeration and fertilizer in Brecksville, Ohio. Grass 'n' Gardens takes care of 8 Brecksville yards, with 60 five-star Google reviews.",
         "provider": { "@type": "LandscapingBusiness", "@id": "https://gng-test-website.vercel.app/#business", "name": "Grass 'n' Gardens", "telephone": "+1-440-667-9642", "address": { "@type": "PostalAddress", "addressLocality": "Richfield", "addressRegion": "OH", "addressCountry": "US" } },
-        "areaServed": ["Richfield", "Bath", "Hinckley", "Granger", "Brecksville", "Broadview Heights", "North Royalton", "Akron", "Medina"]
+        "areaServed": { "@type": "City", "name": "Brecksville", "containedInPlace": { "@type": "State", "name": "Ohio" } }
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gng-test-website.vercel.app/" },
-          { "@type": "ListItem", "position": 2, "name": "Fall cleanups", "item": "https://gng-test-website.vercel.app/fall-cleanup/" }
+          { "@type": "ListItem", "position": 2, "name": "Where we work", "item": "https://gng-test-website.vercel.app/#area" },
+          { "@type": "ListItem", "position": 3, "name": "Brecksville", "item": "https://gng-test-website.vercel.app/brecksville-oh/" }
         ]
       }
     ]
   }
   </script>
+  <style>
+    /* 2026-10-07 (night) TOWN PAGE. Research (Tavily): town pages only rank with real local content, so each one has
+       the real yard count from the client list and the town's own leaf and yard waste rules (linked to the source). */
+    .count-row { display: grid; gap: var(--s3); margin-top: var(--s12); }
+    .count-row { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 600px) { .count { padding: var(--s4) var(--s2); } .count b { font-size: 34px; } .count span { font-size: 13px; line-height: 1.3; } }
+    .count { padding: var(--s6); border-radius: 16px; background: #fff; border: 2px solid var(--line-light); text-align: center; }
+    .count b { display: block; font-family: var(--font-display); font-weight: 400; font-size: clamp(40px, 8vw, 56px); line-height: 1; color: var(--pine); }
+    .count span { display: block; margin-top: var(--s2); font-size: 16px; font-weight: 600; color: var(--ink-muted); }
+    .local { display: grid; gap: var(--s3); margin-top: var(--s8); list-style: none; }
+    @media (min-width: 860px) { .local { grid-template-columns: 1fr 1fr; } }
+    .local li { padding: var(--s6); border-radius: 16px; background: rgba(255,255,255,.06); border: 2px solid var(--line-dark); }
+    .local b { display: block; font-size: 19px; line-height: 1.3; color: #fff; }
+    .local span { display: block; margin-top: 6px; font-size: 16px; line-height: 1.5; color: rgba(255,255,255,.78); }
+    .src { margin-top: var(--s6); font-size: 14px; color: rgba(255,255,255,.65); }
+    .src a { color: var(--jersey-blue); font-weight: 600; padding: 2px 4px; border-radius: 4px; }
+    .src a:hover { background: rgba(167,203,224,.15); }
+    .src a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+    .near { display: flex; flex-wrap: wrap; gap: var(--s2); justify-content: center; margin-top: var(--s6); list-style: none; }
+    .near a, .near span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid var(--line-light); background: #fff; color: var(--pine); font-weight: 600; text-decoration: none; transition: transform .3s var(--spring), border-color .2s var(--ease-out); }
+    .near span { color: var(--ink-muted); }
+    .near a:hover { border-color: var(--forest); }
+    .near a:active { transform: scale(.95); }
+    .near a:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
+  </style>
 </head>
 <body>
 
@@ -74,7 +99,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
             <div class="sub" id="sub-services">
               <a href="../lawn-mowing/"><span>Weekly mowing<small>Same crew, same day every week</small></span></a>
-              <a href="../fall-cleanup/" aria-current="page"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
+              <a href="../fall-cleanup/"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
               <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
               <a href="../yard-design/"><span>Yard design and planting<small>The right plant in the right spot</small></span></a>
@@ -108,7 +133,7 @@
           <li><a href="../">Home</a></li>
           <li class="grp" aria-hidden="true">Services</li>
           <li class="sub-li"><a href="../lawn-mowing/">Weekly mowing</a></li>
-          <li class="sub-li"><a href="../fall-cleanup/" aria-current="page">Fall cleanups</a></li>
+          <li class="sub-li"><a href="../fall-cleanup/">Fall cleanups</a></li>
           <li class="sub-li"><a href="../spring-cleanup/">Spring cleanups</a></li>
           <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
           <li class="sub-li"><a href="../yard-design/">Yard design and planting</a></li>
@@ -139,83 +164,67 @@
   <!-- /@header -->
 
   <main id="top">
-    <!-- 2026-10-07: new page. Fall Pass lines come from the approved copy bank (call script + texts, 2026-10-01).
-         Anything reworded or new is class="draft" (see with ?drafts). No prices on marketing pages. -->
+    <!-- 2026-10-07 (night): new town page, made by websites/make-towns.ps1 from _partials/town-template.html (edit those, not this page). The yard count is from the
+         client list (Clients tab, checked 2026-10-02). Town rules are from the town's own website, read 2026-10-07. -->
     <header class="page-hero">
-      <div class="hero-photo"><img src="../img/leaf-after.jpg" srcset="../img/sm/leaf-after.jpg 900w, ../img/leaf-after.jpg 1600w" sizes="100vw" alt="Beds and a stone walk cleared of leaves after a fall cleanup" fetchpriority="high" style="--pos: center 55%" /></div>
+      <div class="hero-photo"><img src="../img/gbp-white-house-beds.jpg" srcset="../img/sm/gbp-white-house-beds.jpg 900w, ../img/md/gbp-white-house-beds.jpg 1200w, ../img/gbp-white-house-beds.jpg 1600w" sizes="100vw" alt="Fresh mulch beds and shrubs along a white house" fetchpriority="high" style="--pos: center 60%" /></div>
       <div class="wrap hero-in">
-        <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Fall cleanups</li></ol>
-        <p class="eyebrow reveal">Richfield, Ohio</p>
-        <h1 class="reveal d1">Fall cleanups</h1>
-        <p class="lede reveal d2"><span class="draft">Grass 'n' Gardens clears leaves in Richfield and nearby towns. With the Fall Pass, you pay</span> one price for the whole leaf season. We keep coming back till it's clear.</p>
+        <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#area">Where we work</a></li><li aria-current="page">Brecksville</li></ol>
+        <p class="eyebrow reveal">Cuyahoga County, Ohio</p>
+        <h1 class="reveal d1">Lawn care in Brecksville</h1>
+        <p class="lede reveal d2 draft">Grass 'n' Gardens takes care of 8 yards in Brecksville. We come up from Richfield, just to the south.</p>
         <ul class="facts reveal d2">
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>One price, whole season</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Till it's clear, through Nov 30</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="draft">Cancel after visit 1, get the rest back</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="draft">8 Brecksville yards</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Same crew, same day every week</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>5 checks before we drive</li>
         </ul>
         <div class="hero-ctas reveal d3">
-          <a class="btn btn-lime" href="../?need=leaves#plan">Get my Fall Pass price
+          <a class="btn btn-lime" href="../#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
         </div>
       </div>
     </header>
 
-    <!-- ONE VISIT vs THE FALL PASS (no prices) -->
     <section class="light sec">
       <div class="wrap">
-        <h2 class="sec-h reveal" style="text-align:center"><span class="draft">Leaves fall for six weeks.</span> <b class="draft">One visit isn't enough<span class="dot">.</span></b></h2>
-        <div class="pair reveal d1">
-          <article>
-            <span class="pill draft">One visit</span>
-            <h3 class="draft">The usual cleanup</h3>
-            <ul>
-              <li><i class="no" aria-label="No"></i><span class="draft">We come once.</span></li>
-              <li><i class="no" aria-label="No"></i>Two weeks later your yard's covered again.</li>
-              <li><i class="no" aria-label="No"></i><span class="draft">You call and wait for the next trip.</span></li>
-              <li><i class="no" aria-label="No"></i><span class="draft">You pay for every trip.</span></li>
-            </ul>
-          </article>
-          <article class="us">
-            <span class="pill">The Fall Pass</span>
-            <h3>One price for the whole leaf season</h3>
-            <ul>
-              <li><i class="yes" aria-label="Yes"></i>We keep coming back till it's clear, all the way to the end of November.</li>
-              <li><i class="yes" aria-label="Yes"></i>If you're not happy after the first visit, you can cancel and get the rest back.</li>
-              <li><i class="yes" aria-label="Yes"></i><span class="draft">Pay it all up front and save another 5%.</span></li>
-              <li><i class="yes" aria-label="Yes"></i><span class="draft">Snow shuts it down? Your last trip moves to your spring cleanup.</span></li>
-              <li><i class="yes" aria-label="Yes"></i><span class="draft">Five checks before we drive, every visit.</span></li>
-            </ul>
-            <a class="btn btn-lime" href="../?need=leaves#plan">Get my Fall Pass price
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </article>
-        </div>
-        <div class="tip reveal">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-          <p class="draft"><b>Why it matters</b>Ohio State says leaves shouldn't sit on grass for more than two weeks. The grass under them gets weak and yellow.</p>
+        <h2 class="sec-h reveal" style="text-align:center"><span class="draft">Already on</span> <b class="draft">your streets<span class="dot">.</span></b></h2>
+        <p class="sec-intro reveal d1 draft" style="margin-inline:auto; text-align:center">We take care of 8 yards in Brecksville today. It's right next to Richfield, where our crew starts every morning.</p>
+        <div class="count-row reveal d1">
+          <div class="count"><b>8</b><span class="draft">Brecksville yards on our list</span></div>
+          <div class="count"><b>108</b><span>Homes served in 2026</span></div>
+          <div class="count"><b>5.0</b><span>From 60 Google reviews</span></div>
         </div>
       </div>
     </section>
 
-    <!-- BEFORE / AFTER + what a visit gets -->
     <section class="sec coal">
       <div class="wrap">
-        <h2 class="sec-h reveal"><span class="draft">One visit, start to finish.</span> <b>Before and after<span class="dot">.</span></b></h2>
-        <div class="ba reveal">
-          <figure class="ba-shot"><img src="../img/sm/leaf-before.jpg" alt="Before: a bed full of leaves and growth beside a stone walk" loading="lazy" /><figcaption>Before</figcaption></figure>
-          <figure class="ba-shot after"><img src="../img/sm/leaf-after.jpg" alt="After: the same beds cleared, fresh and edged" loading="lazy" /><figcaption>After</figcaption></figure>
-          <p class="ba-cap"><b>Fall cleanup.</b> One visit. Beds cleared, leaves gone, walk blown clean.</p>
-        </div>
-        <ul class="gets reveal" style="max-width: 760px">
-          <li><b class="draft">Leaves off the lawn</b><span class="draft">So the grass gets light before winter.</span></li>
-          <li><b class="draft">Beds cleared out</b><span class="draft">Leaves pulled out from around the plants.</span></li>
-          <li><b class="draft">Walks and drive blown clean</b><span class="draft">Nothing left on the hard spots.</span></li>
-          <li><b class="draft">Five checks before we drive</b><span class="draft">Same as every visit. <a href="../#five">See the 5 checks</a></span></li>
+        <p class="eyebrow reveal">Good to know</p>
+        <h2 class="sec-h reveal" style="margin-top:12px"><span class="draft">Brecksville leaves</span> <b class="draft">and yard waste<span class="dot">.</span></b></h2>
+        <p class="sec-intro reveal d1 draft">Brecksville vacuums leaves from the curb every fall. Here's what the city asks for.</p>
+        <ul class="local reveal d1">
+          <li><b class="draft">Leaf pickup runs October through November</b><span class="draft">It starts the first week of October. There's no daily schedule, so the truck comes when it gets to your street.</span></li>
+          <li><b class="draft">Rake to the street, not into it</b><span class="draft">Keep piles within 6 feet of the curb, and keep branches and twigs out of them.</span></li>
+          <li><b class="draft">Snow stops the leaf vacuum</b><span class="draft">When the snowplows are out, leaf pickup stops.</span></li>
+          <li><b class="draft">8,247 cubic yards of leaves</b><span class="draft">That's how much the city picked up in 2024. Our Fall Pass is one price for the whole leaf season. <a href="../fall-cleanup/">See the Fall Pass</a></span></li>
         </ul>
+        <p class="src reveal d2">From the <a href="https://www.brecksville.oh.us/264/Leaf-Pickup" target="_blank" rel="noopener">City of Brecksville website</a>, read October 2026. Rules can change, so check there before you put anything at the curb.</p>
       </div>
     </section>
 
-    <!-- THE PROMISE (short) -->
+    <section class="light sec">
+      <div class="wrap">
+        <h2 class="sec-h reveal"><span class="thin draft">What we do</span> <b class="draft">in Brecksville<span class="dot">.</span></b></h2>
+        <div class="svc-row">
+          <a class="svc reveal" href="../lawn-mowing/"><img src="../img/sm/gbp-mower-drive.jpg" alt="Mower on a freshly striped front lawn by the driveway" loading="lazy" /><div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal d1" href="../fall-cleanup/"><span class="tag">Fall Pass</span><img src="../img/sm/leaf-after.jpg" alt="Beds and stone walk cleared of leaves after a fall cleanup" loading="lazy" /><div class="svc-body"><h3>Fall cleanups</h3><p>One price for the whole leaf season. We keep coming back till it's clear.</p><span class="go">See the Fall Pass <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal d2" href="../mulch-beds/"><img src="../img/sm/gbp-shrub-island.jpg" alt="Island bed of round trimmed shrubs in fresh black mulch" loading="lazy" /><div class="svc-body"><h3>Mulch, beds and bushes</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal d3" href="../aeration-fertilizer/"><span class="tag">Free check</span><img src="../img/sm/gbp-house-stripes.jpg" alt="Thick green lawn with fresh mowing stripes" loading="lazy" /><div class="svc-body"><h3>Aeration and fertilizer</h3><p class="draft">Try the screwdriver test. Packed soil? We fix it every fall.</p><span class="go">Try the test <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+        </div>
+      </div>
+    </section>
+
     <section class="promise">
       <div class="wrap promise-row">
         <div class="reveal">
@@ -228,68 +237,60 @@
       </div>
     </section>
 
-    <!-- ONE REVIEW, word for word -->
     <section class="light sec">
       <div class="wrap">
         <h2 class="stack reveal"><span class="thin">60 reviews.</span><span class="heavy">0 under five<span class="dot">.</span></span></h2>
         <div class="one-review">
           <article class="gshot reveal">
-            <header><span class="av" style="background:#188038" aria-hidden="true">A</span><span class="who"><b>Alex S.</b><span>Google review</span></span>
+            <header><span class="av" style="background:#188038" aria-hidden="true">A</span><span class="who"><b>Ashley F.</b><span>Google review</span></span>
               <svg class="glogo" width="22" height="22" viewBox="0 0 48 48" aria-label="Google review"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.2 1.5-5 2.3-8.2 2.3-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg></header>
-            <div class="rate" role="img" aria-label="5 out of 5 stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><span class="job">Yard cleanup</span></div>
-            <p>Grass N Gardens did an outstanding job transforming my yard. These young gentlemen removed a massive amount of debris, <mark>including an entire trailer load of thorn bushes, tree branches, old leaves, and mulch.</mark> They were professional, hardworking, and incredibly efficient from start to finish. The entire cleanup was completed much faster than I expected, and the difference is unbelievable — my yard feels cleaner, larger, and completely refreshed. Super fair price as-well! Their attention to detail and work ethic really stood out. I highly recommend Grass N Gardens to anyone looking for a reliable team.</p>
+            <div class="rate" role="img" aria-label="5 out of 5 stars"><span aria-hidden="true" style="color:#fbbc04; letter-spacing:1px">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="job">Mowing and mulch</span></div>
+            <p>We have been using Grass n Gardens for the past six years, and we couldn&rsquo;t be happier with their service! Harrison and his crew are always professional, reliable, and do an excellent job every time. They keep our lawn looking great and have also done a fantastic job with our mulching. <mark>It&rsquo;s clear they take pride in their work, and their attention to detail really shows.</mark> We highly recommend Harrison and the entire Grass n Gardens team!</p>
           </article>
         </div>
-        <p style="text-align:center; margin-top: var(--s8)"><a class="btn btn-dark" href="../why-gng/">Why customers pick us
+        <p style="text-align:center; margin-top: var(--s8)"><a class="btn btn-dark" href="../why-gng/">Read all 60 reviews
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="light faq" aria-labelledby="faq-title">
       <div class="wrap faq-grid">
         <div class="faq-side reveal">
           <p class="eyebrow">Questions</p>
-          <h2 id="faq-title"><span class="draft">Leaf questions,</span> <b class="draft">straight answers<span class="dot">.</span></b></h2>
+          <h2 id="faq-title"><span class="draft">Brecksville questions,</span> <b class="draft">straight answers<span class="dot">.</span></b></h2>
           <p class="draft">Don't see yours? Text Harrison. He texts back from his own phone.</p>
           <a class="btn btn-dark" href="sms:+14406679642">Text Harrison
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
         <div class="faq-list reveal d1">
           <details class="qa" open>
-            <summary><h3 class="draft">When should I book a fall cleanup?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">As soon as the leaves start coming down. Ohio State says leaves shouldn't sit on grass for more than two weeks, or the grass under them gets weak and yellow. Our Fall Pass is one price for the whole leaf season. We keep coming back till it's clear.</p></div>
+            <summary><h3 class="draft">Does Grass 'n' Gardens mow lawns in Brecksville?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">Yes. Grass 'n' Gardens takes care of 8 yards in Brecksville, Ohio. Same crew, same day every week.</p></div>
           </details>
           <details class="qa">
-            <summary><h3 class="draft">How many visits does the Fall Pass include?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">As many as it takes. We keep coming back till it's clear, all the way to the end of November. Most yards take 2 to 8 trips, based on the trees.</p></div>
+            <summary><h3 class="draft">When does Brecksville pick up leaves?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">The city starts the first week of October and goes through November. There's no daily schedule. Rake your leaves up to the street, not into it, within 6 feet of the curb.</p></div>
           </details>
           <details class="qa">
-            <summary><h3 class="draft">Can I cancel the Fall Pass?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">Yes. If you're not happy after the first visit, you can cancel and get the rest back.</p></div>
+            <summary><h3 class="draft">How much does lawn care cost in Brecksville?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">It depends on your yard. Send us your address and Harrison looks your yard up on the map and texts you a price today. You don't have to be home. <a href="../#plan">Get my yard plan</a></p></div>
           </details>
           <details class="qa">
-            <summary><h3 class="draft">What if it snows before the leaves are done?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">If snow shuts it down, your last trip moves to your spring cleanup. <a href="../spring-cleanup/">See spring cleanups</a></p></div>
-          </details>
-          <details class="qa">
-            <summary><h3 class="draft">How much does a fall cleanup cost?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">It depends on your yard and how many trees you have. Send us your address and Harrison texts you the price today. <a href="../?need=leaves#plan">Get my Fall Pass price</a></p></div>
+            <summary><h3 class="draft">Do you work in towns near Brecksville?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">Yes. We're based in Richfield and also work in Broadview Heights, North Royalton, Bath, Hinckley, Granger, Akron and Medina.</p></div>
           </details>
         </div>
       </div>
     </section>
 
-    <!-- THE OTHER SERVICES -->
-    <section class="sec">
-      <div class="wrap">
-        <h2 class="sec-h reveal"><span class="thin draft">Your yard has a season.</span> <b class="draft">We do the rest too<span class="dot">.</span></b></h2>
-        <div class="svc-row">
-          <a class="svc reveal" href="../lawn-mowing/"><img src="../img/sm/gbp-stone-house.jpg" alt="Fresh mowing stripes across the front lawn of a stone-front house" loading="lazy" /><div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-          <a class="svc reveal d1" href="../spring-cleanup/"><img src="../img/sm/gallery-14.jpg" alt="Fresh mulch bed with hostas along a ranch home" loading="lazy" /><div class="svc-body"><h3>Spring cleanups</h3><p class="draft">Sticks and dead leaves gone before your first mow.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-          <a class="svc reveal d2" href="../mulch-beds/"><img src="../img/sm/gbp-curved-bed.jpg" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" /><div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-          <a class="svc reveal d3" href="../yard-design/"><span class="tag">Custom</span><img src="../img/sm/gbp-planter-boxes.jpg" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" /><div class="svc-body"><h3>Yard design</h3><p class="draft">The right plant in the right spot. Planned before we plant.</p><span class="go">Get a custom design <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-        </div>
+    <section class="sec light" style="padding-top:0">
+      <div class="wrap" style="text-align:center">
+        <h2 class="sec-h reveal" style="text-align:center"><span class="thin draft">We also work</span> <b class="draft">next door<span class="dot">.</span></b></h2>
+        <ul class="near reveal d1">
+<li><a href="../richfield-oh/">Richfield</a></li>
+<li><a href="../broadview-heights-oh/">Broadview Heights</a></li>
+<li><span>North Royalton</span></li>
+        </ul>
       </div>
     </section>
 
@@ -299,7 +300,7 @@
         <p class="lede reveal d1">I'll walk your yard and write out your whole year. Takes 20 minutes and you don't have to be home. You get it in a day and it's yours to keep, even if you stay with the guy you have now.</p>
         <a class="big-phone reveal d2" href="tel:+14406679642">(440) 667-9642</a>
         <div class="center reveal d3">
-          <a class="btn btn-lime" href="../?need=leaves#plan">Get my Fall Pass price
+          <a class="btn btn-lime" href="../#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
         </div>
@@ -329,7 +330,7 @@
           <h2>Services</h2>
           <ul>
             <li><a href="../lawn-mowing/">Weekly mowing</a></li>
-            <li><a href="../fall-cleanup/" aria-current="page">Fall cleanups</a></li>
+            <li><a href="../fall-cleanup/">Fall cleanups</a></li>
             <li><a href="../spring-cleanup/">Spring cleanups</a></li>
             <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
             <li><a href="../yard-design/">Yard design and planting</a></li>
@@ -364,7 +365,7 @@
       <div class="foot">
         <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
-        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a></p>
+        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/" aria-current="page">Brecksville</a></p>
         <button class="app-get" type="button" data-app-get hidden>
           <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
@@ -431,42 +432,34 @@
     "mainEntity":  [
                        {
                            "@type":  "Question",
-                           "name":  "When should I book a fall cleanup?",
+                           "name":  "Does Grass \u0027n\u0027 Gardens mow lawns in Brecksville?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "As soon as the leaves start coming down. Ohio State says leaves shouldn\u0027t sit on grass for more than two weeks, or the grass under them gets weak and yellow. Our Fall Pass is one price for the whole leaf season. We keep coming back till it\u0027s clear."
+                                                  "text":  "Yes. Grass \u0027n\u0027 Gardens takes care of 8 yards in Brecksville, Ohio. Same crew, same day every week."
                                               }
                        },
                        {
                            "@type":  "Question",
-                           "name":  "How many visits does the Fall Pass include?",
+                           "name":  "When does Brecksville pick up leaves?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "As many as it takes. We keep coming back till it\u0027s clear, all the way to the end of November. Most yards take 2 to 8 trips, based on the trees."
+                                                  "text":  "The city starts the first week of October and goes through November. There\u0027s no daily schedule. Rake your leaves up to the street, not into it, within 6 feet of the curb."
                                               }
                        },
                        {
                            "@type":  "Question",
-                           "name":  "Can I cancel the Fall Pass?",
+                           "name":  "How much does lawn care cost in Brecksville?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "Yes. If you\u0027re not happy after the first visit, you can cancel and get the rest back."
+                                                  "text":  "It depends on your yard. Send us your address and Harrison looks your yard up on the map and texts you a price today. You don\u0027t have to be home."
                                               }
                        },
                        {
                            "@type":  "Question",
-                           "name":  "What if it snows before the leaves are done?",
+                           "name":  "Do you work in towns near Brecksville?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "If snow shuts it down, your last trip moves to your spring cleanup."
-                                              }
-                       },
-                       {
-                           "@type":  "Question",
-                           "name":  "How much does a fall cleanup cost?",
-                           "acceptedAnswer":  {
-                                                  "@type":  "Answer",
-                                                  "text":  "It depends on your yard and how many trees you have. Send us your address and Harrison texts you the price today."
+                                                  "text":  "Yes. We\u0027re based in Richfield and also work in Broadview Heights, North Royalton, Bath, Hinckley, Granger, Akron and Medina."
                                               }
                        }
                    ]
