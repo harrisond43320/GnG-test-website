@@ -816,6 +816,9 @@
     .five .stack .heavy, .reviews .stack .heavy, .about-copy h2 b, .area h2 b, .ticket h2 b { color: var(--pine); }
     .dot { color: var(--lime); }
     .light .dot { color: var(--forest); }
+    /* 2026-10-07 (Harrison: the hero period "looks a little off"): a lime dot inside the pine outline read as a
+       muddy blob next to the white letters. Now it's lettered like the letters: white with the pine outline. */
+    .hero h1 .dot { color: #fff; }
 
     /* 2. color: blue only as an accent */
     .trust svg, .reach-tile svg { color: var(--lime); }
@@ -1345,6 +1348,87 @@
     .cmp-note a { text-decoration: none !important; padding: 1px 6px; border-radius: 5px; background: rgba(255,255,255,.1); color: #fff; font-weight: 700; }
     .cmp-note a:hover { background: rgba(255,255,255,.2); }
     .faq-upd { margin-top: var(--s4) !important; font-size: 13px !important; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+
+    /* =====================================================================
+       2026-10-07 PHONE TIGHTEN. Harrison: on phones it's "too clumpy and big, takes too long to get to the point".
+       The page was ~29 phone screens. Same content, much less scrolling: less air between sections,
+       side-swipe rows for services / comparison / reviews (the next card peeks in, so people know to swipe),
+       compact steps, the first 6 questions with a "See more" button. Phones only; desktop is untouched.
+       ===================================================================== */
+    .faq-more, .swipe-hint { display: none; }
+    @media (max-width: 767px) {
+      .intro { padding: 56px 0 64px; }
+      .plan { padding: 40px 0 56px; }
+      .five { padding: 64px 0 40px; }
+      .reviews, .faq, .compare { padding: 56px 0; }
+      .work { padding: 56px 0 48px; }
+      .area { padding: 48px 0 56px; }
+      .ask { padding: 64px 0 48px; }
+      .stack .heavy { font-size: 46px; }
+      .intro .lede, .ask .lede { margin-top: var(--s4); }
+
+      /* side-swipe rows */
+      .svc-row, .vs, .gshots {
+        display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory; scroll-padding: 0 var(--s6); scrollbar-width: none;
+        margin-left: calc(-1 * var(--s6)); margin-right: calc(-1 * var(--s6)); padding: 6px var(--s6) 18px;
+        columns: auto;
+      }
+      .svc-row::-webkit-scrollbar, .vs::-webkit-scrollbar, .gshots::-webkit-scrollbar { display: none; }
+      .svc-row > *, .vs > *, .gshots > * { flex: 0 0 82%; scroll-snap-align: start; margin: 0; }
+      /* cards off to the side are already "in", so they never pop in mid-swipe */
+      .svc-row .reveal, .gshots .reveal { opacity: 1; transform: none; }
+      .gshots .gshot.reveal { transform: rotate(var(--tilt, -1.2deg)); }
+      .svc-row { margin-top: var(--s8); }
+      .svc { min-height: 300px; }
+      .vs { align-items: stretch; margin-top: var(--s8); }
+      .vs-card li { padding: 10px 0; font-size: 15px; }
+      .gshots { margin-top: var(--s8); padding-top: 12px; }
+      .swipe-hint { display: block; margin-top: 2px; text-align: center; font-size: 13px; font-weight: 600; opacity: .6; }
+
+      /* the yard plan: smaller "what happens next" steps */
+      .next { gap: var(--s2); margin-top: var(--s6); }
+      .next li { display: grid; grid-template-columns: 32px 1fr; column-gap: 12px; align-items: start; padding: 14px 16px; }
+      .next li::before { grid-row: span 2; margin: 0; }
+      .next li b { margin: 4px 0 0; }
+
+      /* night field: notes closer together */
+      .why-top { padding-top: 72px; }
+      .why-writing { padding-top: 300px; gap: 36px; }
+      .why { min-height: 0; }
+      .why-writing .note p { font-size: 26px; }
+
+      /* Five Before We Drive: number beside the step, not above it */
+      .five-grid { margin-top: var(--s8); }
+      .step { display: grid; grid-template-columns: 52px 1fr; column-gap: 14px; padding: 20px 0; }
+      .step .mini { grid-row: span 3; font-size: 54px; margin: 0; }
+      .step h3 { font-size: 26px; margin-top: 6px; }
+      .step p { margin-top: 6px; font-size: 16px; }
+      .remedy { margin-top: var(--s6); }
+
+      /* questions: first 6 show, the rest open with one tap (they stay in the page for Google) */
+      .faq-list.short .qa:nth-of-type(n+7) { display: none; }
+      .faq-more { display: flex; justify-content: center; margin-top: var(--s4); }
+
+      /* reach out: one row of 3 small tiles (the big number is right above) and no repeat social row (it's in the footer) */
+      .reach { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: var(--s8); }
+      .reach-tile { justify-items: center; text-align: center; padding: 14px 6px; }
+      .reach-tile svg { margin: 0; }
+      .reach-tile b { font-size: 18px; }
+      .reach-tile span { display: none; }
+      .ask .socials { display: none; }
+
+      /* our work: before + after side by side, then the rest of the photos as a swipe row */
+      .ba { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: var(--s8); }
+      .ba-shot { aspect-ratio: 3 / 4; }
+      .work-grid {
+        display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+        scroll-padding: 0 var(--s6); margin: var(--s6) calc(-1 * var(--s6)) 0; padding: 0 var(--s6) 6px;
+      }
+      .work-grid::-webkit-scrollbar { display: none; }
+      .work-grid > * { flex: 0 0 72%; height: 240px; aspect-ratio: auto; scroll-snap-align: start; opacity: 1; transform: none; }
+      .work .center { margin-top: var(--s8); }
+    }
   </style>
 </head>
 <body>
@@ -1643,6 +1727,7 @@
             <div class="svc-body"><h3>Yard design</h3><p class="draft">The right plant in the right spot. Planned before we plant.</p><span class="go">Get a custom design <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
         </div>
+        <p class="swipe-hint" aria-hidden="true">Swipe for more &rarr;</p>
       </div>
     </section>
 
@@ -1684,7 +1769,8 @@
           <svg class="jersey" viewBox="0 0 120 120" aria-hidden="true">
             <path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="#a7cbe0" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
             <path d="M40 10 Q60 26 80 10" fill="none" stroke="#1d4a22" stroke-width="4" stroke-linecap="round"/>
-            <text x="60" y="84" text-anchor="middle" fill="#1d4a22" font-size="24" font-family="Alfa Slab One, serif" letter-spacing="1">G'N'G</text>
+            <!-- 2026-10-07: the real G'N'G logo lettering on the chest (Harrison), cut from logos/monogram.png -->
+            <image href="brand_assets/logos/gng-wordmark.png" x="27" y="58" width="66" height="25" preserveAspectRatio="xMidYMid meet"/>
           </svg>
           <div><span class="tag">The team</span>
           <p>Our crew wears jerseys.</p>
@@ -1764,6 +1850,7 @@
             </ul>
           </article>
         </div>
+        <p class="swipe-hint" aria-hidden="true">Swipe for more &rarr;</p>
         <p class="cmp-note reveal">Compared October 2026, from what local crews and mowing apps list on their own sites. Rather talk it through? Call Harrison at <a href="tel:+14406679642">(440) 667-9642</a>.</p>
       </div>
     </section>
@@ -1836,6 +1923,7 @@
       <!-- Google review "screenshots", filled from the reviews list in the script below -->
       <div class="wrap">
         <div class="gshots" id="gshots"></div>
+        <p class="swipe-hint" aria-hidden="true">Swipe for more &rarr;</p>
       </div>
 
       <div class="wrap more">
@@ -1934,7 +2022,7 @@
         <!-- 2026-10-07 (Harrison: "highlight the ones most likely for SEO"): the 4 most-searched questions go first with a
              "Most asked" tag (Tavily: cost, area, insured and services are what people type and what AI answers quote).
              Answers link to the service pages so Google sees how the site fits together. -->
-        <div class="faq-list reveal d1">
+        <div class="faq-list short reveal d1">
           <details class="qa top" open>
             <summary><span class="qa-q"><span class="qa-pop">Most asked</span><h3 class="draft">How much does lawn mowing cost in Richfield?</h3></span><span class="qa-ic" aria-hidden="true"></span></summary>
             <div class="qa-a"><p class="draft">It depends on your yard: how big it is and how much we trim around. Send us your address and Harrison looks your yard up on the map and texts you a price today. You don't have to be home, and nobody has to come out first. <a href="#plan">Get my yard plan</a></p></div>
@@ -2002,6 +2090,8 @@
             <div class="qa-a"><p>Grass 'n' Gardens was founded by Harrison Drvenkar, a Richfield, Ohio local, and holds a 5.0-star Google rating<span class="draft"> across 60 reviews</span>. <a href="#about">Meet Harrison</a></p></div>
           </details>
         </div>
+        <!-- phones: questions 7-16 wait behind this button (2026-10-07) -->
+        <p class="faq-more"><button class="btn btn-dark" type="button">See more questions</button></p>
       </div>
     </section>
 
@@ -2155,6 +2245,10 @@
       i.src = i.dataset.src; i.removeAttribute('data-src');
     });
     if (document.readyState === 'complete') later(); else addEventListener('load', later);
+
+    // Phones: the rest of the questions open with one tap (2026-10-07)
+    const more = document.querySelector('.faq-more button');
+    if (more) more.addEventListener('click', () => { document.querySelector('.faq-list').classList.remove('short'); more.parentElement.remove(); });
 
     // Five Before We Drive: big numeral follows the step in view
     const nums = [...document.querySelectorAll('.numeral')];
