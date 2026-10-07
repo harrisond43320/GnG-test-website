@@ -80,7 +80,7 @@
 
     /* draft wording: add ?drafts to the URL to see which lines are mine, not Harrison's */
     /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
-    .show-drafts .draft { text-shadow: 0 0 8px rgba(102, 184, 74, .6), 0 0 2px rgba(102, 184, 74, .35) !important; }
+    .show-drafts .draft { text-shadow: 0 0 6px rgba(102, 184, 74, .38) !important; }
 
     /* ---------- cartoon buttons (homepage 2026-10-05/06) ---------- */
     .btn {

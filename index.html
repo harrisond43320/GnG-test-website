@@ -18,6 +18,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#141c17" />
   <!-- Business facts for Google (local search). No review stars here: Google ignores self-posted ratings. -->
+  <!-- 2026-10-07 (late): WebSite data = the site name Google shows above the result ("Grass 'n' Gardens", not the web address).
+       Change the address with the domain. -->
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "WebSite", "@id": "https://gng-test-website.vercel.app/#website",
+   "name": "Grass 'n' Gardens", "alternateName": ["Grass N Gardens", "G'N'G"], "url": "https://gng-test-website.vercel.app/",
+   "publisher": {"@id": "https://gng-test-website.vercel.app/#business"}}
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -130,7 +137,7 @@
 
     /* draft wording: add ?drafts to the URL to see which lines are mine, not Harrison's */
     /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
-    .show-drafts .draft { text-shadow: 0 0 8px rgba(102, 184, 74, .6), 0 0 2px rgba(102, 184, 74, .35) !important; }
+    .show-drafts .draft { text-shadow: 0 0 6px rgba(102, 184, 74, .38) !important; }
 
     /* ---------- buttons ---------- */
     .btn {
@@ -680,7 +687,7 @@
     .form-card label { display: grid; gap: var(--s1); font-size: 14px; font-weight: 600; }
     .form-card label small { font-size: 13px; font-weight: 500; color: var(--ink-muted); }
     .form-card .row2 { display: grid; gap: var(--s4); }
-    @media (min-width: 480px) { .form-card .row2 { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 340px) { .form-card .row2 { grid-template-columns: 1fr 1fr; gap: var(--s3); } } /* 2026-10-07 late: side by side on phones too = shorter form */
     .form-card input:not([type="checkbox"]), .form-card select {
       width: 100%; font: inherit; font-weight: 500; font-size: 16px; color: var(--ink);
       background: #fff; border: 2px solid var(--line-light); border-radius: 10px; padding: 12px 14px;
@@ -705,6 +712,7 @@
     .chips input:focus-visible + span { outline: 3px solid var(--forest); outline-offset: 2px; }
     /* "Other" boxes only show once picked */
     .form-card .if-other { display: none; }
+    .chips .chip-extra:not(:has(input:checked)) { display: none; }
     .form-card form:has(#need-other:checked) .other-need,
     .form-card form:has(select[name="source"] option[value="other"]:checked) .other-source,
     .form-card form:has(select[name="source"] option[value="A friend or neighbor"]:checked) .referred { display: grid; }
@@ -1474,6 +1482,38 @@
       .hero-ctas .btn-lime { width: 100%; justify-content: center; }
       .refer small { line-height: 1.4; }
     }
+
+    /* 2026-10-07 (late) QUICK LINKS under the hero (Harrison: "create site links ... add to the home page").
+       One row of plain chips to every page. Phones swipe it sideways (the next chip peeks); computers see it centered.
+       Same links as the footer, up top where people decide. Clear page names also help Google pick sitelinks. */
+    .jump { background: var(--surface-raised, #f2f8f2); border-bottom: 1px solid var(--line, #cfe0d0); padding: var(--s4) 0; }
+    .jump .wrap { display: flex; align-items: center; gap: var(--s3); }
+    .jump-label { flex: none; font-size: 14px; font-weight: 600; color: var(--ink-muted); }
+    .jump ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s2); }
+    .jump a {
+      display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px;
+      border: 2px solid var(--line, #cfe0d0); background: #fff; color: var(--pine); font-size: 15px; font-weight: 600;
+      text-decoration: none; white-space: nowrap;
+      transition: transform .3s var(--spring), border-color .2s var(--ease-out), background-color .2s var(--ease-out);
+    }
+    .jump a svg { flex: none; color: var(--forest); }
+    .jump a:hover { border-color: var(--forest); }
+    .jump a:active { transform: scale(.95); }
+    .jump a:focus-visible { outline: 3px solid var(--focus-ring, #307537); outline-offset: 2px; }
+    .jump a.hot { background: var(--lime); border-color: var(--pine); }
+    .jump a.hot svg { color: var(--pine); }
+    @media (max-width: 767px) {
+      .jump { padding: var(--s3) 0; }
+      .jump .wrap { padding-right: 0; }
+      .jump-label { display: none; }
+      .jump ul {
+        flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
+        padding-right: var(--s4);
+      }
+      .jump ul::-webkit-scrollbar { display: none; }
+      .jump li { scroll-snap-align: start; }
+    }
+    @media (prefers-reduced-motion: reduce) { .jump a { transition: none; } }
   </style>
 </head>
 <body>
@@ -1590,6 +1630,23 @@
       </div>
     </header>
 
+    <!-- QUICK LINKS (2026-10-07, late): every page one tap from the top. Same names as the footer. -->
+    <nav class="jump" aria-label="Quick links">
+      <div class="wrap">
+        <span class="jump-label">Jump to</span>
+        <ul>
+          <li><a href="../lawn-mowing/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V9M9 20V6M14 20V9M19 20V5"/></svg>Weekly mowing</a></li>
+          <li><a class="hot" href="../season-pass/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v8a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2z"/><path d="M15 6v12" stroke-dasharray="2 2.5"/></svg>2027 Season Pass</a></li>
+          <li><a href="../fall-cleanup/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19l8-8"/></svg>Fall cleanups</a></li>
+          <li><a href="../mulch-beds/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="13" r="4"/><circle cx="16" cy="12" r="5"/><path d="M2 20h20"/></svg>Mulch, beds and bushes</a></li>
+          <li><a href="../spring-cleanup/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20v-8"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg>Spring cleanups</a></li>
+          <li><a href="../yard-design/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></svg>Yard design</a></li>
+          <li><a href="../why-gng/"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>60 reviews</a></li>
+          <li><a href="#faq"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg>Questions</a></li>
+        </ul>
+      </div>
+    </nav>
+
     <!-- 2027 MOWING SEASON OFFER (the TruGreen "save X% on the season" move, done with our guarantee).
          Terms = the locked 3-part guarantee + 5% prepay (brainstorms/2026-09-30-scaling-roadmap.md Q2, Q9).
          Urgency only (Harrison, 2026-10-05): 5% ends March 31, 2027, the day before mowing starts (CMO agent pick, Harrison asked for its call). No spot count. -->
@@ -1642,12 +1699,12 @@
           <!-- Photo reel of real 2026 jobs (2026-10-06). Stands in for the "what we got done in one year" video;
                when the video is filmed, put it here. Plays by itself, pause button for anyone who wants it still. -->
           <div class="reel" role="region" aria-roledescription="slideshow" aria-label="Our 2026 season in photos">
-            <figure class="reel-slide is-on"><img loading="lazy" src="img/sm/gbp-mower-lines.jpg" alt="Stand-on mower cutting fresh stripes into a big back lawn" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-weeping-mulch.jpg" alt="Fresh black mulch bed curving around a weeping tree" loading="lazy" /><figcaption>Mulch and beds</figcaption></figure>
+            <figure class="reel-slide is-on"><img loading="lazy" src="img/sm/gbp-house-stripes.jpg" alt="Fresh mowing stripes across a front lawn up to a stone and siding house" /><figcaption>Weekly mowing</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-front-bed.jpg" alt="Long fresh mulch bed with shrubs and a red maple along the front of a house" loading="lazy" /><figcaption>Mulch and beds</figcaption></figure>
             <figure class="reel-slide"><img src="img/sm/leaf-after.jpg" alt="Beds and stone walk cleared after a fall cleanup" loading="lazy" /><figcaption>Fall cleanup</figcaption></figure>
             <figure class="reel-slide"><img src="img/sm/gbp-stripes-sky.jpg" alt="Long mowing stripes running back to a row of evergreens" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-planter-boxes.jpg" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" /><figcaption>Beds and planters</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/edge-curve.jpg" alt="Sharp curved edge between the lawn and a bed" loading="lazy" /><figcaption>Edging</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-round-shrubs.jpg" alt="Round trimmed shrubs in fresh black mulch by a front door" loading="lazy" /><figcaption>Bush trimming</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-walk-beds.jpg" alt="Curved walkway lined with fresh mulch beds and shrubs" loading="lazy" /><figcaption>Beds and edging</figcaption></figure>
             <div class="reel-bar">
               <span class="reel-title">Our 2026 season</span>
               <span class="reel-pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -1674,31 +1731,30 @@
           <div class="form-head">
             <img src="brand_assets/logos/mark-sm.png" alt="" width="52" height="52" loading="lazy" />
             <div><h3>Get my yard plan</h3>
-            <p class="draft">Takes 30 seconds. Harrison texts you back today.</p></div>
+            <p class="draft">Takes 30 seconds. You don't have to be home.</p></div>
           </div>
           <form class="lead-form">
+            <!-- 2026-10-07 (late): form cut down (Harrison: "make it shorter, don't make it look so complex").
+                 5 chips + "Something else" (was 10), no email box, no address helper line. Spring cleanup and
+                 Custom design stay in the page but only show when a service page link ticks them (?need=spring / design). -->
             <fieldset class="chips">
-              <legend>What do you need? <span>Tap all that fit</span></legend>
+              <legend>What do you need?</legend>
               <label><input type="checkbox" name="need" value="season2027" /><span data-after="2027 mowing">2027 mowing (save 5%)</span></label>
               <label><input type="checkbox" name="need" value="mowing" /><span>Weekly mowing</span></label>
               <label><input type="checkbox" name="need" value="leaves" /><span>Leaf cleanup</span></label>
-              <label><input type="checkbox" name="need" value="mulch" /><span>Mulch</span></label>
+              <label><input type="checkbox" name="need" value="mulch" /><span>Mulch and beds</span></label>
               <label><input type="checkbox" name="need" value="bushes" /><span>Bush trimming</span></label>
-              <label><input type="checkbox" name="need" value="spring" /><span>Spring cleanup</span></label>
-              <label><input type="checkbox" name="need" value="design" /><span>Custom design and planting</span></label>
-              <label><input type="checkbox" name="need" value="aeration" /><span>Aeration and overseeding</span></label>
-              <label><input type="checkbox" name="need" value="unsure" /><span>Not sure yet</span></label>
-              <label><input type="checkbox" name="need" value="other" id="need-other" /><span>Other</span></label>
+              <label class="chip-extra"><input type="checkbox" name="need" value="spring" /><span>Spring cleanup</span></label>
+              <label class="chip-extra"><input type="checkbox" name="need" value="design" /><span>Custom design and planting</span></label>
+              <label><input type="checkbox" name="need" value="other" id="need-other" /><span>Something else</span></label>
             </fieldset>
             <label class="if-other other-need">What else? <input name="need_other" placeholder="Type it here" /></label>
             <div class="row2">
               <label>Name <input name="name" autocomplete="name" required /></label>
               <label>Phone <input name="phone" type="tel" autocomplete="tel" required /></label>
             </div>
-            <label>Address <input name="address" autocomplete="street-address" required />
-              <small class="draft">We look your yard up on the map. You don't have to be home.</small></label>
-            <label><span>Email <small>(optional)</small></span> <input name="email" type="email" autocomplete="email" /></label>
-            <label><span>How did you hear about us? <small>(optional)</small></span>
+            <label>Address <input name="address" autocomplete="street-address" required /></label>
+            <label><span>How'd you find us? <small>(optional)</small></span>
               <select name="source">
                 <option value="" selected>Pick one</option>
                 <!-- every channel we market on, so leads can be tracked by source (KPI) -->
@@ -1728,7 +1784,7 @@
             <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" />
             <input type="hidden" name="utm_term" /><input type="hidden" name="gclid" /><input type="hidden" name="landing_page" />
             <!-- 2026-10-07: proof right where people decide to send -->
-            <p class="form-proof"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <b>5.0</b> from 60 Google reviews. 0 under five.</p>
+            <p class="form-proof"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <b>5.0</b> from 60 Google reviews</p>
             <button class="btn btn-lime" type="submit"><span data-send-word>Send to Harrison</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
             <p class="form-how draft" data-how-app>This opens a text to Harrison with your answers filled in. Just hit send.</p>
@@ -2021,11 +2077,11 @@
           <p class="ba-cap"><b>Fall cleanup.</b> One visit. Beds cleared, leaves gone, walk blown clean.</p>
         </div>
         <div class="work-grid">
-          <figure class="shot tall reveal"><img src="img/sm/gbp-curved-mulch.jpg" alt="Curved black mulch bed with round shrubs along a driveway" loading="lazy" /><figcaption>Mulch</figcaption></figure>
-          <figure class="shot wide reveal d1"><img src="img/sm/gbp-mower-yard.jpg" alt="Stand-on mower on a freshly striped front lawn" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
+          <figure class="shot tall reveal"><img src="img/sm/gbp-shrub-stone.jpg" alt="Trimmed shrubs in fresh mulch behind a stone edge" loading="lazy" /><figcaption>Bush trimming</figcaption></figure>
+          <figure class="shot wide reveal d1"><img src="img/sm/gbp-brick-stripes.jpg" alt="Stand-on mower on fresh stripes in front of a big brick house" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
           <figure class="shot reveal d2"><img src="img/sm/gbp-tree-ring.jpg" alt="Clean ring of fresh mulch around a lawn tree" loading="lazy" /><figcaption>Beds</figcaption></figure>
           <figure class="shot reveal d1"><img src="img/sm/edge-curve.jpg" alt="Crisp curved edge between the lawn and a fresh bed" loading="lazy" /><figcaption>Edging</figcaption></figure>
-          <figure class="shot wide reveal d2"><img src="img/sm/gallery-21.jpg" alt="Trimmed shrubs and fresh mulch along a front walkway" loading="lazy" /><figcaption>Shrubs and beds</figcaption></figure>
+          <figure class="shot wide reveal d2"><img src="img/sm/gbp-brick-beds.jpg" alt="Fresh mulch beds and trimmed shrubs across the front of a brick house" loading="lazy" /><figcaption>Front beds</figcaption></figure>
         </div>
         <div class="center work-ask">
           <p>Want yours to look like this?</p>
