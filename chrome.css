@@ -112,3 +112,71 @@
 /* calm links (Harrison: no underlines): a soft highlight chip instead */
 .topbar p a { text-decoration: none; padding: 2px 8px; border-radius: 5px; background: rgba(29, 74, 34, .12); transition: background-color .2s; }
 .topbar p a:hover { background: rgba(29, 74, 34, .22); color: var(--pine); }
+
+/* REVIEW ZOOM (2026-10-07): any Google review card opens big (script: home/reviews.js).
+   Same look as the cards (white, ink line, hard lime shadow), bigger words, the short version on top. */
+.gshot[data-zoom] { cursor: zoom-in; position: relative; }
+.gshot[data-zoom]:focus-visible { outline: 3px solid var(--forest, #307537); outline-offset: 4px; }
+.gshot[data-zoom]::after {
+  content: ''; position: absolute; right: 12px; bottom: 12px; width: 30px; height: 30px; border-radius: 8px;
+  background: var(--lime, #66b84a) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d4a22' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7'/%3E%3C/svg%3E") center / 16px no-repeat;
+  border: 2px solid var(--pine, #1d4a22); opacity: 0; transform: scale(.8); transition: opacity .2s, transform .3s var(--spring, cubic-bezier(.34,1.4,.64,1));
+}
+.gshot[data-zoom]:hover::after, .gshot[data-zoom]:focus-visible::after { opacity: 1; transform: none; }
+@media (hover: none) { .gshot[data-zoom]::after { opacity: .9; transform: none; width: 26px; height: 26px; background-size: 14px; } }
+.gshot[data-zoom]:active { transform: rotate(0) scale(.98); }
+html.rvz-open { overflow: hidden; }
+.rvz { width: min(94vw, 720px); max-width: none; max-height: none; margin: auto; padding: 0; border: 0; background: transparent; overflow: visible; }
+.rvz::backdrop { background: rgba(10, 14, 11, .72); }
+.rvz-card {
+  position: relative; max-height: min(86vh, 860px); overflow-y: auto; overscroll-behavior: contain;
+  padding: 32px; border-radius: 18px; background: #fff; color: #202124;
+  border: 2.5px solid var(--pine, #1d4a22); box-shadow: 9px 9px 0 var(--lime, #66b84a);
+  font-family: var(--font-body, "Barlow", system-ui, sans-serif);
+}
+.rvz[open] .rvz-card { animation: rvz-in .45s var(--spring, cubic-bezier(.34,1.4,.64,1)) both; }
+.rvz[open] .rvz-card.flip { animation: rvz-flip .35s var(--ease-out, cubic-bezier(.22,1,.36,1)) both; }
+@keyframes rvz-in { from { opacity: 0; transform: translateY(28px) scale(.94) rotate(-1.5deg); } to { opacity: 1; transform: none; } }
+@keyframes rvz-flip { from { opacity: .2; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.rvz-x {
+  position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; display: grid; place-items: center;
+  border-radius: 50%; border: 2px solid var(--pine, #1d4a22); background: #fff; color: var(--pine, #1d4a22); cursor: pointer;
+  transition: transform .25s var(--spring, cubic-bezier(.34,1.4,.64,1));
+}
+.rvz-x:hover { transform: rotate(90deg); }
+.rvz-x:active { transform: scale(.92); }
+.rvz-x:focus-visible, .rvz-nav button:focus-visible, .rvz-g:focus-visible { outline: 3px solid var(--forest, #307537); outline-offset: 2px; }
+.rvz-card header { display: flex; align-items: center; gap: 12px; padding-right: 52px; }
+.rvz-av { flex: none; width: 52px; height: 52px; border-radius: 50%; border: 2px solid #18201b; display: grid; place-items: center; font-weight: 700; font-size: 22px; color: #fff; }
+.rvz-who { flex: 1; min-width: 0; line-height: 1.25; }
+.rvz-who b { display: block; font-size: 19px; font-weight: 700; }
+.rvz-who span { font-size: 14px; color: #5f6368; }
+.rvz-stars { margin-top: 12px; color: #fbbc04; font-size: 20px; letter-spacing: 2px; }
+.rvz-short { margin-top: 16px; padding: 14px 16px; border-radius: 12px; background: #eef7e9; }
+.rvz-tag { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--forest, #307537); }
+.rvz-pts { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.rvz-pts li { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px 6px 8px; border-radius: 999px; background: var(--lime, #66b84a); color: var(--pine, #1d4a22); font-weight: 700; font-size: 15px; line-height: 1.2; }
+.rvz-text { margin: 18px 0 0; font-size: clamp(18px, 2.2vw, 22px); line-height: 1.55; font-weight: 500; color: #202124; }
+.rvz-text mark { background: linear-gradient(transparent 50%, rgba(102, 184, 74, .45) 50%); color: inherit; padding: 0 2px; border-radius: 2px; }
+.rvz-card footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(24, 32, 27, .12); }
+.rvz-nav { display: flex; align-items: center; gap: 10px; }
+.rvz-nav button {
+  width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px; cursor: pointer;
+  border: 2px solid var(--pine, #1d4a22); background: #fff; color: var(--pine, #1d4a22); box-shadow: 3px 3px 0 var(--pine, #1d4a22);
+  transition: transform .2s var(--spring, cubic-bezier(.34,1.4,.64,1)), box-shadow .2s;
+}
+.rvz-nav button:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--pine, #1d4a22); }
+.rvz-nav button:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--pine, #1d4a22); }
+.rvz-count { min-width: 64px; text-align: center; font-size: 14px; font-weight: 600; color: #5f6368; }
+.rvz-g { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 8px; font-weight: 700; font-size: 15px; color: #1a73e8; text-decoration: none; background: rgba(26, 115, 232, .08); transition: background-color .2s; }
+.rvz-g:hover { background: rgba(26, 115, 232, .16); }
+@media (max-width: 600px) {
+  .rvz { width: calc(100vw - 32px); }
+  .rvz-card { padding: 20px; max-height: 84vh; box-shadow: 6px 6px 0 var(--lime, #66b84a); }
+  .rvz-av { width: 44px; height: 44px; font-size: 19px; }
+  .rvz-pts li { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rvz[open] .rvz-card, .rvz-card.flip { animation: none !important; }
+  .gshot[data-zoom]::after, .rvz-x, .rvz-nav button { transition: none; }
+}

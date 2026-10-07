@@ -74,6 +74,17 @@
     .yr-row .cells i.on { background: var(--lime); animation: grow .5s var(--spring) both; animation-delay: calc(var(--m) * 30ms); }
     .yr-row .cells i.on:nth-child(even) { background: #7fc865; }
     .yr-row .cells i.now { box-shadow: inset 0 0 0 2px var(--pine); }
+    /* 2026-10-07: "pick your month" rows (mulch: Harrison, "this can be any time of the year").
+       Months you can pick are tap targets with a soft lime dot; the picked one fills in. */
+    .yr-row .cells button { all: unset; box-sizing: border-box; height: 26px; border-radius: 5px; background: #eef1ec; cursor: pointer; display: grid; place-items: center; transition: transform .25s var(--spring); }
+    .yr-row .cells button::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #9fd18a; }
+    .yr-row .cells button:hover { transform: translateY(-2px); }
+    .yr-row .cells button:active { transform: scale(.94); }
+    .yr-row .cells button:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
+    .yr-row .cells button.on { background: var(--lime); animation: grow .5s var(--spring) both; }
+    .yr-row .cells button.on::after { background: var(--pine); }
+    .yr-row .cells button.now { box-shadow: inset 0 0 0 2px var(--pine); }
+    .yr-row .flex-tip { margin-top: 4px; font-size: 13px; color: var(--ink-muted); }
     @keyframes grow { from { transform: scaleX(.2); opacity: 0; } to { transform: none; opacity: 1; } }
     .yr-empty { margin-top: var(--s6); padding: var(--s6); border-radius: 14px; background: var(--mist); text-align: center; font-size: 17px; color: var(--ink-muted); }
     .sum { display: flex; flex-wrap: wrap; gap: var(--s3) var(--s6); margin-top: var(--s6); padding-top: var(--s4); border-top: 2px solid var(--line-light); font-size: 16px; color: var(--ink-muted); }
@@ -83,7 +94,7 @@
     @media (max-width: 600px) {
       .board { padding: var(--s4); }
       .months span { font-size: 11px; }
-      .yr-row .cells i { height: 22px; }
+      .yr-row .cells i, .yr-row .cells button { height: 22px; }
       .send .btn { width: 100%; justify-content: center; }
     }
     @media (prefers-reduced-motion: reduce) { .yr-row .cells i.on { animation: none; } .pick > span { transition: none; } }
@@ -159,6 +170,7 @@
           <li><a href="../#about">About</a></li>
           <li><a href="../#faq">Questions</a></li>
           <li><a href="../join-the-crew/">Join the crew</a></li>
+          <li><a href="../refer/">Send a neighbor</a></li>
         </ul>
         <div class="menu-ctas">
           <a class="btn btn-lime" href="../#plan">Get my yard plan
@@ -194,7 +206,7 @@
             <!-- data-m = months it happens (1 = January). value = the matching box on the homepage form. -->
             <label class="pick"><input type="checkbox" value="mowing" data-m="4,5,6,7,8,9,10" checked /><span><span><b>Weekly mowing</b><small class="draft">Same crew, same day every week</small></span></span></label>
             <label class="pick"><input type="checkbox" value="spring" data-m="3,4" /><span><span><b>Spring cleanup</b><small class="draft">Sticks and dead leaves gone before the first mow</small></span></span></label>
-            <label class="pick"><input type="checkbox" value="mulch" data-m="4,5" /><span><span><b>Mulch and beds</b><small class="draft">Weeds out, fresh mulch, sharp edge</small></span></span></label>
+            <label class="pick"><input type="checkbox" value="mulch" data-m="5" data-flex="4,5,6,7,8,9,10,11" /><span><span><b>Mulch and beds</b><small class="draft">Mulch anytime of the year works! Pick your month.</small></span></span></label>
             <label class="pick"><input type="checkbox" value="bushes" data-m="6,9" /><span><span><b>Bush trimming</b><small class="draft">Shaped in early summer and again in fall</small></span></span></label>
             <label class="pick"><input type="checkbox" value="aeration" data-m="9" data-name="Aeration and overseeding" /><span><span><b>Aeration and overseeding</b><small class="draft">Early fall, when it works best in Ohio</small></span></span></label>
             <label class="pick"><input type="checkbox" value="aeration" data-m="4,9,11" data-name="Fertilizer" /><span><span><b>Fertilizer</b><small class="draft">Spring, early fall and late fall</small></span></span></label>
@@ -280,6 +292,7 @@
             <li><a href="../#area">Where we work</a></li>
             <li><a href="../#faq">Questions</a></li>
             <li><a href="../your-year/" aria-current="page">Build your year</a></li>
+            <li><a href="../refer/">Send a neighbor (5% off)</a></li>
             <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
         </div>
@@ -388,9 +401,22 @@
           li.querySelector('.name em').textContent = label(m);
           const cells = li.querySelector('.cells');
           cells.setAttribute('aria-label', name + ': ' + label(m));
+          const flex = p.dataset.flex ? p.dataset.flex.split(',').map(Number) : null;
+          if (flex) {
+            cells.removeAttribute('role'); cells.removeAttribute('aria-label');
+            cells.setAttribute('role', 'group'); cells.setAttribute('aria-label', 'Pick a month for ' + name);
+            li.insertAdjacentHTML('beforeend', '<p class="flex-tip draft">Tap a month to pick it.</p>');
+          }
           for (let i = 1; i <= 12; i++) {
-            const c = document.createElement('i');
-            if (m.includes(i)) { c.className = 'on'; c.style.setProperty('--m', i); }
+            const can = flex && flex.includes(i);
+            const c = document.createElement(can ? 'button' : 'i');
+            if (can) {
+              c.type = 'button';
+              c.setAttribute('aria-label', name + ' in ' + MONTHS[i - 1]);
+              c.setAttribute('aria-pressed', m.includes(i) ? 'true' : 'false');
+              c.addEventListener('click', () => { p.dataset.m = String(i); draw(); rows.querySelector('[aria-label="' + name + ' in ' + MONTHS[i - 1] + '"]').focus(); });
+            }
+            if (m.includes(i)) { c.classList.add('on'); c.style.setProperty('--m', i); }
             if (i === now) c.classList.add('now');
             cells.appendChild(c);
           }
