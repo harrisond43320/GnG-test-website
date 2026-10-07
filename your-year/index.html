@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>2027 Mowing Season Pass | Pay Up Front, Save 5% | Grass 'n' Gardens</title>
-  <meta name="description" content="Pay for your 2027 weekly mowing by March 31 and save 5%. Same crew, same day every week, starting April 1. Richfield, Ohio and nearby towns." />
-  <meta property="og:title" content="2027 Mowing Season Pass | Grass 'n' Gardens" />
-  <meta property="og:description" content="Pay for your 2027 mowing by March 31 and save 5%." />
+  <title>Build Your Year of Lawn Care | Grass 'n' Gardens, Richfield OH</title>
+  <meta name="description" content="Pick the lawn and yard work you want and see your whole year on one page: mowing, cleanups, mulch, bushes, aeration and fertilizer. Then send it to Harrison." />
+  <meta property="og:title" content="Build your year | Grass 'n' Gardens" />
+  <meta property="og:description" content="Pick what you want done. See every month of your year on one page." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://gng-test-website.vercel.app/img/gbp-stripes-sky.jpg" />
-  <meta property="og:url" content="https://gng-test-website.vercel.app/season-pass/" />
-  <!-- 2026-10-07 SEO: one address per page (drops ?need= and ad tags), big photo previews allowed. Change the address with the domain. -->
-  <link rel="canonical" href="https://gng-test-website.vercel.app/season-pass/" />
+  <meta property="og:image" content="https://gng-test-website.vercel.app/img/gbp-walk-beds.jpg" />
+  <meta property="og:url" content="https://gng-test-website.vercel.app/your-year/" />
+  <link rel="canonical" href="https://gng-test-website.vercel.app/your-year/" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#141c17" />
@@ -21,46 +20,79 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <link rel="preload" as="image" href="../img/gbp-stripes-sky.jpg" imagesrcset="../img/sm/gbp-stripes-sky.jpg 900w, ../img/md/gbp-stripes-sky.jpg 1200w, ../img/gbp-stripes-sky.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../site.css" />
   <link rel="stylesheet" href="../chrome.css" />
-  <style>
-    /* this page only: the ticket sits on its own dark band under the hero */
-    .pass-band { padding: var(--s16) 0 var(--s24); overflow-x: clip; }
-    .pass-band .sec-h { text-align: center; margin-bottom: var(--s12); }
-    .hero-in .tk-count { display: inline-flex; margin-top: var(--s6); background: rgba(10,16,12,.55); border: 1px solid rgba(255,255,255,.18); }
-  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        "name": "2027 weekly mowing Season Pass",
-        "serviceType": "Lawn mowing",
-        "url": "https://gng-test-website.vercel.app/season-pass/",
-        "description": "Pay for the 2027 weekly mowing season by March 31, 2027 and save 5%. Same crew, same day every week, starting April 1, 2027.",
-        "provider": { "@type": "LandscapingBusiness", "@id": "https://gng-test-website.vercel.app/#business", "name": "Grass 'n' Gardens", "telephone": "+1-440-667-9642", "address": { "@type": "PostalAddress", "addressLocality": "Richfield", "addressRegion": "OH", "addressCountry": "US" } },
-        "areaServed": ["Richfield", "Bath", "Hinckley", "Granger", "Brecksville", "Broadview Heights", "North Royalton", "Akron", "Medina"]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gng-test-website.vercel.app/" },
-          { "@type": "ListItem", "position": 2, "name": "2027 Season Pass", "item": "https://gng-test-website.vercel.app/season-pass/" }
-        ]
-      }
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gng-test-website.vercel.app/" },
+      { "@type": "ListItem", "position": 2, "name": "Build your year", "item": "https://gng-test-website.vercel.app/your-year/" }
     ]
   }
   </script>
+  <style>
+    /* 2026-10-07 (night) BUILD YOUR YEAR. Harrison's own line: "It all goes on one plan for the whole year."
+       Signature: the year ribbon. Each month a service happens is a cell painted like a mowing stripe
+       (two lime shades taking turns). No prices here (brand rule), the price comes from Harrison by text.
+       Months per service are DRAFT (Ohio State timing for aeration + fertilizer; the rest is my read). */
+    .yr-hero { background: var(--coal); color: #fff; padding: calc(var(--s16) + 20px) 0 var(--s12); }
+    .yr-hero h1 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(40px, 9vw, 84px); line-height: .95; letter-spacing: .01em; }
+    .yr-hero .lede { margin-top: var(--s4); max-width: 34em; font-size: 19px; line-height: 1.55; color: rgba(255,255,255,.85); }
+    .yr { display: grid; gap: var(--s8); margin-top: var(--s8); }
+    @media (min-width: 1000px) { .yr { grid-template-columns: 360px 1fr; align-items: start; } }
+    .picks { border: 0; display: grid; gap: var(--s2); }
+    .picks legend { font-weight: 700; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: var(--s2); }
+    .pick { position: relative; display: block; }
+    .pick input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .pick > span { display: grid; grid-template-columns: 28px 1fr; gap: var(--s3); align-items: start; padding: 14px 16px; border-radius: 14px; background: #fff; border: 2px solid var(--line-light); cursor: pointer;
+      transition: transform .3s var(--spring), border-color .2s var(--ease-out), background-color .2s var(--ease-out); }
+    .pick > span::before { content: ""; width: 24px; height: 24px; margin-top: 1px; border-radius: 7px; border: 2px solid var(--pine); background: #fff; }
+    .pick b { display: block; font-size: 17px; line-height: 1.3; color: var(--ink); }
+    .pick small { display: block; margin-top: 2px; font-size: 14px; line-height: 1.4; color: var(--ink-muted); }
+    .pick > span:hover { border-color: var(--forest); }
+    .pick > span:active { transform: scale(.98); }
+    .pick input:checked + span { border-color: var(--pine); background: #f1f9ec; }
+    .pick input:checked + span::before { background: var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d4a22' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 18px no-repeat; }
+    .pick input:focus-visible + span { outline: 3px solid var(--forest); outline-offset: 2px; }
+
+    .board { background: #fff; border: 3px solid var(--ink); border-radius: 22px; box-shadow: 9px 9px 0 var(--lime); padding: var(--s6); }
+    .board h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(24px, 4vw, 32px); line-height: 1.05; color: var(--pine); }
+    .months, .yr-row .cells { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; }
+    .months { margin-top: var(--s6); padding-bottom: var(--s2); border-bottom: 2px solid var(--line-light); }
+    .months span { text-align: center; font-size: 13px; font-weight: 700; color: var(--ink-muted); border-radius: 6px; padding: 4px 0; }
+    .months span.now { background: var(--pine); color: #fff; }
+    .yr-rows { list-style: none; display: grid; gap: var(--s4); margin-top: var(--s4); }
+    .yr-row .name { display: flex; justify-content: space-between; gap: var(--s3); font-size: 15px; font-weight: 700; color: var(--ink); }
+    .yr-row .name em { font-style: normal; font-weight: 500; color: var(--ink-muted); text-align: right; }
+    .yr-row .cells { margin-top: 6px; }
+    .yr-row .cells i { height: 26px; border-radius: 5px; background: #eef1ec; transform-origin: left center; }
+    .yr-row .cells i.on { background: var(--lime); animation: grow .5s var(--spring) both; animation-delay: calc(var(--m) * 30ms); }
+    .yr-row .cells i.on:nth-child(even) { background: #7fc865; }
+    .yr-row .cells i.now { box-shadow: inset 0 0 0 2px var(--pine); }
+    @keyframes grow { from { transform: scaleX(.2); opacity: 0; } to { transform: none; opacity: 1; } }
+    .yr-empty { margin-top: var(--s6); padding: var(--s6); border-radius: 14px; background: var(--mist); text-align: center; font-size: 17px; color: var(--ink-muted); }
+    .sum { display: flex; flex-wrap: wrap; gap: var(--s3) var(--s6); margin-top: var(--s6); padding-top: var(--s4); border-top: 2px solid var(--line-light); font-size: 16px; color: var(--ink-muted); }
+    .sum b { color: var(--ink); }
+    .send { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s6); }
+    .yr-note { margin-top: var(--s4); font-size: 14px; line-height: 1.5; color: var(--ink-muted); }
+    @media (max-width: 600px) {
+      .board { padding: var(--s4); }
+      .months span { font-size: 11px; }
+      .yr-row .cells i { height: 22px; }
+      .send .btn { width: 100%; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) { .yr-row .cells i.on { animation: none; } .pick > span { transition: none; } }
+  </style>
 </head>
 <body>
 
   <div class="topbar">
-    <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../?need=season2027#plan">Save my spot</a></p>
+    <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
   </div>
 
   <!-- @header -->
@@ -86,11 +118,11 @@
               <a href="../yard-design/"><span>Yard design and planting<small>The right plant in the right spot</small></span></a>
               <a href="../aeration-fertilizer/"><span>Aeration and fertilizer<small>Try the screwdriver test</small></span></a>
               <a href="../hoa-commercial/"><span>HOA and commercial<small>Common areas and business properties</small></span></a>
-              <a href="../your-year/"><span>Build your year<small>See every month of your plan</small></span></a>
+              <a href="../your-year/" aria-current="page"><span>Build your year<small>See every month of your plan</small></span></a>
               <a class="sub-all" href="../#services">See every service</a>
             </div>
           </li>
-          <li><a href="../season-pass/" aria-current="page">2027 Season Pass</a></li>
+          <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
           <li><a href="../#five">Our promise</a></li>
           <li><a href="../#about">About</a></li>
@@ -120,8 +152,8 @@
           <li class="sub-li"><a href="../yard-design/">Yard design and planting</a></li>
           <li class="sub-li"><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
           <li class="sub-li"><a href="../hoa-commercial/">HOA and commercial</a></li>
-          <li class="sub-li"><a href="../your-year/">Build your year</a></li>
-          <li><a href="../season-pass/" aria-current="page">2027 Season Pass</a></li>
+          <li class="sub-li"><a href="../your-year/" aria-current="page">Build your year</a></li>
+          <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
           <li><a href="../#five">Our promise</a></li>
           <li><a href="../#about">About</a></li>
@@ -144,98 +176,45 @@
   <!-- /@header -->
 
   <main id="top">
-    <!-- 2026-10-07: new page. The homepage ticket opens this page (Harrison: "click on the ticket... finance the mowing").
-         It's prepay, not financing (real financing has legal rules); Harrison picked "pay up front, save 5%".
-         Terms = the ticket's lines (the locked 3-part guarantee + 5% prepay). New wording is class="draft". -->
-    <header class="page-hero">
-      <div class="hero-photo"><img src="../img/gbp-stripes-sky.jpg" srcset="../img/sm/gbp-stripes-sky.jpg 900w, ../img/md/gbp-stripes-sky.jpg 1200w, ../img/gbp-stripes-sky.jpg 1600w" sizes="100vw" alt="Long mowing stripes running back to a row of evergreens" fetchpriority="high" style="--pos: center 55%" /></div>
-      <div class="wrap hero-in">
-        <ol class="crumbs reveal"><li><a href="../">Home</a></li><li aria-current="page">2027 Season Pass</li></ol>
-        <p class="eyebrow reveal">2027 weekly mowing</p>
-        <h1 class="reveal d1">Season Pass</h1>
-        <p class="lede reveal d2">Pay for the whole 2027 season by March 31 and save 5%. That's the day before we start mowing.</p>
-        <p class="tk-count reveal d2" data-countdown hidden><b data-days></b>&nbsp;<span data-days-word>days</span>&nbsp;left to save</p>
-        <div class="hero-ctas reveal d3">
-          <a class="btn btn-lime" href="../?need=season2027#plan">Save my 2027 spot
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="tel:+14406679642">Call Harrison</a>
-        </div>
+    <header class="yr-hero">
+      <div class="wrap">
+        <ol class="crumbs"><li><a href="../">Home</a></li><li aria-current="page">Build your year</li></ol>
+        <p class="eyebrow" style="margin-top: var(--s4)">One plan for the whole year</p>
+        <h1 class="draft">Build your year</h1>
+        <p class="lede draft">Tick what you want done. Your whole year shows up below, month by month. Send it to Harrison and he texts you a price today.</p>
       </div>
     </header>
 
-    <!-- THE TICKET (same as the homepage; here it opens the form) -->
-    <section class="pass-band">
+    <section class="light sec" style="padding-top: var(--s12)">
       <div class="wrap">
-        <h2 class="sec-h reveal"><span class="draft">Here's your ticket.</span> <b class="draft">Everything it covers<span class="dot">.</span></b></h2>
-        <div class="ticket reveal">
-          <div class="tk-drop"><div class="tk-shape"><div class="tk-in">
-            <a class="tk-hit" href="../?need=season2027#plan" tabindex="-1" aria-hidden="true"></a>
-            <div class="tk-main">
-              <p class="tk-top"><span class="tk-admit draft">Admit one yard</span><span class="tk-season">2027 season pass</span></p>
-              <p class="tk-h">Lock in next year's <b>mowing now<span class="dot">.</span></b></p>
-              <ul class="stack-list">
-                <li>Weekly mowing, the same day every week</li>
-                <li>Five Before We Drive on every visit</li>
-                <li>Miss one? We're back the next day, free</li>
-                <li>30 days from your first mow to be sure. Not happy? Get back what you didn't use.</li>
-                <li>Moving mid-season? Get back what's left, minus the 5%</li>
-              </ul>
-              <div class="tk-code" aria-hidden="true"><span class="bars"></span><span class="code">GNG &middot; 2027 &middot; WEEKLY MOWING</span></div>
-            </div>
-            <div class="tk-stub">
-              <p class="pass-label">Pay the season up front</p>
-              <p class="tk-stamp" aria-label="Save 5 percent"><span>Save</span><b>5%</b><span>by Mar 31</span></p>
-              <p class="tk-count" data-countdown hidden><b data-days></b> <span data-days-word>days</span> left to save</p>
-              <p class="pass-scarce">Pay for the whole 2027 season by March 31. That's the day before we start mowing.</p>
-              <a class="btn btn-lime tk-go" href="../?need=season2027#plan">Save my 2027 spot
+        <div class="yr">
+          <fieldset class="picks" aria-describedby="yr-help">
+            <legend>Pick your services</legend>
+            <p id="yr-help" class="sr">Each service you tick adds a row to your year below.</p>
+            <!-- data-m = months it happens (1 = January). value = the matching box on the homepage form. -->
+            <label class="pick"><input type="checkbox" value="mowing" data-m="4,5,6,7,8,9,10" checked /><span><span><b>Weekly mowing</b><small class="draft">Same crew, same day every week</small></span></span></label>
+            <label class="pick"><input type="checkbox" value="spring" data-m="3,4" /><span><span><b>Spring cleanup</b><small class="draft">Sticks and dead leaves gone before the first mow</small></span></span></label>
+            <label class="pick"><input type="checkbox" value="mulch" data-m="4,5" /><span><span><b>Mulch and beds</b><small class="draft">Weeds out, fresh mulch, sharp edge</small></span></span></label>
+            <label class="pick"><input type="checkbox" value="bushes" data-m="6,9" /><span><span><b>Bush trimming</b><small class="draft">Shaped in early summer and again in fall</small></span></span></label>
+            <label class="pick"><input type="checkbox" value="aeration" data-m="9" data-name="Aeration and overseeding" /><span><span><b>Aeration and overseeding</b><small class="draft">Early fall, when it works best in Ohio</small></span></span></label>
+            <label class="pick"><input type="checkbox" value="aeration" data-m="4,9,11" data-name="Fertilizer" /><span><span><b>Fertilizer</b><small class="draft">Spring, early fall and late fall</small></span></span></label>
+            <label class="pick"><input type="checkbox" value="leaves" data-m="10,11" checked /><span><span><b>Leaf cleanup</b><small class="draft">The Fall Pass: we keep coming back till it's clear</small></span></span></label>
+            <label class="pick"><input type="checkbox" value="design" data-m="3,4,5" /><span><span><b>Yard design and planting</b><small class="draft">Planned in early spring, planted after</small></span></span></label>
+          </fieldset>
+
+          <div class="board" aria-live="polite">
+            <h2 class="draft">Your year</h2>
+            <div class="months" aria-hidden="true"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></div>
+            <ul class="yr-rows" data-rows></ul>
+            <p class="yr-empty draft" data-empty hidden>Tick a service on the left to start your year.</p>
+            <div class="sum" data-sum></div>
+            <div class="send">
+              <a class="btn btn-lime" data-send href="../#plan">Send my year to Harrison
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-              <a class="pass-call" href="tel:+14406679642">Or call Harrison: (440) 667-9642</a>
+              <a class="btn btn-ghost" data-text href="sms:+14406679642">Text it to him</a>
             </div>
-          </div></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="light sec">
-      <div class="wrap">
-        <h2 class="sec-h reveal" style="text-align:center"><span class="draft">How the</span> <b class="draft">Season Pass works<span class="dot">.</span></b></h2>
-        <ol class="how reveal d1" style="--n:4">
-          <li><b class="draft">Get your price.</b><span class="draft">Send your address. Harrison texts you today.</span></li>
-          <li><b class="draft">Pay by March 31.</b><span class="draft">Pay for the whole season up front and save 5%.</span></li>
-          <li><b class="draft">We start April 1.</b><span class="draft">Same crew, same day every week, all season.</span></li>
-          <li><b class="draft">Five checks every visit.</b><span>Miss one? We're back the next day, free.</span></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- UP FRONT vs AS YOU GO (no prices) -->
-    <section class="light sec" style="padding-top:0">
-      <div class="wrap">
-        <h2 class="sec-h reveal" style="text-align:center"><span class="draft">Two ways to pay.</span> <b class="draft">Same mowing<span class="dot">.</span></b></h2>
-        <div class="pair reveal d1">
-          <article>
-            <span class="pill draft">Pay as you go</span>
-            <h3 class="draft">Billed through the season</h3>
-            <ul>
-              <li><i class="yes" aria-label="Yes"></i><span class="draft">Same weekly mowing</span></li>
-              <li><i class="yes" aria-label="Yes"></i><span class="draft">Same five checks and guarantee</span></li>
-              <li><i class="no" aria-label="No"></i><span class="draft">No 5% off</span></li>
-            </ul>
-            <a class="btn btn-ghost" href="../lawn-mowing/">See weekly mowing</a>
-          </article>
-          <article class="us">
-            <span class="pill">Season Pass</span>
-            <h3 class="draft">Pay up front by March 31</h3>
-            <ul>
-              <li><i class="yes" aria-label="Yes"></i><span class="draft">Same weekly mowing</span></li>
-              <li><i class="yes" aria-label="Yes"></i><span class="draft">Same five checks and guarantee</span></li>
-              <li><i class="yes" aria-label="Yes"></i><span class="draft">Save 5% on the whole season</span></li>
-              <li><i class="yes" aria-label="Yes"></i>30 days from your first mow to be sure. Not happy? Get back what you didn't use.</li>
-            </ul>
-            <a class="btn btn-lime" href="../?need=season2027#plan">Save my 2027 spot
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </article>
+            <p class="yr-note draft">Months are a guide. Weather moves things a little each year, and Harrison sets your real dates. It all goes on one plan for the whole year.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -244,7 +223,7 @@
       <div class="wrap promise-row">
         <div class="reveal">
           <h2>Five checks before <b>we drive<span class="dot">.</span></b></h2>
-          <p class="rem">Miss one? Text us. We're back the next day, for free. If it rains, the next dry day. <a href="sms:+14406679642">Text (440) 667-9642</a></p>
+          <p class="rem">Every visit, all year. Miss one? Text us. We're back the next day, for free. <a href="sms:+14406679642">Text (440) 667-9642</a></p>
         </div>
         <ol class="checks reveal d1">
           <li>Edges crisp</li><li>Everything blown clean</li><li>Nothing left behind</li><li>Gates latched</li><li>No clumps</li>
@@ -252,50 +231,11 @@
       </div>
     </section>
 
-    <section class="light faq" aria-labelledby="faq-title">
-      <div class="wrap faq-grid">
-        <div class="faq-side reveal">
-          <p class="eyebrow">Questions</p>
-          <h2 id="faq-title"><span class="draft">Season Pass questions,</span> <b class="draft">straight answers<span class="dot">.</span></b></h2>
-          <p class="draft">Don't see yours? Text Harrison. He texts back from his own phone.</p>
-          <a class="btn btn-dark" href="sms:+14406679642">Text Harrison
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-        <div class="faq-list reveal d1">
-          <details class="qa" open>
-            <summary><h3 class="draft">When do I have to pay to save 5%?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">By March 31, 2027. That's the day before we start mowing.</p></div>
-          </details>
-          <details class="qa">
-            <summary><h3 class="draft">What if I'm not happy?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">You get 30 days from your first mow to be sure. Not happy? Cancel and get back what you didn't use.</p></div>
-          </details>
-          <details class="qa">
-            <summary><h3 class="draft">What if I move during the season?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">You get back what's left, minus the 5%.</p></div>
-          </details>
-          <details class="qa">
-            <summary><h3 class="draft">What if you miss a week?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">We're back the next day, free. If it rains, we come the next dry day.</p></div>
-          </details>
-          <details class="qa">
-            <summary><h3 class="draft">How much is the Season Pass?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">It depends on your yard. Send us your address and Harrison texts you the price today, with the 5% already taken off. <a href="../?need=season2027#plan">Save my 2027 spot</a></p></div>
-          </details>
-        </div>
-      </div>
-    </section>
-
     <section class="ask">
       <div class="wrap">
-        <h2 class="stack reveal"><span class="thin draft">Lock in</span><span class="heavy draft">your 2027 spot<span class="dot">.</span></span></h2>
-        <p class="lede reveal d1 draft">Send your address. Harrison texts you the price today. Pay by March 31 and save 5%.</p>
+        <h2 class="stack reveal"><span class="thin">Want yours</span><span class="heavy">written out<span class="dot">?</span></span></h2>
+        <p class="lede reveal d1">I'll walk your yard and write out your whole year. Takes 20 minutes and you don't have to be home. You get it in a day and it's yours to keep, even if you stay with the guy you have now.</p>
         <a class="big-phone reveal d2" href="tel:+14406679642">(440) 667-9642</a>
-        <div class="center reveal d3">
-          <a class="btn btn-lime" href="../?need=season2027#plan">Save my 2027 spot
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
-        </div>
       </div>
     </section>
   </main>
@@ -334,12 +274,12 @@
           <h2>G'N'G</h2>
           <ul>
             <li><a href="../why-gng/">Why G'N'G</a></li>
-            <li><a href="../season-pass/" aria-current="page">2027 Season Pass</a></li>
+            <li><a href="../season-pass/">2027 Season Pass</a></li>
             <li><a href="../#five">Our promise</a></li>
             <li><a href="../#about">Meet Harrison</a></li>
             <li><a href="../#area">Where we work</a></li>
             <li><a href="../#faq">Questions</a></li>
-            <li><a href="../your-year/">Build your year</a></li>
+            <li><a href="../your-year/" aria-current="page">Build your year</a></li>
             <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
         </div>
@@ -414,54 +354,65 @@
   <!-- /@footer -->
 
   <script src="../site.js" defer></script>
-  <!-- FAQ for Google / AI answers. Built from the FAQ section by websites/faq-jsonld.ps1; rebuild after editing the FAQ. -->
-  <script type="application/ld+json" id="faq-ld">
-{
-    "@context":  "https://schema.org",
-    "@type":  "FAQPage",
-    "mainEntity":  [
-                       {
-                           "@type":  "Question",
-                           "name":  "When do I have to pay to save 5%?",
-                           "acceptedAnswer":  {
-                                                  "@type":  "Answer",
-                                                  "text":  "By March 31, 2027. That\u0027s the day before we start mowing."
-                                              }
-                       },
-                       {
-                           "@type":  "Question",
-                           "name":  "What if I\u0027m not happy?",
-                           "acceptedAnswer":  {
-                                                  "@type":  "Answer",
-                                                  "text":  "You get 30 days from your first mow to be sure. Not happy? Cancel and get back what you didn\u0027t use."
-                                              }
-                       },
-                       {
-                           "@type":  "Question",
-                           "name":  "What if I move during the season?",
-                           "acceptedAnswer":  {
-                                                  "@type":  "Answer",
-                                                  "text":  "You get back what\u0027s left, minus the 5%."
-                                              }
-                       },
-                       {
-                           "@type":  "Question",
-                           "name":  "What if you miss a week?",
-                           "acceptedAnswer":  {
-                                                  "@type":  "Answer",
-                                                  "text":  "We\u0027re back the next day, free. If it rains, we come the next dry day."
-                                              }
-                       },
-                       {
-                           "@type":  "Question",
-                           "name":  "How much is the Season Pass?",
-                           "acceptedAnswer":  {
-                                                  "@type":  "Answer",
-                                                  "text":  "It depends on your yard. Send us your address and Harrison texts you the price today, with the 5% already taken off."
-                                              }
-                       }
-                   ]
-}
+  <script>
+    (() => {
+      const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const picks = [...document.querySelectorAll('.pick input')];
+      const rows = document.querySelector('[data-rows]');
+      const empty = document.querySelector('[data-empty]');
+      const sum = document.querySelector('[data-sum]');
+      const send = document.querySelector('[data-send]');
+      const text = document.querySelector('[data-text]');
+      const now = new Date().getMonth() + 1;
+      document.querySelectorAll('.months span')[now - 1].classList.add('now');
+      const label = m => {
+        // "April to October", "June and September", "April, September, November"
+        if (m.length === 1) return MONTHS[m[0] - 1];
+        const run = m.every((x, i) => i === 0 || x === m[i - 1] + 1);
+        if (run && m.length > 2) return MONTHS[m[0] - 1] + ' to ' + MONTHS[m[m.length - 1] - 1];
+        const n = m.map(x => MONTHS[x - 1]);
+        return n.length === 2 ? n.join(' and ') : n.slice(0, -1).join(', ') + ' and ' + n[n.length - 1];
+      };
+      const draw = () => {
+        const on = picks.filter(p => p.checked);
+        rows.innerHTML = '';
+        const busy = Array(13).fill(0);
+        on.forEach(p => {
+          const m = p.dataset.m.split(',').map(Number);
+          m.forEach(x => busy[x]++);
+          const name = p.dataset.name || p.closest('.pick').querySelector('b').textContent;
+          const li = document.createElement('li');
+          li.className = 'yr-row';
+          li.innerHTML = '<div class="name"><span></span><em></em></div><div class="cells" role="img"></div>';
+          li.querySelector('.name span').textContent = name;
+          li.querySelector('.name em').textContent = label(m);
+          const cells = li.querySelector('.cells');
+          cells.setAttribute('aria-label', name + ': ' + label(m));
+          for (let i = 1; i <= 12; i++) {
+            const c = document.createElement('i');
+            if (m.includes(i)) { c.className = 'on'; c.style.setProperty('--m', i); }
+            if (i === now) c.classList.add('now');
+            cells.appendChild(c);
+          }
+          rows.appendChild(li);
+        });
+        empty.hidden = on.length > 0;
+        const top = Math.max(...busy);
+        const months = busy.map((v, i) => v ? i : 0).filter(Boolean);
+        sum.innerHTML = on.length
+          ? '<span><b>' + on.length + '</b> ' + (on.length === 1 ? 'service' : 'services') + '</span><span>Work in <b>' + months.length + '</b> of 12 months</span><span>Busiest: <b>' + MONTHS[busy.indexOf(top) - 1] + '</b></span>'
+          : '';
+        const needs = [...new Set(on.map(p => p.value))];
+        send.href = '../?need=' + needs.join(',') + '#plan';
+        const body = "Hi Harrison, here's my year: " + on.map(p => (p.dataset.name || p.closest('.pick').querySelector('b').textContent) + ' (' + label(p.dataset.m.split(',').map(Number)) + ')').join(', ') + '. My address is ';
+        text.href = 'sms:+14406679642?&body=' + encodeURIComponent(body);
+      };
+      picks.forEach(p => p.addEventListener('change', draw));
+      const track = method => () => (window.dataLayer = window.dataLayer || []).push({ event: 'year_plan_send', method, services: picks.filter(p => p.checked).map(p => p.dataset.name || p.value).join(',') });
+      send.addEventListener('click', track('form'));
+      text.addEventListener('click', track('text'));
+      draw();
+    })();
   </script>
 </body>
 </html>

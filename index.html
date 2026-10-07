@@ -802,6 +802,13 @@
       padding: 8px 14px; border-radius: 6px; background: #fff; border: 2px solid var(--pine);
       font-weight: 700; font-size: 15px; color: var(--pine);
     }
+    /* 2026-10-07 night: towns with their own page are lime chips that link there */
+    .towns li:has(a) { padding: 0; background: var(--lime); }
+    .towns a { display: block; padding: 8px 14px; border-radius: 4px; color: var(--pine); text-decoration: none; transition: transform .3s var(--spring); }
+    .towns a::after { content: " →"; }
+    .towns a:hover { background: #7fc865; }
+    .towns a:active { transform: scale(.95); }
+    .towns a:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
     .area-note { margin-top: var(--s4); color: var(--ink-muted); font-size: 16px; }
     .hoa-card {
       background: #fff; color: var(--ink); border: 3px solid var(--pine); border-radius: var(--radius);
@@ -810,6 +817,7 @@
     .hoa-card h3 { margin-top: var(--s3); font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 30px; line-height: 1.05; letter-spacing: .01em; }
     .hoa-card p:not(.eyebrow) { margin-top: var(--s3); font-size: 17px; line-height: 1.5; color: var(--ink-muted); }
     .hoa-card .btn { margin-top: var(--s6); }
+    .hoa-card .btn + .btn { margin-left: var(--s2); }
     /* ---------- top bar (always visible, like TruGreen's offer bar) ---------- */
     /* scrolls away with the page (2026-10-06); the white header sticks instead */
     .topbar {
@@ -1544,6 +1552,9 @@
               <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
               <a href="../yard-design/"><span>Yard design and planting<small>The right plant in the right spot</small></span></a>
+              <a href="../aeration-fertilizer/"><span>Aeration and fertilizer<small>Try the screwdriver test</small></span></a>
+              <a href="../hoa-commercial/"><span>HOA and commercial<small>Common areas and business properties</small></span></a>
+              <a href="../your-year/"><span>Build your year<small>See every month of your plan</small></span></a>
               <a class="sub-all" href="./#services">See every service</a>
             </div>
           </li>
@@ -1575,11 +1586,15 @@
           <li class="sub-li"><a href="../spring-cleanup/">Spring cleanups</a></li>
           <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
           <li class="sub-li"><a href="../yard-design/">Yard design and planting</a></li>
+          <li class="sub-li"><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
+          <li class="sub-li"><a href="../hoa-commercial/">HOA and commercial</a></li>
+          <li class="sub-li"><a href="../your-year/">Build your year</a></li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
           <li><a href="./#five">Our promise</a></li>
           <li><a href="./#about">About</a></li>
           <li><a href="./#faq">Questions</a></li>
+          <li><a href="../join-the-crew/">Join the crew</a></li>
         </ul>
         <div class="menu-ctas">
           <a class="btn btn-lime" href="./#plan">Get my yard plan
@@ -1637,10 +1652,13 @@
         <ul>
           <li><a href="../lawn-mowing/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V9M9 20V6M14 20V9M19 20V5"/></svg>Weekly mowing</a></li>
           <li><a class="hot" href="../season-pass/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v8a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2z"/><path d="M15 6v12" stroke-dasharray="2 2.5"/></svg>2027 Season Pass</a></li>
+          <li><a href="../your-year/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 15h3"/></svg>Build your year</a></li>
           <li><a href="../fall-cleanup/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19l8-8"/></svg>Fall cleanups</a></li>
           <li><a href="../mulch-beds/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="13" r="4"/><circle cx="16" cy="12" r="5"/><path d="M2 20h20"/></svg>Mulch, beds and bushes</a></li>
           <li><a href="../spring-cleanup/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20v-8"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg>Spring cleanups</a></li>
           <li><a href="../yard-design/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></svg>Yard design</a></li>
+          <li><a href="../aeration-fertilizer/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13M9 16h6l-3 5z"/><path d="M3 12h4M17 12h4"/></svg>Aeration and fertilizer</a></li>
+          <li><a href="../hoa-commercial/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg>HOA and commercial</a></li>
           <li><a href="../why-gng/"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>60 reviews</a></li>
           <li><a href="#faq"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg>Questions</a></li>
         </ul>
@@ -1746,6 +1764,11 @@
               <label><input type="checkbox" name="need" value="bushes" /><span>Bush trimming</span></label>
               <label class="chip-extra"><input type="checkbox" name="need" value="spring" /><span>Spring cleanup</span></label>
               <label class="chip-extra"><input type="checkbox" name="need" value="design" /><span>Custom design and planting</span></label>
+              <!-- 2026-10-07 (night): ticked by the new pages (aeration-fertilizer, hoa-commercial, your-year) -->
+              <label class="chip-extra"><input type="checkbox" name="need" value="aeration" /><span>Aeration and fertilizer</span></label>
+              <label class="chip-extra"><input type="checkbox" name="need" value="soilcheck" /><span>Free Soil Check</span></label>
+              <label class="chip-extra"><input type="checkbox" name="need" value="trees" /><span>Small tree work</span></label>
+              <label class="chip-extra"><input type="checkbox" name="need" value="hoa" /><span>HOA or business property</span></label>
               <label><input type="checkbox" name="need" value="other" id="need-other" /><span>Something else</span></label>
             </fieldset>
             <label class="if-other other-need">What else? <input name="need_other" placeholder="Type it here" /></label>
@@ -2122,8 +2145,8 @@
           <p class="eyebrow">Where we work</p>
           <h2>Richfield <b>and nearby<span class="dot">.</span></b></h2>
           <ul class="towns">
-            <li>Richfield</li><li>Bath</li><li>Hinckley</li><li>Granger</li><li>Brecksville</li>
-            <li>Broadview Heights</li><li>North Royalton</li><li>Akron</li><li>Medina</li>
+            <li><a href="../richfield-oh/">Richfield</a></li><li>Bath</li><li>Hinckley</li><li>Granger</li><li><a href="../brecksville-oh/">Brecksville</a></li>
+            <li><a href="../broadview-heights-oh/">Broadview Heights</a></li><li>North Royalton</li><li>Akron</li><li>Medina</li>
           </ul>
           <p class="area-note">Not on the list? Call us. We might still come out.</p>
         </div>
@@ -2131,7 +2154,8 @@
           <p class="eyebrow">HOA or business property?</p>
           <h3>Talk to Harrison directly.</h3>
           <p class="draft">Same five checks. Same guarantee. One contract for the whole property.</p>
-          <a class="btn btn-dark" href="tel:+14406679642">Call (440) 667-9642</a>
+          <a class="btn btn-dark" href="../hoa-commercial/">See what our bid includes</a>
+          <a class="btn btn-ghost" href="tel:+14406679642">Call (440) 667-9642</a>
         </div>
       </div>
     </section>
@@ -2291,6 +2315,8 @@
             <li><a href="../spring-cleanup/">Spring cleanups</a></li>
             <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
             <li><a href="../yard-design/">Yard design and planting</a></li>
+            <li><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
+            <li><a href="../hoa-commercial/">HOA and commercial</a></li>
           </ul>
         </div>
         <div>
@@ -2302,6 +2328,8 @@
             <li><a href="./#about">Meet Harrison</a></li>
             <li><a href="./#area">Where we work</a></li>
             <li><a href="./#faq">Questions</a></li>
+            <li><a href="../your-year/">Build your year</a></li>
+            <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
         </div>
         <div>
@@ -2317,6 +2345,7 @@
       <div class="foot">
         <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
+        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a></p>
         <button class="app-get" type="button" data-app-get hidden>
           <img src="./app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
