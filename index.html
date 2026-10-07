@@ -57,7 +57,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/sm/gbp-mower-stripes.jpg 900w, img/gbp-mower-stripes.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -130,7 +130,7 @@
 
     /* draft wording: add ?drafts to the URL to see which lines are mine, not Harrison's */
     /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
-    .show-drafts .draft { text-shadow: 0 0 8px rgba(232, 180, 40, .5) !important; }
+    .show-drafts .draft { text-shadow: 0 0 8px rgba(102, 184, 74, .6), 0 0 2px rgba(102, 184, 74, .35) !important; }
 
     /* ---------- buttons ---------- */
     .btn {
@@ -475,7 +475,10 @@
     .gshot .who b { display: block; font-size: 15px; font-weight: 700; }
     .gshot .who span { font-size: 13px; color: #5f6368; }
     .gshot .glogo { flex: none; }
-    .gshot .rate { display: flex; gap: 2px; margin-top: var(--s4); color: #fbbc04; }
+    /* 2026-10-07 speed: sections far down the page aren't drawn until you scroll near them (the browser keeps
+       their real size once seen). Not on the night field, Five or reviews: those animate with the scroll. */
+    .compare, .work, .area, .faq { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+    .gshot .rate { margin-top: var(--s4); color: #fbbc04; font-size: 19px; line-height: 1; letter-spacing: 2px; font-family: Arial, sans-serif; }
     .gshot p { margin-top: var(--s3); font-size: 15px; line-height: 1.55; color: #3c4043; }
     @media (prefers-reduced-motion: reduce) { .gshot { transition: none; } }
     .reviews .more { display: flex; justify-content: flex-end; margin-top: var(--s8); }
@@ -1563,11 +1566,11 @@
              Lighter shading than before, so the photos read clear; the text keeps its own soft shadow. -->
         <div class="broll" role="img" aria-label="Striped lawns, a stand-on mower, fresh mulch beds and the Grass 'n' Gardens crew on a job">
           <!-- 2026-10-06: swapped to Harrison's own Google Business photos ("By owner" only, his OK). gbp-* = cropped to 4:3. -->
-          <img src="img/gbp-mower-stripes.jpg" srcset="img/sm/gbp-mower-stripes.jpg 900w, img/gbp-mower-stripes.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: 70% 55%" />
-          <img data-src="img/gallery-12.jpg" data-srcset="img/sm/gallery-12.jpg 900w, img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
-          <img data-src="img/gbp-crew-mowing.jpg" data-srcset="img/sm/gbp-crew-mowing.jpg 900w, img/gbp-crew-mowing.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
-          <img data-src="img/gbp-mower-house.jpg" data-srcset="img/sm/gbp-mower-house.jpg 900w, img/gbp-mower-house.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
-          <img data-src="img/crew-mulch.jpg" data-srcset="img/sm/crew-mulch.jpg 900w, img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
+          <img src="img/gbp-mower-stripes.jpg" srcset="img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: 70% 55%" />
+          <img data-src="img/gallery-12.jpg" data-srcset="img/sm/gallery-12.jpg 900w, img/md/gallery-12.jpg 1200w, img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
+          <img data-src="img/gbp-crew-mowing.jpg" data-srcset="img/sm/gbp-crew-mowing.jpg 900w, img/md/gbp-crew-mowing.jpg 1200w, img/gbp-crew-mowing.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
+          <img data-src="img/gbp-mower-house.jpg" data-srcset="img/sm/gbp-mower-house.jpg 900w, img/md/gbp-mower-house.jpg 1200w, img/gbp-mower-house.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
+          <img data-src="img/crew-mulch.jpg" data-srcset="img/sm/crew-mulch.jpg 900w, img/md/crew-mulch.jpg 1200w, img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
         </div>
       </div>
       <div class="wrap hero-copy">
@@ -2371,13 +2374,15 @@
       ["Jake Z.", "These guys do great work"]
     ];
     const colors = ['#1a73e8', '#e8710a', '#188038', '#9334e6', '#d93025', '#12858a'];
-    const star = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>';
-    const glogo = '<svg class="glogo" width="22" height="22" viewBox="0 0 48 48" aria-label="Google review"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.2 1.5-5 2.3-8.2 2.3-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>';
+    // 2026-10-07 speed: the Google logo is drawn once (a hidden <symbol>) and every card reuses it, and the
+    // 5 stars are one line of text. 98 cards used to carry ~1,200 extra drawing parts.
+    document.body.insertAdjacentHTML('afterbegin', '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="g-logo" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.7 6c4.5-4.2 6.9-10.3 6.9-17.7z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.7-6c-2.2 1.5-5 2.3-8.2 2.3-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></symbol></svg>');
+    const glogo = '<svg class="glogo" width="22" height="22" aria-label="Google review"><use href="#g-logo"/></svg>';
     const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
     const card = ([n, q], i) => `<article class="gshot">
         <header><span class="av" style="background:${colors[i % colors.length]}" aria-hidden="true">${n[0]}</span>
           <span class="who"><b>${esc(n)}</b><span>Google review</span></span>${glogo}</header>
-        <div class="rate" role="img" aria-label="5 out of 5 stars">${star.repeat(5)}</div>
+        <div class="rate" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p>${esc(q)}</p>
       </article>`;
 
@@ -2435,11 +2440,25 @@
     }), { threshold: .05, rootMargin: '0px 0px -16px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // Hero photos 2-5 load after the page is ready, so the first photo and the words show up fast (2026-10-07)
-    const later = () => document.querySelectorAll('img[data-src]').forEach(i => {
-      if (i.dataset.srcset) i.srcset = i.dataset.srcset;
-      i.src = i.dataset.src; i.removeAttribute('data-src');
-    });
+    // Hero photos 2-5 wait until the page is ready (2026-10-07). Later the same day, more speed: each one loads
+    // ~3s before its turn in the slideshow, and only while the hero is on screen. Someone who scrolls right past
+    // the top no longer downloads ~2.6 MB of photos they never see. Keep the same code in site.js.
+    const later = () => {
+      const load = i => { if (!i.dataset.src) return; if (i.dataset.srcset) i.srcset = i.dataset.srcset; i.src = i.dataset.src; i.removeAttribute('data-src'); };
+      const imgs = [...document.querySelectorAll('img[data-src]')];
+      imgs.filter(i => !i.closest('.broll')).forEach(load);
+      const roll = imgs.filter(i => i.closest('.broll'));
+      if (!roll.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return; // still hero = photo 1 only
+      let on = true;
+      const check = () => {
+        const t = performance.now() / 1000;
+        roll.forEach(i => { if (on && t >= (parseFloat(getComputedStyle(i).animationDelay) || 0) - 3) load(i); });
+        if (!roll.some(i => i.dataset.src)) clearInterval(timer);
+      };
+      const timer = setInterval(check, 1000);
+      new IntersectionObserver(([e]) => { on = e.isIntersecting; if (on) check(); }).observe(roll[0].closest('.broll'));
+      check();
+    };
     if (document.readyState === 'complete') later(); else addEventListener('load', later);
 
     // Phones: the rest of the questions open with one tap (2026-10-07)

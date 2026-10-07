@@ -49,7 +49,7 @@
     .eyebrow { font-weight: 700; font-size: 13px; line-height: 1; letter-spacing: .22em; text-transform: uppercase; }
     .dot { color: var(--lime); }
     /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
-    .show-drafts .draft { text-shadow: 0 0 8px rgba(232, 180, 40, .5) !important; }
+    .show-drafts .draft { text-shadow: 0 0 8px rgba(102, 184, 74, .6), 0 0 2px rgba(102, 184, 74, .35) !important; }
     .sec-h { font-family: var(--font-body); font-weight: 600; font-size: var(--fs-lead); line-height: 1.2; color: rgba(255,255,255,.88); }
     .sec-h b { display: block; margin-top: 6px; font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h2); line-height: 1; letter-spacing: .01em; text-transform: uppercase; color: #fff; }
 
@@ -247,7 +247,7 @@
     <!-- ALMOST DONE. The form saved a ready-made text/email in this browser tab (sessionStorage, never the URL).
          This page gives one big button to open it again, because some phones block the first try. -->
     <section class="ty">
-      <div class="ty-photo"><img src="../img/sm/gallery-12.jpg" srcset="../img/sm/gallery-12.jpg 900w, ../img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" /></div>
+      <div class="ty-photo"><img src="../img/sm/gallery-12.jpg" srcset="../img/sm/gallery-12.jpg 900w, ../img/md/gallery-12.jpg 1200w, ../img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" /></div>
       <div class="wrap ty-in">
         <p class="eyebrow rise draft" data-thanks>Thanks!</p>
         <h1 class="rise d1 if-msg draft">Almost done!</h1>

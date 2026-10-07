@@ -22,7 +22,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="../img/gbp-stripes-sky.jpg" imagesrcset="../img/sm/gbp-stripes-sky.jpg 900w, ../img/gbp-stripes-sky.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="../img/gbp-stripes-sky.jpg" imagesrcset="../img/sm/gbp-stripes-sky.jpg 900w, ../img/md/gbp-stripes-sky.jpg 1200w, ../img/gbp-stripes-sky.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -103,7 +103,7 @@
 
     /* draft wording: add ?drafts to the URL to see which lines are mine, not Harrison's */
     /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
-    .show-drafts .draft { text-shadow: 0 0 8px rgba(232, 180, 40, .5) !important; }
+    .show-drafts .draft { text-shadow: 0 0 8px rgba(102, 184, 74, .6), 0 0 2px rgba(102, 184, 74, .35) !important; }
 
     /* ---------- cartoon buttons (homepage 2026-10-05/06) ---------- */
     .btn {
@@ -690,11 +690,11 @@
     <section class="hero" aria-labelledby="why-title">
       <div class="hero-photo">
         <div class="broll" role="img" aria-label="Striped lawns, fresh mulch beds and the Grass 'n' Gardens crew on a job">
-          <img src="../img/gbp-stripes-sky.jpg" srcset="../img/sm/gbp-stripes-sky.jpg 900w, ../img/gbp-stripes-sky.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: center 55%" />
-          <img data-src="../img/gallery-12.jpg" data-srcset="../img/sm/gallery-12.jpg 900w, ../img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
-          <img data-src="../img/gbp-crew-mowing.jpg" data-srcset="../img/sm/gbp-crew-mowing.jpg 900w, ../img/gbp-crew-mowing.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
-          <img data-src="../img/gbp-mower-house.jpg" data-srcset="../img/sm/gbp-mower-house.jpg 900w, ../img/gbp-mower-house.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
-          <img data-src="../img/crew-mulch.jpg" data-srcset="../img/sm/crew-mulch.jpg 900w, ../img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
+          <img src="../img/gbp-stripes-sky.jpg" srcset="../img/sm/gbp-stripes-sky.jpg 900w, ../img/md/gbp-stripes-sky.jpg 1200w, ../img/gbp-stripes-sky.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: center 55%" />
+          <img data-src="../img/gallery-12.jpg" data-srcset="../img/sm/gallery-12.jpg 900w, ../img/md/gallery-12.jpg 1200w, ../img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
+          <img data-src="../img/gbp-crew-mowing.jpg" data-srcset="../img/sm/gbp-crew-mowing.jpg 900w, ../img/md/gbp-crew-mowing.jpg 1200w, ../img/gbp-crew-mowing.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
+          <img data-src="../img/gbp-mower-house.jpg" data-srcset="../img/sm/gbp-mower-house.jpg 900w, ../img/md/gbp-mower-house.jpg 1200w, ../img/gbp-mower-house.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
+          <img data-src="../img/crew-mulch.jpg" data-srcset="../img/sm/crew-mulch.jpg 900w, ../img/md/crew-mulch.jpg 1200w, ../img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
         </div>
       </div>
       <div class="wrap hero-in">
