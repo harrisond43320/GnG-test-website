@@ -80,7 +80,7 @@ window.GNG_REVIEW_POINTS = {
   "Ricky M.": [["very flexible schedule"], ["Flexible schedule"]],
   "Shannon J.": [["getting our lawns ready for Spring", "old leaf removal, cutting and edging"], ["Spring cleanup"]],
   "Jacquelyn G.": [["very prompt when responding", "checks in with me"], ["Fast reply", "Checks in"]],
-  "Carter C.": [["Harrison drew up a plan and walked us through it", "It looks so much better"], ["Yard design", "A clear plan"]],
+  "Carter C.": [["Harrison drew up a plan and walked us through it", "It looks so much better"], ["Bed planning", "A clear plan"]],
   "Zachary O.": [["quick, efficient, quality work", "cleaning up as well"], ["Quick", "Cleans up"]],
   "Michelle K.": [["for two years", "conscientious and meticulous crew"], ["Back every year", "Careful crew"]],
   "Heather B.": [["completely transformed our beds"], ["Beds made over"]],

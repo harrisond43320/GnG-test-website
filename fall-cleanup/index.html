@@ -77,7 +77,7 @@
               <a href="../fall-cleanup/" aria-current="page"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
               <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
-              <a href="../yard-design/"><span>Yard design and planting<small>The right plant in the right spot</small></span></a>
+              <a href="../yard-design/"><span>Planting and bed refresh<small>The right plant in the right spot</small></span></a>
               <a href="../aeration-fertilizer/"><span>Aeration and fertilizer<small>Try the screwdriver test</small></span></a>
               <a href="../hoa-commercial/"><span>HOA and commercial<small>Common areas and business properties</small></span></a>
               <a href="../your-year/"><span>Build your year<small>See every month of your plan</small></span></a>
@@ -86,12 +86,28 @@
           </li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
-          <li><a href="../#five">Our promise</a></li>
-          <li><a href="../#about">About</a></li>
-          <li><a href="../#faq">Questions</a></li>
+          <li><a href="../our-work/">Our work</a></li>
+          <!-- 2026-10-07 (late, Harrison: the header is too full): About, promise, questions, referral and hiring
+               moved under one "About" list, so the bar has 6 links instead of 8 and room for the Yard Score button. -->
+          <li class="has-sub">
+            <button class="sub-btn" type="button" aria-expanded="false" aria-controls="sub-about">About
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="sub" id="sub-about">
+              <a href="../about/"><span>About us<small>Harrison and the crew</small></span></a>
+              <a href="../#five"><span>Our promise<small>Five checks before we drive</small></span></a>
+              <a href="../faq/"><span>Questions<small>Cost, area, insurance and more</small></span></a>
+              <a href="../refer/"><span>Send a neighbor<small>You both save 5%</small></span></a>
+              <a href="../join-the-crew/"><span>Join the crew<small>Crew jobs and pay</small></span></a>
+            </div>
+          </li>
         </ul>
       </nav>
       <div class="head-ctas">
+        <!-- 2026-10-07 (late, Harrison: "most people aren't gonna see" the Yard Score): its own button by the phone -->
+        <a class="score-btn" href="../yard-score/">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg>
+          <span>Yard Score<small>4 taps</small></span>
+        </a>
         <a class="btn btn-lime phone" href="tel:+14406679642" aria-label="Call (440) 667-9642">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
           <span class="num">(440) 667-9642</span>
@@ -104,6 +120,12 @@
     <!-- phone + tablet menu -->
     <div class="menu-panel" id="menu-panel" hidden>
       <nav class="wrap" aria-label="Main, small screens">
+        <!-- 2026-10-07 (late): the Yard Score sits first in the phone menu as a card, not buried in the list -->
+        <a class="score-card" href="../yard-score/">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg>
+          <span><b>Get your Yard Score</b><small class="draft">4 taps. See what your yard needs.</small></span>
+          <svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
         <ul>
           <li><a href="../">Home</a></li>
           <li class="grp" aria-hidden="true">Services</li>
@@ -111,17 +133,19 @@
           <li class="sub-li"><a href="../fall-cleanup/" aria-current="page">Fall cleanups</a></li>
           <li class="sub-li"><a href="../spring-cleanup/">Spring cleanups</a></li>
           <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
-          <li class="sub-li"><a href="../yard-design/">Yard design and planting</a></li>
+          <li class="sub-li"><a href="../yard-design/">Planting and bed refresh</a></li>
           <li class="sub-li"><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
           <li class="sub-li"><a href="../hoa-commercial/">HOA and commercial</a></li>
           <li class="sub-li"><a href="../your-year/">Build your year</a></li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
-          <li><a href="../#five">Our promise</a></li>
-          <li><a href="../#about">About</a></li>
-          <li><a href="../#faq">Questions</a></li>
-          <li><a href="../join-the-crew/">Join the crew</a></li>
-          <li><a href="../refer/">Send a neighbor</a></li>
+          <li><a href="../our-work/">Our work</a></li>
+          <li class="grp" aria-hidden="true">About</li>
+          <li class="sub-li"><a href="../about/">About us</a></li>
+          <li class="sub-li"><a href="../#five">Our promise</a></li>
+          <li class="sub-li"><a href="../faq/">Questions</a></li>
+          <li class="sub-li"><a href="../join-the-crew/">Join the crew</a></li>
+          <li class="sub-li"><a href="../refer/">Send a neighbor</a></li>
         </ul>
         <div class="menu-ctas">
           <a class="btn btn-lime" href="../#plan">Get my yard plan
@@ -202,8 +226,8 @@
       <div class="wrap">
         <h2 class="sec-h reveal"><span class="draft">One visit, start to finish.</span> <b>Before and after<span class="dot">.</span></b></h2>
         <div class="ba reveal">
-          <figure class="ba-shot"><img src="../img/sm/leaf-before.jpg" alt="Before: a bed full of leaves and growth beside a stone walk" loading="lazy" /><figcaption>Before</figcaption></figure>
-          <figure class="ba-shot after"><img src="../img/sm/leaf-after.jpg" alt="After: the same beds cleared, fresh and edged" loading="lazy" /><figcaption>After</figcaption></figure>
+          <figure class="ba-shot"><img src="../img/sm/leaf-before.jpg" srcset="../img/sm/leaf-before.jpg 900w, ../img/leaf-before.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Before: a bed full of leaves and growth beside a stone walk" loading="lazy" /><figcaption>Before</figcaption></figure>
+          <figure class="ba-shot after"><img src="../img/sm/leaf-after.jpg" srcset="../img/sm/leaf-after.jpg 900w, ../img/leaf-after.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="After: the same beds cleared, fresh and edged" loading="lazy" /><figcaption>After</figcaption></figure>
           <p class="ba-cap"><b>Fall cleanup.</b> One visit. Beds cleared, leaves gone, walk blown clean.</p>
         </div>
         <ul class="gets reveal" style="max-width: 760px">
@@ -285,10 +309,10 @@
       <div class="wrap">
         <h2 class="sec-h reveal"><span class="thin draft">Your yard has a season.</span> <b class="draft">We do the rest too<span class="dot">.</span></b></h2>
         <div class="svc-row">
-          <a class="svc reveal" href="../lawn-mowing/"><img src="../img/sm/gbp-stone-house.jpg" alt="Fresh mowing stripes across the front lawn of a stone-front house" loading="lazy" /><div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-          <a class="svc reveal d1" href="../spring-cleanup/"><img src="../img/sm/gallery-14.jpg" alt="Fresh mulch bed with hostas along a ranch home" loading="lazy" /><div class="svc-body"><h3>Spring cleanups</h3><p class="draft">Sticks and dead leaves gone before your first mow.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-          <a class="svc reveal d2" href="../mulch-beds/"><img src="../img/sm/gbp-curved-bed.jpg" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" /><div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-          <a class="svc reveal d3" href="../yard-design/"><span class="tag">Custom</span><img src="../img/sm/gbp-planter-boxes.jpg" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" /><div class="svc-body"><h3>Yard design</h3><p class="draft">The right plant in the right spot. Planned before we plant.</p><span class="go">Get a custom design <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal" href="../lawn-mowing/"><img src="../img/sm/gbp-stone-house.jpg" srcset="../img/sm/gbp-stone-house.jpg 900w, ../img/md/gbp-stone-house.jpg 1200w, ../img/gbp-stone-house.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Fresh mowing stripes across the front lawn of a stone-front house" loading="lazy" /><div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal d1" href="../spring-cleanup/"><img src="../img/sm/gallery-14.jpg" srcset="../img/sm/gallery-14.jpg 900w, ../img/gallery-14.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="Fresh mulch bed with hostas along a ranch home" loading="lazy" /><div class="svc-body"><h3>Spring cleanups</h3><p class="draft">Sticks and dead leaves gone before your first mow.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal d2" href="../mulch-beds/"><img src="../img/sm/gbp-curved-bed.jpg" srcset="../img/sm/gbp-curved-bed.jpg 900w, ../img/gbp-curved-bed.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" /><div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal d3" href="../yard-design/"><img src="../img/sm/gbp-planter-boxes.jpg" srcset="../img/sm/gbp-planter-boxes.jpg 900w, ../img/md/gbp-planter-boxes.jpg 1200w, ../img/gbp-planter-boxes.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" /><div class="svc-body"><h3>Planting</h3><p class="draft">New plants and tired beds redone. The right plant in the right spot.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
         </div>
       </div>
     </section>
@@ -332,7 +356,7 @@
             <li><a href="../fall-cleanup/" aria-current="page">Fall cleanups</a></li>
             <li><a href="../spring-cleanup/">Spring cleanups</a></li>
             <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
-            <li><a href="../yard-design/">Yard design and planting</a></li>
+            <li><a href="../yard-design/">Planting and bed refresh</a></li>
             <li><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
             <li><a href="../hoa-commercial/">HOA and commercial</a></li>
           </ul>
@@ -343,10 +367,12 @@
             <li><a href="../why-gng/">Why G'N'G</a></li>
             <li><a href="../season-pass/">2027 Season Pass</a></li>
             <li><a href="../#five">Our promise</a></li>
-            <li><a href="../#about">Meet Harrison</a></li>
+            <li><a href="../about/">Meet Harrison</a></li>
+            <li><a href="../our-work/">Our work</a></li>
             <li><a href="../#area">Where we work</a></li>
-            <li><a href="../#faq">Questions</a></li>
+            <li><a href="../faq/">Questions</a></li>
             <li><a href="../your-year/">Build your year</a></li>
+            <li><a href="../yard-score/">Yard Score</a></li>
             <li><a href="../refer/">Send a neighbor (5% off)</a></li>
             <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>

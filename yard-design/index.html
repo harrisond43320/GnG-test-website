@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Custom Yard Design and Planting in Richfield, OH | Grass 'n' Gardens</title>
-  <meta name="description" content="Custom yard design, planting beds, planter boxes and retaining walls in Richfield, Ohio. We check sun, shade and soil first, then put each plant where it will grow." />
-  <meta property="og:title" content="Custom Yard Design and Planting in Richfield, OH" />
+  <title>Planting and Bed Refresh in Richfield, OH | Grass 'n' Gardens</title>
+  <meta name="description" content="New plants and tired beds redone in Richfield, Ohio. We check sun, shade and soil first, then put each plant where it will grow. Then we keep it up all year." />
+  <meta property="og:title" content="Planting and Bed Refresh in Richfield, OH" />
   <meta property="og:description" content="The right plant in the right spot. Planned before we plant." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://gng-test-website.vercel.app/img/gbp-planter-boxes.jpg" />
@@ -33,10 +33,10 @@
     "@graph": [
       {
         "@type": "Service",
-        "name": "Custom yard design and planting",
-        "serviceType": "Landscape design and planting",
+        "name": "Planting and bed refresh",
+        "serviceType": "Planting and bed care",
         "url": "https://gng-test-website.vercel.app/yard-design/",
-        "description": "Custom yard design and planting in Richfield, Ohio: planting beds, raised planter boxes, retaining walls and paver patios. Sun, shade and soil checked before we plant.",
+        "description": "Planting and bed refresh in Richfield, Ohio: new beds, tired beds redone, plants moved to better spots, trees and shrubs planted. Sun, shade and soil checked before we plant.",
         "provider": { "@type": "LandscapingBusiness", "@id": "https://gng-test-website.vercel.app/#business", "name": "Grass 'n' Gardens", "telephone": "+1-440-667-9642", "address": { "@type": "PostalAddress", "addressLocality": "Richfield", "addressRegion": "OH", "addressCountry": "US" } },
         "areaServed": ["Richfield", "Bath", "Hinckley", "Granger", "Brecksville", "Broadview Heights", "North Royalton", "Akron", "Medina"]
       },
@@ -44,7 +44,7 @@
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gng-test-website.vercel.app/" },
-          { "@type": "ListItem", "position": 2, "name": "Yard design and planting", "item": "https://gng-test-website.vercel.app/yard-design/" }
+          { "@type": "ListItem", "position": 2, "name": "Planting and bed refresh", "item": "https://gng-test-website.vercel.app/yard-design/" }
         ]
       }
     ]
@@ -77,7 +77,7 @@
               <a href="../fall-cleanup/"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
               <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
-              <a href="../yard-design/" aria-current="page"><span>Yard design and planting<small>The right plant in the right spot</small></span></a>
+              <a href="../yard-design/" aria-current="page"><span>Planting and bed refresh<small>The right plant in the right spot</small></span></a>
               <a href="../aeration-fertilizer/"><span>Aeration and fertilizer<small>Try the screwdriver test</small></span></a>
               <a href="../hoa-commercial/"><span>HOA and commercial<small>Common areas and business properties</small></span></a>
               <a href="../your-year/"><span>Build your year<small>See every month of your plan</small></span></a>
@@ -86,12 +86,28 @@
           </li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
-          <li><a href="../#five">Our promise</a></li>
-          <li><a href="../#about">About</a></li>
-          <li><a href="../#faq">Questions</a></li>
+          <li><a href="../our-work/">Our work</a></li>
+          <!-- 2026-10-07 (late, Harrison: the header is too full): About, promise, questions, referral and hiring
+               moved under one "About" list, so the bar has 6 links instead of 8 and room for the Yard Score button. -->
+          <li class="has-sub">
+            <button class="sub-btn" type="button" aria-expanded="false" aria-controls="sub-about">About
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="sub" id="sub-about">
+              <a href="../about/"><span>About us<small>Harrison and the crew</small></span></a>
+              <a href="../#five"><span>Our promise<small>Five checks before we drive</small></span></a>
+              <a href="../faq/"><span>Questions<small>Cost, area, insurance and more</small></span></a>
+              <a href="../refer/"><span>Send a neighbor<small>You both save 5%</small></span></a>
+              <a href="../join-the-crew/"><span>Join the crew<small>Crew jobs and pay</small></span></a>
+            </div>
+          </li>
         </ul>
       </nav>
       <div class="head-ctas">
+        <!-- 2026-10-07 (late, Harrison: "most people aren't gonna see" the Yard Score): its own button by the phone -->
+        <a class="score-btn" href="../yard-score/">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg>
+          <span>Yard Score<small>4 taps</small></span>
+        </a>
         <a class="btn btn-lime phone" href="tel:+14406679642" aria-label="Call (440) 667-9642">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
           <span class="num">(440) 667-9642</span>
@@ -104,6 +120,12 @@
     <!-- phone + tablet menu -->
     <div class="menu-panel" id="menu-panel" hidden>
       <nav class="wrap" aria-label="Main, small screens">
+        <!-- 2026-10-07 (late): the Yard Score sits first in the phone menu as a card, not buried in the list -->
+        <a class="score-card" href="../yard-score/">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg>
+          <span><b>Get your Yard Score</b><small class="draft">4 taps. See what your yard needs.</small></span>
+          <svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
         <ul>
           <li><a href="../">Home</a></li>
           <li class="grp" aria-hidden="true">Services</li>
@@ -111,17 +133,19 @@
           <li class="sub-li"><a href="../fall-cleanup/">Fall cleanups</a></li>
           <li class="sub-li"><a href="../spring-cleanup/">Spring cleanups</a></li>
           <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
-          <li class="sub-li"><a href="../yard-design/" aria-current="page">Yard design and planting</a></li>
+          <li class="sub-li"><a href="../yard-design/" aria-current="page">Planting and bed refresh</a></li>
           <li class="sub-li"><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
           <li class="sub-li"><a href="../hoa-commercial/">HOA and commercial</a></li>
           <li class="sub-li"><a href="../your-year/">Build your year</a></li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
-          <li><a href="../#five">Our promise</a></li>
-          <li><a href="../#about">About</a></li>
-          <li><a href="../#faq">Questions</a></li>
-          <li><a href="../join-the-crew/">Join the crew</a></li>
-          <li><a href="../refer/">Send a neighbor</a></li>
+          <li><a href="../our-work/">Our work</a></li>
+          <li class="grp" aria-hidden="true">About</li>
+          <li class="sub-li"><a href="../about/">About us</a></li>
+          <li class="sub-li"><a href="../#five">Our promise</a></li>
+          <li class="sub-li"><a href="../faq/">Questions</a></li>
+          <li class="sub-li"><a href="../join-the-crew/">Join the crew</a></li>
+          <li class="sub-li"><a href="../refer/">Send a neighbor</a></li>
         </ul>
         <div class="menu-ctas">
           <a class="btn btn-lime" href="../#plan">Get my yard plan
@@ -141,21 +165,21 @@
   <main id="top">
     <!-- 2026-10-07: new page (Harrison: "get a custom design today... we know where to plant things").
          No "arborist" (Harrison OK'd saying it plainly). The hydrangea line is his own Google post (Oct 2026).
-         Retaining walls: his Google posts (July 2026). More design photos coming from Harrison. -->
+         2026-10-07 later: now "Planting and bed refresh" (Harrison picked it). The locked menu has no design-build or hardscape, so walls, patios and built boxes came off. URL kept so links still work. -->
     <header class="page-hero">
       <div class="hero-photo"><img src="../img/gbp-planter-boxes.jpg" srcset="../img/sm/gbp-planter-boxes.jpg 900w, ../img/md/gbp-planter-boxes.jpg 1200w, ../img/gbp-planter-boxes.jpg 1600w" sizes="100vw" alt="New raised planter boxes and a mulch bed beside a white house" fetchpriority="high" style="--pos: 65% 55%" /></div>
       <div class="wrap hero-in">
-        <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Yard design and planting</li></ol>
-        <p class="eyebrow reveal">Custom design and planting</p>
-        <h1 class="reveal d1">Yard design</h1>
-        <p class="lede reveal d2 draft">Grass 'n' Gardens plans and plants custom yards in Richfield and nearby towns. We check sun, shade and soil first. Then each plant goes where it will grow.</p>
+        <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Planting and bed refresh</li></ol>
+        <p class="eyebrow reveal">Planting and bed refresh</p>
+        <h1 class="reveal d1">Planting</h1>
+        <p class="lede reveal d2 draft">Grass 'n' Gardens plants new beds and redoes tired ones in Richfield and nearby towns. We check sun, shade and soil first. Then each plant goes where it will grow.</p>
         <ul class="facts reveal d2">
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span class="draft">Sun, shade and soil checked</span></li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="draft">You see the plan before we dig</span></li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span class="draft">We keep it up after</span></li>
         </ul>
         <div class="hero-ctas reveal d3">
-          <a class="btn btn-lime" href="../?need=design#plan">Get a custom design
+          <a class="btn btn-lime" href="../?need=design#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
         </div>
@@ -176,7 +200,7 @@
               <figcaption>Harrison, on our Google page</figcaption>
             </figure>
           </div>
-          <figure class="split-photo reveal d1"><img src="../img/sm/gallery-22.jpg" alt="A shady planting bed with hostas and stones under a deck" loading="lazy" /><figcaption>Shade bed</figcaption></figure>
+          <figure class="split-photo reveal d1"><img src="../img/sm/gallery-22.jpg" srcset="../img/sm/gallery-22.jpg 900w, ../img/gallery-22.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="A shady planting bed with hostas and stones under a deck" loading="lazy" /><figcaption>Shade bed</figcaption></figure>
         </div>
       </div>
     </section>
@@ -197,20 +221,19 @@
     <!-- WHAT WE BUILD + photos -->
     <section class="sec coal">
       <div class="wrap">
-        <h2 class="sec-h reveal"><span class="draft">Beds, boxes and walls.</span> <b class="draft">What we build<span class="dot">.</span></b></h2>
+        <h2 class="sec-h reveal"><span class="draft">New beds and tired ones.</span> <b class="draft">What we plant<span class="dot">.</span></b></h2>
         <ul class="gets reveal" style="max-width: 900px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))">
-          <li><b class="draft">Planting beds</b><span class="draft">New beds, or old ones redone.</span></li>
-          <li><b class="draft">Raised planter boxes</b><span class="draft">Built and filled, ready to plant.</span></li>
-          <li><b class="draft">Retaining walls</b><span class="draft">Built to hold back a slope.</span></li>
-          <li><b class="draft">Paver patios and walks</b><span class="draft">A place to sit, a path to walk.</span></li>
+          <li><b class="draft">New bed design</b><span class="draft">We lay out a new bed, dig it, edge it and plant it.</span></li>
+          <li><b class="draft">Planting beds</b><span class="draft">New plants in old beds, picked for the spot.</span></li>
+          <li><b class="draft">Bed refresh</b><span class="draft">Weeds out, a sharp edge, fresh mulch, and new plants where it looks thin.</span></li>
           <li><b class="draft">Moving plants</b><span class="draft">Out of the wrong spot, into one where they'll grow.</span></li>
           <li><b class="draft">Trees and shrubs</b><span class="draft">Picked for the spot and planted right.</span></li>
         </ul>
         <div class="pics">
-          <figure class="reveal"><img src="../img/sm/gallery-wall.jpg" alt="A new block retaining wall around a raised bed by a deck" loading="lazy" /><figcaption>Retaining wall</figcaption></figure>
-          <figure class="reveal d1"><img src="../img/sm/gallery-26.jpg" alt="Planting bed with evergreens and shrubs along a house" loading="lazy" /><figcaption>Planting</figcaption></figure>
-          <figure class="reveal d2"><img src="../img/sm/gbp-flower-bed.jpg" alt="Planting bed with shrubs and red flowers in fresh mulch" loading="lazy" /><figcaption>Bed design</figcaption></figure>
-          <figure class="reveal d3"><img src="../img/sm/gallery-25.jpg" alt="Front bed with a weeping tree and lamp post along a drive" loading="lazy" /><figcaption>Front bed</figcaption></figure>
+          <figure class="reveal"><img src="../img/sm/gbp-white-house-beds.jpg" srcset="../img/sm/gbp-white-house-beds.jpg 900w, ../img/md/gbp-white-house-beds.jpg 1200w, ../img/gbp-white-house-beds.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Fresh mulch beds and shrubs along a white house" loading="lazy" /><figcaption>Bed refresh</figcaption></figure>
+          <figure class="reveal d1"><img src="../img/sm/gallery-26.jpg" srcset="../img/sm/gallery-26.jpg 900w, ../img/gallery-26.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Planting bed with evergreens and shrubs along a house" loading="lazy" /><figcaption>Planting</figcaption></figure>
+          <figure class="reveal d2"><img src="../img/sm/gbp-flower-bed.jpg" srcset="../img/sm/gbp-flower-bed.jpg 900w, ../img/md/gbp-flower-bed.jpg 1200w, ../img/gbp-flower-bed.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Planting bed with shrubs and red flowers in fresh mulch" loading="lazy" /><figcaption>Flower bed</figcaption></figure>
+          <figure class="reveal d3"><img src="../img/sm/gallery-25.jpg" srcset="../img/sm/gallery-25.jpg 900w, ../img/gallery-25.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Front bed with a weeping tree and lamp post along a drive" loading="lazy" /><figcaption>Front bed</figcaption></figure>
         </div>
       </div>
     </section>
@@ -247,15 +270,15 @@
       <div class="wrap faq-grid">
         <div class="faq-side reveal">
           <p class="eyebrow">Questions</p>
-          <h2 id="faq-title"><span class="draft">Design questions,</span> <b class="draft">straight answers<span class="dot">.</span></b></h2>
+          <h2 id="faq-title"><span class="draft">Planting questions,</span> <b class="draft">straight answers<span class="dot">.</span></b></h2>
           <p class="draft">Don't see yours? Text Harrison. He texts back from his own phone.</p>
           <a class="btn btn-dark" href="sms:+14406679642">Text Harrison
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
         <div class="faq-list reveal d1">
           <details class="qa" open>
-            <summary><h3>Does Grass 'n' Gardens do custom landscape design?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p>Yes. We build retaining walls and paver patios and handle full custom landscape design and construction alongside routine lawn and garden care.</p></div>
+            <summary><h3 class="draft">Does Grass 'n' Gardens build patios or retaining walls?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">No. We plant and take care of yards all year. We don't build patios, walls or other hardscape.</p></div>
           </details>
           <details class="qa">
             <summary><h3 class="draft">How do you pick the plants?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
@@ -266,8 +289,8 @@
             <div class="qa-a"><p class="draft">Yes. If a plant is in the wrong spot, we can move it to one where it will grow. We just did that with a customer's hydrangeas.</p></div>
           </details>
           <details class="qa">
-            <summary><h3 class="draft">How much does a custom design cost?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">It depends on the size of the job and what you want built. Text us a photo of the spot and Harrison will tell you what it takes. <a href="../?need=design#plan">Get a custom design</a></p></div>
+            <summary><h3 class="draft">How much does planting cost?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">It depends on the size of the bed and the plants you want. Text us a photo of the spot and Harrison will tell you what it takes. <a href="../?need=design#plan">Get my yard plan</a></p></div>
           </details>
         </div>
       </div>
@@ -277,10 +300,10 @@
       <div class="wrap">
         <h2 class="sec-h reveal"><span class="thin draft">Your yard has a season.</span> <b class="draft">We do the rest too<span class="dot">.</span></b></h2>
         <div class="svc-row">
-          <a class="svc reveal" href="../lawn-mowing/"><img src="../img/sm/gbp-stone-house.jpg" alt="Fresh mowing stripes across the front lawn of a stone-front house" loading="lazy" /><div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-          <a class="svc reveal d1" href="../fall-cleanup/"><span class="tag">Fall Pass</span><img src="../img/sm/leaf-after.jpg" alt="Beds and stone walk cleared of leaves after a fall cleanup" loading="lazy" /><div class="svc-body"><h3>Fall cleanups</h3><p>One price for the whole leaf season. We keep coming back till it's clear.</p><span class="go">See the Fall Pass <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-          <a class="svc reveal d2" href="../spring-cleanup/"><img src="../img/sm/gallery-14.jpg" alt="Fresh mulch bed with hostas along a ranch home" loading="lazy" /><div class="svc-body"><h3>Spring cleanups</h3><p class="draft">Sticks and dead leaves gone before your first mow.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
-          <a class="svc reveal d3" href="../mulch-beds/"><img src="../img/sm/gbp-curved-bed.jpg" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" /><div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal" href="../lawn-mowing/"><img src="../img/sm/gbp-stone-house.jpg" srcset="../img/sm/gbp-stone-house.jpg 900w, ../img/md/gbp-stone-house.jpg 1200w, ../img/gbp-stone-house.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Fresh mowing stripes across the front lawn of a stone-front house" loading="lazy" /><div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal d1" href="../fall-cleanup/"><span class="tag">Fall Pass</span><img src="../img/sm/leaf-after.jpg" srcset="../img/sm/leaf-after.jpg 900w, ../img/leaf-after.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="Beds and stone walk cleared of leaves after a fall cleanup" loading="lazy" /><div class="svc-body"><h3>Fall cleanups</h3><p>One price for the whole leaf season. We keep coming back till it's clear.</p><span class="go">See the Fall Pass <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal d2" href="../spring-cleanup/"><img src="../img/sm/gallery-14.jpg" srcset="../img/sm/gallery-14.jpg 900w, ../img/gallery-14.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="Fresh mulch bed with hostas along a ranch home" loading="lazy" /><div class="svc-body"><h3>Spring cleanups</h3><p class="draft">Sticks and dead leaves gone before your first mow.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal d3" href="../mulch-beds/"><img src="../img/sm/gbp-curved-bed.jpg" srcset="../img/sm/gbp-curved-bed.jpg 900w, ../img/gbp-curved-bed.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" /><div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
         </div>
       </div>
     </section>
@@ -291,7 +314,7 @@
         <p class="lede reveal d1 draft">Text us a photo of it. Harrison will tell you what grows there and what it takes.</p>
         <a class="big-phone reveal d2" href="tel:+14406679642">(440) 667-9642</a>
         <div class="center reveal d3">
-          <a class="btn btn-lime" href="../?need=design#plan">Get a custom design
+          <a class="btn btn-lime" href="../?need=design#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
         </div>
@@ -324,7 +347,7 @@
             <li><a href="../fall-cleanup/">Fall cleanups</a></li>
             <li><a href="../spring-cleanup/">Spring cleanups</a></li>
             <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
-            <li><a href="../yard-design/" aria-current="page">Yard design and planting</a></li>
+            <li><a href="../yard-design/" aria-current="page">Planting and bed refresh</a></li>
             <li><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
             <li><a href="../hoa-commercial/">HOA and commercial</a></li>
           </ul>
@@ -335,10 +358,12 @@
             <li><a href="../why-gng/">Why G'N'G</a></li>
             <li><a href="../season-pass/">2027 Season Pass</a></li>
             <li><a href="../#five">Our promise</a></li>
-            <li><a href="../#about">Meet Harrison</a></li>
+            <li><a href="../about/">Meet Harrison</a></li>
+            <li><a href="../our-work/">Our work</a></li>
             <li><a href="../#area">Where we work</a></li>
-            <li><a href="../#faq">Questions</a></li>
+            <li><a href="../faq/">Questions</a></li>
             <li><a href="../your-year/">Build your year</a></li>
+            <li><a href="../yard-score/">Yard Score</a></li>
             <li><a href="../refer/">Send a neighbor (5% off)</a></li>
             <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
@@ -423,10 +448,10 @@
     "mainEntity":  [
                        {
                            "@type":  "Question",
-                           "name":  "Does Grass \u0027n\u0027 Gardens do custom landscape design?",
+                           "name":  "Does Grass \u0027n\u0027 Gardens build patios or retaining walls?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "Yes. We build retaining walls and paver patios and handle full custom landscape design and construction alongside routine lawn and garden care."
+                                                  "text":  "No. We plant and take care of yards all year. We don\u0027t build patios, walls or other hardscape."
                                               }
                        },
                        {
@@ -447,10 +472,10 @@
                        },
                        {
                            "@type":  "Question",
-                           "name":  "How much does a custom design cost?",
+                           "name":  "How much does planting cost?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "It depends on the size of the job and what you want built. Text us a photo of the spot and Harrison will tell you what it takes."
+                                                  "text":  "It depends on the size of the bed and the plants you want. Text us a photo of the spot and Harrison will tell you what it takes."
                                               }
                        }
                    ]

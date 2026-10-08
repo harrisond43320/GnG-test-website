@@ -590,6 +590,187 @@
     /* phone app + notch phones (2026-10-06): keep the call bar above the home bar */
     .call-bar { bottom: calc(var(--s3) + env(safe-area-inset-bottom)); left: calc(var(--s3) + env(safe-area-inset-left)); right: calc(var(--s3) + env(safe-area-inset-right)); }
     html { -webkit-tap-highlight-color: transparent; }
+    /* =====================================================================
+       2026-10-07: NIGHT FIELD + HOW WE STACK UP, moved here from the homepage (Harrison: take the homepage
+       down to the few things that get people to say yes; the night field lives on here as the fun part).
+       Copied from home/index.html. If you change them, this is the only copy now.
+       ===================================================================== */
+    /* ---------- why us: night field under a stadium light (2026-10-06) ----------
+       Was a flashlight wall (the 21st.dev "Flashlight Text Reveal"). Now a mowed lawn at night, drawn in a
+       WebGL shader: the stripes flip light/dark with the angle of the light, like real mowing stripes.
+       The writing is real text, painted on the grass, masked to the same light. */
+    .why {
+      position: relative; overflow: hidden; isolation: isolate;
+      height: clamp(720px, 100svh, 960px); background: #030604;
+    }
+    .why-wall { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+    .why-wall.fallback { background: radial-gradient(ellipse 60% 45% at 50% 55%, #1d3a1c 0%, #030604 70%); }
+    .why-writing {
+      position: absolute; inset: 0; z-index: 1;
+      display: flex; flex-direction: column; justify-content: center; gap: clamp(20px, 4vh, 40px);
+      padding: 250px var(--s6) var(--s12);
+      font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+      line-height: .9; letter-spacing: -0.035em; color: #eef0ec;
+      -webkit-mask-image: linear-gradient(rgba(0,0,0,.05), rgba(0,0,0,.05));
+              mask-image: linear-gradient(rgba(0,0,0,.05), rgba(0,0,0,.05));
+    }
+    @media (min-width: 768px) { .why-writing { padding: 270px var(--s16) var(--s12); } }
+    /* phones: the jersey and review lines are longer now, so give the wall more room */
+    @media (max-width: 767px) { .why { height: 1040px; } .why-writing .w3 { flex-direction: column; align-items: flex-start; } }
+    .why-writing p { max-width: 16ch; }
+    .why-writing .w1 { font-size: clamp(40px, 6.4vw, 92px); align-self: flex-start; }
+    .why-writing .w2 { font-size: clamp(28px, 4.2vw, 60px); align-self: flex-end; text-align: right; max-width: 12ch; }
+    .why-writing .w3 { display: flex; align-items: center; gap: clamp(16px, 3vw, 40px); align-self: center; max-width: 900px; }
+    .why-writing .w3 p { font-size: clamp(30px, 4.6vw, 64px); max-width: 18ch; }
+    .why-writing .jersey { flex: none; width: clamp(80px, 12vw, 170px); height: auto; color: var(--lime); font-family: var(--font-display); }
+    .why-writing .w4 { font-size: clamp(40px, 7vw, 104px); align-self: flex-start; color: var(--lime); padding-left: 6vw; max-width: 14ch; }
+    .why-writing small {
+      display: block; margin-top: var(--s3); max-width: 34em;
+      font-family: var(--font-body); font-weight: 500; font-size: clamp(15px, 1.4vw, 19px);
+      line-height: 1.4; letter-spacing: 0; text-transform: none; color: #eef0ec;
+    }
+    .why-top { position: relative; z-index: 2; padding-top: 120px; text-align: center; pointer-events: none; }
+    .why-top .eyebrow { color: rgba(255,255,255,.6); }
+    .why-top h2 {
+      font-family: var(--font-display); font-weight: 250; font-size: clamp(30px, 4.4vw, 64px);
+      line-height: 1.1; letter-spacing: -0.02em; margin-top: var(--s4);
+    }
+    .why-top h2 b { font-weight: 800; letter-spacing: -0.035em; }
+    .why-hint {
+      display: inline-flex; align-items: center; gap: var(--s2); margin-top: var(--s6);
+      padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06);
+      font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #fff;
+    }
+    .why-hint svg { color: var(--lime); }
+    .why-hint .touch { display: none; }
+    @media (hover: none) { .why-hint .mouse { display: none; } .why-hint .touch { display: inline; } }
+
+    .why-writing, .why-top h2 b { font-weight: 400; letter-spacing: 0.01em; }
+    .why-top h2 b { text-transform: uppercase; }
+    /* night field: promises painted on the lawn, a little crooked like hand-painted field lettering */
+    .why { height: 1260px; }
+    .why-writing { display: block; padding: 0; line-height: 1.05; letter-spacing: .01em; color: #fff; }
+    .why-writing .note { position: absolute; width: 38%; }
+    .why-writing .note p { max-width: none; font-size: clamp(30px, 3.4vw, 50px); }
+    .why-writing .note small { margin-top: var(--s2); color: #fff; font-size: clamp(17px, 1.35vw, 20px); font-weight: 600; max-width: 28em; }
+    /* skim labels: a lime chip over each note */
+    .why-writing .tag {
+      display: inline-block; margin-bottom: var(--s3); padding: 5px 10px; border-radius: 6px;
+      background: var(--lime); color: var(--pine);
+      font-family: var(--font-body); font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase;
+    }
+    .why-writing .n1 { top: 27%; left: 6%;  transform: rotate(-3deg); }
+    .why-writing .n2 { top: 29%; right: 6%; transform: rotate(2.5deg); text-align: right; }
+    .why-writing .n3 { top: 50%; left: 10%; transform: rotate(2deg); }
+    .why-writing .n4 { top: 52%; right: 8%; transform: rotate(-2.5deg); text-align: right; }
+    .why-writing .n5 { top: 73%; left: 6%;  transform: rotate(-1.5deg); }
+    .why-writing .n6 { top: 74%; right: 6%; width: 42%; transform: rotate(2deg); display: flex; align-items: center; gap: var(--s6); }
+    .why-writing .n2 small, .why-writing .n4 small { margin-left: auto; }
+    /* white like field paint (lime vanished on the lit grass); a hard little shadow keeps it crisp in the light */
+    .why-writing .note p, .why-writing .note small { color: #f4f7ee; text-shadow: 0 2px 0 rgba(3, 6, 4, .45); }
+    @media (max-width: 767px) {
+      .why { height: auto; min-height: 1500px; }
+      .why-writing { padding: 360px var(--s6) var(--s16); display: flex; flex-direction: column; gap: 56px; position: relative; }
+      .why-writing .note { position: static; width: auto; text-align: left !important; }
+      .why-writing .note:nth-child(odd) { transform: rotate(-1.5deg); }
+      .why-writing .note:nth-child(even) { transform: rotate(1.5deg); }
+      .why-writing .note small { margin-left: 0 !important; }
+      .why-writing .n6 { flex-direction: column; align-items: flex-start; }
+      .why-top { position: absolute; top: 0; left: 0; right: 0; }
+    }
+    .why-top h2 { font-family: var(--font-body); font-weight: 600; font-size: var(--fs-lead); line-height: 1.2; letter-spacing: 0; text-transform: none; color: rgba(255,255,255,.88); }
+    .why-top h2 b { display: block; margin-top: 6px; font-family: var(--font-display); font-weight: 400; font-style: normal; font-size: var(--fs-h2); line-height: 1; letter-spacing: .01em; text-transform: uppercase; color: #fff; -webkit-text-stroke: 0; text-shadow: none; }
+    /* ---------- why us: brighter wall (see the script) ---------- */
+    .why-writing .note small { color: rgba(255,255,255,.92); }
+    .why-top .eyebrow { color: var(--jersey-blue); }
+    /* night field: labels were lime on green grass (hard to read). Now white "field paint" chips with pine letters. */
+    .why-writing .tag { background: #fff; color: var(--pine); box-shadow: 0 2px 0 rgba(3, 6, 4, .45); }
+    .why-writing .jersey { color: var(--jersey-blue); filter: drop-shadow(0 3px 0 rgba(3, 6, 4, .5)); }
+    @media (max-width: 767px) {
+      .why-top { padding-top: 72px; }
+      .why-writing { padding-top: 300px; gap: 36px; }
+      .why { min-height: 0; }
+      .why-writing .note p { font-size: 26px; }
+    }
+    /* ---------- comparison table ("the plain version") ---------- */
+    .compare { background: var(--coal); padding: var(--s24) 0; }
+    .compare h2 {
+      margin-top: var(--s3); font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+      font-size: clamp(40px, 6vw, 80px); line-height: 1; letter-spacing: .03em; font-style: italic;
+      color: #fff; -webkit-text-stroke: .1em var(--pine); paint-order: stroke fill; text-shadow: .05em .06em 0 var(--forest);
+    }
+    .compare .eyebrow { color: var(--jersey-blue); }
+    /* comparison table v2 (research-based, see the section comment) */
+    .compare h2 { margin-top: var(--s3); font-size: clamp(40px, 5.6vw, 72px); }
+    .cmp-sub { margin-top: var(--s4); max-width: 36em; font-size: 18px; color: rgba(255,255,255,.82); }
+    .ic {
+      display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 10px; border-radius: 50%;
+      vertical-align: -5px; font-style: normal; font-size: 12px; font-weight: 800; line-height: 1;
+    }
+    .ic.yes { background: var(--forest); color: #fff; }
+    .ic.yes::before { content: "\2713"; }
+    .ic.no { background: #eceeec; color: #8a938c; }
+    .ic.no::before { content: "\2715"; }
+    .ic.part { background: #fff; color: #8a938c; box-shadow: inset 0 0 0 2px #cfd5d0; }
+    .ic.part::before { content: "~"; font-size: 14px; }
+    .cmp-note { margin-top: var(--s4); font-size: 13px; color: rgba(255,255,255,.5); }
+
+    /* how we stack up: 3 cards, ours raised in the middle (pricing-table pattern) */
+    .cmp-head { max-width: 760px; margin: 0 auto; text-align: center; }
+    .cmp-head .cmp-sub { margin-left: auto; margin-right: auto; }
+    .vs { display: grid; gap: var(--s6); margin-top: var(--s12); align-items: center; }
+    @media (min-width: 960px) { .vs { grid-template-columns: 1fr 1.15fr 1fr; gap: var(--s4); } }
+    .vs-card {
+      position: relative; padding: var(--s8); border-radius: var(--radius);
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.78);
+    }
+    .vs-card h3 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 22px; line-height: 1.1; letter-spacing: .01em; color: #fff; }
+    .vs-card ul { list-style: none; margin-top: var(--s6); }
+    .vs-card li { display: flex; align-items: center; gap: var(--s3); padding: 14px 0; border-top: 1px solid rgba(255,255,255,.08); font-size: 16px; font-weight: 500; line-height: 1.3; }
+    .vs-card li .ic { margin-right: 0; flex: none; vertical-align: 0; }
+    .vs-card:not(.us) .ic.no { background: rgba(255,255,255,.1); color: rgba(255,255,255,.55); }
+    .vs-card:not(.us) .ic.part { background: transparent; color: rgba(255,255,255,.6); box-shadow: inset 0 0 0 2px rgba(255,255,255,.28); }
+    .vs-card.us {
+      background: #fff; color: var(--ink); border: 0; border-top: 6px solid var(--lime);
+      padding: var(--s12) var(--s8) var(--s8); box-shadow: 0 30px 70px -24px rgba(0,0,0,.7);
+    }
+    @media (min-width: 960px) { .vs-card.us { transform: scale(1.04); z-index: 1; } }
+    @media (max-width: 959px) { .vs-card.us { order: -1; } }
+    .vs-card.us h3 { color: var(--pine); font-size: 30px; }
+    .vs-card.us li { border-top-color: var(--line-light); font-weight: 600; color: var(--ink); }
+    .vs-badge {
+      position: absolute; top: -16px; left: var(--s8); padding: 5px 12px; border-radius: 6px;
+      background: var(--jersey-blue); color: var(--pine); border: 2px solid var(--pine);
+      font-weight: 700; font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+    }
+    .vs-proof { margin-top: var(--s2); font-size: 14px; font-weight: 700; color: var(--forest); }
+    .vs-card.us .btn { margin-top: var(--s6); width: 100%; justify-content: center; }
+    .compare .cmp-note { margin-top: var(--s12); text-align: center; color: rgba(255,255,255,.55); }
+    .cmp-note a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+    .cmp-note a:hover { color: var(--lime); }
+    .compare h2 { text-align: center; font-size: clamp(36px, 4.4vw, 62px); }
+    /* ---------- comparison: our card, all check marks ---------- */
+    .vs-card.us li .ic.yes { background: var(--lime); color: var(--pine); box-shadow: inset 0 0 0 2px var(--pine); }
+    .vs-card li { padding: 12px 0; }
+    .cmp-head { max-width: 980px; }
+    .cmp-note a { text-decoration: none !important; padding: 1px 6px; border-radius: 5px; background: rgba(255,255,255,.1); color: #fff; font-weight: 700; }
+    .cmp-note a:hover { background: rgba(255,255,255,.2); }
+    .compare h2 { font-weight: 400; font-style: normal; -webkit-text-stroke: 0; text-shadow: none; letter-spacing: .01em; color: #fff; font-size: var(--fs-h2); }
+    .vs-card h3 { font-size: var(--fs-h3, clamp(22px, 2vw, 28px)); }
+    .vs-card.us h3 { font-size: clamp(26px, 2.4vw, 32px); }
+    .swipe-hint { display: none; }
+    @media (max-width: 767px) {
+      .compare { padding: 56px 0; }
+      .vs {
+        display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; align-items: stretch;
+        scroll-snap-type: x mandatory; scroll-padding: 0 var(--s6); scrollbar-width: none;
+        margin: var(--s8) calc(-1 * var(--s6)) 0; padding: 6px var(--s6) 18px;
+      }
+      .vs::-webkit-scrollbar { display: none; }
+      .vs > * { flex: 0 0 82%; scroll-snap-align: start; margin: 0; }
+      .vs-card li { padding: 10px 0; font-size: 15px; }
+      .swipe-hint { display: block; margin-top: 2px; text-align: center; font-size: 13px; font-weight: 600; opacity: .6; }
+    }
   </style>
   <!-- 2026-10-07 SEO: tells Google where this page sits in the site -->
   <script type="application/ld+json">
@@ -630,7 +811,7 @@
               <a href="../fall-cleanup/"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
               <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
-              <a href="../yard-design/"><span>Yard design and planting<small>The right plant in the right spot</small></span></a>
+              <a href="../yard-design/"><span>Planting and bed refresh<small>The right plant in the right spot</small></span></a>
               <a href="../aeration-fertilizer/"><span>Aeration and fertilizer<small>Try the screwdriver test</small></span></a>
               <a href="../hoa-commercial/"><span>HOA and commercial<small>Common areas and business properties</small></span></a>
               <a href="../your-year/"><span>Build your year<small>See every month of your plan</small></span></a>
@@ -639,12 +820,28 @@
           </li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/" aria-current="page">Why G'N'G</a></li>
-          <li><a href="../#five">Our promise</a></li>
-          <li><a href="../#about">About</a></li>
-          <li><a href="../#faq">Questions</a></li>
+          <li><a href="../our-work/">Our work</a></li>
+          <!-- 2026-10-07 (late, Harrison: the header is too full): About, promise, questions, referral and hiring
+               moved under one "About" list, so the bar has 6 links instead of 8 and room for the Yard Score button. -->
+          <li class="has-sub">
+            <button class="sub-btn" type="button" aria-expanded="false" aria-controls="sub-about">About
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="sub" id="sub-about">
+              <a href="../about/"><span>About us<small>Harrison and the crew</small></span></a>
+              <a href="../#five"><span>Our promise<small>Five checks before we drive</small></span></a>
+              <a href="../faq/"><span>Questions<small>Cost, area, insurance and more</small></span></a>
+              <a href="../refer/"><span>Send a neighbor<small>You both save 5%</small></span></a>
+              <a href="../join-the-crew/"><span>Join the crew<small>Crew jobs and pay</small></span></a>
+            </div>
+          </li>
         </ul>
       </nav>
       <div class="head-ctas">
+        <!-- 2026-10-07 (late, Harrison: "most people aren't gonna see" the Yard Score): its own button by the phone -->
+        <a class="score-btn" href="../yard-score/">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg>
+          <span>Yard Score<small>4 taps</small></span>
+        </a>
         <a class="btn btn-lime phone" href="tel:+14406679642" aria-label="Call (440) 667-9642">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
           <span class="num">(440) 667-9642</span>
@@ -657,6 +854,12 @@
     <!-- phone + tablet menu -->
     <div class="menu-panel" id="menu-panel" hidden>
       <nav class="wrap" aria-label="Main, small screens">
+        <!-- 2026-10-07 (late): the Yard Score sits first in the phone menu as a card, not buried in the list -->
+        <a class="score-card" href="../yard-score/">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg>
+          <span><b>Get your Yard Score</b><small class="draft">4 taps. See what your yard needs.</small></span>
+          <svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
         <ul>
           <li><a href="../">Home</a></li>
           <li class="grp" aria-hidden="true">Services</li>
@@ -664,17 +867,19 @@
           <li class="sub-li"><a href="../fall-cleanup/">Fall cleanups</a></li>
           <li class="sub-li"><a href="../spring-cleanup/">Spring cleanups</a></li>
           <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
-          <li class="sub-li"><a href="../yard-design/">Yard design and planting</a></li>
+          <li class="sub-li"><a href="../yard-design/">Planting and bed refresh</a></li>
           <li class="sub-li"><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
           <li class="sub-li"><a href="../hoa-commercial/">HOA and commercial</a></li>
           <li class="sub-li"><a href="../your-year/">Build your year</a></li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/" aria-current="page">Why G'N'G</a></li>
-          <li><a href="../#five">Our promise</a></li>
-          <li><a href="../#about">About</a></li>
-          <li><a href="../#faq">Questions</a></li>
-          <li><a href="../join-the-crew/">Join the crew</a></li>
-          <li><a href="../refer/">Send a neighbor</a></li>
+          <li><a href="../our-work/">Our work</a></li>
+          <li class="grp" aria-hidden="true">About</li>
+          <li class="sub-li"><a href="../about/">About us</a></li>
+          <li class="sub-li"><a href="../#five">Our promise</a></li>
+          <li class="sub-li"><a href="../faq/">Questions</a></li>
+          <li class="sub-li"><a href="../join-the-crew/">Join the crew</a></li>
+          <li class="sub-li"><a href="../refer/">Send a neighbor</a></li>
         </ul>
         <div class="menu-ctas">
           <a class="btn btn-lime" href="../#plan">Get my yard plan
@@ -735,7 +940,7 @@
     </section>
 
     <!-- THE TAPE: short lines from the real reviews below, word for word. Pauses on hover. -->
-    <div class="tape-zone">
+    <div class="tape-zone" id="reviews">
       <div class="tape" role="region" aria-label="Lines from our Google reviews">
         <div class="tape-track">
           <ul>
@@ -763,7 +968,7 @@
                then fill in data-video="../video/FILE.mp4" and data-who="Name". Optional: data-captions="../video/FILE.vtt".
                The photo becomes the cover and a real play button shows up. The deploy copy script picks the file up. -->
           <figure class="feat-photo feat-slide" data-video="" data-who="" data-captions="">
-            <img src="../img/sm/gbp-mower-drive.jpg" alt="Mower on a freshly striped front lawn by the driveway" loading="lazy" style="object-position: 35% center" />
+            <img src="../img/sm/gbp-mower-drive.jpg" srcset="../img/sm/gbp-mower-drive.jpg 900w, ../img/md/gbp-mower-drive.jpg 1200w, ../img/gbp-mower-drive.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Mower on a freshly striped front lawn by the driveway" loading="lazy" style="object-position: 35% center" />
             <figcaption>Weekly mowing</figcaption>
           </figure>
           <div class="feat-card feat-slide">
@@ -844,10 +1049,10 @@
           </div>
 
           <a class="perk reveal" href="../yard-design/">
-            <span class="pk-tag draft">Design</span>
+            <span class="pk-tag draft">Planting</span>
             <h3 class="draft">We know what grows where.</h3>
             <p class="draft">We check sun, shade and soil before we plant.</p>
-            <span class="pk-go">See yard design <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            <span class="pk-go">See planting <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
 
           <div class="perk reveal d1">
@@ -866,26 +1071,154 @@
       </div>
     </section>
 
+    <!-- WHY US: a striped lawn at night under a stadium light. The promises are painted on the grass
+         and only really show where the light lands. -->
+    <section class="why" id="field" aria-labelledby="field-title">
+      <canvas class="why-wall" aria-hidden="true"></canvas>
+      <div class="why-writing">
+        <!-- Facts from the locked 3-part guarantee (brainstorms/2026-09-30-scaling-roadmap.md Q9)
+             and the prepay plan. "Prepay", not "financing": real financing has legal rules. -->
+        <div class="note n1">
+          <span class="tag">Our promise</span>
+          <p>Five Before We Drive.</p>
+          <small>5 checks on every yard before we leave.</small>
+        </div>
+        <div class="note n2">
+          <span class="tag">Guaranteed</span>
+          <p>Miss one? We're back free.</p>
+          <small>The next day. If it rains, the next dry day.</small>
+        </div>
+        <div class="note n3">
+          <span class="tag">Free</span>
+          <p>We find the problem first.</p>
+          <small class="draft">We check your yard and show you what's wrong. Seeing it costs you nothing.</small>
+        </div>
+        <div class="note n4">
+          <span class="tag">Try us</span>
+          <p>30 days to be sure.</p>
+          <small>Not happy in the first 30 days? Cancel and get back what you didn't use.</small>
+        </div>
+        <div class="note n5" data-offer-only>
+          <span class="tag">Prepay</span>
+          <p>Pay up front. Save 5%.</p>
+          <small>Pay for the season before it starts. It's all covered by the guarantee.</small>
+        </div>
+        <div class="note n6">
+          <!-- PLACEHOLDER jersey drawing. Swap for a photo of the real G'N'G jersey when it's made.
+               2026-10-07 (Harrison: "green on green, hard to see"): jersey blue with a white outline, so it shows on the grass. -->
+          <svg class="jersey" viewBox="0 0 120 120" aria-hidden="true">
+            <path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="#a7cbe0" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M40 10 Q60 26 80 10" fill="none" stroke="#1d4a22" stroke-width="4" stroke-linecap="round"/>
+            <!-- 2026-10-07 (Harrison): the water-drop mark on the chest, like a team crest. Brand rule: the mark
+                 sits on a white tile when it's not on paper, so it's a round white patch with a pine ring. -->
+            <clipPath id="crestClip"><circle cx="60" cy="72" r="25"/></clipPath>
+            <circle cx="60" cy="72" r="27" fill="#fff" stroke="#1d4a22" stroke-width="3"/>
+            <image href="../brand_assets/logos/mark-sm.png" x="35" y="48" width="50" height="50" clip-path="url(#crestClip)" preserveAspectRatio="xMidYMid meet"/>
+          </svg>
+          <div><span class="tag">The team</span>
+          <p>Our crew wears jerseys.</p>
+          <small>You earn yours. Name and number on the back.</small></div>
+        </div>
+      </div>
+      <div class="wrap why-top">
+        <p class="eyebrow">Why Grass 'n' Gardens</p>
+        <h2 id="field-title">What makes a landscaper <b>different nowadays?</b></h2>
+        <p class="why-hint" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6c0 2-2 2-2 4v10a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V10c0-2-2-2-2-4V2h12z"/><path d="M6 6h12M12 12v2"/></svg>
+          <span class="mouse">Move your mouse to shine the light</span><span class="touch draft">Keep scrolling. The light follows you.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- THE PLAIN VERSION: how we stack up.
+         Tavily research 2026-10-05 (webanatomy.ai scored 15 comparison sections): honest losses build trust,
+         icons for yes/no, short rows, our option raised, CTA inside it, dated.
+         Claims about other crews stay soft ("sometimes", "often") and match local competitor sites. -->
+    <section class="compare" id="compare">
+      <div class="wrap">
+        <div class="cmp-head">
+          <p class="eyebrow reveal">The plain version</p>
+          <h2 class="reveal">How we stack up<span class="dot">.</span></h2>
+          <p class="cmp-sub reveal draft">Everything we do, side by side.</p>
+        </div>
+        <!-- Pricing-table pattern: 3 cards, ours raised in the middle, button inside ours.
+             2026-10-06, Harrison: our card is ALL check marks and lists everything we do
+             ("not the cheapest" and "no patios" came out). Rows line up across the 3 cards. Cards stack on phones.
+             Claims about other crews stay soft ("some", "often") and match local competitor sites. -->
+        <div class="vs reveal d1">
+          <article class="vs-card">
+            <h3>Doing it yourself</h3>
+            <ul>
+              <li><i class="ic no" aria-label="No"></i>No checklist</li>
+              <li><i class="ic no" aria-label="No"></i>Missed it? You fix it</li>
+              <li><i class="ic no" aria-label="No"></i>Costs your weekends</li>
+              <li><i class="ic yes" aria-label="Yes"></i>You know who's coming</li>
+              <li><i class="ic part" aria-label="Sometimes"></i>Mow, edge and blow it yourself</li>
+              <li><i class="ic no" aria-label="No"></i>Leaves fill your fall</li>
+              <li><i class="ic part" aria-label="Sometimes"></i>Haul your own mulch</li>
+              <li><i class="ic part" aria-label="Sometimes"></i>Rent an aerator</li>
+            </ul>
+          </article>
+          <article class="vs-card us">
+            <p class="vs-badge">Us</p>
+            <h3>Grass 'n' Gardens</h3>
+            <p class="vs-proof">60 Google reviews. 0 under five.</p>
+            <ul>
+              <li><i class="ic yes" aria-label="Yes"></i>5 checks every visit</li>
+              <li><i class="ic yes" aria-label="Yes"></i>Missed it? Back next day, free</li>
+              <li><i class="ic yes" aria-label="Yes"></i>30 days to be sure</li>
+              <li><i class="ic yes" aria-label="Yes"></i>Names on the jerseys</li>
+              <li><i class="ic yes" aria-label="Yes"></i>Mowing, edging and blowing</li>
+              <li><i class="ic yes" aria-label="Yes"></i>Spring and fall cleanups</li>
+              <li><i class="ic yes" aria-label="Yes"></i>Mulch, beds and bush trimming</li>
+              <li><i class="ic yes" aria-label="Yes"></i>Aeration and overseeding</li>
+            </ul>
+            <a class="btn btn-lime" href="../#plan">Get my yard plan
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </article>
+          <!-- 2026-10-07 re-checked with Tavily: local crews (e.g. Advanced Quality Lawn: no contracts, flexible days)
+               and mowing apps (LawnStarter, LawnGuru: a pro from the app, report problems within days for a re-mow).
+               So "season contract" is "some", and the crew can change on the apps. -->
+          <article class="vs-card">
+            <h3 class="draft">Other crews and mowing apps</h3>
+            <ul>
+              <li><i class="ic part" aria-label="Sometimes"></i>Sometimes a checklist</li>
+              <li><i class="ic no" aria-label="No"></i><span class="draft">Missed it? Report it and wait</span></li>
+              <li><i class="ic part" aria-label="Sometimes"></i><span class="draft">Some want a season contract</span></li>
+              <li><i class="ic part" aria-label="Sometimes"></i><span class="draft">Apps send whoever is free</span></li>
+              <li><i class="ic yes" aria-label="Yes"></i>Mowing</li>
+              <li><i class="ic part" aria-label="Sometimes"></i>Some do cleanups</li>
+              <li><i class="ic part" aria-label="Sometimes"></i>Some do beds</li>
+              <li><i class="ic part" aria-label="Sometimes"></i>Some aerate</li>
+            </ul>
+          </article>
+        </div>
+        <p class="swipe-hint" aria-hidden="true">Swipe for more &rarr;</p>
+        <p class="cmp-note reveal">Compared October 2026, from what local crews and mowing apps list on their own sites. Rather talk it through? Call Harrison at <a href="tel:+14406679642">(440) 667-9642</a>.</p>
+      </div>
+    </section>
+
     <!-- THE PROOF: real yards. Before/after pair is Harrison's own (Aug 2026). -->
     <section class="work" id="proof">
       <div class="wrap">
         <h2 class="sec-h reveal"><span class="draft">Read it, then see it.</span> <b>Our work<span class="dot">.</span></b></h2>
         <p class="lede reveal d1 draft">Real yards we did this year. No stock photos.</p>
         <div class="ba reveal">
-          <figure class="ba-shot"><img src="../img/sm/leaf-before.jpg" alt="Before: a bed full of leaves and growth beside a stone walk" loading="lazy" /><figcaption>Before</figcaption></figure>
-          <figure class="ba-shot after"><img src="../img/sm/leaf-after.jpg" alt="After: the same beds cleared, fresh and edged" loading="lazy" /><figcaption>After</figcaption></figure>
+          <figure class="ba-shot"><img src="../img/sm/leaf-before.jpg" srcset="../img/sm/leaf-before.jpg 900w, ../img/leaf-before.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Before: a bed full of leaves and growth beside a stone walk" loading="lazy" /><figcaption>Before</figcaption></figure>
+          <figure class="ba-shot after"><img src="../img/sm/leaf-after.jpg" srcset="../img/sm/leaf-after.jpg 900w, ../img/leaf-after.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="After: the same beds cleared, fresh and edged" loading="lazy" /><figcaption>After</figcaption></figure>
           <p class="ba-cap"><b>Fall cleanup.</b> One visit. Beds cleared, leaves gone, walk blown clean.</p>
         </div>
         <div class="shots">
-          <figure class="shot reveal"><img src="../img/sm/gbp-brick-beds.jpg" alt="Fresh mulch beds and trimmed shrubs across the front of a brick house" loading="lazy" /><figcaption>Mulch</figcaption></figure>
-          <figure class="shot reveal d1"><img src="../img/sm/edge-curve.jpg" alt="Crisp curved edge between the lawn and a fresh bed" loading="lazy" /><figcaption>Edging</figcaption></figure>
-          <figure class="shot reveal d2"><img src="../img/sm/gbp-weeping-mulch.jpg" alt="Fresh black mulch bed curving around a weeping tree" loading="lazy" /><figcaption>Beds</figcaption></figure>
-          <figure class="shot reveal d3"><img src="../img/sm/gbp-mower-yard.jpg" alt="Stand-on mower on a freshly striped front lawn" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
+          <figure class="shot reveal"><img src="../img/sm/gbp-shrub-mulch.jpg" srcset="../img/sm/gbp-shrub-mulch.jpg 900w, ../img/md/gbp-shrub-mulch.jpg 1200w, ../img/gbp-shrub-mulch.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Trimmed round shrubs in fresh black mulch along a stone and siding house" loading="lazy" /><figcaption>Mulch</figcaption></figure>
+          <figure class="shot reveal d1"><img src="../img/sm/edge-curve.jpg" srcset="../img/sm/edge-curve.jpg 900w, ../img/edge-curve.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="Crisp curved edge between the lawn and a fresh bed" loading="lazy" /><figcaption>Edging</figcaption></figure>
+          <figure class="shot reveal d2"><img src="../img/sm/gbp-curved-bed.jpg" srcset="../img/sm/gbp-curved-bed.jpg 900w, ../img/gbp-curved-bed.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" /><figcaption>Beds</figcaption></figure>
+          <figure class="shot reveal d3"><img src="../img/sm/gbp-mower-yard.jpg" srcset="../img/sm/gbp-mower-yard.jpg 900w, ../img/gbp-mower-yard.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Stand-on mower on a freshly striped front lawn" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
         </div>
         <div class="work-ask reveal">
           <p>Want yours to look like this?</p>
           <a class="btn btn-lime" href="sms:+14406679642">Text us a photo
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="../our-work/">See more of our work</a>
         </div>
       </div>
     </section>
@@ -930,7 +1263,7 @@
             <li><a href="../fall-cleanup/">Fall cleanups</a></li>
             <li><a href="../spring-cleanup/">Spring cleanups</a></li>
             <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
-            <li><a href="../yard-design/">Yard design and planting</a></li>
+            <li><a href="../yard-design/">Planting and bed refresh</a></li>
             <li><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
             <li><a href="../hoa-commercial/">HOA and commercial</a></li>
           </ul>
@@ -941,10 +1274,12 @@
             <li><a href="../why-gng/" aria-current="page">Why G'N'G</a></li>
             <li><a href="../season-pass/">2027 Season Pass</a></li>
             <li><a href="../#five">Our promise</a></li>
-            <li><a href="../#about">Meet Harrison</a></li>
+            <li><a href="../about/">Meet Harrison</a></li>
+            <li><a href="../our-work/">Our work</a></li>
             <li><a href="../#area">Where we work</a></li>
-            <li><a href="../#faq">Questions</a></li>
+            <li><a href="../faq/">Questions</a></li>
             <li><a href="../your-year/">Build your year</a></li>
+            <li><a href="../yard-score/">Yard Score</a></li>
             <li><a href="../refer/">Send a neighbor (5% off)</a></li>
             <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
@@ -1093,6 +1428,237 @@
       addEventListener('resize', slide);
       slide();
     }
+  })();
+  </script>
+  <script>
+  // WHY US: night field under a stadium light (2026-10-06).
+  // Harrison: the old wall (21st.dev "Flashlight Text Reveal", blobby green) was too easy to read in the dark
+  // and the notes felt "lame"; he wanted it darker, more mysterious, and something nobody else has.
+  // Now: a mowed lawn at night. The shader draws mowing stripes whose light/dark flips with the angle of the
+  // light, the way real stripes do (the grass leans one way on one pass, the other way on the next).
+  // Off the light it's almost black. The writing is masked to the same oval of light, and the mask carries
+  // thin streaks so the letters read like paint on grass.
+  (() => {
+    const section = document.querySelector('.why');
+    if (!section) return;
+    const canvas = section.querySelector('.why-wall');
+    const writing = section.querySelector('.why-writing');
+
+    // Tune here.
+    const S = {
+      // how much writing shows with no light on it. Phones: a bit more, since the light only lights one promise at a time.
+      ghost: matchMedia("(hover: none)").matches ? 0.22 : 0.07,
+      radius: 0.42,     // light size, in units of the section's short side
+      oval: 1.45,       // the light pool is wider than tall, like a floodlight hitting the ground at an angle
+      strength: 1.15,   // light brightness
+      ambient: 0.04,    // how much of the lawn shows with no light (moonlight)
+      stripe: 0.13,     // stripe width, in units of the short side
+      flip: 0.55,       // how hard the stripes flip light/dark with the light's angle
+      grain: 0.035
+    };
+
+    const VERT = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+    const FRAG = `
+      #ifdef GL_FRAGMENT_PRECISION_HIGH
+      precision highp float;
+      #else
+      precision mediump float;
+      #endif
+      uniform vec4 u_scene;   // res.xy, time, oval
+      uniform vec4 u_light;   // pos.xy (-1..1), presence, strength
+      uniform vec4 u_look;    // ambient, stripe width, flip, grain
+      uniform float u_radius;
+
+      float hash(vec2 p){
+        vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+        p3 += dot(p3, p3.yzx + 33.33);
+        return fract((p3.x + p3.y) * p3.z);
+      }
+      float vnoise(vec2 p){
+        vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+        return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
+      }
+      void main(){
+        vec2 res = u_scene.xy; float m = min(res.x, res.y);
+        vec2 p = (gl_FragCoord.xy - 0.5 * res) / m;          // y up
+        vec2 cursor = (0.5 * u_light.xy * res) / m;
+
+        // Mowing lanes run up the page and pinch a little toward the top, like a field seen from the stands.
+        float persp = 1.0 + p.y * 0.28;
+        float lane = p.x / persp / u_look.y;
+        float side = mod(floor(lane), 2.0) * 2.0 - 1.0;      // +1 / -1: which way this pass leans
+        float edge = smoothstep(0.0, 0.06, fract(lane)) * smoothstep(0.0, 0.06, 1.0 - fract(lane));
+
+        // The light pool: an oval, bright core + soft wide halo.
+        vec2 d = (p - cursor) * vec2(1.0, u_scene.w);
+        float dist = length(d);
+        float pool = 1.0 - smoothstep(0.0, u_radius, dist);
+        float halo = exp(-dist * dist * 4.5) * 0.22;
+        float lit = u_light.z * u_light.w * (pool * pool * 0.85 + pool * 0.25 + halo);
+
+        // Stripe sheen: grass leaning away from the light shines, leaning toward it goes dark.
+        vec2 ld = (p - cursor) / max(length(p - cursor), 0.0001);
+        float face = side * mix(0.0, ld.y, smoothstep(0.02, 0.22, length(p - cursor)));
+        float sheen = 1.0 + u_look.z * (0.2 * side + 0.8 * face) * mix(0.6, 1.0, edge);
+
+        // Grass: long thin blade streaks (staggered so they don't line up in rows) + clumps + slow mottling.
+        vec2 g = gl_FragCoord.xy / vec2(2.0, 13.0);
+        float blades = hash(floor(g + vec2(0.0, hash(vec2(floor(g.x), 7.0)))));
+        float clump = vnoise(p * vec2(60.0, 22.0));
+        float mott = vnoise(p * 6.0) * 0.6 + vnoise(p * 19.0) * 0.4;
+        vec3 grass = mix(vec3(0.07, 0.2, 0.06), vec3(0.26, 0.5, 0.17), mott * 0.45 + clump * 0.25 + blades * 0.3);
+
+        vec3 lamp = vec3(1.0, 1.0, 0.93);                    // stadium white, a touch warm
+        vec3 moon = vec3(0.55, 0.75, 1.0);                   // the faint cool fill everywhere else
+        vec3 col = grass * sheen * (lamp * lit * 1.35 + moon * u_look.x);
+        col += (hash(gl_FragCoord.xy + u_scene.z) - 0.5) * u_look.w * (0.4 + lit);
+        gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+      }`;
+
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const FALLOFF = [1, 0.66, 0.3, 0.07, 0]; // same shape as the shader's pool, sampled at quarters
+    let lastMask = '';
+    const setMask = (x, y, r, presence) => {
+      // skip the repaint when the light hasn't really moved (2026-10-07 speed)
+      const key = `${Math.round(x)},${Math.round(y)},${Math.round(r)},${presence.toFixed(2)}`;
+      if (key === lastMask) return;
+      lastMask = key;
+      const stops = FALLOFF.map((f, i) =>
+        `rgba(0,0,0,${(S.ghost + (1 - S.ghost) * f * presence).toFixed(3)}) ${i * 25}%`).join(', ');
+      const rx = Math.max(r, 1), ry = Math.max(r / S.oval, 1);
+      // Layer 2 = thin vertical streaks, so the letters look painted on grass, not floating over it.
+      const m = `radial-gradient(ellipse ${rx.toFixed(1)}px ${ry.toFixed(1)}px at ${x.toFixed(1)}px ${y.toFixed(1)}px, ${stops}), ` +
+        'repeating-linear-gradient(90deg, #000 0 2px, rgba(0,0,0,.72) 2px 3px, #000 3px 5px, rgba(0,0,0,.85) 5px 6px)';
+      writing.style.maskImage = m; writing.style.webkitMaskImage = m;
+      writing.style.maskComposite = 'intersect'; writing.style.webkitMaskComposite = 'source-in';
+    };
+    // 2026-10-07 (Harrison: on the phone "you can't really even use it"). Phones have no mouse, so the light
+    // follows the scroll instead: it sits at the middle of the screen and slides left/right to whichever
+    // promise is there. Each one lights up as you reach it, no tapping needed.
+    const touch = matchMedia('(hover: none)').matches;
+    const notes = [...section.querySelectorAll('.note')];
+    const scrollTarget = () => {
+      const r = canvas.getBoundingClientRect();
+      const pts = notes.filter(n => n.offsetParent).map(n => {
+        // up/down: the middle of the whole promise; side to side: the middle of its big words (they hug the left on phones)
+        const b = n.getBoundingClientRect(), w = (n.querySelector('p') || n).getBoundingClientRect();
+        return [b.top + b.height / 2, w.left + w.width / 2];
+      });
+      if (!pts.length || !r.height) return [0, -0.2];
+      const y = Math.min(Math.max(innerHeight / 2, pts[0][0]), pts[pts.length - 1][0]);
+      let x = pts[0][1];
+      for (let i = 0; i < pts.length - 1; i++) {
+        const [y0, x0] = pts[i], [y1, x1] = pts[i + 1];
+        if (y >= y0 && y <= y1) { const t = (y - y0) / Math.max(1, y1 - y0); x = x0 + (x1 - x0) * t * t * (3 - 2 * t); break; }
+        if (y > y1) x = x1;
+      }
+      return [(x - r.left) / r.width * 2 - 1, 1 - (y - r.top) / r.height * 2];
+    };
+
+    const gl = canvas.getContext('webgl', { antialias: false, alpha: false });
+    const compile = () => {
+      const prog = gl.createProgram();
+      for (const [type, src] of [[gl.VERTEX_SHADER, VERT], [gl.FRAGMENT_SHADER, FRAG]]) {
+        const sh = gl.createShader(type);
+        gl.shaderSource(sh, src); gl.compileShader(sh);
+        if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(sh)); return null; }
+        gl.attachShader(prog, sh); gl.deleteShader(sh);
+      }
+      gl.linkProgram(prog);
+      return gl.getProgramParameter(prog, gl.LINK_STATUS) ? prog : null;
+    };
+    const prog = gl && compile();
+    if (!prog) {
+      // No WebGL: a fixed soft light in the middle, writing lit there.
+      canvas.classList.add('fallback');
+      const r = section.getBoundingClientRect();
+      setMask(r.width / 2, r.height * 0.55, S.radius * Math.min(r.width, r.height) * 1.3, 1);
+      return;
+    }
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const aPos = gl.getAttribLocation(prog, 'a');
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+    gl.useProgram(prog);
+    const U = n => gl.getUniformLocation(prog, n);
+    const loc = { scene: U('u_scene'), light: U('u_light'), look: U('u_look'), radius: U('u_radius') };
+
+    const pointer = { x: 0, y: 0, cx: 0, cy: 0, seen: false, inside: false, until: 0 };
+    const mapPointer = () => {
+      if (!pointer.seen) { pointer.inside = false; return; }
+      const r = canvas.getBoundingClientRect();
+      pointer.inside = pointer.cx >= r.left && pointer.cx <= r.right && pointer.cy >= r.top && pointer.cy <= r.bottom;
+      pointer.x = (pointer.cx - r.left) / r.width * 2 - 1;
+      pointer.y = 1 - (pointer.cy - r.top) / r.height * 2;
+    };
+    const light = { x: 0, y: -0.2 };
+    let presence = 0, time = 0, roam = 0, last = 0, raf = 0, visible = false;
+
+    const draw = now => {
+      raf = 0;
+      const dt = last ? Math.min((now - last) / 1000, 0.05) : 0.016;
+      last = now;
+      // 2026-10-07 speed: draw at screen size, never 2x (4x less work on sharp screens), and cap big screens
+      // at ~1.1 million pixels. The grass is grain and soft light, so it looks the same; the light moves smoother.
+      const cw = canvas.clientWidth, ch = canvas.clientHeight;
+      const dpr = Math.min(devicePixelRatio || 1, 1, Math.sqrt(1.1e6 / Math.max(1, cw * ch)));
+      const w = Math.max(1, Math.round(cw * dpr)), h = Math.max(1, Math.round(ch * dpr));
+      if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+
+      const moving = !reduced.matches;
+      if (moving) { time = (time + dt) % 100; roam += dt; }
+      // A tap on a touch screen holds the light there for a few seconds.
+      if (pointer.until && now > pointer.until) { pointer.seen = false; pointer.until = 0; }
+      // 2026-10-07 (Harrison: on a laptop the light stayed put while he scrolled). The mouse is kept in screen
+      // spots and mapped onto the field every frame, so when the page scrolls under a still mouse the light
+      // stays right under it. With the mouse off the field, the light follows the scroll like on phones.
+      mapPointer();
+      const [tx, ty] = pointer.inside ? [pointer.x, pointer.y] : scrollTarget();
+      // how tightly the light follows: the mouse (2026-10-07: 0.08 -> 0.035, so it stays right under the pointer) /
+      // the scroll on phones (0.18: a smooth glide, like a stadium light swinging over) / roaming on its own
+      const k = moving ? 1 - Math.exp(-dt / (pointer.inside ? 0.035 : touch ? 0.18 : 0.45)) : 1;
+      light.x += (tx - light.x) * k;
+      light.y += (ty - light.y) * k;
+      presence += (1 - presence) * (moving ? 1 - Math.exp(-dt / 0.25) : 1);
+
+      const radius = S.radius * (cw < 700 ? 1.6 : 1); // bigger light on narrow phones
+      gl.viewport(0, 0, w, h);
+      gl.uniform4f(loc.scene, w, h, Math.floor(time * 12), S.oval); // grain re-rolls 12x a second, like film
+      gl.uniform4f(loc.light, light.x, light.y, presence, S.strength);
+      gl.uniform4f(loc.look, S.ambient, S.stripe, S.flip, S.grain);
+      gl.uniform1f(loc.radius, radius);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+      setMask((light.x + 1) / 2 * cw, (1 - light.y) / 2 * ch, radius * Math.min(cw, ch), presence);
+
+      const easing = Math.abs(1 - presence) > 0.001 || Math.abs(tx - light.x) > 0.0005 || Math.abs(ty - light.y) > 0.0005;
+      if ((moving || easing) && visible && !document.hidden) raf = requestAnimationFrame(draw);
+    };
+    const kick = () => { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(draw); };
+
+    // Only run while the section is on screen.
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible) { last = 0; kick(); } else { cancelAnimationFrame(raf); raf = 0; }
+    }).observe(section);
+    new ResizeObserver(kick).observe(canvas);
+
+    // Text sits over the canvas, so track the pointer on the window and map it in.
+    const place = e => {
+      pointer.cx = e.clientX; pointer.cy = e.clientY; pointer.seen = true;
+      mapPointer();
+      pointer.until = e.pointerType === 'mouse' ? 0 : (pointer.inside ? performance.now() + 4000 : 0);
+      kick();
+    };
+    addEventListener('pointermove', e => { if (e.pointerType === 'mouse') place(e); }, { passive: true });
+    // phones: no tap-to-move, or every swipe to scroll would yank the light to the finger
+    if (!touch) section.addEventListener('pointerdown', place);
+    addEventListener('scroll', kick, { passive: true }); // the field moves under the mouse (and reduced-motion has no loop)
+    document.documentElement.addEventListener('pointerleave', () => { pointer.seen = false; pointer.inside = false; kick(); });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) { last = 0; kick(); } });
+    reduced.addEventListener('change', kick);
   })();
   </script>
 </body>
