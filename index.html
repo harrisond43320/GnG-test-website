@@ -1307,6 +1307,7 @@
               <a href="./#five"><span>Our promise<small>Five checks before we drive</small></span></a>
               <a href="../faq/"><span>Questions<small>Cost, area, insurance and more</small></span></a>
               <a href="../refer/"><span>Send a neighbor<small>You both save 5%</small></span></a>
+              <a href="../yard-of-the-month/"><span>Yard of the Month<small>One G'N'G yard gets the sign</small></span></a>
               <a href="../join-the-crew/"><span>Join the crew<small>Crew jobs and pay</small></span></a>
             </div>
           </li>
@@ -1356,6 +1357,7 @@
           <li class="sub-li"><a href="../faq/">Questions</a></li>
           <li class="sub-li"><a href="../join-the-crew/">Join the crew</a></li>
           <li class="sub-li"><a href="../refer/">Send a neighbor</a></li>
+          <li class="sub-li"><a href="../yard-of-the-month/">Yard of the Month</a></li>
         </ul>
         <div class="menu-ctas">
           <a class="btn btn-lime" href="./#plan">Get my yard plan
@@ -1792,6 +1794,7 @@
             <li><a href="../your-year/">Build your year</a></li>
             <li><a href="../yard-score/">Yard Score</a></li>
             <li><a href="../refer/">Send a neighbor (5% off)</a></li>
+            <li><a href="../yard-of-the-month/">Yard of the Month</a></li>
             <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
         </div>
@@ -1901,10 +1904,14 @@
       // 2026-10-07 (late, Harrison: "scroll it left and right on top of how it does already", more fluid):
       // grab a row and drag it (mouse) or swipe it (finger); let go and it glides to a stop, then drifts on.
       // Page scroll no longer jumps the rows in chunks: each scroll is fed in smoothly over a few frames.
-      const DRIFT = 26;   // px per second when nobody is scrolling
-      const PUSH = 0.6;   // px the rows move per px the page scrolls
+      // 2026-10-08 (Harrison: "the slides are really slow on the mobile website"): phones drift faster, a swipe
+      // glides farther and the row picks up again sooner after you let go.
+      const touch = matchMedia('(hover: none)').matches;
+      const DRIFT = touch ? 46 : 26;   // px per second when nobody is scrolling
+      const PUSH = touch ? 0.8 : 0.6;  // px the rows move per px the page scrolls
       const EASE = 9;     // how fast a scroll push is fed in (higher = snappier)
-      const FRICTION = 3.2; // how fast a fling slows down
+      const FRICTION = touch ? 2.2 : 3.2; // how fast a fling slows down (lower = glides farther)
+      const REST = touch ? 700 : 1800;    // ms a row waits after a drag before it drifts again
       // row 2 starts half a card over, so the cards stagger like bricks instead of lining up in a grid
       const rows = tracks.map((t, r) => ({ t, dir: +t.dataset.dir || 1, pos: r * 180, w: 0, hold: false, until: 0,
         owe: 0, vel: 0, drag: null }));
@@ -1912,8 +1919,10 @@
       new ResizeObserver(measure).observe(tracks[0]); measure();
       rows.forEach(o => {
         const t = o.t;
-        t.addEventListener('mouseenter', () => { o.hold = true; });
-        t.addEventListener('mouseleave', () => { o.hold = false; });
+        // only a real mouse holds a row (2026-10-08: a phone tap fired mouseenter with no mouseleave, so a row
+        // you touched once stopped drifting for good)
+        t.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') o.hold = true; });
+        t.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') o.hold = false; });
         t.addEventListener('pointerdown', e => {
           if (e.button) return;
           o.drag = { id: e.pointerId, x: e.clientX, y: e.clientY, lastX: e.clientX, lastT: e.timeStamp, moved: false, sideways: e.pointerType === 'mouse' };
@@ -1935,7 +1944,7 @@
         const end = e => {
           const d = o.drag; if (!d || d.id !== e.pointerId) return;
           o.drag = null; t.classList.remove('dragging');
-          if (d.moved) { o.until = performance.now() + 1800; if (e.timeStamp - d.lastT > 90) o.vel = 0; }
+          if (d.moved) { o.until = performance.now() + REST; if (e.timeStamp - d.lastT > 90) o.vel = 0; }
           else o.vel = 0;
           o.justDragged = d.moved;
         };
@@ -1945,7 +1954,7 @@
         // trackpads: two-finger sideways swipe moves the row too
         t.addEventListener('wheel', e => {
           if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
-          e.preventDefault(); o.owe -= e.deltaX; o.until = performance.now() + 1800; kick();
+          e.preventDefault(); o.owe -= e.deltaX; o.until = performance.now() + REST; kick();
         }, { passive: false });
         t.addEventListener('dragstart', e => e.preventDefault());
       });
@@ -2053,7 +2062,7 @@
 
     // Remember where this visitor came from (ad, campaign, Google click), for the whole visit.
     const params = new URLSearchParams(location.search);
-    const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'gclid', 'ref']; // ref = which page sent them (yardscore, presell, neighbor)
+    const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'gclid', 'ref']; // ref = which page sent them (yardscore, presell, neighbor, yotm)
     let seen = {};
     try { seen = JSON.parse(sessionStorage.getItem('gng_src') || '{}'); } catch (e) {}
     keys.forEach(k => { if (params.get(k)) seen[k] = params.get(k); });
@@ -2064,7 +2073,7 @@
     // web3forms.com -> type grassngardens4u@gmail.com -> the key comes by email). With a key, "Send" saves the
     // lead straight to that inbox: no second step for the customer, and no lead lost if they never hit send.
     // Empty = the old way (opens a ready-made text/email). If the service ever fails, it falls back to that too.
-    const FORM_KEY = '';
+    const FORM_KEY = '400879f5-5c14-4f34-a5aa-e9b00f5efea1'; // 2026-10-08: Harrison's Web3Forms key (the same one the old grassngardens.com form uses)
     // A neighbor's share link (?ref=neighbor) picks "A friend or neighbor" so the referral box shows.
     if (params.get('ref') === 'neighbor') document.querySelectorAll('.lead-form select[name="source"]').forEach(s => { s.value = 'A friend or neighbor'; });
 
@@ -2131,7 +2140,7 @@
           val('email') ? 'Email: ' + val('email') : '',
           source ? 'Heard about you from: ' + source : '',
           referred ? 'Sent by: ' + referred : '',
-          ({ yardscore: 'Came from: the Yard Score', presell: 'Came from: the 2027 welcome-back page', neighbor: "Came from: a neighbor's link" })[val('ref')] || ''
+          ({ yardscore: 'Came from: the Yard Score', presell: 'Came from: the 2027 welcome-back page', neighbor: "Came from: a neighbor's link", yotm: 'Came from: the Yard of the Month page' })[val('ref')] || ''
         ].filter(Boolean);
         const first = val('name').split(/\s+/)[0].slice(0, 30);
 

@@ -505,11 +505,12 @@
 .promise::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(50% 80% at 85% 0%, rgba(102,184,74,.22), transparent 70%); }
 .promise .wrap { position: relative; }
 .promise-row { display: grid; gap: var(--s8); align-items: center; }
-@media (min-width: 1000px) { .promise-row { grid-template-columns: .9fr 1.6fr; } }
+/* 2026-10-08 (Harrison: "an entire 1, 2, 3, 4, 5, not the 5 below the 4"): heading on top, all five checks in
+   one row under it (it used to sit beside them, and only 4 fit). Phones: one list, number beside the words. */
 .promise h2 { font-family: var(--font-body); font-weight: 600; font-size: var(--fs-lead); line-height: 1.2; }
 .promise h2 b { display: block; margin-top: 6px; font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 4.4vw, 58px); line-height: 1; text-transform: uppercase; letter-spacing: .01em; }
 .promise p.rem { margin-top: var(--s4); font-size: 17px; line-height: 1.5; color: rgba(255,255,255,.85); }
-.promise p.rem a { color: #fff; font-weight: 700; padding: 1px 6px; border-radius: 5px; background: rgba(255,255,255,.12); }
+.promise p.rem a { white-space: nowrap; color: #fff; font-weight: 700; padding: 1px 6px; border-radius: 5px; background: rgba(255,255,255,.12); }
 .promise p.rem a:hover { background: rgba(255,255,255,.22); }
 .promise p.rem a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
 .checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s3); list-style: none; counter-reset: chk; }
@@ -518,6 +519,12 @@
   background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); font-weight: 700; font-size: 17px; line-height: 1.25;
 }
 .checks li::before { content: counter(chk); font-family: var(--font-display); font-size: 34px; line-height: 1; color: var(--lime); }
+@media (max-width: 759px) {
+  .checks { grid-template-columns: 1fr; gap: var(--s2); }
+  .checks li { flex-direction: row; align-items: center; gap: var(--s4); padding: var(--s3) var(--s4); }
+  .checks li::before { font-size: 28px; min-width: 24px; text-align: center; }
+}
+@media (min-width: 760px) { .checks { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 
 /* one real review, big (word for word) */
 .one-review { max-width: 860px; margin: var(--s12) auto 0; }
