@@ -604,6 +604,17 @@
 .svc .go svg { transition: transform .35s var(--spring); }
 .svc:hover .go svg { transform: translateX(4px); }
 .svc .tag { position: absolute; top: var(--s4); left: var(--s4); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; background: var(--lime); color: var(--pine); padding: 5px 9px; border-radius: 999px; }
+/* 2026-10-08 LESS SCROLL: on phones the 4 cards were stacked 300px tall (~1.5 screens). Now 2 across,
+   just the photo, the name and the link. The one-line blurb shows from tablet up. */
+@media (max-width: 639px) {
+  .svc-row { grid-template-columns: 1fr 1fr; gap: var(--s3); margin-top: var(--s8); }
+  .svc { min-height: 190px; }
+  .svc-body { padding: var(--s3); }
+  .svc h3 { font-size: 18px; }
+  .svc p { display: none; }
+  .svc .go { font-size: 13px; margin-top: 6px; }
+  .svc .tag { top: var(--s2); left: var(--s2); font-size: 10px; padding: 4px 7px; }
+}
 
 /* season pass nudge (a slim ticket stub) */
 .pass-nudge {
@@ -733,6 +744,16 @@
 .tk-stub .pass-call { position: relative; z-index: 2; display: inline-flex; align-items: center; min-height: 44px; align-self: flex-start; color: #fff; font-weight: 700; font-size: 15px; border-radius: 6px; padding: 0 8px; margin-left: -8px; background: rgba(255,255,255,.08); }
 .tk-stub .pass-call:hover { background: rgba(255,255,255,.16); color: var(--lime); }
 .tk-stub .pass-call:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+/* 2026-10-08 LESS SCROLL (same rule is in home/index.html): on phones the stamp sits beside the label and day count */
+@media (max-width: 767px) {
+  .tk-stub { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: var(--s3); row-gap: var(--s3); padding: var(--s6); }
+  .tk-stub > * { grid-column: 1 / -1; }
+  .tk-stub .pass-label { grid-column: 1; grid-row: 1; }
+  .tk-stub .tk-count { justify-self: start; white-space: nowrap; }
+  .tk-stub .tk-stamp { grid-column: 2; grid-row: 1; width: 100px; height: 100px; margin: 0 4px 0 0; outline-offset: -10px; }
+  .tk-stub .tk-stamp b { font-size: 38px; }
+  .tk-stub .tk-stamp span { font-size: 10px; }
+}
 .tk-more {
   display: inline-flex; align-items: center; gap: 6px; margin-top: var(--s6); padding: 8px 14px; border-radius: 999px;
   background: var(--mist); border: 2px solid var(--line-light); font-size: 14px; font-weight: 700; color: var(--forest);
@@ -754,3 +775,29 @@
 .light .how span a { color: var(--forest); }
 .how span a:hover { background: rgba(102,184,74,.28); }
 .how span a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+
+/* 2026-10-08 LESS SCROLL ON PHONES (Harrison: "less scroll time, easy to find, not too big, not too small").
+   Same words, same order, less empty space: tighter section padding, check lists and steps.
+   The numbered steps put the number beside the words instead of above them. Taps stay 44px+. */
+@media (max-width: 767px) {
+  .sec, .faq { padding: var(--s16) 0; }
+  .sec.tight { padding: var(--s12) 0; }
+  .ask { padding: var(--s16) 0 var(--s16); }
+  .split { gap: var(--s6); margin-top: var(--s8); }
+  .gets { gap: var(--s2); margin-top: var(--s6); }
+  .gets li { padding: var(--s3) var(--s4) var(--s3) var(--s3); gap: 0 var(--s3); }
+  .gets li::before { width: 26px; height: 26px; background-size: 17px; }
+  .gets b { font-size: 18px; }
+  .how { gap: var(--s3); margin-top: var(--s8); }
+  .how li { display: grid; grid-template-columns: 40px 1fr; column-gap: var(--s4); align-items: start; padding: var(--s4); }
+  .how li::before { grid-row: span 2; width: 40px; height: 40px; font-size: 18px; }
+  .how b { margin-top: 6px; font-size: 18px; }
+  .how span { margin-top: 2px; }
+  .how li > :not(b):not(span) { grid-column: 1 / -1; }
+  .pair { margin-top: var(--s8); }
+  .pair article { padding: var(--s6) var(--s4); }
+  .pair ul { margin-top: var(--s4); gap: var(--s2); }
+  .pair li { font-size: 16px; }
+  .pair .btn { margin-top: var(--s6); }
+  .faq-grid { gap: var(--s6); }
+}

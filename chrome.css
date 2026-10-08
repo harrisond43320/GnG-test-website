@@ -1,3 +1,9 @@
+/* Fonts served from our own site (2026-10-08 speed pass; were Google Fonts). Latin only, files in fonts/. */
+@font-face { font-family: 'Alfa Slab One'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/alfa-slab-one-400.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/barlow-400.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/barlow-500.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/barlow-600.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/barlow-700.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 /* G'N'G shared header dropdown + footer columns (2026-10-07). Every page links this file.
    Goes with _partials/header.html and _partials/footer.html. */
 /* ---------- header: Services dropdown (desktop) ---------- */
@@ -221,3 +227,35 @@ html.rvz-open { overflow: hidden; }
   .foot-cols .fc-brand p { margin-top: var(--s3); }
   .foot-cols .soc { margin-top: var(--s4); }
 }
+
+/* 2026-10-08 (Harrison: "make it super accessible... a third grader can use it"): small phones (iPhone SE/mini,
+   375px and under) lost the word "Menu" and only showed 3 bars. The word stays now; the logo gives up a few px. */
+@media (max-width: 380px) {
+  .site-head .brand img { height: 48px; }
+  .site-head .menu-btn { padding: 0 10px; gap: 6px; }
+  .site-head .menu-btn .menu-word { display: inline; }
+}
+@media (max-width: 365px) { .site-head .brand img { height: 44px; } }
+
+/* 2026-10-08 LESS SCROLL (Harrison: "less scroll time, easy to find"). The phone footer was still ~1.6 screens.
+   Logo + icons on one row, the short blurb hidden on phones, link lists tighter (taps stay 40px+). */
+@media (max-width: 767px) {
+  .foot-cols { gap: var(--s4); padding-bottom: var(--s6); margin-bottom: var(--s6); }
+  .foot-cols .fc-brand { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3); }
+  .foot-cols .fc-brand p { display: none; }
+  .fc-brand .logo-tile { padding: 8px 10px; }
+  .fc-brand .logo-tile img { height: 40px; }
+  .foot-cols .soc { margin-top: 0; gap: 6px; }
+  .foot-cols .soc a { width: 42px; height: 42px; }
+  .foot-cols .soc svg { width: 20px; height: 20px; }
+  .foot-cols ul:not(.soc) { column-gap: 18px; margin-top: 4px; }
+  .foot-cols li a { min-height: 40px; }
+  footer.site .foot { gap: var(--s3); }
+  footer.site .foot .meta { line-height: 1.5; }
+  footer.site .foot .meta a { display: inline-block; padding: 9px 2px; }
+}
+
+/* 2026-10-08 speed pass: hero words show on the first paint instead of waiting for the scroll script (it made the biggest paint ~2-5s late on phones). A small slide-up keeps some motion. */
+.hero .reveal, .page-hero .reveal { opacity: 1; transition: none; animation: hero-in .5s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes hero-in { from { transform: translateY(10px); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hero .reveal, .page-hero .reveal { animation: none; transform: none; } }

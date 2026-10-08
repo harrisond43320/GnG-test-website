@@ -14,9 +14,9 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  
+  
+  <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-500.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../chrome.css" />
   <style>
     /* 2026-10-06: same system as home/index.html (tokens, header, cartoon buttons, type rule, footer). */
@@ -247,7 +247,7 @@
     <!-- ALMOST DONE. The form saved a ready-made text/email in this browser tab (sessionStorage, never the URL).
          This page gives one big button to open it again, because some phones block the first try. -->
     <section class="ty">
-      <div class="ty-photo"><img src="../img/sm/gallery-12.jpg" srcset="../img/sm/gallery-12.jpg 900w, ../img/md/gallery-12.jpg 1200w, ../img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" /></div>
+      <div class="ty-photo"><img src="../img/sm/gallery-12.jpg" srcset="../img/sm/gallery-12.jpg 900w, ../img/md/gallery-12.jpg 1200w, ../img/gallery-12.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" /></div>
       <div class="wrap ty-in">
         <p class="eyebrow rise draft" data-thanks>Thanks!</p>
         <h1 class="rise d1 if-msg draft">Almost done!</h1>
@@ -303,7 +303,7 @@
         </ol>
         <div class="after-grid">
           <figure class="crew">
-            <img src="../img/sm/crew-mulch.jpg" srcset="../img/sm/crew-mulch.jpg 900w, ../img/md/crew-mulch.jpg 1200w, ../img/crew-mulch.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="The Grass 'n' Gardens crew by the truck after a mulch job" loading="lazy" />
+            <img src="../img/sm/crew-mulch.jpg" srcset="../img/xs/crew-mulch.jpg 600w, ../img/sm/crew-mulch.jpg 900w, ../img/md/crew-mulch.jpg 1200w, ../img/crew-mulch.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="The Grass 'n' Gardens crew by the truck after a mulch job" loading="lazy" fetchpriority="low" />
             <figcaption>The crew</figcaption>
           </figure>
           <div>
@@ -329,7 +329,7 @@
     <div class="wrap">
       <div class="foot-cols">
         <div class="fc-brand">
-          <a class="logo-tile" href="../" aria-label="Grass 'n' Gardens home"><img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" /></a>
+          <a class="logo-tile" href="../" aria-label="Grass 'n' Gardens home"><img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" fetchpriority="low" /></a>
           <p class="draft">Lawn care out of Richfield, Ohio. Five checks before we drive, every yard.</p>
           <ul class="soc" aria-label="Grass 'n' Gardens on social media">
             <li><a href="https://www.instagram.com/grass_n_gardens/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a></li>
@@ -357,14 +357,11 @@
           <ul>
             <li><a href="../why-gng/">Why G'N'G</a></li>
             <li><a href="../season-pass/">2027 Season Pass</a></li>
-            <li><a href="../#five">Our promise</a></li>
             <li><a href="../about/">Meet Harrison</a></li>
             <li><a href="../our-work/">Our work</a></li>
-            <li><a href="../#area">Where we work</a></li>
             <li><a href="../faq/">Questions</a></li>
             <li><a href="../your-year/">Build your year</a></li>
-            <li><a href="../yard-score/">Yard Score</a></li>
-            <li><a href="../refer/">Send a neighbor (5% off)</a></li>
+            <li><a href="../refer/">Send a neighbor</a></li>
             <li><a href="../yard-of-the-month/">Yard of the Month</a></li>
             <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
@@ -384,7 +381,7 @@
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
         <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a></p>
         <button class="app-get" type="button" data-app-get hidden>
-          <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
+          <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" fetchpriority="low" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
         </button>
       </div>
@@ -393,7 +390,7 @@
 
   <!-- iPhone: Apple has no install button, so this shows the 2 taps. -->
   <dialog class="app-sheet" aria-labelledby="app-sheet-title">
-    <img src="../app/icon-192.png" alt="" width="64" height="64" loading="lazy" />
+    <img src="../app/icon-192.png" alt="" width="64" height="64" loading="lazy" fetchpriority="low" />
     <h2 id="app-sheet-title" class="draft">Add G'N'G to your home screen</h2>
     <ol>
       <li class="draft">Tap the <b>Share</b> button <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share icon"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> at the bottom of Safari.</li>

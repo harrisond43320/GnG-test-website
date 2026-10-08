@@ -64,10 +64,10 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
+  
+  
+  <link rel="preload" href="fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="fonts/barlow-500.woff2" as="font" type="font/woff2" crossorigin />
   <!-- 2026-10-07: shared header dropdown + footer columns (same file on every page) -->
   <link rel="stylesheet" href="chrome.css" />
   <style>
@@ -256,7 +256,16 @@
       opacity: 0; animation: broll 35s linear infinite; will-change: opacity, transform;
     }
     /* first photo starts already faded in (negative delay), so the hero is never blank on load */
-    .hero-photo .broll img:nth-child(1) { animation-delay: -1.4s; }
+    /* 2026-10-08 speed pass: photo 1 never fades. It stays shown as the bottom layer and photos 2-5 fade in and out
+       on top of it (same 35s loop, same look). Browsers then count it as the first big paint instead of photo 2. */
+    .hero-photo .broll img:nth-child(1) { opacity: 1; animation-name: broll-first; animation-delay: 0s; }
+    @keyframes broll-first {
+      0%    { transform: scale(1.023); }
+      20%   { transform: scale(1.1); }
+      95.9% { transform: scale(1.1); }
+      96%   { transform: scale(1.02); }
+      100%  { transform: scale(1.023); }
+    }
     .hero-photo .broll img:nth-child(2) { animation-delay: 5.6s; }
     .hero-photo .broll img:nth-child(3) { animation-delay: 12.6s; }
     .hero-photo .broll img:nth-child(4) { animation-delay: 19.6s; }
@@ -1179,6 +1188,14 @@
       .tk-stub { padding: var(--s6); gap: var(--s3); }
       .tk-stamp { width: 120px; height: 120px; }
       .tk-stamp b { font-size: 46px; }
+      /* 2026-10-08 LESS SCROLL: the stamp sits beside the label and the day count instead of on its own row */
+      .tk-stub { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: var(--s3); }
+      .tk-stub > * { grid-column: 1 / -1; }
+      .tk-stub .pass-label { grid-column: 1; grid-row: 1; }
+      .tk-stub .tk-count { justify-self: start; white-space: nowrap; }
+      .tk-stub .tk-stamp { grid-column: 2; grid-row: 1; width: 100px; height: 100px; margin: 0 4px 0 0; outline-offset: -10px; }
+      .tk-stub .tk-stamp b { font-size: 38px; }
+      .tk-stub .tk-stamp span { font-size: 10px; }
       .mini-quote { display: none; } /* the reviews are right below */
       .plan-grid { gap: var(--s6); }
       .plan .reel { aspect-ratio: 4 / 3; margin-top: var(--s6); } /* the stand-in slideshow: a little shorter on phones */
@@ -1366,7 +1383,7 @@
         </div>
         <!-- Shown by the script only on phones that can add it (and never inside the app itself) -->
         <button class="app-get" type="button" data-app-get hidden>
-          <img src="./app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
+          <img src="./app/icon-192.png" alt="" width="36" height="36" loading="lazy" fetchpriority="low" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
         </button>
       </nav>
@@ -1384,11 +1401,11 @@
              Lighter shading than before, so the photos read clear; the text keeps its own soft shadow. -->
         <div class="broll" role="img" aria-label="Striped lawns, a stand-on mower, fresh mulch beds and the Grass 'n' Gardens crew on a job">
           <!-- 2026-10-06: swapped to Harrison's own Google Business photos ("By owner" only, his OK). gbp-* = cropped to 4:3. -->
-          <img src="img/gbp-mower-stripes.jpg" srcset="img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" sizes="100vw" alt="" fetchpriority="high" style="--pos: 70% 55%" />
-          <img data-src="img/gallery-12.jpg" data-srcset="img/sm/gallery-12.jpg 900w, img/md/gallery-12.jpg 1200w, img/gallery-12.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
-          <img data-src="img/gbp-crew-mowing.jpg" data-srcset="img/sm/gbp-crew-mowing.jpg 900w, img/md/gbp-crew-mowing.jpg 1200w, img/gbp-crew-mowing.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
-          <img data-src="img/gbp-mower-house.jpg" data-srcset="img/sm/gbp-mower-house.jpg 900w, img/md/gbp-mower-house.jpg 1200w, img/gbp-mower-house.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
-          <img data-src="img/crew-mulch.jpg" data-srcset="img/sm/crew-mulch.jpg 900w, img/md/crew-mulch.jpg 1200w, img/crew-mulch.jpg 1600w" sizes="100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
+          <img src="img/gbp-mower-stripes.jpg" srcset="img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" style="--pos: 70% 55%" />
+          <img data-src="img/gallery-12.jpg" data-srcset="img/sm/gallery-12.jpg 900w, img/md/gallery-12.jpg 1200w, img/gallery-12.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
+          <img data-src="img/gbp-crew-mowing.jpg" data-srcset="img/sm/gbp-crew-mowing.jpg 900w, img/md/gbp-crew-mowing.jpg 1200w, img/gbp-crew-mowing.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
+          <img data-src="img/gbp-mower-house.jpg" data-srcset="img/sm/gbp-mower-house.jpg 900w, img/md/gbp-mower-house.jpg 1200w, img/gbp-mower-house.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
+          <img data-src="img/crew-mulch.jpg" data-srcset="img/sm/crew-mulch.jpg 900w, img/md/crew-mulch.jpg 1200w, img/crew-mulch.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
         </div>
       </div>
       <div class="wrap hero-copy">
@@ -1439,12 +1456,12 @@
           <!-- Photo reel of real 2026 jobs. Stands in for the "what we got done in one year" video;
                when the video is filmed, put it here. Plays by itself, pause button for anyone who wants it still. -->
           <div class="reel" role="region" aria-roledescription="slideshow" aria-label="Our 2026 season in photos">
-            <figure class="reel-slide is-on"><img loading="lazy" src="img/sm/gbp-house-stripes.jpg" srcset="img/sm/gbp-house-stripes.jpg 900w, img/md/gbp-house-stripes.jpg 1200w, img/gbp-house-stripes.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Fresh mowing stripes across a front lawn up to a stone and siding house" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-front-bed.jpg" srcset="img/sm/gbp-front-bed.jpg 900w, img/md/gbp-front-bed.jpg 1200w, img/gbp-front-bed.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Long fresh mulch bed with shrubs and a red maple along the front of a house" loading="lazy" /><figcaption>Mulch and beds</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/ba-brick-after.jpg" srcset="img/sm/ba-brick-after.jpg 900w, img/md/ba-brick-after.jpg 1200w, img/ba-brick-after.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Front bed of a brick house cleared and covered in fresh black mulch" loading="lazy" /><figcaption>Bed cleanup</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-mower-drive.jpg" srcset="img/sm/gbp-mower-drive.jpg 900w, img/md/gbp-mower-drive.jpg 1200w, img/gbp-mower-drive.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Mower on a freshly striped front lawn by the driveway" loading="lazy" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-hedge.jpg" srcset="img/sm/gbp-hedge.jpg 900w, img/md/gbp-hedge.jpg 1200w, img/gbp-hedge.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Tall hedge trimmed flat and square along the side of a house" loading="lazy" /><figcaption>Bush trimming</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-walk-beds.jpg" srcset="img/sm/gbp-walk-beds.jpg 900w, img/md/gbp-walk-beds.jpg 1200w, img/gbp-walk-beds.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Curved walkway lined with fresh mulch beds and shrubs" loading="lazy" /><figcaption>Beds and edging</figcaption></figure>
+            <figure class="reel-slide is-on"><img loading="lazy" fetchpriority="low" src="img/sm/gbp-house-stripes.jpg" srcset="img/xs/gbp-house-stripes.jpg 600w, img/sm/gbp-house-stripes.jpg 900w, img/md/gbp-house-stripes.jpg 1200w, img/gbp-house-stripes.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Fresh mowing stripes across a front lawn up to a stone and siding house" /><figcaption>Weekly mowing</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-front-bed.jpg" srcset="img/xs/gbp-front-bed.jpg 600w, img/sm/gbp-front-bed.jpg 900w, img/md/gbp-front-bed.jpg 1200w, img/gbp-front-bed.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Long fresh mulch bed with shrubs and a red maple along the front of a house" loading="lazy" fetchpriority="low" /><figcaption>Mulch and beds</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/ba-brick-after.jpg" srcset="img/xs/ba-brick-after.jpg 600w, img/sm/ba-brick-after.jpg 900w, img/md/ba-brick-after.jpg 1200w, img/ba-brick-after.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Front bed of a brick house cleared and covered in fresh black mulch" loading="lazy" fetchpriority="low" /><figcaption>Bed cleanup</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-mower-drive.jpg" srcset="img/xs/gbp-mower-drive.jpg 600w, img/sm/gbp-mower-drive.jpg 900w, img/md/gbp-mower-drive.jpg 1200w, img/gbp-mower-drive.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Mower on a freshly striped front lawn by the driveway" loading="lazy" fetchpriority="low" /><figcaption>Weekly mowing</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-hedge.jpg" srcset="img/xs/gbp-hedge.jpg 600w, img/sm/gbp-hedge.jpg 900w, img/md/gbp-hedge.jpg 1200w, img/gbp-hedge.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Tall hedge trimmed flat and square along the side of a house" loading="lazy" fetchpriority="low" /><figcaption>Bush trimming</figcaption></figure>
+            <figure class="reel-slide"><img src="img/sm/gbp-walk-beds.jpg" srcset="img/xs/gbp-walk-beds.jpg 600w, img/sm/gbp-walk-beds.jpg 900w, img/md/gbp-walk-beds.jpg 1200w, img/gbp-walk-beds.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Curved walkway lined with fresh mulch beds and shrubs" loading="lazy" fetchpriority="low" /><figcaption>Beds and edging</figcaption></figure>
             <div class="reel-bar">
               <span class="reel-title">Our 2026 season</span>
               <span class="reel-pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -1458,7 +1475,7 @@
 
         <div class="form-card reveal d1" id="plan-form">
           <div class="form-head">
-            <img src="brand_assets/logos/mark-sm.png" alt="" width="52" height="52" loading="lazy" />
+            <img src="brand_assets/logos/mark-sm.png" alt="" width="52" height="52" loading="lazy" fetchpriority="low" />
             <div><h3>Get my yard plan</h3>
             <p class="draft">Takes 30 seconds. You don't have to be home.</p></div>
           </div>
@@ -1574,30 +1591,30 @@
         <!-- 2026-10-07 (Harrison: "click on these sections to go more in depth"): each card opens its own page. -->
         <div class="svc-row">
           <a class="svc reveal" href="../lawn-mowing/">
-            <img src="img/sm/gbp-stone-house.jpg" srcset="img/sm/gbp-stone-house.jpg 900w, img/md/gbp-stone-house.jpg 1200w, img/gbp-stone-house.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Fresh mowing stripes across the front lawn of a stone-front house" loading="lazy" />
+            <img src="img/sm/gbp-stone-house.jpg" srcset="img/xs/gbp-stone-house.jpg 600w, img/sm/gbp-stone-house.jpg 900w, img/md/gbp-stone-house.jpg 1200w, img/gbp-stone-house.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Fresh mowing stripes across the front lawn of a stone-front house" loading="lazy" fetchpriority="low" />
             <div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
           <a class="svc reveal d1" href="../fall-cleanup/">
             <span class="tag">Fall Pass</span>
-            <img src="img/sm/leaf-after.jpg" srcset="img/sm/leaf-after.jpg 900w, img/leaf-after.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="Beds and stone walk cleared of leaves after a fall cleanup" loading="lazy" />
+            <img src="img/sm/leaf-after.jpg" srcset="img/xs/leaf-after.jpg 600w, img/sm/leaf-after.jpg 900w, img/leaf-after.jpg 1200w" sizes="(max-width: 767px) 200px, 40vw" alt="Beds and stone walk cleared of leaves after a fall cleanup" loading="lazy" fetchpriority="low" />
             <div class="svc-body"><h3>Fall cleanups</h3><p>One price for the whole leaf season. We keep coming back till it's clear.</p><span class="go">See the Fall Pass <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
           <a class="svc reveal d2" href="../mulch-beds/">
-            <img src="img/sm/gbp-curved-bed.jpg" srcset="img/sm/gbp-curved-bed.jpg 900w, img/gbp-curved-bed.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" />
+            <img src="img/sm/gbp-curved-bed.jpg" srcset="img/xs/gbp-curved-bed.jpg 600w, img/sm/gbp-curved-bed.jpg 900w, img/gbp-curved-bed.jpg 1200w" sizes="(max-width: 767px) 200px, 40vw" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" fetchpriority="low" />
             <div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
           <a class="svc reveal d3" href="../spring-cleanup/">
-            <img src="img/sm/gallery-14.jpg" srcset="img/sm/gallery-14.jpg 900w, img/gallery-14.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="Fresh mulch bed with hostas along a ranch home" loading="lazy" />
+            <img src="img/sm/gallery-14.jpg" srcset="img/xs/gallery-14.jpg 600w, img/sm/gallery-14.jpg 900w, img/gallery-14.jpg 1200w" sizes="(max-width: 767px) 200px, 40vw" alt="Fresh mulch bed with hostas along a ranch home" loading="lazy" fetchpriority="low" />
             <div class="svc-body"><h3>Spring cleanups</h3><p class="draft">Sticks and dead leaves gone before your first mow.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
           <a class="svc reveal d1" href="../yard-design/">
             <span class="tag">Custom</span>
-            <img src="img/sm/gbp-planter-boxes.jpg" srcset="img/sm/gbp-planter-boxes.jpg 900w, img/md/gbp-planter-boxes.jpg 1200w, img/gbp-planter-boxes.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" />
+            <img src="img/sm/gbp-planter-boxes.jpg" srcset="img/xs/gbp-planter-boxes.jpg 600w, img/sm/gbp-planter-boxes.jpg 900w, img/md/gbp-planter-boxes.jpg 1200w, img/gbp-planter-boxes.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" fetchpriority="low" />
             <div class="svc-body"><h3>Planting</h3><p class="draft">New plants and tired beds redone. The right plant in the right spot.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
           <!-- 2026-10-07: 6th card, so aeration + fertilizer is one tap from the homepage too -->
           <a class="svc reveal d2" href="../aeration-fertilizer/">
-            <img src="img/sm/gbp-big-yard.jpg" srcset="img/sm/gbp-big-yard.jpg 900w, img/md/gbp-big-yard.jpg 1200w, img/gbp-big-yard.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Wide back lawn with fresh mowing stripes under a blue sky" loading="lazy" />
+            <img src="img/sm/gbp-big-yard.jpg" srcset="img/xs/gbp-big-yard.jpg 600w, img/sm/gbp-big-yard.jpg 900w, img/md/gbp-big-yard.jpg 1200w, img/gbp-big-yard.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Wide back lawn with fresh mowing stripes under a blue sky" loading="lazy" fetchpriority="low" />
             <div class="svc-body"><h3>Aeration and fertilizer</h3><p class="draft">Thicker grass. We check your soil first, and that part is free.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
         </div>
@@ -1651,12 +1668,12 @@
              SAMPLE ONLY until HomeWorks is set up. Photo = a real G'N'G yard. -->
         <figure class="report reveal d1" aria-label="Sample of the text you get after every visit">
           <div class="rep-head">
-            <img src="brand_assets/logos/mark-sm.png" alt="" width="34" height="34" loading="lazy" />
+            <img src="brand_assets/logos/mark-sm.png" alt="" width="34" height="34" loading="lazy" fetchpriority="low" />
             <span><b>Grass 'n' Gardens</b><small>Today, 10:42 AM</small></span>
             <em class="rep-tag">Sample</em>
           </div>
           <div class="rep-msg">
-            <img src="img/sm/gbp-brick-colonial.jpg" srcset="img/sm/gbp-brick-colonial.jpg 900w, img/md/gbp-brick-colonial.jpg 1200w" sizes="(max-width: 767px) 300px, 420px" alt="Sample photo: a big front lawn mowed in sharp stripes up to a brick house" loading="lazy" style="object-position: center 62%" />
+            <img src="img/sm/gbp-brick-colonial.jpg" srcset="img/xs/gbp-brick-colonial.jpg 600w, img/sm/gbp-brick-colonial.jpg 900w, img/md/gbp-brick-colonial.jpg 1200w" sizes="(max-width: 767px) 200px, 420px" alt="Sample photo: a big front lawn mowed in sharp stripes up to a brick house" loading="lazy" fetchpriority="low" style="object-position: center 62%" />
             <p class="draft">All done at your place. All 5 checks passed.</p>
             <ol class="rep-checks">
               <li>Edges crisp</li>
@@ -1758,7 +1775,7 @@
     <div class="wrap">
       <div class="foot-cols">
         <div class="fc-brand">
-          <a class="logo-tile" href="./" aria-current="page" aria-label="Grass 'n' Gardens home"><img src="brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" /></a>
+          <a class="logo-tile" href="./" aria-current="page" aria-label="Grass 'n' Gardens home"><img src="brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" fetchpriority="low" /></a>
           <p class="draft">Lawn care out of Richfield, Ohio. Five checks before we drive, every yard.</p>
           <ul class="soc" aria-label="Grass 'n' Gardens on social media">
             <li><a href="https://www.instagram.com/grass_n_gardens/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a></li>
@@ -1786,14 +1803,11 @@
           <ul>
             <li><a href="../why-gng/">Why G'N'G</a></li>
             <li><a href="../season-pass/">2027 Season Pass</a></li>
-            <li><a href="./#five">Our promise</a></li>
             <li><a href="../about/">Meet Harrison</a></li>
             <li><a href="../our-work/">Our work</a></li>
-            <li><a href="./#area">Where we work</a></li>
             <li><a href="../faq/">Questions</a></li>
             <li><a href="../your-year/">Build your year</a></li>
-            <li><a href="../yard-score/">Yard Score</a></li>
-            <li><a href="../refer/">Send a neighbor (5% off)</a></li>
+            <li><a href="../refer/">Send a neighbor</a></li>
             <li><a href="../yard-of-the-month/">Yard of the Month</a></li>
             <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
@@ -1813,7 +1827,7 @@
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
         <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a></p>
         <button class="app-get" type="button" data-app-get hidden>
-          <img src="./app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
+          <img src="./app/icon-192.png" alt="" width="36" height="36" loading="lazy" fetchpriority="low" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
         </button>
       </div>
@@ -1822,7 +1836,7 @@
 
   <!-- iPhone: Apple has no install button, so this shows the 2 taps. -->
   <dialog class="app-sheet" aria-labelledby="app-sheet-title">
-    <img src="./app/icon-192.png" alt="" width="64" height="64" loading="lazy" />
+    <img src="./app/icon-192.png" alt="" width="64" height="64" loading="lazy" fetchpriority="low" />
     <h2 id="app-sheet-title" class="draft">Add G'N'G to your home screen</h2>
     <ol>
       <li class="draft">Tap the <b>Share</b> button <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share icon"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> at the bottom of Safari.</li>
