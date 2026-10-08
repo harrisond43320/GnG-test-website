@@ -411,6 +411,8 @@
     .work .lede { margin-top: var(--s4); color: rgba(255,255,255,.8); }
     .ba { display: grid; gap: var(--s4); margin-top: var(--s12); }
     @media (min-width: 760px) { .ba { grid-template-columns: 1fr 1fr; } }
+    /* 2026-10-08: phones show before and after side by side (tall crop), like our-work */
+    @media (max-width: 759px) { .ba { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: var(--s8); } .ba-shot { aspect-ratio: 3 / 4; } }
     .ba-shot { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 3; box-shadow: var(--shadow-2); }
     .ba-shot img { width: 100%; height: 100%; object-fit: cover; }
     .ba-shot figcaption, .shot figcaption {
@@ -1206,9 +1208,9 @@
         <h2 class="sec-h reveal"><span class="draft">Read it, then see it.</span> <b>Our work<span class="dot">.</span></b></h2>
         <p class="lede reveal d1 draft">Real yards we did this year. No stock photos.</p>
         <div class="ba reveal">
-          <figure class="ba-shot"><img src="../img/sm/leaf-before.jpg" srcset="../img/sm/leaf-before.jpg 900w, ../img/leaf-before.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Before: a bed full of leaves and growth beside a stone walk" loading="lazy" /><figcaption>Before</figcaption></figure>
-          <figure class="ba-shot after"><img src="../img/sm/leaf-after.jpg" srcset="../img/sm/leaf-after.jpg 900w, ../img/leaf-after.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="After: the same beds cleared, fresh and edged" loading="lazy" /><figcaption>After</figcaption></figure>
-          <p class="ba-cap"><b>Fall cleanup.</b> One visit. Beds cleared, leaves gone, walk blown clean.</p>
+          <figure class="ba-shot"><img src="../img/sm/ba-pole-before.jpg" srcset="../img/sm/ba-pole-before.jpg 900w, ../img/md/ba-pole-before.jpg 1200w, ../img/ba-pole-before.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Before: weeds and long grass in a strip along the road by a pine tree" loading="lazy" /><figcaption>Before</figcaption></figure>
+          <figure class="ba-shot after"><img src="../img/sm/ba-pole-after.jpg" srcset="../img/sm/ba-pole-after.jpg 900w, ../img/ba-pole-after.jpg 1200w" sizes="(max-width: 767px) 300px, 40vw" alt="After: a clean new mulch bed with a sharp edge along the road" loading="lazy" /><figcaption>After</figcaption></figure>
+          <p class="ba-cap draft"><b>New mulch bed.</b> The weeds came out, we cut a clean edge, and the mulch went in.</p>
         </div>
         <div class="shots">
           <figure class="shot reveal"><img src="../img/sm/gbp-shrub-mulch.jpg" srcset="../img/sm/gbp-shrub-mulch.jpg 900w, ../img/md/gbp-shrub-mulch.jpg 1200w, ../img/gbp-shrub-mulch.jpg 1600w" sizes="(max-width: 767px) 300px, 40vw" alt="Trimmed round shrubs in fresh black mulch along a stone and siding house" loading="lazy" /><figcaption>Mulch</figcaption></figure>
