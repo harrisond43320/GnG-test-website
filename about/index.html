@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Meet Harrison, Owner of Grass 'n' Gardens | Richfield, Ohio</title>
+  <meta name="description" content="Grass 'n' Gardens was started in Richfield, Ohio by Harrison Drvenkar. Meet the owner, see our 2026 season, and how every yard gets checked before we leave." />
+  <meta property="og:title" content="Meet Harrison | Grass 'n' Gardens" />
+  <meta property="og:description" content="The owner of Grass 'n' Gardens in Richfield, Ohio." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://gng-test-website.vercel.app/img/crew-mulch.jpg" />
+  <meta property="og:url" content="https://gng-test-website.vercel.app/about/" />
+  <link rel="canonical" href="https://gng-test-website.vercel.app/about/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#141c17" />
+  <link rel="icon" href="../brand_assets/logos/favicon-64.png" sizes="64x64" type="image/png" />
+  <link rel="manifest" href="../manifest.json" />
+  <link rel="apple-touch-icon" href="../app/apple-touch-icon.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="G'N'G" />
+  <link rel="preload" as="image" href="../img/crew-mulch.jpg" imagesrcset="../img/sm/crew-mulch.jpg 900w, ../img/md/crew-mulch.jpg 1200w, ../img/crew-mulch.jpg 1600w" imagesizes="100vw" fetchpriority="high" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../site.css" />
+  <link rel="stylesheet" href="../chrome.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "name": "Meet Harrison, owner of Grass 'n' Gardens",
+        "url": "https://gng-test-website.vercel.app/about/",
+        "about": { "@type": "LandscapingBusiness", "@id": "https://gng-test-website.vercel.app/#business", "name": "Grass 'n' Gardens", "founder": { "@type": "Person", "name": "Harrison Drvenkar" } }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://gng-test-website.vercel.app/" },
+          { "@type": "ListItem", "position": 2, "name": "About", "item": "https://gng-test-website.vercel.app/about/" }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    /* 2026-10-07: "About Harrison" and the 2026 photo reel moved off the homepage (Harrison's mom: the homepage
+       "feels very overwhelming"; Harrison: move About to its own page, his video goes with it).
+       Copy is word for word from the homepage. 2026-10-07 later: the photo reel went back next to the homepage form (Harrison: the "see this first" video belongs with the quote form). */
+    .roster { padding: var(--s24) 0; }
+    .roster-grid { display: grid; gap: var(--s12); align-items: center; }
+    @media (min-width: 900px) { .roster-grid { grid-template-columns: 1fr 1fr; gap: var(--s16); } }
+    .about.light { background: #fff; }
+    .jersey-photo { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 1 / 1; box-shadow: var(--shadow-2); }
+    .jersey-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    .jersey-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.6), transparent 50%); }
+    .jersey-name { position: absolute; z-index: 2; left: var(--s6); bottom: var(--s6); color: #fff; }
+    .jersey-name b { display: block; font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1.1; letter-spacing: .01em; text-transform: uppercase; }
+    .jersey-name span { font-size: 14px; color: rgba(255,255,255,.75); }
+    .about-copy h2 { font-family: var(--font-body); font-weight: 600; font-size: var(--fs-lead); line-height: 1.2; color: var(--ink); margin-top: var(--s3); }
+    .about-copy h2 b { display: block; margin-top: 6px; font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h2); line-height: 1; letter-spacing: .01em; text-transform: uppercase; color: var(--pine); }
+    .about-copy p:not(.eyebrow) { margin-top: var(--s4); font-size: 18px; line-height: 1.6; color: var(--ink); max-width: 34em; }
+    .about-copy .draft-block p:first-child { margin-top: var(--s6); }
+
+    @media (max-width: 767px) { .roster { padding: 56px 0; } }
+
+    /* 2026-10-07 (night): CREW CARDS (Harrison: "crew cards, names on jersey, yep"). The jersey promise, made real:
+       one card per person, name on the back like a team roster. FIRST NAMES ONLY until each person OKs being on the
+       site (and their photo). Placeholder = the jersey drawing; swap in a real photo per card when we have it. */
+    .crew { padding: var(--s24) 0; }
+    .crew-grid { display: grid; gap: var(--s6); grid-template-columns: repeat(2, 1fr); margin-top: var(--s12); }
+    @media (min-width: 760px) { .crew-grid { grid-template-columns: repeat(3, 1fr); } }
+    .card {
+      position: relative; margin: 0; overflow: hidden; background: #fff; color: var(--ink);
+      border: 3px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--lime); transform: rotate(var(--tilt, -1deg));
+      transition: transform .5s var(--spring);
+    }
+    .card:nth-child(even) { --tilt: 1.2deg; }
+    .card:hover { transform: rotate(0) translateY(-4px); }
+    .card-photo { position: relative; aspect-ratio: 4 / 5; background: var(--pine); display: grid; place-items: center; overflow: hidden; }
+    .card-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    .card-photo svg { width: 62%; height: auto; }
+    .card-photo::after { content: ""; position: absolute; inset: auto 0 0; height: 40%; background: linear-gradient(to top, rgba(0,0,0,.45), transparent); }
+    .card-back { position: absolute; z-index: 1; left: 0; right: 0; bottom: var(--s3); text-align: center; font-family: var(--font-display); font-size: clamp(22px, 3vw, 30px); line-height: 1; text-transform: uppercase; letter-spacing: .04em; color: #fff; text-shadow: 0 2px 0 rgba(0,0,0,.35); }
+    .card figcaption { padding: var(--s3) var(--s4) var(--s4); }
+    .card figcaption b { display: block; font-size: 16px; }
+    .card figcaption span { font-size: 14px; color: var(--ink-muted); }
+    .card .soon { position: absolute; z-index: 1; top: var(--s3); left: var(--s3); padding: 3px 8px; border-radius: 999px; background: rgba(255,255,255,.9); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--pine); }
+    .crew .sec-intro { margin-left: auto; margin-right: auto; text-align: center; }
+    @media (max-width: 767px) { .crew { padding: 56px 0; } .crew-grid { gap: var(--s4); margin-top: var(--s8); } .card { box-shadow: 4px 4px 0 var(--lime); } }
+    @media (prefers-reduced-motion: reduce) { .card, .card:hover { transform: none; transition: none; } }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
+  </div>
+
+  <!-- @header -->
+  <!-- HEADER (2026-10-07: one header for every page; edit _partials/header.html, then run sync-partials.ps1).
+       White bar so the logo sits on white (brand rule). Services opens a list of the service pages. -->
+  <header class="site-head">
+    <div class="wrap head-in">
+      <a class="brand" href="../" aria-label="Grass 'n' Gardens home">
+        <img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" />
+      </a>
+      <nav class="menu" aria-label="Main">
+        <ul>
+          <!-- 2026-10-07: a plain Home link (Harrison: not everyone knows the logo goes home) -->
+          <li><a href="../">Home</a></li>
+          <li class="has-sub">
+            <button class="sub-btn" type="button" aria-expanded="false" aria-controls="sub-services">Services
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="sub" id="sub-services">
+              <a href="../lawn-mowing/"><span>Weekly mowing<small>Same crew, same day every week</small></span></a>
+              <a href="../fall-cleanup/"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
+              <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
+              <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
+              <a href="../yard-design/"><span>Planting and bed refresh<small>The right plant in the right spot</small></span></a>
+              <a href="../aeration-fertilizer/"><span>Aeration and fertilizer<small>Try the screwdriver test</small></span></a>
+              <a href="../hoa-commercial/"><span>HOA and commercial<small>Common areas and business properties</small></span></a>
+              <a href="../your-year/"><span>Build your year<small>See every month of your plan</small></span></a>
+              <a class="sub-all" href="../#services">See every service</a>
+            </div>
+          </li>
+          <li><a href="../season-pass/">2027 Season Pass</a></li>
+          <li><a href="../why-gng/">Why G'N'G</a></li>
+          <li><a href="../our-work/">Our work</a></li>
+          <!-- 2026-10-07 (late, Harrison: the header is too full): About, promise, questions, referral and hiring
+               moved under one "About" list, so the bar has 6 links instead of 8 and room for the Yard Score button. -->
+          <li class="has-sub">
+            <button class="sub-btn" type="button" aria-expanded="false" aria-controls="sub-about">About
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+            <div class="sub" id="sub-about">
+              <a href="../about/" aria-current="page"><span>About us<small>Harrison and the crew</small></span></a>
+              <a href="../#five"><span>Our promise<small>Five checks before we drive</small></span></a>
+              <a href="../faq/"><span>Questions<small>Cost, area, insurance and more</small></span></a>
+              <a href="../refer/"><span>Send a neighbor<small>You both save 5%</small></span></a>
+              <a href="../join-the-crew/"><span>Join the crew<small>Crew jobs and pay</small></span></a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="head-ctas">
+        <!-- 2026-10-07 (late, Harrison: "most people aren't gonna see" the Yard Score): its own button by the phone -->
+        <a class="score-btn" href="../yard-score/">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg>
+          <span>Yard Score<small>4 taps</small></span>
+        </a>
+        <a class="btn btn-lime phone" href="tel:+14406679642" aria-label="Call (440) 667-9642">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span class="num">(440) 667-9642</span>
+        </a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-panel">
+          <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="menu-word">Menu</span>
+        </button>
+      </div>
+    </div>
+    <!-- phone + tablet menu -->
+    <div class="menu-panel" id="menu-panel" hidden>
+      <nav class="wrap" aria-label="Main, small screens">
+        <!-- 2026-10-07 (late): the Yard Score sits first in the phone menu as a card, not buried in the list -->
+        <a class="score-card" href="../yard-score/">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg>
+          <span><b>Get your Yard Score</b><small class="draft">4 taps. See what your yard needs.</small></span>
+          <svg class="go" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <ul>
+          <li><a href="../">Home</a></li>
+          <li class="grp" aria-hidden="true">Services</li>
+          <li class="sub-li"><a href="../lawn-mowing/">Weekly mowing</a></li>
+          <li class="sub-li"><a href="../fall-cleanup/">Fall cleanups</a></li>
+          <li class="sub-li"><a href="../spring-cleanup/">Spring cleanups</a></li>
+          <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
+          <li class="sub-li"><a href="../yard-design/">Planting and bed refresh</a></li>
+          <li class="sub-li"><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
+          <li class="sub-li"><a href="../hoa-commercial/">HOA and commercial</a></li>
+          <li class="sub-li"><a href="../your-year/">Build your year</a></li>
+          <li><a href="../season-pass/">2027 Season Pass</a></li>
+          <li><a href="../why-gng/">Why G'N'G</a></li>
+          <li><a href="../our-work/">Our work</a></li>
+          <li class="grp" aria-hidden="true">About</li>
+          <li class="sub-li"><a href="../about/" aria-current="page">About us</a></li>
+          <li class="sub-li"><a href="../#five">Our promise</a></li>
+          <li class="sub-li"><a href="../faq/">Questions</a></li>
+          <li class="sub-li"><a href="../join-the-crew/">Join the crew</a></li>
+          <li class="sub-li"><a href="../refer/">Send a neighbor</a></li>
+        </ul>
+        <div class="menu-ctas">
+          <a class="btn btn-lime" href="../#plan">Get my yard plan
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
+        </div>
+        <!-- Shown by the script only on phones that can add it (and never inside the app itself) -->
+        <button class="app-get" type="button" data-app-get hidden>
+          <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
+          <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+  <!-- /@header -->
+
+  <main id="top">
+    <header class="page-hero">
+      <div class="hero-photo"><img src="../img/crew-mulch.jpg" srcset="../img/sm/crew-mulch.jpg 900w, ../img/md/crew-mulch.jpg 1200w, ../img/crew-mulch.jpg 1600w" sizes="100vw" alt="The Grass 'n' Gardens crew by the truck after a mulch job" fetchpriority="high" style="--pos: center 40%" /></div>
+      <div class="wrap hero-in">
+        <ol class="crumbs reveal"><li><a href="../">Home</a></li><li aria-current="page">About</li></ol>
+        <p class="eyebrow reveal">Richfield, Ohio</p>
+        <h1 class="reveal d1">Meet the owner</h1>
+      </div>
+    </header>
+
+    <!-- ABOUT HARRISON (moved from the homepage 2026-10-07). Later: swap the photo for a short "who I am" video.
+         DRAFT copy, built from the founder bio on grassngardens.com. -->
+    <section class="light roster about" id="about">
+      <div class="wrap roster-grid">
+        <div class="jersey-photo reveal">
+          <img src="../img/harrison-founder.webp" alt="Harrison Drvenkar, owner of Grass 'n' Gardens, at his graduation with his parents" loading="lazy" />
+          <p class="jersey-name"><b>Harrison</b><span>Owner</span></p>
+        </div>
+        <div class="about-copy reveal d1">
+          <p class="eyebrow">Meet the owner</p>
+          <h2>Hey, I'm <b>Harrison<span class="dot">.</span></b></h2>
+          <div class="draft-block">
+            <p>I started Grass 'n' Gardens in 2026. I was 18.</p>
+            <p>I went to Revere High School. Now I'm in college in Akron, and I still run the business.</p>
+            <p>At first I took any job I could get. Long days. I learned the work by doing it.</p>
+            <p>Why landscaping? I was taught to never start too many things at once. If you're busy with a bunch of businesses, you never win at any of them. So I picked one. This is it.</p>
+            <p>Now I've got a crew. Every guy earns his jersey. And every yard gets checked before we pull out of your driveway.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE CREW (2026-10-07 night). Names + jobs from Harrison's team list (global CLAUDE.md, 2026-10-07).
+         First names only, draft, until each person says OK. Every guy earns his jersey. -->
+    <section class="crew" id="crew">
+      <div class="wrap">
+        <h2 class="stack reveal" style="text-align:center"><span class="thin draft">Names on</span><span class="heavy draft">the jerseys<span class="dot">.</span></span></h2>
+        <p class="sec-intro reveal d1 draft">Here's who shows up at your house.</p>
+        <div class="crew-grid">
+          <figure class="card reveal"><div class="card-photo"><img src="../img/harrison-founder.webp" alt="Harrison, owner of Grass 'n' Gardens" loading="lazy" /><span class="card-back">Harrison</span></div><figcaption><b>Harrison</b><span>Owner</span></figcaption></figure>
+          <figure class="card reveal"><div class="card-photo"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="#a7cbe0" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M40 10 Q60 26 80 10" fill="none" stroke="#1d4a22" stroke-width="4" stroke-linecap="round"/></svg><span class="soon">Photo soon</span><span class="card-back">Riley</span></div><figcaption><b>Riley</b><span class="draft">General Manager</span></figcaption></figure>
+          <figure class="card reveal"><div class="card-photo"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="#a7cbe0" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M40 10 Q60 26 80 10" fill="none" stroke="#1d4a22" stroke-width="4" stroke-linecap="round"/></svg><span class="soon">Photo soon</span><span class="card-back">Logan</span></div><figcaption><b>Logan</b><span class="draft">Crew</span></figcaption></figure>
+          <figure class="card reveal"><div class="card-photo"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="#a7cbe0" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M40 10 Q60 26 80 10" fill="none" stroke="#1d4a22" stroke-width="4" stroke-linecap="round"/></svg><span class="soon">Photo soon</span><span class="card-back">Lucas</span></div><figcaption><b>Lucas</b><span class="draft">Crew</span></figcaption></figure>
+          <figure class="card reveal"><div class="card-photo"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="#a7cbe0" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M40 10 Q60 26 80 10" fill="none" stroke="#1d4a22" stroke-width="4" stroke-linecap="round"/></svg><span class="soon">Photo soon</span><span class="card-back">Dylan</span></div><figcaption><b>Dylan</b><span class="draft">Foreman</span></figcaption></figure>
+          <figure class="card reveal"><div class="card-photo"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M40 10 L22 16 L4 36 L18 52 L28 44 L28 112 L92 112 L92 44 L102 52 L116 36 L98 16 L80 10 Q60 26 40 10 Z" fill="#a7cbe0" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M40 10 Q60 26 80 10" fill="none" stroke="#1d4a22" stroke-width="4" stroke-linecap="round"/></svg><span class="soon">Photo soon</span><span class="card-back">Jackson</span></div><figcaption><b>Jackson</b><span class="draft">Foreman</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="ask">
+      <div class="wrap">
+        <h2 class="stack reveal"><span class="thin">Want yours</span><span class="heavy">written out<span class="dot">?</span></span></h2>
+        <p class="lede reveal d1">I'll walk your yard and write out your whole year. Takes 20 minutes and you don't have to be home.</p>
+        <div class="center reveal d2">
+          <a class="btn btn-lime" href="../#plan">Get my yard plan
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="../why-gng/">Read our reviews</a>
+        </div>
+        <a class="big-phone reveal d3" href="tel:+14406679642">(440) 667-9642</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- @footer -->
+  <!-- FOOTER (2026-10-07: one footer for every page; edit _partials/footer.html, then run sync-partials.ps1).
+       Social links: Instagram, Facebook, YouTube, TikTok, Nextdoor (TikTok and Nextdoor found on the Google profile 2026-10-07). Add more when Harrison sends them. -->
+  <footer class="site">
+    <div class="wrap">
+      <div class="foot-cols">
+        <div class="fc-brand">
+          <a class="logo-tile" href="../" aria-label="Grass 'n' Gardens home"><img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" loading="lazy" /></a>
+          <p class="draft">Lawn care out of Richfield, Ohio. Five checks before we drive, every yard.</p>
+          <ul class="soc" aria-label="Grass 'n' Gardens on social media">
+            <li><a href="https://www.instagram.com/grass_n_gardens/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a></li>
+            <li><a href="https://www.facebook.com/p/Grass-n-Gardens-61591542549375/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></li>
+            <li><a href="https://www.youtube.com/@GrassnGardens" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24 24 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24 24 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a></li>
+            <li><a href="https://www.tiktok.com/@grass_n_gardens" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.8 2.3 4.6 5 4.8"/></svg></a></li>
+            <li><a href="https://nextdoor.com/pages/grass-n-gardens-richfield-oh/" target="_blank" rel="noopener" aria-label="Nextdoor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5.5 9.5V20h4.5v-5.5a2 2 0 0 1 4 0V20h4.5V9.5"/></svg></a></li>
+            <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener" aria-label="Google reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg></a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Services</h2>
+          <ul>
+            <li><a href="../lawn-mowing/">Weekly mowing</a></li>
+            <li><a href="../fall-cleanup/">Fall cleanups</a></li>
+            <li><a href="../spring-cleanup/">Spring cleanups</a></li>
+            <li><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
+            <li><a href="../yard-design/">Planting and bed refresh</a></li>
+            <li><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
+            <li><a href="../hoa-commercial/">HOA and commercial</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>G'N'G</h2>
+          <ul>
+            <li><a href="../why-gng/">Why G'N'G</a></li>
+            <li><a href="../season-pass/">2027 Season Pass</a></li>
+            <li><a href="../#five">Our promise</a></li>
+            <li><a href="../about/" aria-current="page">Meet Harrison</a></li>
+            <li><a href="../our-work/">Our work</a></li>
+            <li><a href="../#area">Where we work</a></li>
+            <li><a href="../faq/">Questions</a></li>
+            <li><a href="../your-year/">Build your year</a></li>
+            <li><a href="../yard-score/">Yard Score</a></li>
+            <li><a href="../refer/">Send a neighbor (5% off)</a></li>
+            <li><a href="../join-the-crew/">Join the crew</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Reach us</h2>
+          <ul>
+            <li><a href="tel:+14406679642">Call (440) 667-9642</a></li>
+            <li><a href="sms:+14406679642">Text (440) 667-9642</a></li>
+            <li><a href="mailto:grassngardens4u@gmail.com">grassngardens4u@gmail.com</a></li>
+            <li><a href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">Google reviews</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot">
+        <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
+        <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
+        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a></p>
+        <button class="app-get" type="button" data-app-get hidden>
+          <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" />
+          <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- iPhone: Apple has no install button, so this shows the 2 taps. -->
+  <dialog class="app-sheet" aria-labelledby="app-sheet-title">
+    <img src="../app/icon-192.png" alt="" width="64" height="64" loading="lazy" />
+    <h2 id="app-sheet-title" class="draft">Add G'N'G to your home screen</h2>
+    <ol>
+      <li class="draft">Tap the <b>Share</b> button <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share icon"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> at the bottom of Safari.</li>
+      <li class="draft">Scroll down and tap <b>Add to Home Screen</b>.</li>
+    </ol>
+    <form method="dialog"><button class="btn btn-dark" type="submit">Got it</button></form>
+  </dialog>
+
+  <div class="call-bar">
+    <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
+    <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
+  </div>
+
+  <script>
+  // VISITOR STATS (2026-10-07). Runs on the live site only, never on localhost.
+  // 1) Vercel Web Analytics: visits, which pages, where people came from, phone or computer.
+  //    Harrison turns it on once: vercel.com -> gng-test-website -> Analytics -> Enable. Free plan = visits.
+  //    The events below (calls, texts, form sends, FAQ opens) show there on Vercel Pro only.
+  // 2) Google Analytics 4 (optional, free, shows the events): paste the G-XXXXXXX id into GA_ID.
+  (() => {
+    const GA_ID = '';
+    if (location.protocol !== 'https:' || /^(localhost|127\.|\[::1\])/.test(location.hostname)) return;
+    const add = src => { const s = document.createElement('script'); s.defer = true; s.src = src; document.head.appendChild(s); };
+    window.dataLayer = window.dataLayer || [];
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    add('/_vercel/insights/script.js');
+    if (GA_ID) {
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date()); window.gtag('config', GA_ID);
+      add('https://www.googletagmanager.com/gtag/js?id=' + GA_ID);
+    }
+    // Every event the pages log in dataLayer also goes to the stats tools (past ones too).
+    const send = o => {
+      if (!o || typeof o.event !== 'string' || o.event.startsWith('gtm')) return;
+      const { event, ...data } = o;
+      window.va('event', { name: event, data });
+      if (GA_ID) window.gtag('event', event, data);
+    };
+    window.dataLayer.slice().forEach(send);
+    const push = window.dataLayer.push.bind(window.dataLayer);
+    window.dataLayer.push = (...items) => { items.forEach(send); return push(...items); };
+  })();
+  </script>
+  <!-- /@footer -->
+
+  <script src="../site.js" defer></script>
+</body>
+</html>

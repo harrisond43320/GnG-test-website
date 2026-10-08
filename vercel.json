@@ -1,0 +1,18 @@
+{
+  "redirects": [
+    { "source": "/leaf-removal", "destination": "/fall-cleanup/", "permanent": true },
+    { "source": "/spring-fall-cleanup", "destination": "/fall-cleanup/", "permanent": true },
+    { "source": "/mulching", "destination": "/mulch-beds/", "permanent": true },
+    { "source": "/edging-trimming", "destination": "/mulch-beds/", "permanent": true },
+    { "source": "/shrub-pruning", "destination": "/mulch-beds/", "permanent": true },
+    { "source": "/garden-design", "destination": "/yard-design/", "permanent": true },
+    { "source": "/landscape-design", "destination": "/yard-design/", "permanent": true },
+    { "source": "/commercial-landscaping", "destination": "/hoa-commercial/", "permanent": true },
+    { "source": "/retaining-walls", "destination": "/", "permanent": true },
+    { "source": "/paver-patios", "destination": "/", "permanent": true },
+    { "source": "/guides/fall-cleanup-ohio", "destination": "/fall-cleanup/", "permanent": true },
+    { "source": "/guides/mulching-cost-summit-county", "destination": "/mulch-beds/", "permanent": true },
+    { "source": "/guides/:path*", "destination": "/", "permanent": true },
+    { "source": "/guides", "destination": "/", "permanent": true }
+  ]
+}
