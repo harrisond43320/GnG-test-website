@@ -64,7 +64,7 @@
     .board h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(24px, 4vw, 32px); line-height: 1.05; color: var(--pine); }
     .months, .yr-row .cells { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; }
     .months { margin-top: var(--s6); padding-bottom: var(--s2); border-bottom: 2px solid var(--line-light); }
-    .months span { text-align: center; font-size: 13px; font-weight: 700; color: var(--ink-muted); border-radius: 6px; padding: 4px 0; }
+    .months span { text-align: center; font-size: 14px; font-weight: 700; color: var(--ink-muted); border-radius: 6px; padding: 4px 0; }
     .months span.now { background: var(--pine); color: #fff; }
     .yr-rows { list-style: none; display: grid; gap: var(--s4); margin-top: var(--s4); }
     .yr-row .name { display: flex; justify-content: space-between; gap: var(--s3); font-size: 15px; font-weight: 700; color: var(--ink); }
@@ -84,7 +84,7 @@
     .yr-row .cells button.on { background: var(--lime); animation: grow .5s var(--spring) both; }
     .yr-row .cells button.on::after { background: var(--pine); }
     .yr-row .cells button.now { box-shadow: inset 0 0 0 2px var(--pine); }
-    .yr-row .flex-tip { margin-top: 4px; font-size: 13px; color: var(--ink-muted); }
+    .yr-row .flex-tip { margin-top: 4px; font-size: 14px; color: var(--ink-muted); }
     @keyframes grow { from { transform: scaleX(.2); opacity: 0; } to { transform: none; opacity: 1; } }
     .yr-empty { margin-top: var(--s6); padding: var(--s6); border-radius: 14px; background: var(--mist); text-align: center; font-size: 17px; color: var(--ink-muted); }
     .sum { display: flex; flex-wrap: wrap; gap: var(--s3) var(--s6); margin-top: var(--s6); padding-top: var(--s4); border-top: 2px solid var(--line-light); font-size: 16px; color: var(--ink-muted); }
@@ -93,7 +93,7 @@
     .yr-note { margin-top: var(--s4); font-size: 14px; line-height: 1.5; color: var(--ink-muted); }
     @media (max-width: 600px) {
       .board { padding: var(--s4); }
-      .months span { font-size: 11px; }
+      .months span { font-size: 14px; }
       .yr-row .cells i, .yr-row .cells button { height: 22px; }
       .send .btn { width: 100%; justify-content: center; }
     }
@@ -201,7 +201,7 @@
         <div class="menu-ctas">
           <a class="btn btn-lime" href="../#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
+          <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
         </div>
         <!-- Shown by the script only on phones that can add it (and never inside the app itself) -->
         <button class="app-get" type="button" data-app-get hidden>
@@ -356,8 +356,8 @@
   </dialog>
 
   <div class="call-bar">
-    <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
-    <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
+    <a class="btn btn-lime" href="../#plan">Get my yard plan</a>
+    <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call or text Harrison at (440) 667-9642"><span class="draft">Call or text</span></a>
   </div>
 
   <script>

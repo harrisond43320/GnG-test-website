@@ -54,7 +54,7 @@
     .roster-grid { display: grid; gap: var(--s12); align-items: center; }
     @media (min-width: 900px) { .roster-grid { grid-template-columns: 1fr 1fr; gap: var(--s16); } }
     .about.light { background: #fff; }
-    .jersey-photo { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 1 / 1; box-shadow: var(--shadow-2); }
+    .jersey-photo { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 1 / 1; }
     .jersey-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
     .jersey-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.6), transparent 50%); }
     .jersey-name { position: absolute; z-index: 2; left: var(--s6); bottom: var(--s6); color: #fff; }
@@ -88,7 +88,7 @@
     .card figcaption { padding: var(--s3) var(--s4) var(--s4); }
     .card figcaption b { display: block; font-size: 16px; }
     .card figcaption span { font-size: 14px; color: var(--ink-muted); }
-    .card .soon { position: absolute; z-index: 1; top: var(--s3); left: var(--s3); padding: 3px 8px; border-radius: 999px; background: rgba(255,255,255,.9); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--pine); }
+    .card .soon { position: absolute; z-index: 1; top: var(--s3); left: var(--s3); padding: 3px 8px; border-radius: 999px; background: rgba(255,255,255,.9); font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--pine); }
     .crew .sec-intro { margin-left: auto; margin-right: auto; text-align: center; }
     @media (max-width: 767px) { .crew { padding: 56px 0; } .crew-grid { gap: var(--s4); margin-top: var(--s8); } .card { box-shadow: 4px 4px 0 var(--lime); } }
     @media (prefers-reduced-motion: reduce) { .card, .card:hover { transform: none; transition: none; } }
@@ -195,7 +195,7 @@
         <div class="menu-ctas">
           <a class="btn btn-lime" href="../#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
+          <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
         </div>
         <!-- Shown by the script only on phones that can add it (and never inside the app itself) -->
         <button class="app-get" type="button" data-app-get hidden>
@@ -348,8 +348,8 @@
   </dialog>
 
   <div class="call-bar">
-    <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
-    <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
+    <a class="btn btn-lime" href="../#plan">Get my yard plan</a>
+    <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call or text Harrison at (440) 667-9642"><span class="draft">Call or text</span></a>
   </div>
 
   <script>

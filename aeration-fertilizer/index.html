@@ -179,7 +179,7 @@
         <div class="menu-ctas">
           <a class="btn btn-lime" href="../#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
+          <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
         </div>
         <!-- Shown by the script only on phones that can add it (and never inside the app itself) -->
         <button class="app-get" type="button" data-app-get hidden>
@@ -272,7 +272,7 @@
               <div class="btns" data-r-btns hidden>
                 <a class="btn btn-lime" href="../?need=soilcheck,aeration#plan">Get a Free Soil Check
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                <a class="btn btn-ghost" data-r-sms href="sms:+14406679642">Text us your photo</a>
+                <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
               </div>
             </div>
           </div>
@@ -397,7 +397,7 @@
         <div class="center reveal d3">
           <a class="btn btn-lime" href="../?need=aeration#plan">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="sms:+14406679642">Text us a photo</a>
+          <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
         </div>
       </div>
     </section>
@@ -481,8 +481,8 @@
   </dialog>
 
   <div class="call-bar">
-    <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
-    <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
+    <a class="btn btn-lime" href="../#plan">Get my yard plan</a>
+    <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call or text Harrison at (440) 667-9642"><span class="draft">Call or text</span></a>
   </div>
 
   <script>
@@ -530,12 +530,11 @@
       const title = box.querySelector('[data-r-title]');
       const text = box.querySelector('[data-r-text]');
       const btns = box.querySelector('[data-r-btns]');
-      const sms = box.querySelector('[data-r-sms]');
       const say = {
         idle: ['Slide to your number', 'Move the slider to how far your screwdriver went in.'],
         fail: ['Packed tight', "Water and food can't get down to the roots, so the grass stays thin and browns first in summer. Aeration fixes this."],
         mid: ['A little packed', 'Your grass is working harder than it should. Aeration and overseeding this fall would help.'],
-        pass: ['Your soil is loose', "Nice. That's healthy. If your grass still looks thin, text us a photo and we'll tell you what we see."]
+        pass: ['Your soil is loose', "Nice. That's healthy. If your grass still looks thin, get your yard plan and we'll tell you what it needs."]
       };
       const show = () => {
         const d = parseFloat(range.value);
@@ -546,7 +545,7 @@
         title.textContent = say[s][0];
         text.textContent = say[s][1];
         btns.hidden = s === 'idle';
-        sms.href = 'sms:+14406679642?&body=' + encodeURIComponent('Hi Harrison, I did the screwdriver test. It went in ' + out.textContent.replace(' in.', ' inches') + '. My address is ');
+        // 2026-10-13: the second button is now "Call or text Harrison" (tel:), so no ready-made text here anymore.
       };
       range.addEventListener('input', show);
       range.addEventListener('change', () => { (window.dataLayer = window.dataLayer || []).push({ event: 'soil_test', depth: parseFloat(range.value) }); });

@@ -13,6 +13,16 @@
     { "source": "/guides/fall-cleanup-ohio", "destination": "/fall-cleanup/", "permanent": true },
     { "source": "/guides/mulching-cost-summit-county", "destination": "/mulch-beds/", "permanent": true },
     { "source": "/guides/:path*", "destination": "/", "permanent": true },
-    { "source": "/guides", "destination": "/", "permanent": true }
+    { "source": "/guides", "destination": "/", "permanent": true },
+    { "source": "/plan", "destination": "/yard-score/?src=rig", "statusCode": 302 },
+    { "source": "/PLAN", "destination": "/yard-score/?src=rig", "statusCode": 302 },
+    { "source": "/qr1", "destination": "/yard-score/?src=qr-ramp", "statusCode": 302 },
+    { "source": "/qr2", "destination": "/yard-score/?src=qr-door", "statusCode": 302 },
+    { "source": "/qr3", "destination": "/yard-score/?src=qr-truck-driver", "statusCode": 302 },
+    { "source": "/qr4", "destination": "/yard-score/?src=qr-truck-pass", "statusCode": 302 },
+    { "source": "/qr5", "destination": "/yard-score/?src=qr-tailgate", "statusCode": 302 },
+    { "source": "/qr6", "destination": "/yard-score/?src=qr-dump", "statusCode": 302 },
+    { "source": "/qr7", "destination": "/yard-score/?src=qr-sign", "statusCode": 302 },
+    { "source": "/qr8", "destination": "/yard-score/?src=qr-card", "statusCode": 302 }
   ]
 }

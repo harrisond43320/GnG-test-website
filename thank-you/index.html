@@ -32,7 +32,6 @@
       --radius: 12px; --wrap: 1240px;
       --spring: cubic-bezier(.34, 1.4, .64, 1);
       --ease-out: cubic-bezier(.22, 1, .36, 1);
-      --shadow-2: 0 2px 4px rgba(6, 20, 10, .08), 0 18px 40px -12px rgba(6, 30, 12, .30), 0 40px 80px -30px rgba(6, 30, 12, .35);
       --fs-h2: clamp(38px, 5.4vw, 74px);
       --fs-lead: clamp(21px, 2.3vw, 30px);
       --fs-h3: clamp(22px, 2vw, 28px);
@@ -46,7 +45,7 @@
     .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s6); }
     @media (min-width: 768px) { .wrap { padding: 0 var(--s12); } }
     /* 2026-10-07: the full-screen grain layer is gone (it re-blended the whole screen on every scroll frame = stutter on phones; the brand says flat anyway) */
-    .eyebrow { font-weight: 700; font-size: 13px; line-height: 1; letter-spacing: .22em; text-transform: uppercase; }
+    .eyebrow { font-weight: 700; font-size: 14px; line-height: 1; letter-spacing: .22em; text-transform: uppercase; }
     .dot { color: var(--lime); }
     /* draft marker (with ?drafts): a soft gold glow, not an underline (2026-10-06, Harrison: underlines looked like corrections) */
     .show-drafts .draft { text-shadow: 0 0 6px rgba(102, 184, 74, .38) !important; }
@@ -87,7 +86,6 @@
 
     /* ---------- header (same as the homepage) ---------- */
     .site-head { position: sticky; top: 0; z-index: 70; background: #fff; color: var(--pine); border-bottom: 3px solid var(--pine); transition: box-shadow .3s var(--ease-out); }
-    .site-head.scrolled { box-shadow: 0 10px 28px -14px rgba(0, 0, 0, .55); }
     .head-in { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); height: 80px; }
     @media (min-width: 900px) { .head-in { height: 104px; } }
     .brand { display: block; flex: none; border-radius: 8px; transition: transform .35s var(--spring); }
@@ -114,7 +112,7 @@
     @keyframes settle { to { transform: scale(1); } }
     .ty-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 0%, rgba(12,18,14,.78) 40%, rgba(12,18,14,.55) 100%); }
     .ty-in { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; text-align: center; }
-    .ty .eyebrow { color: var(--jersey-blue); letter-spacing: .24em; font-size: clamp(13px, 1.3vw, 16px); }
+    .ty .eyebrow { color: var(--jersey-blue); letter-spacing: .24em; font-size: clamp(14px, 1.3vw, 16px); }
     /* THE signature: logo lettering, once per page */
     .ty h1 {
       margin-top: var(--s4);
@@ -148,7 +146,7 @@
     .done-card .tag {
       position: absolute; top: -16px; left: var(--s8); padding: 5px 12px; border-radius: 6px;
       background: var(--jersey-blue); color: var(--pine); border: 2px solid var(--ink);
-      font-weight: 700; font-size: 12px; letter-spacing: .16em; text-transform: uppercase;
+      font-weight: 700; font-size: 14px; letter-spacing: .16em; text-transform: uppercase;
     }
     .done-card h2 { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: clamp(26px, 3vw, 36px); line-height: 1.05; letter-spacing: .01em; color: var(--pine); text-wrap: balance; }
     .done-card p { margin-top: var(--s3); font-size: 18px; line-height: 1.5; color: var(--ink-muted); }
@@ -179,9 +177,9 @@
     .next li b { display: block; color: #fff; font-family: var(--font-display); font-weight: 400; text-transform: uppercase; letter-spacing: .01em; font-size: var(--fs-h3); line-height: 1.05; margin-bottom: var(--s2); }
     .after-grid { display: grid; gap: var(--s8); margin-top: var(--s12); align-items: center; }
     @media (min-width: 900px) { .after-grid { grid-template-columns: 1fr 1fr; gap: var(--s12); } }
-    .crew { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 3; box-shadow: var(--shadow-2); }
+    .crew { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 3; }
     .crew img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
-    .crew figcaption { position: absolute; left: var(--s4); bottom: var(--s4); padding: 6px 12px; border-radius: 6px; background: var(--lime); color: var(--pine); font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; }
+    .crew figcaption { position: absolute; left: var(--s4); bottom: var(--s4); padding: 6px 12px; border-radius: 6px; background: var(--lime); color: var(--pine); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; }
     .mini-quote { padding: var(--s6); border-left: 4px solid var(--jersey-blue); background: rgba(255,255,255,.04); border-radius: 0 var(--radius) var(--radius) 0; }
     .mini-quote blockquote { font-size: clamp(19px, 1.8vw, 22px); line-height: 1.5; font-weight: 500; color: #fff; }
     .mini-quote figcaption { margin-top: var(--s3); font-size: 14px; font-weight: 600; color: rgba(255,255,255,.65); }
@@ -197,7 +195,7 @@
     .foot .logo-tile:hover { transform: translateY(-2px); }
     .foot .logo-tile:active { transform: scale(.97); }
     .foot .logo-tile img { height: 60px; width: auto; }
-    .foot .rec { font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+    .foot .rec { font-size: 14px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); }
     .foot .rec b { color: var(--lime); }
     .foot .meta { font-size: 14px; color: rgba(255,255,255,.55); line-height: 1.6; }
     .foot .meta a:hover { color: #fff; }
@@ -205,8 +203,8 @@
     .call-bar {
       position: fixed; z-index: 60; left: var(--s3); right: var(--s3); bottom: var(--s3);
       display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); padding: var(--s2); border-radius: 16px;
-      background: rgba(20, 23, 21, .86); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,.08); box-shadow: 0 12px 30px -8px rgba(0,0,0,.6);
+      background: #1c2620; /* coal, flat (2026-10-13) */
+      border: 1px solid rgba(255,255,255,.16);
     }
     .call-bar a { justify-content: center; padding: 14px 10px; font-size: 15px; }
     @media (min-width: 900px) { .call-bar { display: none; } }
@@ -400,8 +398,8 @@
   </dialog>
 
   <div class="call-bar">
-    <a class="btn btn-lime" href="tel:+14406679642">Call us</a>
-    <a class="btn btn-ghost" href="sms:+14406679642">Text a photo</a>
+    <a class="btn btn-lime" href="../#plan">Get my yard plan</a>
+    <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call or text Harrison at (440) 667-9642"><span class="draft">Call or text</span></a>
   </div>
 
   <script>
