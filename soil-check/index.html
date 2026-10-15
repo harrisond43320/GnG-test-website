@@ -127,7 +127,7 @@
     @media (min-width: 560px) { .sc-sizes { grid-template-columns: 1fr 1fr; } }
     .sc-est { margin-top: var(--s6); padding: var(--s4); border-radius: 14px; background: #fff; border: 2px solid var(--pine); }
     .sc-est .lab { font-size: 14px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); }
-    .sc-est .num { display: block; margin-top: 4px; font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 8vw, 50px); line-height: 1; white-space: nowrap; color: var(--pine); }
+    .sc-est .num { display: block; margin-top: 4px; font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 7.4vw, 50px); line-height: 1; white-space: nowrap; color: var(--pine); }
     .sc-est .what { margin-top: var(--s3); font-size: 17px; line-height: 1.5; font-weight: 600; }
     .sc-est .fine { margin-top: var(--s2); font-size: 14px; line-height: 1.5; color: var(--ink-muted); }
     .sc-over { margin-top: var(--s6); font-size: 17px; line-height: 1.5; font-weight: 600; }
@@ -369,9 +369,9 @@
 
               <div class="sc-est" data-est hidden aria-live="polite">
                 <span class="lab" data-fall>Your estimate</span>
-                <span class="lab" data-after>Your estimate for aeration</span>
+                
                 <span class="num" data-est-num></span>
-                <p class="what" data-fall>The Double Pass, Thick Grass Plan. You pay for one pass. The second pass is free this year.</p>
+                <p class="what" data-fall>The Double Pass, Thick Grass Plan. You pay the price of one pass. The second pass is free this year.</p>
                 <p class="fine draft">This is an estimate. We'll text you your exact price.</p>
               </div>
               <p class="sc-over draft" data-over hidden>Text AERATE and we'll send your price.</p>
@@ -509,22 +509,20 @@
     const VIDEO_SRC = '';          // for example 'screwdriver-test.mp4'
     const VIDEO_POSTER = '';       // optional still picture, for example 'screwdriver-test.jpg'
 
-    // ---- PRICE: every number comes from Pricing_Engine.xlsx (LandscapeOps\01_Pricing_Engine). Checked 2026-10-15. ----
-    //  RATE       INPUTS!E33       "Mowing PRICE per man-hour" (named BillManHrMow). Lawn work (aeration) uses mowing pay.
-    //  SQFT_HR    PRODUCTION!E28   "Core aeration - walk behind", sq ft per man-hour
-    //  MIN_CHARGE INPUTS!B41       "Minimum charge per site visit"
-    //  Same math as MENU PRICING row 33: price = sq ft / SQFT_HR * RATE, never under MIN_CHARGE (MENU PRICING!B5).
-    //  The "ride on" row (PRODUCTION!E29, MENU PRICING row 34) is not used: its hours cell E34 has no formula, so it can't price.
-    //  The second pass is free, so the estimate is the price of ONE pass. If the engine changes, change these three numbers.
-    const RATE = 137.46089866234956, SQFT_HR = 25000, MIN_CHARGE = 65;
-    const price = sq => Math.max(MIN_CHARGE, Math.round(sq / SQFT_HR * RATE));
-    // lawn size choices: top of each choice in sq ft (1/4, 1/2, 3/4 and 1 acre; 1 acre = 43,560 sq ft). Last = over 1 acre, no estimate.
-    const TOPS = [10890, 21780, 32670, 43560];
+    // ---- PRICE (changed again 2026-10-15, Harrison: use the Aeration Day Pricer). Rate card from that artifact
+    //  (claude.ai/artifact/WEcoDwJEUaXCWtWD67JCAn): $ per 1,000 sq ft of grass, the rate of the whole lawn's size bracket,
+    //  minimum $150. The pricer's 1.5x double-pass multiplier is NOT used: in the fall Double Pass the client pays the
+    //  SINGLE-pass price for both passes. Examples that must hold: 7,500 sq ft = $150, 12,000 = $216, 25,000 = $400, 1 acre = $653.
+    //  Each lawn-size choice shows the lowest and highest price inside it. Over 1 acre has no number. Not yet OK'd by Harrison for a push.
+    const RATE_CARD = [[10000, 20], [20000, 18], [40000, 16], [Infinity, 15]], MIN_CHARGE = 150;
+    const price = sq => Math.max(MIN_CHARGE, Math.round(sq / 1000 * RATE_CARD.find(r => sq < r[0])[1]));
+    // lawn size choices as sq ft from/to (1/4, 1/2, 3/4 and 1 acre; 1 acre = 43,560 sq ft). The fifth choice (over 1 acre) has no estimate.
+    const SIZES = [[1, 10890], [10890, 21780], [21780, 32670], [32670, 43560]];
     const range = i => {
-      const lo = price(i ? TOPS[i - 1] : 0), hi = price(TOPS[i]);
+      let lo = Infinity, hi = 0;
+      for (let s = SIZES[i][0]; s <= SIZES[i][1]; s += 10) { const p = price(s); lo = Math.min(lo, p); hi = Math.max(hi, p); }
       return '$' + lo + (hi > lo ? ' to $' + hi : '');
     };
-
     const track = (e, d) => (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: e }, d));
     const root = document.querySelector('[data-check]');
     if (!root) return;
@@ -556,7 +554,7 @@
       if (z) {
         root.querySelectorAll('[data-size]').forEach(x => x.setAttribute('aria-pressed', x === z));
         const i = parseInt(z.dataset.size, 10);
-        const big = i >= TOPS.length;
+        const big = i >= SIZES.length || document.documentElement.dataset.season === 'after';
         est.hidden = big; over.hidden = !big;
         if (!big) estNum.textContent = range(i);
         track('soil_check_size', { size: z.textContent, estimate: big ? 'text us' : range(i) });

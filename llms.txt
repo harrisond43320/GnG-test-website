@@ -14,7 +14,6 @@ The promise is Five Before We Drive: before the truck leaves a yard the crew che
 - [Mulch, beds and bush trimming](https://gng-test-website.vercel.app/mulch-beds/)
 - [Planting and bed refresh](https://gng-test-website.vercel.app/yard-design/)
 - [Aeration and fertilizer](https://gng-test-website.vercel.app/aeration-fertilizer/): the screwdriver test
-- [Soil Check](https://gng-test-website.vercel.app/soil-check/): a 20-second test for packed soil
 - [HOA and commercial](https://gng-test-website.vercel.app/hoa-commercial/)
 - [2027 Season Pass](https://gng-test-website.vercel.app/season-pass/): pay for 2027 mowing by March 31 and save 5%
 - [Why G'N'G: real Google reviews](https://gng-test-website.vercel.app/why-gng/)
