@@ -22,7 +22,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <link rel="preload" as="image" href="../img/gbp-wide-stripes.jpg" imagesrcset="../img/sm/gbp-wide-stripes.jpg 900w, ../img/md/gbp-wide-stripes.jpg 1200w, ../img/gbp-wide-stripes.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/stock-aeration-plugs.jpg" imagesrcset="../img/sm/stock-aeration-plugs.jpg 900w, ../img/md/stock-aeration-plugs.jpg 1200w, ../img/stock-aeration-plugs.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
   
   
   <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-500.woff2" as="font" type="font/woff2" crossorigin />
@@ -78,6 +78,9 @@
     .soil-result .btns[hidden] { display: none; }
     .soil-note { margin-top: var(--s4); font-size: 14px; line-height: 1.5; color: var(--ink-muted); }
     @media (prefers-reduced-motion: reduce) { .soil-pic .sd { transition: none; } }
+    /* 2026-10-15: credit line for the CC BY-SA hero photo (the license needs it). Small, bottom right, over the photo. */
+    .hero-credit { position: absolute; right: 12px; bottom: 8px; z-index: 3; font-size: 11px; line-height: 1.3; color: rgba(255,255,255,.62); }
+    .hero-credit a { color: inherit; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -197,7 +200,10 @@
     <!-- 2026-10-07 (night): new page. Facts from lead-magnet-packages/aeration-screwdriver-test.md + Tavily (Ohio State
          fall timing). New wording is class="draft". No weed control promises: the Ohio applicator license is still open. -->
     <header class="page-hero">
-      <div class="hero-photo"><img src="../img/gbp-wide-stripes.jpg" srcset="../img/sm/gbp-wide-stripes.jpg 900w, ../img/md/gbp-wide-stripes.jpg 1200w, ../img/gbp-wide-stripes.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="Thick green lawn mowed in wide stripes, with trees behind" fetchpriority="high" style="--pos: center 60%" /></div>
+      <!-- 2026-10-15: hero swapped to aeration plugs (Harrison: more converting header). Stock until a real G'N'G
+           plug photo comes in: Oregon State University on Flickr, CC BY-SA 2.0, so the credit line must stay. -->
+      <div class="hero-photo"><img src="../img/stock-aeration-plugs.jpg" srcset="../img/sm/stock-aeration-plugs.jpg 900w, ../img/md/stock-aeration-plugs.jpg 1200w, ../img/stock-aeration-plugs.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="Plugs of dirt pulled out by an aerator, lying on the grass and in a hand" fetchpriority="high" style="--pos: center 40%" /></div>
+      <small class="hero-credit">Photo: <a href="https://www.flickr.com/photos/33247428@N08/8704115339" target="_blank" rel="noopener">Oregon State University</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></small>
       <div class="wrap hero-in">
         <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Aeration and fertilizer</li></ol>
         <p class="eyebrow reveal">Richfield, Ohio</p>
@@ -228,7 +234,7 @@
               <li><span class="draft">Push a long screwdriver straight down with one steady hand. Don't lean on it.</span></li>
               <li><span class="draft">See how far it went. Try 3 spots: the front, the back, and where people walk.</span></li>
             </ol>
-            <p class="soil-note draft">Healthy soil lets it slide in 6 inches or more. If it stops at 2 or 3 inches, the soil is packed down. It's a quick check, not a lab test. If you'd rather we do it, ask for a Free Soil Check. Want an estimate? <a href="../soil-check/">Do the Soil Check</a>. A crew member does it when we're on your street, and we text you the photos.</p>
+            <p class="soil-note draft">If it stops at 2 or 3 inches, the soil is packed and needs aeration. If it goes in easy, that's good. Aerating once a year keeps it that way. It's a quick check, not a lab test. If you'd rather we do it, ask for a Free Soil Check. Want an estimate? <a href="../soil-check/">Do the Soil Check</a>. A crew member does it when we're on your street, and we text you the photos.</p>
           </div>
           <div class="soil-card reveal d1">
             <svg class="soil-pic" viewBox="0 -232 320 486" role="img" aria-labelledby="soil-pic-t">
@@ -292,7 +298,7 @@
               <li><b class="draft">Core aeration</b><span class="draft">A machine pulls small plugs of dirt out of the lawn. Water, air and food can reach the roots again.</span></li>
               <li><b class="draft">Overseeding</b><span class="draft">New grass seed goes down right after, so it lands in the holes and fills thin spots.</span></li>
               <li><b class="draft">Fertilizer at the right time</b><span class="draft">Ohio State says fall is the most important time to feed grass here. We plan yours around that.</span></li>
-              <li><b class="draft">A photo from your own yard</b><span class="draft">The Free Soil Check shows you the problem before you pay for anything. If your yard passes, we tell you.</span></li>
+              <li><b class="draft">A photo from your own yard</b><span class="draft">The Free Soil Check shows you how packed your soil is before you pay for anything.</span></li>
               <li><b class="draft">Five checks before we drive</b><span class="draft">Same as every visit. <a href="../five-before-we-drive/">See the 5 checks</a></span></li>
             </ul>
           </div>
@@ -357,7 +363,7 @@
           </details>
           <details class="qa">
             <summary><h3 class="draft">What is the Free Soil Check?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">Text us your address. When a crew is on your street that week, they push a screwdriver into your lawn in 3 spots and text you the photos next to a 6-inch mark. It takes about 5 minutes and you don't have to be home. If your yard passes, we tell you. <a href="../?need=soilcheck#plan">Get a Free Soil Check</a></p></div>
+            <div class="qa-a"><p class="draft">Text us your address. When a crew is on your street that week, they push a screwdriver into your lawn in 3 spots and text you the photos next to a 6-inch mark. It takes about 5 minutes and you don't have to be home. If it goes in easy, that's good. Aerating once a year keeps it that way. <a href="../?need=soilcheck#plan">Get a Free Soil Check</a></p></div>
           </details>
           <details class="qa">
             <summary><h3 class="draft">Does aeration leave a mess?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
@@ -536,7 +542,8 @@
         idle: ['Slide to your number', 'Move the slider to how far your screwdriver went in.'],
         fail: ['Packed tight', "Water and food can't get down to the roots, so the grass stays thin and browns first in summer. Aeration fixes this."],
         mid: ['A little packed', 'Your grass is working harder than it should. Aeration and overseeding this fall would help.'],
-        pass: ['Your soil is loose', "Nice. That's healthy. If your grass still looks thin, get your yard plan and we'll tell you what it needs."]
+        // 2026-10-15 Harrison: a pass still ends in aeration. Never "you're good, skip it."
+        pass: ["Nice, that's what we want", 'Aerating once a year keeps it that way.']
       };
       const show = () => {
         const d = parseFloat(range.value);
@@ -573,7 +580,7 @@
                            "name":  "What is the Free Soil Check?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "Text us your address. When a crew is on your street that week, they push a screwdriver into your lawn in 3 spots and text you the photos next to a 6-inch mark. It takes about 5 minutes and you don\u0027t have to be home. If your yard passes, we tell you."
+                                                  "text":  "Text us your address. When a crew is on your street that week, they push a screwdriver into your lawn in 3 spots and text you the photos next to a 6-inch mark. It takes about 5 minutes and you don\u0027t have to be home. If it goes in easy, that\u0027s good. Aerating once a year keeps it that way."
                                               }
                        },
                        {

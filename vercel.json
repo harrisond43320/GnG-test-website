@@ -23,6 +23,8 @@
     { "source": "/qr5", "destination": "/yard-score/?src=qr-tailgate", "statusCode": 302 },
     { "source": "/qr6", "destination": "/yard-score/?src=qr-dump", "statusCode": 302 },
     { "source": "/qr7", "destination": "/yard-score/?src=qr-sign", "statusCode": 302 },
-    { "source": "/qr8", "destination": "/yard-score/?src=qr-card", "statusCode": 302 }
+    { "source": "/qr8", "destination": "/yard-score/?src=qr-card", "statusCode": 302 },
+    { "source": "/aerate", "destination": "/soil-check/?src=text", "statusCode": 302 },
+    { "source": "/AERATE", "destination": "/soil-check/?src=text", "statusCode": 302 }
   ]
 }

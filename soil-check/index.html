@@ -24,7 +24,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <link rel="preload" as="image" href="../img/gbp-open-lawn.jpg" imagesrcset="../img/sm/gbp-open-lawn.jpg 900w, ../img/md/gbp-open-lawn.jpg 1200w, ../img/gbp-open-lawn.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/stock-soil-in-hand.jpg" imagesrcset="../img/sm/stock-soil-in-hand.jpg 900w, ../img/md/stock-soil-in-hand.jpg 1200w, ../img/stock-soil-in-hand.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
   <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-500.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../site.css" />
   <link rel="stylesheet" href="../chrome.css" />
@@ -253,7 +253,9 @@
 
   <main id="top">
     <header class="page-hero short">
-      <div class="hero-photo"><img src="../img/gbp-open-lawn.jpg" srcset="../img/sm/gbp-open-lawn.jpg 900w, ../img/md/gbp-open-lawn.jpg 1200w, ../img/gbp-open-lawn.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="Open green lawn with trees behind it" fetchpriority="high" /></div>
+      <!-- 2026-10-15: hero swapped to soil in a hand (Harrison: more converting header). Stock until a real G'N'G photo
+           comes in: Anna Shvets on Pexels (pexels.com/photo/5231239), Pexels license, free for business use, no credit needed. -->
+      <div class="hero-photo"><img src="../img/stock-soil-in-hand.jpg" srcset="../img/sm/stock-soil-in-hand.jpg 900w, ../img/md/stock-soil-in-hand.jpg 1200w, ../img/stock-soil-in-hand.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="A hand holding a chunk of lawn with the dirt and roots showing" fetchpriority="high" style="--pos: center 55%" /></div>
       <div class="wrap hero-in">
         <ol class="crumbs reveal"><li><a href="../">Home</a></li><li aria-current="page">Soil Check</li></ol>
         <p class="eyebrow reveal">Free, takes 20 seconds</p>
@@ -269,7 +271,8 @@
     <!-- FALL LINE. Harrison: delete this whole block on Mon 10/19. It also hides by itself after Sunday 10/18. -->
     <div class="fall-strip" data-fall>
       <div class="wrap">
-        <p class="draft">Last round of aeration this year. We aerate the week of October 20, <b>30 yards max</b>. Last day to book is <b>Sunday, October 18</b>.</p>
+        <!-- 2026-10-15: matches Text 1 / Text 2 (aeration-launch-playbook.md section 6) -->
+        <p class="draft">Last round of aeration this year. We aerate the week of 10/20. <b>The second pass is free.</b> You pay for one pass and we go over your yard twice. Room for <b>30 yards</b>. Last day to get on the list is <b>Sunday 10/18</b>.</p>
       </div>
     </div>
     <!-- /FALL LINE -->
@@ -299,7 +302,7 @@
               <li class="draft">Push the screwdriver down with one steady hand.</li>
               <li class="draft">See how far it went in.</li>
             </ol>
-            <p class="sc-says draft">If it won't go in 6 inches easily, your soil is packed. The roots can't get water or air. Aeration fixes that.</p>
+            <p class="sc-says draft">If it won't go in 6 inches, your soil is packed and the roots can't get water or air. That's what aeration fixes. If it goes in easy, aerating once a year keeps it that way.</p>
           </div>
         </div>
       </div>
@@ -371,11 +374,12 @@
                 <span class="lab" data-fall>Your estimate</span>
                 
                 <span class="num" data-est-num></span>
-                <p class="what" data-fall>The Double Pass, Thick Grass Plan. You pay the price of one pass. The second pass is free this year.</p>
+                <p class="what" data-fall>The Double Pass, Thick Grass Plan. This price is for both passes. You pay for one pass and we go over your yard twice.</p>
                 <p class="fine draft">This is an estimate. We'll text you your exact price.</p>
               </div>
               <p class="sc-over draft" data-over hidden>Text AERATE and we'll send your price.</p>
 
+              <p class="sc-over draft" data-fall>Room for 30 yards. Last day to get on the list is Sunday 10/18. Reply AERATE and I'll add you.</p>
               <div class="sc-cta">
                 <a class="btn btn-lime" href="sms:+14406679642?&amp;body=AERATE" data-sms>Text AERATE to <span style="white-space:nowrap">(440) 667-9642</span></a>
               </div>
@@ -534,7 +538,8 @@
     const say = {
       tight: ['Packed', 'Packed tight.', "Water and air can't get down to your roots. That's why grass gets thin and browns first in summer. Aeration fixes that."],
       mid: ['Packed', 'A little packed.', 'Your roots are working harder than they should. Aeration would help.'],
-      pass: ['Passes', 'Your soil looks good.', 'Check again next year. Thin spots anyway? <a href="tel:+14406679642">Call or text Harrison at (440) 667-9642</a>.']
+      // 2026-10-15 Harrison: a pass still ends in aeration, so it gets the lawn size and estimate too. Never "you're good, skip it."
+      pass: ['Passes', "Nice, that's what we want.", 'Aerating once a year keeps it that way.']
     };
 
     root.addEventListener('click', e => {
@@ -546,7 +551,7 @@
         result.hidden = false;
         result.dataset.state = lv === 'pass' ? 'pass' : 'fail';
         tag.textContent = s[0]; title.textContent = s[1]; why.innerHTML = s[2];
-        fail.hidden = lv === 'pass';
+        fail.hidden = false;
         track('soil_check', { depth: lv, result: lv === 'pass' ? 'pass' : 'fail', page: 'soil-check' });
         return;
       }
