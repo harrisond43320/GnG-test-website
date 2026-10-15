@@ -1,0 +1,34 @@
+# Grass 'n' Gardens Landscaping
+
+> Lawn care and landscaping in Richfield, Ohio and nearby towns (Hinckley, Bath, Granger, Brecksville, Broadview Heights, North Royalton, Akron, Medina). Weekly mowing, fall and spring cleanups, mulch and beds, bush trimming, planting, aeration and fertilizer, small tree work, snow plowing, HOA and commercial. Owner-run by Harrison Drvenkar. Phone (440) 667-9642.
+
+The promise is Five Before We Drive: before the truck leaves a yard the crew checks five things. 1 Edges crisp. 2 Everything blown clean. 3 Nothing left behind. 4 Gates latched. 5 No clumps. Miss one? Text us and we're back the next day, free. 60 Google reviews, 5.0 average, 0 under five (October 2026).
+
+## Pages
+
+- [Home](https://gng-test-website.vercel.app/): what we do, the five checks, the 2027 Season Pass, how to get a yard plan
+- [Five Before We Drive](https://gng-test-website.vercel.app/five-before-we-drive/): the five checks, what happens if we miss one, questions and answers
+- [Weekly mowing](https://gng-test-website.vercel.app/lawn-mowing/): same crew, same day every week
+- [Fall cleanup](https://gng-test-website.vercel.app/fall-cleanup/): the Fall Pass, one price for the whole leaf season
+- [Spring cleanup](https://gng-test-website.vercel.app/spring-cleanup/)
+- [Mulch, beds and bush trimming](https://gng-test-website.vercel.app/mulch-beds/)
+- [Planting and bed refresh](https://gng-test-website.vercel.app/yard-design/)
+- [Aeration and fertilizer](https://gng-test-website.vercel.app/aeration-fertilizer/): the screwdriver test
+- [Soil Check](https://gng-test-website.vercel.app/soil-check/): a 20-second test for packed soil
+- [HOA and commercial](https://gng-test-website.vercel.app/hoa-commercial/)
+- [2027 Season Pass](https://gng-test-website.vercel.app/season-pass/): pay for 2027 mowing by March 31 and save 5%
+- [Why G'N'G: real Google reviews](https://gng-test-website.vercel.app/why-gng/)
+- [Our work](https://gng-test-website.vercel.app/our-work/): real yards, before and after
+- [Questions](https://gng-test-website.vercel.app/faq/)
+- [About Harrison](https://gng-test-website.vercel.app/about/)
+- [Richfield, OH](https://gng-test-website.vercel.app/richfield-oh/)
+- [Broadview Heights, OH](https://gng-test-website.vercel.app/broadview-heights-oh/)
+- [Brecksville, OH](https://gng-test-website.vercel.app/brecksville-oh/)
+- [Send a neighbor](https://gng-test-website.vercel.app/refer/): both save 5% on a yearly plan
+- [Join the crew](https://gng-test-website.vercel.app/join-the-crew/)
+
+## Contact
+
+- Call or text (440) 667-9642
+- grassngardens4u@gmail.com
+- Instagram https://www.instagram.com/grass_n_gardens/
