@@ -81,6 +81,47 @@
     /* 2026-10-15: credit line for the CC BY-SA hero photo (the license needs it). Small, bottom right, over the photo. */
     .hero-credit { position: absolute; right: 12px; bottom: 8px; z-index: 3; font-size: 11px; line-height: 1.3; color: rgba(255,255,255,.62); }
     .hero-credit a { color: inherit; text-decoration: none; }
+    /* 2026-10-15 DOUBLE PASS section (the offer; badge CSS is in home/chrome.css). Pine ground, white card with the lime cartoon shadow like .soil-card. */
+    .dp { scroll-margin-top: 90px; background: var(--pine); color: #fff; border-top: 4px solid var(--lime); border-bottom: 4px solid var(--lime); padding: var(--s12) 0; }
+    @media (min-width: 768px) { .dp { padding: var(--s16) 0; } }
+    .dp[data-season="after"] [data-dp-fall] { display: none; }
+    .dp:not([data-season="after"]) [data-dp-after] { display: none; }
+    .dp-eye { color: var(--jersey-blue); margin-bottom: var(--s4); }
+    .dp-grid { display: grid; gap: var(--s8); margin-top: var(--s8); }
+    @media (min-width: 960px) {
+      .dp-grid { grid-template-columns: 1.1fr .9fr; grid-template-areas: "head card" "rest card"; column-gap: var(--s16); align-items: start; }
+      .dp-head { grid-area: head; } .dp-card { grid-area: card; } .dp-rest { grid-area: rest; }
+    }
+    .dp .sec-h, .dp .sec-h b { color: #fff; }
+    .dp-lede { margin-top: var(--s4); font-size: 20px; line-height: 1.5; font-weight: 600; max-width: 30em; }
+    .dp-card { background: #fff; color: var(--ink); border: 3px solid var(--ink); border-radius: 22px; box-shadow: 9px 9px 0 var(--lime); padding: var(--s6); }
+    .dp-card .eyebrow { color: var(--forest); }
+    .dp-list { list-style: none; display: grid; gap: var(--s4); margin-top: var(--s4); }
+    .dp-list li { display: grid; grid-template-columns: 26px 1fr; column-gap: var(--s3); row-gap: 2px; align-items: start; }
+    .dp-list li::before { content: ""; grid-row: span 2; width: 26px; height: 26px; border-radius: 50%; background: var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d4a22' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 12.5l4.2 4.2L18.5 8'/%3E%3C/svg%3E") center / 18px no-repeat; }
+    .dp-list b { font-size: 18px; line-height: 1.3; color: var(--ink); }
+    .dp-list span { font-size: 16px; line-height: 1.5; color: var(--ink-muted); }
+    .dp-block + .dp-block { margin-top: var(--s6); }
+    .dp-rest h3 { font-family: var(--font-body); font-weight: 700; font-size: 14px; line-height: 1.2; letter-spacing: .18em; text-transform: uppercase; color: var(--jersey-blue); }
+    .dp-rest p { margin-top: 6px; font-size: 17px; line-height: 1.55; color: rgba(255,255,255,.92); }
+    .dp-ticket { background: rgba(255,255,255,.07); border-left: 6px solid var(--lime); border-radius: 0 14px 14px 0; padding: var(--s4) var(--s6); }
+    .dp-ticket .dp-limit { font-weight: 600; }
+    .dp-ticket .dp-limit b { font-weight: 800; color: #fff; }
+    .dp-ctas { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s6); }
+    .dp-ctas .btn { flex: 1 1 240px; justify-content: center; }
+    .dp .btn-lime { --btn-shadow: var(--ink); }
+    .dp-proof { margin-top: var(--s12); display: grid; gap: var(--s6); }
+    .dp-proof[hidden] { display: none; }
+    @media (min-width: 760px) { .dp-proof { grid-template-columns: 260px 1fr; align-items: start; } }
+    .dp-vid { margin: 0; width: 100%; max-width: 230px; }
+    .dp-vid .box { position: relative; aspect-ratio: 9 / 16; max-height: 56svh; background: var(--forest); border: 3px solid #fff; border-radius: 18px; overflow: hidden; }
+    .dp-vid video { display: block; width: 100%; height: 100%; object-fit: cover; background: #000; }
+    .dp-vid .ph { position: absolute; inset: 0; display: grid; place-content: center; gap: var(--s2); padding: var(--s4); text-align: center; }
+    .dp-vid .ph b { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 20px; line-height: 1.1; }
+    .dp-vid .ph span { font-size: 15px; line-height: 1.4; }
+    .dp-photos { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3); }
+    .dp-photos img { width: 100%; height: auto; border-radius: 14px; border: 3px solid #fff; }
+    .dp-photos:empty { display: none; }
   </style>
 </head>
 <body>
@@ -225,6 +266,79 @@
         </ul>
       </div>
     </header>
+
+    <!-- DOUBLE PASS (2026-10-15, Harrison: "no naming or branding behind this"). The fix after the Soil Check problem.
+         Offer facts are locked in lead-magnet-packages/aeration-launch-playbook.md (sections 2, 6, 11). New wording is class="draft".
+         After Sunday 10/18 the script below the section swaps it to "Full for this fall" (preview: ?season=after, or ?season=fall).
+         No guarantee line on purpose: Harrison hasn't decided one. -->
+    <section class="dp" id="double-pass" aria-labelledby="dp-h">
+      <div class="wrap">
+        <div data-dp-fall>
+          <p class="eyebrow dp-eye draft">This fall only</p>
+          <span class="dp-badge lg" role="img" aria-label="Double Pass, Thick Grass Plan">
+            <svg class="dp-ico" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#66b84a"/><g fill="none" stroke="#1d4a22" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14.5h20M23.5 9l5.5 5.5-5.5 5.5"/><path d="M31 26H11M16.5 20.5L11 26l5.5 5.5"/></g></svg>
+            <span><span class="dp-name">Double Pass</span><span class="dp-sub">Thick Grass Plan</span></span>
+          </span>
+          <div class="dp-grid">
+            <div class="dp-head">
+              <h2 class="sec-h left" id="dp-h"><span class="draft">Pay for one pass.</span> <b class="draft">Second pass free<span class="dot">.</span></b></h2>
+              <p class="dp-lede draft">We go over your yard twice and you pay for one pass.</p>
+            </div>
+            <div class="dp-card">
+              <p class="eyebrow draft">What you get</p>
+              <ul class="dp-list">
+                <li><b class="draft">Core aeration, 2 passes</b><span class="draft">We go over your whole yard twice.</span></li>
+                <li><b class="draft">We flag sprinkler heads and dog fence lines</b><span class="draft">We do it before we start, so nothing gets hit.</span></li>
+                <li><b class="draft">A before photo and a screwdriver photo</b><span class="draft">You see where your soil started.</span></li>
+                <li><b class="draft">Riley texts you the day before</b><span class="draft">You know when we're coming.</span></li>
+                <li><b class="draft">You don't need to be home</b><span class="draft">Leave the gate unlocked and the dog inside.</span></li>
+              </ul>
+            </div>
+            <div class="dp-rest">
+              <div class="dp-block">
+                <h3 class="draft">Why two passes</h3>
+                <p class="draft">Two passes make twice the holes. More air and water get down to the roots. That's how you get thick grass next spring.</p>
+              </div>
+              <div class="dp-block dp-ticket">
+                <h3 class="draft">Your price</h3>
+                <p class="draft">We price by the size of your grass. The minimum is $150. See your price in 20 seconds.</p>
+                <p class="dp-limit draft">Room for <b>30 yards</b>. Last day to get on the list is <b>Sunday 10/18</b>. We aerate the week of 10/20.</p>
+              </div>
+              <!-- GUARANTEE SLOT: nothing here until Harrison decides one. Don't invent a line. -->
+              <div class="dp-ctas">
+                <a class="btn btn-lime" href="sms:+14406679642?&amp;body=AERATE">Text AERATE to <span style="white-space:nowrap">(440) 667-9642</span></a>
+                <a class="btn btn-ghost" href="../soil-check/?src=double-pass">Take the Soil Check</a>
+              </div>
+            </div>
+          </div>
+          <!-- PROOF SLOT: Logan's video and before and after photos. Hidden until filled (set DP_VIDEO_SRC / DP_PHOTOS in the script at the bottom).
+               On localhost or with ?drafts an empty box shows as a reminder. -->
+          <div class="dp-proof" data-dp-proof hidden>
+            <figure class="dp-vid" data-dp-vid>
+              <div class="box" data-dp-box>
+                <div class="ph" data-dp-ph><b>Video goes here</b><span>Logan's aeration video.</span></div>
+              </div>
+            </figure>
+            <div class="dp-photos" data-dp-photos></div>
+          </div>
+        </div>
+
+        <!-- AFTER Sunday 10/18 (the only content once the fall list closes) -->
+        <div data-dp-after>
+          <span class="dp-badge lg" role="img" aria-label="Double Pass, Thick Grass Plan">
+            <svg class="dp-ico" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#66b84a"/><g fill="none" stroke="#1d4a22" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14.5h20M23.5 9l5.5 5.5-5.5 5.5"/><path d="M31 26H11M16.5 20.5L11 26l5.5 5.5"/></g></svg>
+            <span><span class="dp-name">Double Pass</span><span class="dp-sub">Thick Grass Plan</span></span>
+          </span>
+          <h2 class="sec-h left" style="margin-top:20px"><span class="draft">Full for this fall.</span> <b class="draft">Get on the spring list<span class="dot">.</span></b></h2>
+          <p class="dp-lede draft">We aerate again in the spring. Text us and we'll put you first in line.</p>
+          <div class="dp-ctas">
+            <a class="btn btn-lime" href="sms:+14406679642?&amp;body=Put%20me%20on%20the%20spring%20list">Get on the spring list</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>(function () { var s = document.getElementById('double-pass'), q = /[?&]season=(fall|after)/.exec(location.search); if (q ? q[1] === 'after' : new Date() >= new Date(2026, 9, 19)) s.setAttribute('data-season', 'after'); })();</script>
+    <!-- /DOUBLE PASS -->
 
     <!-- THE SOIL TEST (signature of this page) -->
     <section class="light sec" id="soil-test">
@@ -563,6 +677,26 @@
       range.addEventListener('input', show);
       range.addEventListener('change', () => { (window.dataLayer = window.dataLayer || []).push({ event: 'soil_test', depth: parseFloat(range.value) }); });
       show();
+    })();
+
+    // 2026-10-15 DOUBLE PASS proof slot. Fill these when Logan's video and the before and after photos are ready (files go in this folder).
+    // Hidden for visitors until one of them is set. On localhost or with ?drafts an empty box shows as a reminder.
+    (() => {
+      const DP_VIDEO_SRC = '';      // for example 'aeration.mp4'
+      const DP_VIDEO_POSTER = '';   // optional still, for example 'aeration.jpg'
+      const DP_PHOTOS = [];         // for example [{ src: '../img/sm/aeration-after.jpg', alt: 'Lawn right after the second pass' }]
+      const wrap = document.querySelector('[data-dp-proof]');
+      if (!wrap) return;
+      const fig = wrap.querySelector('[data-dp-vid]'), box = wrap.querySelector('[data-dp-box]'), ph = wrap.querySelector('[data-dp-ph]'), grid = wrap.querySelector('[data-dp-photos]');
+      const draft = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]drafts/.test(location.search);
+      if (DP_VIDEO_SRC) {
+        const v = document.createElement('video');
+        v.controls = true; v.playsInline = true; v.preload = 'metadata'; v.src = DP_VIDEO_SRC;
+        if (DP_VIDEO_POSTER) v.poster = DP_VIDEO_POSTER;
+        ph.remove(); box.appendChild(v);
+      } else if (!draft) { fig.remove(); }
+      DP_PHOTOS.forEach(p => { const i = document.createElement('img'); i.src = p.src; i.alt = p.alt || ''; i.loading = 'lazy'; i.decoding = 'async'; grid.appendChild(i); });
+      if (DP_VIDEO_SRC || DP_PHOTOS.length || draft) wrap.hidden = false;
     })();
   </script>
   <!-- FAQ for Google / AI answers. Built from the FAQ section by websites/faq-jsonld.ps1; rebuild after editing the FAQ. -->

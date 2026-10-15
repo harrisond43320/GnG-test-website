@@ -137,6 +137,14 @@
     .sc-cta .btn { flex: 1 1 240px; justify-content: center; }
     .sc-note { margin-top: var(--s6); font-size: 14px; line-height: 1.5; color: var(--ink-muted); }
     @media (prefers-reduced-motion: reduce) { .sc-pic .sd { transition: none; } }
+    /* 2026-10-15: the fix block (badge + link to the offer) and the badge inside the estimate */
+    .sc-fix { margin-top: var(--s6); padding-top: var(--s6); border-top: 2px solid var(--line-light); display: grid; justify-items: start; gap: var(--s3); }
+    .sc-fix .lab { font-weight: 700; font-size: 14px; letter-spacing: .18em; text-transform: uppercase; color: var(--forest); }
+    .sc-fix p:not(.lab) { font-size: 17px; line-height: 1.5; font-weight: 600; }
+    /* the badge is the header band of the estimate box: it bleeds to the box edges */
+    .sc-est .dp-badge { display: flex; justify-content: center; width: calc(100% + 2 * var(--s4)); max-width: none; margin: calc(-1 * var(--s4)) calc(-1 * var(--s4)) var(--s3); border-radius: 12px 12px 0 0; }
+    /* the badge is about 17.7 x its font size wide; inside the card it must fit the card (phone card inner width = viewport minus about 121px) */
+    .sc-fix .dp-badge, .sc-est .dp-badge { font-size: min(14px, calc((100vw - 126px) / 17.7)); }
     @media (max-width: 767px) { .sc-sec { padding: var(--s8) 0 var(--s16); } .sc-card { padding: var(--s6) var(--s4); box-shadow: 6px 6px 0 var(--lime); } .sc-result { padding: var(--s4); } }
   </style>
 </head>
@@ -366,6 +374,17 @@
             <h3 data-r-title></h3>
             <p class="why" data-r-why></p>
 
+            <!-- THE FIX (2026-10-15): Soil Check is the problem, the Double Pass is the fix. Fall only; hides with the other data-fall bits. -->
+            <div class="sc-fix" data-fall>
+              <p class="lab">The fix</p>
+              <span class="dp-badge" role="img" aria-label="Double Pass, Thick Grass Plan">
+                <svg class="dp-ico" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#66b84a"/><g fill="none" stroke="#1d4a22" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14.5h20M23.5 9l5.5 5.5-5.5 5.5"/><path d="M31 26H11M16.5 20.5L11 26l5.5 5.5"/></g></svg>
+                <span><span class="dp-name">Double Pass</span><span class="dp-sub">Thick Grass Plan</span></span>
+              </span>
+              <p class="draft">You pay for one pass and we go over your yard twice. The second pass is free this fall.</p>
+              <a class="btn btn-ghost" href="../aeration-fertilizer/?src=soil-check#double-pass">See what you get</a>
+            </div>
+
             <div class="sc-fail" data-fail hidden>
               <h4 class="draft">How big is your lawn?</h4>
               <p class="sub draft">Just the grass, not the whole lot. A guess is fine.</p>
@@ -378,10 +397,14 @@
               </div>
 
               <div class="sc-est" data-est hidden aria-live="polite">
+                <span class="dp-badge" data-fall role="img" aria-label="Double Pass, Thick Grass Plan">
+                  <svg class="dp-ico" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#66b84a"/><g fill="none" stroke="#1d4a22" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14.5h20M23.5 9l5.5 5.5-5.5 5.5"/><path d="M31 26H11M16.5 20.5L11 26l5.5 5.5"/></g></svg>
+                  <span><span class="dp-name">Double Pass</span><span class="dp-sub">Thick Grass Plan</span></span>
+                </span>
                 <span class="lab" data-fall>Your estimate</span>
                 
                 <span class="num" data-est-num></span>
-                <p class="what" data-fall>The Double Pass, Thick Grass Plan. This price is for both passes. You pay for one pass and we go over your yard twice.</p>
+                <p class="what" data-fall>This price is for both passes. You pay for one pass and we go over your yard twice.</p>
                 <p class="fine draft">This is an estimate. We'll text you your exact price.</p>
               </div>
               <p class="sc-over draft" data-over hidden>Text AERATE and we'll send your price.</p>

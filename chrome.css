@@ -265,8 +265,20 @@ html.rvz-open { overflow: hidden; }
 .promo-strip { display: block; background: var(--pine); color: #fff; border-bottom: 4px solid var(--lime); padding: var(--s3) 0; }
 .promo-strip[hidden] { display: none; }
 .promo-strip .wrap { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--s4); row-gap: 2px; min-height: 44px; }
-.promo-strip .promo-t { font-size: 16px; line-height: 1.35; font-weight: 600; }
+.promo-strip .promo-t { font-size: 16px; line-height: 1.35; font-weight: 500; }
+.promo-strip .promo-t b { font-weight: 800; }
 .promo-strip .promo-go { display: inline-flex; align-items: center; gap: 6px; font-size: 16px; line-height: 1.35; font-weight: 800; color: #fff; }
 .promo-strip .promo-go svg { color: var(--lime); }
 .promo-strip .promo-go svg { flex: none; }
 @media (min-width: 760px) { .promo-strip .wrap { justify-content: center; } }
+
+/* 2026-10-15: DOUBLE PASS BADGE. The name mark for the fall offer "Double Pass, Thick Grass Plan": a pine patch with a lime ring,
+   a lime disc with two arrows going opposite ways (two passes), the name in Alfa Slab, the plan in jersey-blue Barlow caps.
+   Flat on purpose (solid rings, no glow). Everything is in em, so set font-size to resize it (16px = about 255px wide).
+   Markup to copy: _partials/double-pass-badge.html. Used on aeration-fertilizer, soil-check. */
+.dp-badge { display: inline-flex; align-items: center; gap: .7em; font-size: 16px; line-height: 1; background: var(--pine); color: #fff; border: .16em solid var(--lime); box-shadow: inset 0 0 0 .09em var(--pine), inset 0 0 0 .16em rgba(167, 203, 224, .6); border-radius: .75em; padding: .65em 1.05em .65em .7em; max-width: 100%; }
+.dp-badge .dp-ico { flex: none; width: 2.6em; height: 2.6em; display: block; }
+.dp-badge .dp-name { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.6em; letter-spacing: .01em; text-transform: uppercase; color: #fff; white-space: nowrap; }
+.dp-badge .dp-sub { display: block; margin-top: .45em; font-family: var(--font-body); font-weight: 700; font-size: .875em; letter-spacing: .15em; text-transform: uppercase; color: var(--jersey-blue); white-space: nowrap; }
+.dp-badge.lg { font-size: 20px; }
+@media (max-width: 400px) { .dp-badge.lg { font-size: min(17px, calc((100vw - 56px) / 17.7)); } }

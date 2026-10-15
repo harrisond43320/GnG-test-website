@@ -25,6 +25,8 @@
     { "source": "/qr7", "destination": "/yard-score/?src=qr-sign", "statusCode": 302 },
     { "source": "/qr8", "destination": "/yard-score/?src=qr-card", "statusCode": 302 },
     { "source": "/aerate", "destination": "/soil-check/?src=text", "statusCode": 302 },
-    { "source": "/AERATE", "destination": "/soil-check/?src=text", "statusCode": 302 }
+    { "source": "/AERATE", "destination": "/soil-check/?src=text", "statusCode": 302 },
+    { "source": "/double-pass", "destination": "/aeration-fertilizer/?src=text#double-pass", "statusCode": 302 },
+    { "source": "/DOUBLE-PASS", "destination": "/aeration-fertilizer/?src=text#double-pass", "statusCode": 302 }
   ]
 }
