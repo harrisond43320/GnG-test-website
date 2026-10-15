@@ -71,6 +71,8 @@
     .fall-strip { background: var(--pine); color: #fff; padding: var(--s4) 0; border-bottom: 4px solid var(--lime); }
     .fall-strip p { font-size: 17px; line-height: 1.45; font-weight: 600; max-width: 46em; }
     .fall-strip b { color: #fff; font-weight: 800; }
+    /* 2026-10-15: the fall line in the top bar wraps to 2 lines on phones once the font loads. Hold that height so nothing jumps (CLS 0.10 without it). */
+    @media (max-width: 560px) { .topbar p[data-fall] { min-height: 37px; } }
 
     /* video slot + problem */
     .sc-top { display: grid; gap: var(--s8); align-items: start; margin-top: var(--s8); }
@@ -141,6 +143,8 @@
 <body>
 
   <div class="topbar">
+    <!-- 2026-10-15: in fall the old line below is hidden (it carries data-after), which left an empty blue bar. This line fills it. -->
+    <p data-fall>Last round of aeration. The second pass is free. Last day is Sunday 10/18.</p>
     <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
   </div>
 
@@ -166,6 +170,8 @@
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
               <a href="../yard-design/"><span>Planting and bed refresh<small>The right plant in the right spot</small></span></a>
               <a href="../aeration-fertilizer/"><span>Aeration and fertilizer<small>Try the screwdriver test</small></span></a>
+              <!-- 2026-10-15: Soil Check page (noindex, so it is only reachable from links like this one and Harrison's texts) -->
+              <a href="../soil-check/?src=menu"><span>Soil Check<small>Free, takes 20 seconds</small></span></a>
               <a href="../hoa-commercial/"><span>HOA and commercial<small>Common areas and business properties</small></span></a>
               <a href="../your-year/"><span>Build your year<small>See every month of your plan</small></span></a>
               <a class="sub-all" href="../#services">See every service</a>
@@ -223,6 +229,7 @@
           <li class="sub-li"><a href="../mulch-beds/">Mulch, beds and bushes</a></li>
           <li class="sub-li"><a href="../yard-design/">Planting and bed refresh</a></li>
           <li class="sub-li"><a href="../aeration-fertilizer/">Aeration and fertilizer</a></li>
+          <li class="sub-li"><a href="../soil-check/?src=menu">Soil Check</a></li>
           <li class="sub-li"><a href="../hoa-commercial/">HOA and commercial</a></li>
           <li class="sub-li"><a href="../your-year/">Build your year</a></li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>

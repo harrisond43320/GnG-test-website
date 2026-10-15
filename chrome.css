@@ -259,3 +259,14 @@ html.rvz-open { overflow: hidden; }
 .hero .reveal, .page-hero .reveal { opacity: 1; transition: none; animation: hero-in .5s cubic-bezier(.2,.8,.2,1) both; }
 @keyframes hero-in { from { transform: translateY(10px); } to { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .hero .reveal, .page-hero .reveal { animation: none; transform: none; } }
+
+/* 2026-10-15: PROMO STRIP. One slim, tappable line above the homepage hero (fall aeration: second pass free, Soil Check link).
+   The whole strip is the link. It hides itself by date (a script right after it) and the block can be deleted from the page. */
+.promo-strip { display: block; background: var(--pine); color: #fff; border-bottom: 4px solid var(--lime); padding: var(--s3) 0; }
+.promo-strip[hidden] { display: none; }
+.promo-strip .wrap { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--s4); row-gap: 2px; min-height: 44px; }
+.promo-strip .promo-t { font-size: 16px; line-height: 1.35; font-weight: 600; }
+.promo-strip .promo-go { display: inline-flex; align-items: center; gap: 6px; font-size: 16px; line-height: 1.35; font-weight: 800; color: #fff; }
+.promo-strip .promo-go svg { color: var(--lime); }
+.promo-strip .promo-go svg { flex: none; }
+@media (min-width: 760px) { .promo-strip .wrap { justify-content: center; } }
