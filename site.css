@@ -99,7 +99,7 @@
     .btn:active { transform: translateY(4px); box-shadow: 0 0 0 0 var(--btn-shadow, var(--pine)); }
     .btn:focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
     .light .btn:focus-visible, .site-head .btn:focus-visible { outline-color: var(--forest); }
-    .btn-lime { background: var(--lime); color: var(--pine); --btn-shadow: var(--pine); }
+    .btn-lime { background: var(--lime); color: #17391b; --btn-shadow: var(--pine); } /* 2026-10-20: deeper pine text, 5.2 to 1 on lime (was 4.1) */
     .btn-lime:hover { background: #74c656; }
     .btn-ghost { background: #fff; color: var(--pine); --btn-shadow: var(--lime); --shine: rgba(102, 184, 74, .55); }
     .btn-dark { background: var(--pine); color: #fff; --btn-shadow: var(--lime); --shine: rgba(255, 255, 255, .35); }
@@ -402,23 +402,35 @@
 .page-hero .hero-photo::after {
   content: ""; position: absolute; inset: 0;
   background:
-    linear-gradient(to top, var(--bg) 0%, rgba(20,28,23,.6) 22%, rgba(20,28,23,0) 55%),
-    linear-gradient(to right, rgba(12,18,14,.78) 0%, rgba(12,18,14,.4) 45%, rgba(12,18,14,0) 75%);
+    /* 2026-10-20 (round 3): lighter shade so the photo reads; the words get their own soft scrim (.hero-in::before) */
+    linear-gradient(to top, var(--bg) 0%, rgba(20,28,23,.34) 14%, rgba(20,28,23,0) 40%),
+    linear-gradient(to right, rgba(12,18,14,.3) 0%, rgba(12,18,14,.12) 45%, rgba(12,18,14,0) 75%);
 }
-@media (max-width: 959px) { .page-hero .hero-photo::after { background: linear-gradient(to top, var(--bg) 0%, rgba(12,18,14,.65) 40%, rgba(12,18,14,.45) 75%, rgba(12,18,14,.55) 100%); } }
+@media (max-width: 959px) { .page-hero .hero-photo::after { background: linear-gradient(to top, var(--bg) 0%, rgba(12,18,14,.3) 30%, rgba(12,18,14,.1) 65%, rgba(12,18,14,.2) 100%); } }
 .page-hero .hero-in { position: relative; z-index: 2; padding-top: var(--s16); padding-bottom: var(--s16); }
+/* soft dark patch behind the words only (not the whole photo): keeps white text at 4.5 to 1 on a bright photo */
+.page-hero .hero-in::before {
+  /* 2026-10-20: closest-side so the patch fades to nothing before any edge (the first try showed a hard-edged box) */
+  content: ""; position: absolute; z-index: -1; pointer-events: none; inset: -18% -40% -12% -40%;
+  background: radial-gradient(ellipse closest-side at 42% 58%, rgba(12,18,14,.68) 0%, rgba(12,18,14,.6) 55%, rgba(12,18,14,0) 100%);
+}
+@media (max-width: 959px) { .page-hero .hero-in::before { inset: -10% -16px 0 -16px; background: linear-gradient(to top, rgba(12,18,14,.66) 0%, rgba(12,18,14,.6) 60%, rgba(12,18,14,0) 100%); } }
 @media (min-width: 960px) { .page-hero .hero-in { padding-bottom: var(--s24); } }
 .crumbs { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; font-size: 14px; font-weight: 600; color: rgba(255,255,255,.95); } /* 2026-10-08: was .75, faint over hero photos (look check 3.5 to 1) */
 .crumbs li + li::before { content: "/"; margin-right: 6px; opacity: .5; }
 .crumbs li { display: inline-flex; align-items: center; }
 .crumbs a:hover { color: #fff; }
 .crumbs a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
-.page-hero .eyebrow { margin-top: var(--s4); color: var(--jersey-blue); letter-spacing: .24em; font-size: clamp(14px, 1.3vw, 16px); text-shadow: 0 1px 10px rgba(0,0,0,.6); }
-/* the one logo-lettering headline on the page */
+.crumbs a:active { opacity: .8; }
+/* 2026-10-20: 44px tap targets on phones and tablets (audit: Home 36x24, Services 54x24) */
+@media (max-width: 899px) { .crumbs { gap: 0; } .crumbs a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px; margin: 0 -4px; } }
+/* eyebrow gets a dark chip so the jersey-blue words stay at 4.5 to 1 on any photo (was 2.2 to 1 on Brecksville and Broadview) */
+.page-hero .eyebrow { display: inline-block; margin-top: var(--s4); padding: 7px 12px; border-radius: 6px; background: rgba(12,18,14,.74); color: var(--jersey-blue); letter-spacing: .24em; font-size: clamp(14px, 1.3vw, 16px); text-shadow: 0 1px 10px rgba(0,0,0,.6); }
+/* the one logo-lettering headline on the page. 2026-10-20: same size as the homepage headline, wider so it runs 2 lines, not 3 */
 .page-hero h1 {
-  margin-top: var(--s4); max-width: 12ch;
+  margin-top: var(--s4); max-width: 16ch;
   font-family: var(--font-display); font-weight: 400; font-style: italic; text-transform: uppercase;
-  font-size: clamp(48px, 8.4vw, 118px); line-height: .95; letter-spacing: .03em;
+  font-size: clamp(42px, 7.4vw, 100px); line-height: .98; letter-spacing: .03em;
   color: #fff; -webkit-text-stroke: .1em var(--pine); paint-order: stroke fill; text-shadow: .05em .06em 0 var(--forest);
 }
 .page-hero .lede { margin-top: var(--s6); color: #fff; font-size: clamp(18px, 1.6vw, 21px); font-weight: 500; line-height: 1.5; text-shadow: 0 2px 18px rgba(0,0,0,.45); max-width: 36em; }
@@ -787,3 +799,11 @@
   .pair .btn { margin-top: var(--s6); }
   .faq-grid { gap: var(--s6); }
 }
+/* ---------- 2026-10-20 (round 3): contrast on dark cards ---------- */
+/* "See the 5 checks" and other links inside the dark cards: forest green was 2.1 to 1 there; lime on dark is 7 to 1 */
+:not(.light) > .wrap > .split .gets a, .coal .gets a { color: var(--lime); background: rgba(102,184,74,.16); }
+:not(.light) > .wrap > .split .gets a:hover, .coal .gets a:hover { color: #fff; background: rgba(102,184,74,.3); }
+:not(.light) > .wrap > .split .gets a:active, .coal .gets a:active { background: rgba(102,184,74,.42); }
+:not(.light) > .wrap > .split .gets a:focus-visible, .coal .gets a:focus-visible { outline-color: var(--lime); }
+/* lime chips and captions: deeper pine text so they pass 4.5 to 1 (was 4.15) */
+.svc .tag, .ba-shot.after figcaption, .gshot.all, .split-photo figcaption { color: #17391b; }

@@ -25,7 +25,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
   <link rel="preload" as="image" href="../img/stock-soil-in-hand.jpg" imagesrcset="../img/sm/stock-soil-in-hand.jpg 900w, ../img/md/stock-soil-in-hand.jpg 1200w, ../img/stock-soil-in-hand.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
-  <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../site.css" />
   <link rel="stylesheet" href="../chrome.css" />
   <!-- FALL / AFTER switch. The fall offer (second pass free, 30 yards, book by Sunday 10/25) shows until the end of
@@ -149,11 +149,12 @@
   </style>
 </head>
 <body>
+  <a class="skip" href="#top">Skip to main content</a>
 
   <div class="topbar">
     <!-- 2026-10-15: in fall the old line below is hidden (it carries data-after), which left an empty blue bar. This line fills it. -->
     <p data-fall>Last round of aeration. The second pass is free. Last day is Sunday 10/25.</p>
-    <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
+    <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan-form&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
   </div>
 
   <!-- @header -->
@@ -162,7 +163,7 @@
   <header class="site-head">
     <div class="wrap head-in">
       <a class="brand" href="../" aria-label="Grass 'n' Gardens home">
-        <img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" />
+        <img src="../brand_assets/logos/lockup-horizontal-web-360.png" srcset="../brand_assets/logos/lockup-horizontal-web-360.png 360w, ../brand_assets/logos/lockup-horizontal-web.png 600w" sizes="(min-width: 900px) 306px, 224px" alt="Grass 'n' Gardens Landscaping" width="360" height="97" />
       </a>
       <nav class="menu" aria-label="Main">
         <ul>
@@ -195,6 +196,8 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
             <div class="sub" id="sub-about">
               <a href="../about/"><span>About us<small>Harrison and the crew</small></span></a>
+              <!-- 2026-10-20: Reviews (desktop: in this list so the bar still fits; phone menu has its own top-level link) -->
+              <a href="../why-gng/#reviews"><span>Reviews<small>60 five-star Google reviews</small></span></a>
               <a href="../five-before-we-drive/"><span>Our promise<small>Five checks before we drive</small></span></a>
               <a href="../faq/"><span>Questions<small>Cost, area, insurance and more</small></span></a>
               <a href="../refer/"><span>Send a neighbor<small>You both save 5%</small></span></a>
@@ -242,6 +245,7 @@
           <li class="sub-li"><a href="../your-year/">Build your year</a></li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
+          <li><a href="../why-gng/#reviews">Reviews</a></li>
           <li><a href="../our-work/">Our work</a></li>
           <li class="grp" aria-hidden="true">About</li>
           <li class="sub-li"><a href="../about/">About us</a></li>
@@ -252,9 +256,13 @@
           <li class="sub-li"><a href="../yard-of-the-month/">Yard of the Month</a></li>
         </ul>
         <div class="menu-ctas">
-          <a class="btn btn-lime" href="../#plan">Get my yard plan
+          <a class="btn btn-lime" href="../#plan-form">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
+          <!-- 2026-10-20: a real Text button next to Call (both keep the click_to_call / click_to_text events from site.js) -->
+          <div class="reach-row">
+            <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="draft">Call</span></a>
+            <a class="btn btn-ghost" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
+          </div>
         </div>
         <!-- Shown by the script only on phones that can add it (and never inside the app itself) -->
         <button class="app-get" type="button" data-app-get hidden>
@@ -378,7 +386,7 @@
             <div class="sc-fix" data-fall>
               <p class="lab">The fix</p>
               <span class="dp-badge" role="img" aria-label="Double Pass, Thick Grass Plan">
-                <svg class="dp-ico" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#66b84a"/><g fill="none" stroke="#1d4a22" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14.5h20M23.5 9l5.5 5.5-5.5 5.5"/><path d="M31 26H11M16.5 20.5L11 26l5.5 5.5"/></g></svg>
+                <svg class="dp-ico" viewBox="-1 -1 42 42" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#66b84a"/><g fill="none" stroke="#1d4a22" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 15h15M22 10.8l4.5 4.2-4.5 4.2"/><path d="M28.5 25h-15M18 20.8L13.5 25l4.5 4.2"/></g></svg>
                 <span><span class="dp-name">Double Pass</span><span class="dp-sub">Thick Grass Plan</span></span>
               </span>
               <p class="draft">You pay for one pass and we go over your yard twice. The second pass is free this fall.</p>
@@ -398,7 +406,7 @@
 
               <div class="sc-est" data-est hidden aria-live="polite">
                 <span class="dp-badge" data-fall role="img" aria-label="Double Pass, Thick Grass Plan">
-                  <svg class="dp-ico" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#66b84a"/><g fill="none" stroke="#1d4a22" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14.5h20M23.5 9l5.5 5.5-5.5 5.5"/><path d="M31 26H11M16.5 20.5L11 26l5.5 5.5"/></g></svg>
+                  <svg class="dp-ico" viewBox="-1 -1 42 42" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#66b84a"/><g fill="none" stroke="#1d4a22" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 15h15M22 10.8l4.5 4.2-4.5 4.2"/><path d="M28.5 25h-15M18 20.8L13.5 25l4.5 4.2"/></g></svg>
                   <span><span class="dp-name">Double Pass</span><span class="dp-sub">Thick Grass Plan</span></span>
                 </span>
                 <span class="lab" data-fall>Your estimate</span>
@@ -500,8 +508,10 @@
   </dialog>
 
   <div class="call-bar">
-    <a class="btn btn-lime" href="../#plan">Get my yard plan</a>
-    <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call or text Harrison at (440) 667-9642"><span class="draft">Call or text</span></a>
+    <a class="btn btn-lime" href="../#plan-form">Get my yard plan</a>
+    <!-- 2026-10-20: Call and Text are two buttons now (events click_to_call / click_to_text come from site.js) -->
+    <a class="btn btn-ghost cb-reach" href="tel:+14406679642" aria-label="Call Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="draft">Call</span></a>
+    <a class="btn btn-ghost cb-reach" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
   </div>
 
   <script>

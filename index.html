@@ -67,12 +67,13 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/ph/gbp-mower-stripes.jpg 576w, img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
   
   
-  <link rel="preload" href="fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="fonts/barlow-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
   <!-- 2026-10-07: shared header dropdown + footer columns (same file on every page) -->
   <link rel="stylesheet" href="chrome.css" />
+  <noscript><style>.hero-photo .broll img:nth-child(1) { opacity: 1; }</style></noscript>
   <style>
     /* Layout from the reference site, content and logo are Grass 'n' Gardens.
        Harrison picked "full reference style" on 2026-10-05: dark ground, glows, grain. */
@@ -153,7 +154,7 @@
     .btn:focus-visible, .nav a:focus-visible, .link:focus-visible, .svc:focus-visible, .call-bar a:focus-visible {
       outline: 3px solid var(--lime); outline-offset: 3px;
     }
-    .btn-lime { background: var(--lime); color: #1d4a22; }
+    .btn-lime { background: var(--lime); color: #17391b; } /* 2026-10-20: deeper pine text, 5.2 to 1 on lime (was 4.1) */
     .btn-lime:hover { background: #7ccb5f; }
     .btn-ghost { border: 1px solid rgba(255, 255, 255, .55); color: var(--fg); }
     .btn-ghost:hover { background: rgba(255, 255, 255, .08); border-color: #fff; }
@@ -230,10 +231,11 @@
     @media (min-width: 560px) { .menu-ctas { grid-template-columns: 1fr 1fr; } }
     /* sections land below the sticky header when a link jumps to them */
     section[id], header[id], main[id] { scroll-margin-top: 108px; }
+    #plan-form { scroll-margin-top: 108px; } /* 2026-10-20: inner-page buttons land right on the form fields */
 
     /* ---------- hero ---------- */
     .hero { position: relative; min-height: clamp(600px, calc(100svh - 132px), 860px); display: flex; align-items: flex-end; overflow: hidden; }
-    .hero-photo { position: absolute; inset: 0; }
+    .hero-photo { position: absolute; inset: 0; background: var(--pine); } /* 2026-10-20: pine while photo 1 loads (it shows only once fully loaded, for LCP), so the white headline always reads */
     .stripes { position: absolute; inset: -10%; transform: rotate(-8deg) scale(1.06); animation: settle 2.4s var(--ease-out) forwards;
       background: repeating-linear-gradient(90deg, #3d6b3f 0 120px, #2f5833 120px 240px); }
     @keyframes settle { to { transform: rotate(-8deg) scale(1); } }
@@ -254,10 +256,12 @@
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, center);
       opacity: 0; animation: broll 35s linear infinite; will-change: opacity, transform;
     }
-    /* first photo starts already faded in (negative delay), so the hero is never blank on load */
+    /* 2026-10-20: photo 1 now appears only once fully loaded (class ld, set onload). Chrome never counts a photo
+       painted half-loaded as the biggest paint, so slide 2 won at 7.1s and home phone dropped to 68. Pine shows meanwhile. */
     /* 2026-10-08 speed pass: photo 1 never fades. It stays shown as the bottom layer and photos 2-5 fade in and out
        on top of it (same 35s loop, same look). Browsers then count it as the first big paint instead of photo 2. */
-    .hero-photo .broll img:nth-child(1) { opacity: 1; animation-name: broll-first; animation-delay: 0s; }
+    .hero-photo .broll img:nth-child(1) { opacity: 0; animation-name: broll-first; animation-delay: 0s; }
+    .hero-photo .broll img:nth-child(1).ld { opacity: 1; }
     @keyframes broll-first {
       0%    { transform: scale(1.023); }
       20%   { transform: scale(1.1); }
@@ -570,7 +574,7 @@
     .btn:hover { transform: translateY(-3px); box-shadow: 0 7px 0 0 var(--btn-shadow, var(--pine)); }
     .btn:hover::before { transform: translate(1100%, -50%) rotate(14deg); }
     .btn:active { transform: translateY(4px); box-shadow: 0 0 0 0 var(--btn-shadow, var(--pine)); }
-    .btn-lime { background: var(--lime); color: var(--pine); --btn-shadow: var(--pine); }
+    .btn-lime { background: var(--lime); color: #17391b; --btn-shadow: var(--pine); }
     .btn-lime:hover { background: #74c656; }
     /* the second button on dark sections: white with a lime shadow so it still pops on black */
     .btn-ghost { background: #fff; color: var(--pine); border-color: var(--pine); --btn-shadow: var(--lime); }
@@ -1204,7 +1208,7 @@
     }
     .fstep-back:hover { background: rgba(29, 74, 34, .16); }
     .fstep-back:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
-    .fstep-err { font-size: 14px; font-weight: 700; color: #b3261e; }
+    .fstep-err { font-size: 16px; font-weight: 700; color: #b3261e; } /* 2026-10-20: 16px (was 14) and announced by screen readers */
     .fstep-note { margin-top: calc(var(--s2) * -1); font-size: 14px; line-height: 1.45; color: var(--ink-muted); }
     @media (prefers-reduced-motion: reduce) { .lead-form.stepped .fstep.on { animation: none; } .fstep-bar > i > i { transition: none; } }
 
@@ -1263,6 +1267,7 @@
   </style>
 </head>
 <body>
+  <a class="skip" href="#top">Skip to main content</a>
 
   <!-- TOP BAR (TruGreen-style offer bar). Carries the live offer: one line, real deadline, one link. -->
   <div class="topbar">
@@ -1275,7 +1280,7 @@
   <header class="site-head">
     <div class="wrap head-in">
       <a class="brand" href="./" aria-current="page" aria-label="Grass 'n' Gardens home">
-        <img src="brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" />
+        <img src="brand_assets/logos/lockup-horizontal-web-360.png" srcset="brand_assets/logos/lockup-horizontal-web-360.png 360w, brand_assets/logos/lockup-horizontal-web.png 600w" sizes="(min-width: 900px) 306px, 224px" alt="Grass 'n' Gardens Landscaping" width="360" height="97" />
       </a>
       <nav class="menu" aria-label="Main">
         <ul>
@@ -1308,6 +1313,8 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
             <div class="sub" id="sub-about">
               <a href="../about/"><span>About us<small>Harrison and the crew</small></span></a>
+              <!-- 2026-10-20: Reviews (desktop: in this list so the bar still fits; phone menu has its own top-level link) -->
+              <a href="../why-gng/#reviews"><span>Reviews<small>60 five-star Google reviews</small></span></a>
               <a href="../five-before-we-drive/"><span>Our promise<small>Five checks before we drive</small></span></a>
               <a href="../faq/"><span>Questions<small>Cost, area, insurance and more</small></span></a>
               <a href="../refer/"><span>Send a neighbor<small>You both save 5%</small></span></a>
@@ -1355,6 +1362,7 @@
           <li class="sub-li"><a href="../your-year/">Build your year</a></li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
+          <li><a href="../why-gng/#reviews">Reviews</a></li>
           <li><a href="../our-work/">Our work</a></li>
           <li class="grp" aria-hidden="true">About</li>
           <li class="sub-li"><a href="../about/">About us</a></li>
@@ -1365,9 +1373,13 @@
           <li class="sub-li"><a href="../yard-of-the-month/">Yard of the Month</a></li>
         </ul>
         <div class="menu-ctas">
-          <a class="btn btn-lime" href="./#plan">Get my yard plan
+          <a class="btn btn-lime" href="#plan-form">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
+          <!-- 2026-10-20: a real Text button next to Call (both keep the click_to_call / click_to_text events from site.js) -->
+          <div class="reach-row">
+            <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="draft">Call</span></a>
+            <a class="btn btn-ghost" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
+          </div>
         </div>
         <!-- Shown by the script only on phones that can add it (and never inside the app itself) -->
         <button class="app-get" type="button" data-app-get hidden>
@@ -1400,11 +1412,11 @@
              Lighter shading than before, so the photos read clear; the text keeps its own soft shadow. -->
         <div class="broll" role="img" aria-label="Striped lawns, a stand-on mower, fresh mulch beds and the Grass 'n' Gardens crew on a job">
           <!-- 2026-10-06: swapped to Harrison's own Google Business photos ("By owner" only, his OK). gbp-* = cropped to 4:3. -->
-          <img src="img/gbp-mower-stripes.jpg" srcset="img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" style="--pos: 70% 55%" />
-          <img data-src="img/gallery-12.jpg" data-srcset="img/sm/gallery-12.jpg 900w, img/md/gallery-12.jpg 1200w, img/gallery-12.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
-          <img data-src="img/gbp-crew-mowing.jpg" data-srcset="img/sm/gbp-crew-mowing.jpg 900w, img/md/gbp-crew-mowing.jpg 1200w, img/gbp-crew-mowing.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
-          <img data-src="img/gbp-mower-house.jpg" data-srcset="img/sm/gbp-mower-house.jpg 900w, img/md/gbp-mower-house.jpg 1200w, img/gbp-mower-house.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 60%" />
-          <img data-src="img/crew-mulch.jpg" data-srcset="img/sm/crew-mulch.jpg 900w, img/md/crew-mulch.jpg 1200w, img/crew-mulch.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
+          <img src="img/gbp-mower-stripes.jpg" srcset="img/ph/gbp-mower-stripes.jpg 576w, img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" onload="this.classList.add('ld')" style="--pos: 70% 55%" />
+          <img data-src="img/gallery-12.jpg" data-srcset="img/ph/gallery-12.jpg 576w, img/sm/gallery-12.jpg 900w, img/md/gallery-12.jpg 1200w, img/gallery-12.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
+          <img data-src="img/gbp-crew-mowing.jpg" data-srcset="img/ph/gbp-crew-mowing.jpg 576w, img/sm/gbp-crew-mowing.jpg 900w, img/md/gbp-crew-mowing.jpg 1200w, img/gbp-crew-mowing.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
+          <img data-src="img/stripes-estate-crew.jpg" data-srcset="img/ph/stripes-estate-crew.jpg 576w, img/sm/stripes-estate-crew.jpg 900w, img/md/stripes-estate-crew.jpg 1200w, img/stripes-estate-crew.jpg 1500w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 40% 70%" />
+          <img data-src="img/crew-mulch.jpg" data-srcset="img/ph/crew-mulch.jpg 576w, img/sm/crew-mulch.jpg 900w, img/md/crew-mulch.jpg 1200w, img/crew-mulch.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
         </div>
       </div>
       <div class="wrap hero-copy">
@@ -1456,11 +1468,11 @@
                when the video is filmed, put it here. Plays by itself, pause button for anyone who wants it still. -->
           <div class="reel" role="region" aria-roledescription="slideshow" aria-label="Our 2026 season in photos">
             <figure class="reel-slide is-on"><img loading="lazy" fetchpriority="low" src="img/sm/gbp-house-stripes.jpg" srcset="img/xs/gbp-house-stripes.jpg 600w, img/sm/gbp-house-stripes.jpg 900w, img/md/gbp-house-stripes.jpg 1200w, img/gbp-house-stripes.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Fresh mowing stripes across a front lawn up to a stone and siding house" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-front-bed.jpg" srcset="img/xs/gbp-front-bed.jpg 600w, img/sm/gbp-front-bed.jpg 900w, img/md/gbp-front-bed.jpg 1200w, img/gbp-front-bed.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Long fresh mulch bed with shrubs and a red maple along the front of a house" loading="lazy" fetchpriority="low" /><figcaption>Mulch and beds</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/ba-brick-after.jpg" srcset="img/xs/ba-brick-after.jpg 600w, img/sm/ba-brick-after.jpg 900w, img/md/ba-brick-after.jpg 1200w, img/ba-brick-after.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Front bed of a brick house cleared and covered in fresh black mulch" loading="lazy" fetchpriority="low" /><figcaption>Bed cleanup</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-mower-drive.jpg" srcset="img/xs/gbp-mower-drive.jpg 600w, img/sm/gbp-mower-drive.jpg 900w, img/md/gbp-mower-drive.jpg 1200w, img/gbp-mower-drive.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Mower on a freshly striped front lawn by the driveway" loading="lazy" fetchpriority="low" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-hedge.jpg" srcset="img/xs/gbp-hedge.jpg 600w, img/sm/gbp-hedge.jpg 900w, img/md/gbp-hedge.jpg 1200w, img/gbp-hedge.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Tall hedge trimmed flat and square along the side of a house" loading="lazy" fetchpriority="low" /><figcaption>Bush trimming</figcaption></figure>
-            <figure class="reel-slide"><img src="img/sm/gbp-walk-beds.jpg" srcset="img/xs/gbp-walk-beds.jpg 600w, img/sm/gbp-walk-beds.jpg 900w, img/md/gbp-walk-beds.jpg 1200w, img/gbp-walk-beds.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Curved walkway lined with fresh mulch beds and shrubs" loading="lazy" fetchpriority="low" /><figcaption>Beds and edging</figcaption></figure>
+            <figure class="reel-slide"><img data-src="img/sm/gbp-front-bed.jpg" data-srcset="img/xs/gbp-front-bed.jpg 600w, img/sm/gbp-front-bed.jpg 900w, img/md/gbp-front-bed.jpg 1200w, img/gbp-front-bed.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Long fresh mulch bed with shrubs and a red maple along the front of a house" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>Mulch and beds</figcaption></figure>
+            <figure class="reel-slide"><img data-src="img/sm/ba-brick-after.jpg" data-srcset="img/xs/ba-brick-after.jpg 600w, img/sm/ba-brick-after.jpg 900w, img/md/ba-brick-after.jpg 1200w, img/ba-brick-after.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Front bed of a brick house cleared and covered in fresh black mulch" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>Bed cleanup</figcaption></figure>
+            <figure class="reel-slide"><img data-src="img/sm/gbp-mower-drive.jpg" data-srcset="img/xs/gbp-mower-drive.jpg 600w, img/sm/gbp-mower-drive.jpg 900w, img/md/gbp-mower-drive.jpg 1200w, img/gbp-mower-drive.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Mower on a freshly striped front lawn by the driveway" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>Weekly mowing</figcaption></figure>
+            <figure class="reel-slide"><img data-src="img/sm/gbp-hedge.jpg" data-srcset="img/xs/gbp-hedge.jpg 600w, img/sm/gbp-hedge.jpg 900w, img/md/gbp-hedge.jpg 1200w, img/gbp-hedge.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Tall hedge trimmed flat and square along the side of a house" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>Bush trimming</figcaption></figure>
+            <figure class="reel-slide"><img data-src="img/sm/gbp-walk-beds.jpg" data-srcset="img/xs/gbp-walk-beds.jpg 600w, img/sm/gbp-walk-beds.jpg 900w, img/md/gbp-walk-beds.jpg 1200w, img/gbp-walk-beds.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Curved walkway lined with fresh mulch beds and shrubs" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>Beds and edging</figcaption></figure>
             <div class="reel-bar">
               <span class="reel-title">Our 2026 season</span>
               <span class="reel-pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -1476,7 +1488,7 @@
           <div class="form-head">
             <img src="brand_assets/logos/mark-sm.png" alt="" width="52" height="52" loading="lazy" fetchpriority="low" />
             <div><h3>Get my yard plan</h3>
-            <p class="draft">Takes 30 seconds. You don't have to be home.</p></div>
+            <p class="draft">Takes 30 seconds. You never have to come outside or be home.</p></div>
           </div>
           <form class="lead-form" novalidate>
             <!-- 2026-10-07 (night): ONE QUESTION AT A TIME (Harrison: "I really like that"). Same fields, 3 short steps:
@@ -1503,13 +1515,13 @@
                 <label><input type="checkbox" name="need" value="other" id="need-other" /><span>Something else</span></label>
               </fieldset>
               <label class="if-other other-need">What else? <input name="need_other" placeholder="Type it here" /></label>
-              <p class="fstep-err" data-fstep-err hidden>Pick at least one.</p>
+              <p class="fstep-err" data-fstep-err role="alert" hidden>Pick at least one.</p>
               <div class="fstep-nav"><button class="btn btn-lime" type="button" data-fstep-next>Next
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
             </div>
             <div class="fstep" data-fstep="2">
               <label><span class="draft">Where's the yard?</span> <input name="address" autocomplete="street-address" placeholder="Street and town" required /></label>
-              <p class="fstep-note draft">Harrison looks it up on the map. Nobody has to come out first.</p>
+              <p class="fstep-note draft">Harrison looks it up on the map and walks it himself. You never have to come outside.</p>
               <div class="fstep-nav"><button class="fstep-back" type="button" data-fstep-back>Back</button>
                 <button class="btn btn-lime" type="button" data-fstep-next>Next
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
@@ -1571,7 +1583,7 @@
           <ol class="next">
             <li><b>You send it.</b> Takes 30 seconds.</li>
             <li><b>Harrison texts you today.</b> From his own phone.</li>
-            <li><b>We write out your whole year.</b> We walk your yard in about 20 minutes. You don't have to be home.</li>
+            <li><b class="draft">We write out your whole year.</b> <span class="draft">Harrison looks your yard up and walks it himself. You never have to come outside or be home. Want to walk it together? Just ask.</span></li>
           </ol>
           <figure class="mini-quote">
             <blockquote>"I've been able to get a quote, agreed price, and had the work scheduled and done in a matter of days."</blockquote>
@@ -1590,7 +1602,7 @@
         <!-- 2026-10-07 (Harrison: "click on these sections to go more in depth"): each card opens its own page. -->
         <div class="svc-row">
           <a class="svc reveal" href="../lawn-mowing/">
-            <img src="img/sm/gbp-stone-house.jpg" srcset="img/xs/gbp-stone-house.jpg 600w, img/sm/gbp-stone-house.jpg 900w, img/md/gbp-stone-house.jpg 1200w, img/gbp-stone-house.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Fresh mowing stripes across the front lawn of a stone-front house" loading="lazy" fetchpriority="low" />
+            <img src="img/sm/stripes-farmhouse.jpg" srcset="img/xs/stripes-farmhouse.jpg 600w, img/sm/stripes-farmhouse.jpg 900w, img/stripes-farmhouse.jpg 1170w" sizes="(max-width: 767px) 200px, 40vw" alt="Crisscross mowing stripes across a big front lawn up to a white farmhouse" loading="lazy" fetchpriority="low" />
             <div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
           </a>
           <a class="svc reveal d1" href="../fall-cleanup/">
@@ -1730,7 +1742,7 @@
     <section class="ask" id="ask">
       <div class="wrap">
         <h2 class="stack reveal"><span class="thin">Want yours</span><span class="heavy">written out<span class="dot">?</span></span></h2>
-        <p class="lede reveal d1">I'll walk your yard and write out your whole year. Takes 20 minutes and you don't have to be home. You get it in a day and it's yours to keep, even if you stay with the guy you have now.</p>
+        <p class="lede reveal d1 draft">I look your yard up and walk it myself, then write out your whole year. You never have to come outside or be home. Want to walk it with me? Just ask and I will. You get it in a day and it's yours to keep, even if you stay with the guy you have now.</p>
         <a class="big-phone reveal d2" href="tel:+14406679642">(440) 667-9642</a>
 
         <!-- every way to reach us -->
@@ -1845,8 +1857,10 @@
   </dialog>
 
   <div class="call-bar">
-    <a class="btn btn-lime" href="./#plan">Get my yard plan</a>
-    <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call or text Harrison at (440) 667-9642"><span class="draft">Call or text</span></a>
+    <a class="btn btn-lime" href="#plan-form">Get my yard plan</a>
+    <!-- 2026-10-20: Call and Text are two buttons now (events click_to_call / click_to_text come from site.js) -->
+    <a class="btn btn-ghost cb-reach" href="tel:+14406679642" aria-label="Call Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="draft">Call</span></a>
+    <a class="btn btn-ghost cb-reach" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
   </div>
 
   <script>
@@ -2020,7 +2034,7 @@
       let on = true;
       const check = () => {
         const t = performance.now() / 1000;
-        roll.forEach(i => { if (on && t >= (parseFloat(getComputedStyle(i).animationDelay) || 0) - 3) load(i); });
+        roll.forEach(i => { if (on && !i.closest('.vid-on') && t >= (parseFloat(getComputedStyle(i).animationDelay) || 0) - 3) load(i); });
         if (!roll.some(i => i.dataset.src)) clearInterval(timer);
       };
       const timer = setInterval(check, 1000);
@@ -2029,6 +2043,33 @@
     };
     if (document.readyState === 'complete') later(); else addEventListener('load', later);
 
+    // Header B-roll video (2026-10-19 v2, make-broll.ps1): a muted loop of real job clips fades in over the header photo,
+  // which a vid-hero header shows as a 4:5 panel beside the words (chrome.css).
+    // The photo stays the first paint (speed). The video starts 1.5s after the page loads and only once the header
+    // is on screen; it pauses when scrolled away. Skipped on Save-Data, 2g/3g and reduced motion (the photo stays).
+    // Tall header box = the tall phone cut, else the wide cut. Keep the same code in site.js.
+    (() => {
+      const box = document.querySelector('.hero-photo[data-broll-lg]');
+      if (!box) return;
+      const net = navigator.connection || {};
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches || net.saveData || /2g|3g/.test(net.effectiveType || '')) return;
+      const start = () => {
+        const r = box.getBoundingClientRect();
+        const v = document.createElement('video');
+        v.className = 'hero-vid'; v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
+        ['muted', 'playsinline', 'disablepictureinpicture'].forEach(a => v.setAttribute(a, ''));
+        v.setAttribute('aria-hidden', 'true'); v.setAttribute('tabindex', '-1');
+        v.src = innerWidth >= 960 && r.width * (devicePixelRatio || 1) > 620 ? box.dataset.brollLg : box.dataset.brollSm;
+        v.addEventListener('playing', () => { v.classList.add('on'); box.classList.add('vid-on'); }, { once: true });
+        box.appendChild(v);
+        new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(box);
+      };
+      const go = () => setTimeout(() => {
+        const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); start(); } });
+        io.observe(box);
+      }, 1500);
+      if (document.readyState === 'complete') go(); else addEventListener('load', go);
+    })();
     // 2026-10-07: the FAQ "see more" button and the Five Before We Drive scroll moved off this page (faq/, why-gng/).
   </script>
 
@@ -2094,6 +2135,13 @@
 
     document.querySelectorAll('.lead-form').forEach(form => {
       Object.keys(seen).forEach(k => { const f = form.querySelector('[name="' + k + '"]'); if (f) f.value = seen[k]; });
+      // 2026-10-20: answers carried over from the Yard Score
+      const SIZES = { small: 'under 1/4 acre', mid: '1/4 to 1/2 acre', big: '1/2 to 2 acres', huge: 'over 2 acres' };
+      const ysTown = (params.get('town') || '').replace(/[^A-Za-z .'-]/g, '').slice(0, 30).replace(/^other$/i, '');
+      const ysSize = SIZES[params.get('size')] || '';
+      const ysScore = (params.get('score') || '').replace(/\D/g, '').slice(0, 3);
+      const addrIn = form.querySelector('[name="address"]');
+      if (ysTown && addrIn) addrIn.placeholder = 'Street in ' + ysTown;
       if (FORM_KEY) { form.querySelector('[data-how-app]').hidden = true; form.querySelector('[data-how-direct]').hidden = false; }
       // 2026-10-06: there's no form service yet, so "Send" writes the answers into a text to Harrison's
       // phone (on phones) or an email (on computers) and opens it. The person just hits send.
@@ -2146,12 +2194,15 @@
         if (val('need_other')) needs.push(val('need_other'));
         const source = val('source') === 'other' ? val('source_other') : val('source');
         const referred = source === 'A friend or neighbor' ? val('referred_by') : '';
+        // 2026-10-20: the Yard Score sends the town and lawn size it already asked (?town=&size=&score=), so the visitor is not asked twice
+        const addrFull = val('address') + (ysTown && !new RegExp(ysTown, 'i').test(val('address')) ? ', ' + ysTown : '');
         const lines = [
           "Hi Harrison, I'd like a yard plan.",
           'Name: ' + val('name'),
           'Phone: ' + val('phone'),
-          'Address: ' + val('address'),
+          'Address: ' + addrFull,
           needs.length ? 'I need: ' + needs.join(', ') : '',
+          (ysSize || ysScore) ? 'Yard Score answers: ' + [ysTown, ysSize, ysScore ? 'score ' + ysScore : ''].filter(Boolean).join(', ') : '',
           val('email') ? 'Email: ' + val('email') : '',
           source ? 'Heard about you from: ' + source : '',
           referred ? 'Sent by: ' + referred : '',
@@ -2172,7 +2223,7 @@
               headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
               body: JSON.stringify({
                 access_key: FORM_KEY, subject: 'New yard plan: ' + val('name'), from_name: "G'N'G website",
-                name: val('name'), phone: val('phone'), address: val('address'), email: val('email') || undefined,
+                name: val('name'), phone: val('phone'), address: addrFull, email: val('email') || undefined,
                 needs: needs.join(', '), heard_from: source, sent_by: referred,
                 utm_source: val('utm_source'), utm_medium: val('utm_medium'), utm_campaign: val('utm_campaign'),
                 utm_term: val('utm_term'), gclid: val('gclid'), landing_page: val('landing_page'), ref: val('ref'), message: lines.join('\n')
@@ -2198,7 +2249,8 @@
           : 'mailto:grassngardens4u@gmail.com?subject=' + encodeURIComponent('Yard plan request: ' + val('name')) + '&body=' + body;
         const app = card.querySelector('[data-done-app]');
         if (app) app.textContent = onPhone ? 'text' : 'email';
-        track('generate_lead', { form: 'yard_plan', needs: needs.join(','), source, method: onPhone ? 'sms' : 'email' });
+        // 2026-10-20: this only opens a ready-made text/email; the lead is not real until they hit send, so it gets its own event name
+        track('lead_fallback_opened', { form: 'yard_plan', needs: needs.join(','), source, method: onPhone ? 'sms' : 'email' });
         card.classList.add('sent');
         // 2026-10-06: save the ready message for the thank-you page (this browser tab only, never the URL),
         // open the text/email app, then go to the thank-you page. It has a big "open it again" button
@@ -2310,11 +2362,12 @@
       const toggle = reel.querySelector('.reel-toggle');
       const MS = 4500;
       reel.style.setProperty('--reel-ms', MS + 'ms');
-      let i = 0, timer = 0, onScreen = false, paused = reduced;
+      let i = 0, timer = 0, onScreen = false, near = false, paused = reduced;
       const show = n => {
         i = (n + slides.length) % slides.length;
         slides.forEach((s, k) => s.classList.toggle('is-on', k === i));
         pips.forEach((p, k) => { p.classList.remove('on'); p.classList.toggle('done', k < i); });
+        if (near) warm(i + 1);
         void pips[i].offsetWidth; // restart the fill bar
         pips[i].classList.add('on');
       };
@@ -2325,9 +2378,10 @@
         run();
       };
       toggle.addEventListener('click', () => setPaused(!paused));
-      // Hidden slides never trigger lazy loading on their own, so load them all once the reel is near.
-      const loadAll = () => reel.querySelectorAll('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
-      new IntersectionObserver(([e], o) => { if (e.isIntersecting) { loadAll(); o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(reel);
+      // Hidden slides never trigger lazy loading on their own, so the next one is switched to eager just before it is needed.
+      // 2026-10-20: only the NEXT slide loads, and only when the reel is near or about to show it (was: all 6 at once)
+      const warm = n => { const im = slides[(n + slides.length) % slides.length].querySelector("img"); if (im && im.loading === "lazy") im.loading = "eager"; };
+      new IntersectionObserver(([e], o) => { if (e.isIntersecting) { near = true; warm(i + 1); o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(reel);
       new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; run(); }, { threshold: .3 }).observe(reel);
       show(0); setPaused(paused);
     }

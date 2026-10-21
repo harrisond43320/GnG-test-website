@@ -23,10 +23,10 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <link rel="preload" as="image" href="../img/gbp-mower-house.jpg" imagesrcset="../img/sm/gbp-mower-house.jpg 900w, ../img/md/gbp-mower-house.jpg 1200w, ../img/gbp-mower-house.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/gbp-mower-house.jpg" imagesrcset="../img/ph/gbp-mower-house.jpg 576w, ../img/sm/gbp-mower-house.jpg 900w, ../img/md/gbp-mower-house.jpg 1200w, ../img/gbp-mower-house.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
   
   
-  <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../site.css" />
   <link rel="stylesheet" href="../chrome.css" />
   <!-- What this page is, for Google and AI answers -->
@@ -55,9 +55,10 @@
   </script>
 </head>
 <body>
+  <a class="skip" href="#top">Skip to main content</a>
 
   <div class="topbar">
-    <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
+    <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../?need=mowing#plan-form&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
   </div>
 
   <!-- @header -->
@@ -66,7 +67,7 @@
   <header class="site-head">
     <div class="wrap head-in">
       <a class="brand" href="../" aria-label="Grass 'n' Gardens home">
-        <img src="../brand_assets/logos/lockup-horizontal-web.png" alt="Grass 'n' Gardens Landscaping" width="600" height="161" />
+        <img src="../brand_assets/logos/lockup-horizontal-web-360.png" srcset="../brand_assets/logos/lockup-horizontal-web-360.png 360w, ../brand_assets/logos/lockup-horizontal-web.png 600w" sizes="(min-width: 900px) 306px, 224px" alt="Grass 'n' Gardens Landscaping" width="360" height="97" />
       </a>
       <nav class="menu" aria-label="Main">
         <ul>
@@ -99,6 +100,8 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
             <div class="sub" id="sub-about">
               <a href="../about/"><span>About us<small>Harrison and the crew</small></span></a>
+              <!-- 2026-10-20: Reviews (desktop: in this list so the bar still fits; phone menu has its own top-level link) -->
+              <a href="../why-gng/#reviews"><span>Reviews<small>60 five-star Google reviews</small></span></a>
               <a href="../five-before-we-drive/"><span>Our promise<small>Five checks before we drive</small></span></a>
               <a href="../faq/"><span>Questions<small>Cost, area, insurance and more</small></span></a>
               <a href="../refer/"><span>Send a neighbor<small>You both save 5%</small></span></a>
@@ -146,6 +149,7 @@
           <li class="sub-li"><a href="../your-year/">Build your year</a></li>
           <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
+          <li><a href="../why-gng/#reviews">Reviews</a></li>
           <li><a href="../our-work/">Our work</a></li>
           <li class="grp" aria-hidden="true">About</li>
           <li class="sub-li"><a href="../about/">About us</a></li>
@@ -156,9 +160,13 @@
           <li class="sub-li"><a href="../yard-of-the-month/">Yard of the Month</a></li>
         </ul>
         <div class="menu-ctas">
-          <a class="btn btn-lime" href="../#plan">Get my yard plan
+          <a class="btn btn-lime" href="../?need=mowing#plan-form">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
+          <!-- 2026-10-20: a real Text button next to Call (both keep the click_to_call / click_to_text events from site.js) -->
+          <div class="reach-row">
+            <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="draft">Call</span></a>
+            <a class="btn btn-ghost" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
+          </div>
         </div>
         <!-- Shown by the script only on phones that can add it (and never inside the app itself) -->
         <button class="app-get" type="button" data-app-get hidden>
@@ -174,7 +182,7 @@
     <!-- 2026-10-07: new page. Words marked class="draft" are mine for Harrison to OK (see them with ?drafts).
          Facts come from his Google profile ("Same crew, same day every week. We mow, trim, edge..."), the copy bank and the homepage. -->
     <header class="page-hero">
-      <div class="hero-photo"><img src="../img/gbp-mower-house.jpg" srcset="../img/sm/gbp-mower-house.jpg 900w, ../img/md/gbp-mower-house.jpg 1200w, ../img/gbp-mower-house.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="Stand-on mower cutting straight stripes toward a big brick house" fetchpriority="high" style="--pos: center 72%" /></div>
+      <div class="hero-photo"><img src="../img/gbp-mower-house.jpg" srcset="../img/ph/gbp-mower-house.jpg 576w, ../img/sm/gbp-mower-house.jpg 900w, ../img/md/gbp-mower-house.jpg 1200w, ../img/gbp-mower-house.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="Stand-on mower cutting straight stripes toward a big brick house" fetchpriority="high" style="--pos: center 72%" /></div>
       <div class="wrap hero-in">
         <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Weekly mowing</li></ol>
         <p class="eyebrow reveal">Richfield, Ohio</p>
@@ -186,7 +194,7 @@
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Miss one? Back next day, free</li>
         </ul>
         <div class="hero-ctas reveal d3">
-          <a class="btn btn-lime" href="../?need=mowing#plan">Get my yard plan
+          <a class="btn btn-lime" href="../?need=mowing#plan-form">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
         </div>
@@ -251,7 +259,7 @@
         <div class="pics">
           <figure class="reveal"><img src="../img/sm/gbp-brick-stripes.jpg" srcset="../img/xs/gbp-brick-stripes.jpg 600w, ../img/sm/gbp-brick-stripes.jpg 900w, ../img/md/gbp-brick-stripes.jpg 1200w, ../img/gbp-brick-stripes.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Stand-on mower on fresh stripes in front of a big brick house" loading="lazy" fetchpriority="low" /><figcaption>Back lawn</figcaption></figure>
           <figure class="wide reveal d1"><img src="../img/sm/gbp-curve-walk.jpg" srcset="../img/xs/gbp-curve-walk.jpg 600w, ../img/sm/gbp-curve-walk.jpg 900w, ../img/gbp-curve-walk.jpg 1200w" sizes="(max-width: 767px) 200px, 40vw" alt="Mowing stripes curving along a front walk" loading="lazy" fetchpriority="low" style="object-position: center 60%" /><figcaption>Front yard</figcaption></figure>
-          <figure class="reveal d2"><img src="../img/sm/gallery-16.jpg" srcset="../img/xs/gallery-16.jpg 600w, ../img/sm/gallery-16.jpg 900w, ../img/gallery-16.jpg 1200w" sizes="(max-width: 767px) 200px, 40vw" alt="Stand-on mower cutting stripes into a lawn" loading="lazy" fetchpriority="low" /><figcaption>On the mower</figcaption></figure>
+          <figure class="reveal d2"><img src="../img/sm/stripes-side-yard.jpg" srcset="../img/xs/stripes-side-yard.jpg 600w, ../img/sm/stripes-side-yard.jpg 900w, ../img/stripes-side-yard.jpg 1200w" sizes="(max-width: 767px) 200px, 40vw" alt="Side yard mowed in clean stripes along a row of spruce trees" loading="lazy" fetchpriority="low" /><figcaption>On the mower</figcaption></figure>
         </div>
       </div>
     </section>
@@ -286,7 +294,7 @@
         <div class="faq-list reveal d1">
           <details class="qa" open>
             <summary><h3 class="draft">How much does lawn mowing cost in Richfield?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">It depends on your yard: how big it is and how much we trim around. Send us your address and Harrison looks your yard up on the map and texts you a price today. You don't have to be home, and nobody has to come out first. <a href="../?need=mowing#plan">Get my yard plan</a></p></div>
+            <div class="qa-a"><p class="draft">It depends on your yard: how big it is and how much we trim around. Send us your address and Harrison looks your yard up on the map and texts you a price today. You don't have to be home, and nobody has to come out first. <a href="../?need=mowing#plan-form">Get my yard plan</a></p></div>
           </details>
           <details class="qa">
             <summary><h3 class="draft">What if it rains on my mowing day?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
@@ -302,7 +310,7 @@
           </details>
           <details class="qa">
             <summary><h3 class="draft">Do I have to be home?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">No. We look your yard up on the map to price it. If we walk your yard, it takes about 20 minutes, and you don't have to be home for that either.</p></div>
+            <div class="qa-a"><p class="draft">No. You never have to be home or come outside. Harrison looks your yard up and walks it himself. Want to walk it together? Just ask and he will.</p></div>
           </details>
         </div>
       </div>
@@ -313,7 +321,7 @@
       <div class="wrap">
         <h2 class="sec-h reveal"><span class="thin draft">Your yard has a season.</span> <b class="draft">We do the rest too<span class="dot">.</span></b></h2>
         <div class="svc-row">
-          <a class="svc reveal" href="../fall-cleanup/"><span class="tag">Fall Pass</span><img src="../img/sm/leaf-walk.jpg" srcset="../img/xs/leaf-walk.jpg 600w, ../img/sm/leaf-walk.jpg 900w, ../img/md/leaf-walk.jpg 1200w, ../img/leaf-walk.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Fall leaves covering the beds and the front walk" loading="lazy" fetchpriority="low" /><div class="svc-body"><h3>Fall cleanups</h3><p>One price for the whole leaf season. We keep coming back till it's clear.</p><span class="go">See the Fall Pass <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
+          <a class="svc reveal" href="../fall-cleanup/"><span class="tag">Fall Pass</span><img src="../img/sm/gbp-shrub-stone.jpg" srcset="../img/xs/gbp-shrub-stone.jpg 600w, ../img/sm/gbp-shrub-stone.jpg 900w, ../img/gbp-shrub-stone.jpg 1200w" sizes="(max-width: 767px) 200px, 40vw" alt="Trimmed round shrubs and a cone shrub in fresh mulch behind a stone edge" loading="lazy" fetchpriority="low" /><div class="svc-body"><h3>Fall cleanups</h3><p>One price for the whole leaf season. We keep coming back till it's clear.</p><span class="go">See the Fall Pass <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
           <a class="svc reveal d1" href="../spring-cleanup/"><img src="../img/sm/gallery-21.jpg" srcset="../img/xs/gallery-21.jpg 600w, ../img/sm/gallery-21.jpg 900w, ../img/md/gallery-21.jpg 1200w, ../img/gallery-21.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Trimmed shrubs and fresh mulch along a front walkway" loading="lazy" fetchpriority="low" /><div class="svc-body"><h3>Spring cleanups</h3><p class="draft">Sticks and dead leaves gone before your first mow.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
           <a class="svc reveal d2" href="../mulch-beds/"><img src="../img/sm/pole-bed-wide.jpg" srcset="../img/xs/pole-bed-wide.jpg 600w, ../img/sm/pole-bed-wide.jpg 900w, ../img/md/pole-bed-wide.jpg 1200w, ../img/pole-bed-wide.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Long fresh mulch bed with a stone border by the road" loading="lazy" fetchpriority="low" /><div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
           <a class="svc reveal d3" href="../yard-design/"><img src="../img/sm/gallery-22.jpg" srcset="../img/xs/gallery-22.jpg 600w, ../img/sm/gallery-22.jpg 900w, ../img/gallery-22.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="A shady planting bed with hostas and stones under a deck" loading="lazy" fetchpriority="low" /><div class="svc-body"><h3>Planting</h3><p class="draft">New plants and tired beds redone. The right plant in the right spot.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div></a>
@@ -325,10 +333,10 @@
     <section class="ask">
       <div class="wrap">
         <h2 class="stack reveal"><span class="thin">Want yours</span><span class="heavy">written out<span class="dot">?</span></span></h2>
-        <p class="lede reveal d1">I'll walk your yard and write out your whole year. Takes 20 minutes and you don't have to be home. You get it in a day and it's yours to keep, even if you stay with the guy you have now.</p>
+        <p class="lede reveal d1 draft">I look your yard up and walk it myself, then write out your whole year. You never have to come outside or be home. Want to walk it with me? Just ask and I will. You get it in a day and it's yours to keep, even if you stay with the guy you have now.</p>
         <a class="big-phone reveal d2" href="tel:+14406679642">(440) 667-9642</a>
         <div class="center reveal d3">
-          <a class="btn btn-lime" href="../?need=mowing#plan">Get my yard plan
+          <a class="btn btn-lime" href="../?need=mowing#plan-form">Get my yard plan
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
         </div>
@@ -414,8 +422,10 @@
   </dialog>
 
   <div class="call-bar">
-    <a class="btn btn-lime" href="../#plan">Get my yard plan</a>
-    <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call or text Harrison at (440) 667-9642"><span class="draft">Call or text</span></a>
+    <a class="btn btn-lime" href="../?need=mowing#plan-form">Get my yard plan</a>
+    <!-- 2026-10-20: Call and Text are two buttons now (events click_to_call / click_to_text come from site.js) -->
+    <a class="btn btn-ghost cb-reach" href="tel:+14406679642" aria-label="Call Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="draft">Call</span></a>
+    <a class="btn btn-ghost cb-reach" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
   </div>
 
   <script>
@@ -495,7 +505,7 @@
                            "name":  "Do I have to be home?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "No. We look your yard up on the map to price it. If we walk your yard, it takes about 20 minutes, and you don\u0027t have to be home for that either."
+                                                  "text":  "No. You never have to be home or come outside. Harrison looks your yard up and walks it himself. Want to walk it together? Just ask and he will."
                                               }
                        }
                    ]

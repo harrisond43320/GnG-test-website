@@ -20,7 +20,7 @@
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />  
   
-  <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../chrome.css" />
   <style>
     /* 2026-10-06: same system as home/index.html (tokens, header, cartoon buttons, type rule, footer). */
@@ -80,7 +80,7 @@
     .btn:active { transform: translateY(4px); box-shadow: 0 0 0 0 var(--btn-shadow, var(--pine)); }
     .btn:focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
     .site-head .btn:focus-visible, .done-card .btn:focus-visible { outline-color: var(--forest); }
-    .btn-lime { background: var(--lime); color: var(--pine); --btn-shadow: var(--pine); }
+    .btn-lime { background: var(--lime); color: #17391b; --btn-shadow: var(--pine); }
     .btn-lime:hover { background: #74c656; }
     .btn-ghost { background: #fff; color: var(--pine); --btn-shadow: var(--lime); --shine: rgba(102, 184, 74, .55); }
     .btn-dark { background: var(--pine); color: #fff; --btn-shadow: var(--lime); --shine: rgba(255, 255, 255, .35); }
@@ -229,6 +229,7 @@
   </style>
 </head>
 <body data-state="none">
+  <a class="skip" href="#top">Skip to main content</a>
 
   <header class="site-head">
     <div class="wrap head-in">
@@ -245,16 +246,14 @@
     </div>
   </header>
 
-  <main>
+  <main id="top">
     <!-- ALMOST DONE. The form saved a ready-made text/email in this browser tab (sessionStorage, never the URL).
          This page gives one big button to open it again, because some phones block the first try. -->
     <section class="ty">
       <div class="ty-photo"><img src="../img/sm/gallery-12.jpg" srcset="../img/sm/gallery-12.jpg 900w, ../img/md/gallery-12.jpg 1200w, ../img/gallery-12.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" /></div>
       <div class="wrap ty-in">
         <p class="eyebrow rise draft" data-thanks>Thanks!</p>
-        <h1 class="rise d1 if-msg draft">Almost done!</h1>
-        <h1 class="rise d1 if-none draft">Let's get you a yard plan.</h1>
-        <h1 class="rise d1 if-sent draft">Got it!</h1>
+        <h1 class="rise d1 draft" data-h1>Let's get you a yard plan.</h1>
 
         <!-- 2026-10-07: the form sent it by itself (form service on), so step 2 is already done -->
         <ol class="track rise d2 if-sent" aria-label="Your yard plan, step 3 of 3">
@@ -281,14 +280,14 @@
           </div>
           <div class="if-sent">
             <h2 class="draft">Harrison has it.</h2>
-            <p class="draft">He texts you back today from his own phone. You don't have to be home when we look at your yard.</p>
+            <p class="draft">He texts you back today from his own phone. You never have to come outside or be home.</p>
             <a class="btn btn-lime btn-big" href="tel:+14406679642">Want it faster? Call (440) 667-9642</a>
           </div>
           <div class="if-none">
             <h2 class="draft">Text Harrison your address.</h2>
             <p class="draft">Tell him what you need. He texts you back today.</p>
             <a class="btn btn-lime btn-big" href="sms:+14406679642">Text (440) 667-9642</a>
-            <p class="alt draft">Rather fill out the form? <a href="../#plan">Get my yard plan</a></p>
+            <p class="alt draft">Rather fill out the form? <a href="../#plan-form">Get my yard plan</a></p>
           </div>
         </div>
       </div>
@@ -301,11 +300,11 @@
         <ol class="next">
           <li><b>You send it.</b> Takes 30 seconds.</li>
           <li><b>Harrison texts you today.</b> From his own phone.</li>
-          <li><b>We write out your whole year.</b> We walk your yard in about 20 minutes. You don't have to be home.</li>
+          <li><b class="draft">We write out your whole year.</b> <span class="draft">Harrison looks your yard up and walks it himself. You never have to come outside or be home. Want to walk it together? Just ask.</span></li>
         </ol>
         <div class="after-grid">
           <figure class="crew">
-            <img src="../img/sm/crew-mulch.jpg" srcset="../img/xs/crew-mulch.jpg 600w, ../img/sm/crew-mulch.jpg 900w, ../img/md/crew-mulch.jpg 1200w, ../img/crew-mulch.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="The Grass 'n' Gardens crew by the truck after a mulch job" loading="lazy" fetchpriority="low" />
+            <img src="../img/sm/stripes-estate-crew.jpg" srcset="../img/xs/stripes-estate-crew.jpg 600w, ../img/sm/stripes-estate-crew.jpg 900w, ../img/md/stripes-estate-crew.jpg 1200w, ../img/stripes-estate-crew.jpg 1500w" sizes="(max-width: 767px) 200px, 40vw" alt="The Grass 'n' Gardens crew by the truck after a mulch job" loading="lazy" fetchpriority="low" />
             <figcaption>The crew</figcaption>
           </figure>
           <div>
@@ -402,8 +401,10 @@
   </dialog>
 
   <div class="call-bar">
-    <a class="btn btn-lime" href="../#plan">Get my yard plan</a>
-    <a class="btn btn-ghost" href="tel:+14406679642" aria-label="Call or text Harrison at (440) 667-9642"><span class="draft">Call or text</span></a>
+    <a class="btn btn-lime" href="../#plan-form">Get my yard plan</a>
+    <!-- 2026-10-20: Call and Text are two buttons now (events click_to_call / click_to_text come from site.js) -->
+    <a class="btn btn-ghost cb-reach" href="tel:+14406679642" aria-label="Call Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="draft">Call</span></a>
+    <a class="btn btn-ghost cb-reach" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
   </div>
 
   <script>
@@ -450,6 +451,9 @@
     const sent = !!(lead && lead.sent); // 2026-10-07: the form service already delivered it
     document.body.dataset.state = sent ? 'sent' : ok ? 'msg' : 'none';
     track('thank_you_view', { has_message: !!ok, sent });
+    // 2026-10-20: one h1 for the page; the words change with the state (was three h1s, two hidden)
+    const h1 = document.querySelector('[data-h1]');
+    if (h1) h1.textContent = sent ? 'Got it!' : ok ? 'Almost done!' : "Let's get you a yard plan.";
     if (sent && lead.first) document.querySelector('[data-thanks]').textContent = 'Thanks, ' + lead.first + '.';
 
     if (ok) {

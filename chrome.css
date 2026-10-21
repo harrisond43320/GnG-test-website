@@ -1,9 +1,8 @@
+/* 2026-10-20: 3 font files, not 5 (speed). Barlow 400 also draws 500, Barlow 700 also draws 600 and 800. */
 /* Fonts served from our own site (2026-10-08 speed pass; were Google Fonts). Latin only, files in fonts/. */
 @font-face { font-family: 'Alfa Slab One'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/alfa-slab-one-400.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/barlow-400.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap; src: url(fonts/barlow-500.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/barlow-600.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/barlow-700.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400 500; font-display: swap; src: url(fonts/barlow-400.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600 800; font-display: swap; src: url(fonts/barlow-700.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 /* G'N'G shared header dropdown + footer columns (2026-10-07). Every page links this file.
    Goes with _partials/header.html and _partials/footer.html. */
 /* ---------- header: Services dropdown (desktop) ---------- */
@@ -276,9 +275,69 @@ html.rvz-open { overflow: hidden; }
    a lime disc with two arrows going opposite ways (two passes), the name in Alfa Slab, the plan in jersey-blue Barlow caps.
    Flat on purpose (solid rings, no glow). Everything is in em, so set font-size to resize it (16px = about 255px wide).
    Markup to copy: _partials/double-pass-badge.html. Used on aeration-fertilizer, soil-check. */
-.dp-badge { display: inline-flex; align-items: center; gap: .7em; font-size: 16px; line-height: 1; background: var(--pine); color: #fff; border: .16em solid var(--lime); box-shadow: inset 0 0 0 .09em var(--pine), inset 0 0 0 .16em rgba(167, 203, 224, .6); border-radius: .75em; padding: .65em 1.05em .65em .7em; max-width: 100%; }
-.dp-badge .dp-ico { flex: none; width: 2.6em; height: 2.6em; display: block; }
+.dp-badge { display: inline-flex; align-items: center; gap: .6em; font-size: 16px; line-height: 1; background: var(--pine); color: #fff; border: .16em solid var(--lime); box-shadow: inset 0 0 0 .09em var(--pine), inset 0 0 0 .16em rgba(167, 203, 224, .6); border-radius: .75em; padding: .65em 1.05em .65em .7em; max-width: 100%; }
+.dp-badge .dp-ico { flex: none; width: 2.1em; height: 2.1em; display: block; }
 .dp-badge .dp-name { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.6em; letter-spacing: .01em; text-transform: uppercase; color: #fff; white-space: nowrap; }
 .dp-badge .dp-sub { display: block; margin-top: .45em; font-family: var(--font-body); font-weight: 700; font-size: .875em; letter-spacing: .15em; text-transform: uppercase; color: var(--jersey-blue); white-space: nowrap; }
 .dp-badge.lg { font-size: 20px; }
 @media (max-width: 400px) { .dp-badge.lg { font-size: min(17px, calc((100vw - 56px) / 17.7)); } }
+
+/* Header video panel (2026-10-19 v2, Harrison picked "panel beside the words"). The first try ran the video
+   behind the words under the dark shade: "you can't see half the work, and it's blurry, it's shaky."
+   Now a header with class="vid-hero" turns its .hero-photo into a 4:5 panel (the shape of a tall phone clip, so the
+   whole shot shows) with no shade: right of the words on computers, under the buttons on phones. The photo is the
+   first paint inside the panel; the video fades in over it. Without vid-hero the header looks like before. */
+header.vid-hero { background: var(--pine); }
+header.vid-hero .hero-photo::after { display: none; }
+header.vid-hero .hero-photo { border: 5px solid var(--forest); border-radius: var(--radius); overflow: hidden; background: var(--forest); }
+header.vid-hero .hero-photo img { transform: none; animation: none; }
+@media (min-width: 960px) {
+  /* words pinned to the top (not centered): the web fonts can add a line as they load, and a centered block would all jump (CLS 0.19) */
+  header.vid-hero { --panel-h: clamp(420px, calc(100svh - 250px), 620px); --panel-w: calc(var(--panel-h) * .8); align-items: flex-start; }
+  header.vid-hero .hero-photo { inset: auto; top: 50%; transform: translateY(-50%); height: var(--panel-h); width: var(--panel-w);
+    right: max(var(--s12), calc((100% - var(--wrap)) / 2 + var(--s12))); }
+  header.vid-hero .hero-in, header.vid-hero .hero-copy { padding-right: calc(var(--panel-w) + var(--s16)); padding-bottom: var(--s16); }
+  header.vid-hero h1 { font-size: clamp(48px, 5.8vw, 92px); }
+  header.vid-hero.hero h1 { font-size: clamp(48px, 5.4vw, 80px); }
+}
+/* phones + tablets: the video sits right under the headline (the words box "opens up" so the panel can slot in after
+   the h1); the lede, pills and buttons follow, and the sticky bottom bar keeps the buttons in reach. */
+@media (max-width: 959px) {
+  header.vid-hero { --gut: var(--s6); flex-direction: column; align-items: stretch; min-height: 0; padding: var(--s16) 0 var(--s12); }
+  header.vid-hero .hero-in, header.vid-hero .hero-copy { display: contents; }
+  header.vid-hero .hero-in > *, header.vid-hero .hero-copy > * { margin-left: var(--gut); margin-right: var(--gut); }
+  header.vid-hero h1 ~ * { order: 2; }
+  header.vid-hero .hero-photo { position: relative; inset: auto; order: 1; aspect-ratio: 4 / 5; max-height: 72svh; margin: var(--s6) var(--gut) 0; }
+}
+@media (min-width: 768px) and (max-width: 959px) { header.vid-hero { --gut: var(--s12); } header.vid-hero .hero-photo { max-width: 560px; } }
+.hero-photo .hero-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; pointer-events: none; }
+.hero-photo .hero-vid.on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .hero-photo .hero-vid { display: none; } }
+
+/* ---------- 2026-10-20 (round 3): skip link, Call + Text buttons, tap sizes ---------- */
+/* Skip to main content: first thing a keyboard or screen reader reaches; slides in only when focused */
+.skip {
+  position: fixed; z-index: 300; top: 8px; left: 8px; padding: 12px 18px; border-radius: 10px;
+  background: #1d4a22; color: #fff; font-weight: 700; font-size: 16px; line-height: 1.2; text-decoration: none;
+  border: 2px solid #66b84a; transform: translateY(-160%); transition: transform .2s ease-out;
+}
+.skip:focus, .skip:focus-visible { transform: translateY(0); outline: 3px solid #a7cbe0; outline-offset: 2px; }
+.skip:hover { background: #307537; }
+.skip:active { transform: translateY(2px); }
+@media (prefers-reduced-motion: reduce) { .skip { transition: none; } }
+/* sticky bar: Get my yard plan (wide) + Call + Text, all 48px tall */
+div.call-bar { grid-template-columns: 1fr auto auto; gap: 8px; padding: 8px; }
+div.call-bar a { min-height: 48px; padding: 10px 12px; font-size: 15px; gap: 6px; white-space: nowrap; }
+div.call-bar a.cb-reach { padding: 10px 14px; }
+div.call-bar a.cb-reach svg { flex: none; width: 18px; height: 18px; }
+@media (max-width: 359px) { div.call-bar a { padding: 10px 9px; font-size: 14px; } div.call-bar a.cb-reach { padding: 10px 10px; } div.call-bar a.cb-reach svg { display: none; } }
+/* phone menu: plan button, then Call and Text side by side */
+.menu-ctas .reach-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
+.menu-ctas .reach-row .btn { min-height: 48px; justify-content: center; gap: 8px; }
+.menu-ctas .reach-row .btn svg { flex: none; }
+@media (min-width: 560px) { .menu-ctas .reach-row { grid-column: 1 / -1; } }
+/* 44px tap targets on phones: footer town links, in-text links */
+@media (max-width: 899px) {
+  .foot .meta.towns a { display: inline-block; padding: 12px 6px; }
+  .qa-a a, .gets a, .lede a, .copy a { padding-top: 10px; padding-bottom: 10px; }
+}

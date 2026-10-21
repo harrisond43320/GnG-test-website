@@ -23,7 +23,7 @@
     let on = true;
     const check = () => {
       const t = performance.now() / 1000;
-      roll.forEach(i => { if (on && t >= (parseFloat(getComputedStyle(i).animationDelay) || 0) - 3) load(i); });
+      roll.forEach(i => { if (on && !i.closest('.vid-on') && t >= (parseFloat(getComputedStyle(i).animationDelay) || 0) - 3) load(i); });
       if (!roll.some(i => i.dataset.src)) clearInterval(timer);
     };
     const timer = setInterval(check, 1000);
@@ -32,6 +32,33 @@
   };
   if (document.readyState === 'complete') later(); else addEventListener('load', later);
 
+  // Header B-roll video (2026-10-19 v2, make-broll.ps1): a muted loop of real job clips fades in over the header photo,
+  // which a vid-hero header shows as a 4:5 panel beside the words (chrome.css).
+  // The photo stays the first paint (speed). The video starts 1.5s after the page loads and only once the header
+  // is on screen; it pauses when scrolled away. Skipped on Save-Data, 2g/3g and reduced motion (the photo stays).
+  // Phones and small panels get the 576px cut, big sharp screens the 720px cut. Keep the same code in the homepage script.
+  (() => {
+    const box = document.querySelector('.hero-photo[data-broll-lg]');
+    if (!box) return;
+    const net = navigator.connection || {};
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || net.saveData || /2g|3g/.test(net.effectiveType || '')) return;
+    const start = () => {
+      const r = box.getBoundingClientRect();
+      const v = document.createElement('video');
+      v.className = 'hero-vid'; v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
+      ['muted', 'playsinline', 'disablepictureinpicture'].forEach(a => v.setAttribute(a, ''));
+      v.setAttribute('aria-hidden', 'true'); v.setAttribute('tabindex', '-1');
+      v.src = innerWidth >= 960 && r.width * (devicePixelRatio || 1) > 620 ? box.dataset.brollLg : box.dataset.brollSm;
+      v.addEventListener('playing', () => { v.classList.add('on'); box.classList.add('vid-on'); }, { once: true });
+      box.appendChild(v);
+      new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(box);
+    };
+    const go = () => setTimeout(() => {
+      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); start(); } });
+      io.observe(box);
+    }, 1500);
+    if (document.readyState === 'complete') go(); else addEventListener('load', go);
+  })();
   // Header shadow + phone/tablet menu
   const head = document.querySelector('.site-head');
   if (head) {
