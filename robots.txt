@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gng-test-website.vercel.app/sitemap.xml
+Sitemap: https://www.grassngardens.com/sitemap.xml
