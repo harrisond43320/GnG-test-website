@@ -807,3 +807,6 @@
 :not(.light) > .wrap > .split .gets a:focus-visible, .coal .gets a:focus-visible { outline-color: var(--lime); }
 /* lime chips and captions: deeper pine text so they pass 4.5 to 1 (was 4.15) */
 .svc .tag, .ba-shot.after figcaption, .gshot.all, .split-photo figcaption { color: #17391b; }
+
+/* 2026-10-22: 320px phones: long slab words in section headings ("IN BRECKSVILLE.") ran 12px past the screen. */
+@media (max-width: 340px) { .sec-h b { font-size: 32px; } }

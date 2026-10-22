@@ -425,11 +425,27 @@
   </dialog>
 
   <div class="call-bar">
+    <!-- 2026-10-22: the 2027 save-5% offer as a thin line above the buttons (Harrison picked "option 2"). Starts hidden;
+         the script under the bar shows it, except on the season pass page itself, after a visitor closes it, or after 3/31/2027. -->
+    <p class="cb-offer" hidden><a class="draft" href="../season-pass/"><span>Save <b>5%</b> on 2027 mowing. Pay by March 31.</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><button type="button" class="cb-x" aria-label="Hide the 2027 offer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></p>
     <a class="btn btn-lime" href="../?need=hoa#plan-form">Get my yard plan</a>
     <!-- 2026-10-20: Call and Text are two buttons now (events click_to_call / click_to_text come from site.js) -->
     <a class="btn btn-ghost cb-reach" href="tel:+14406679642" aria-label="Call Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="draft">Call</span></a>
     <a class="btn btn-ghost cb-reach" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
   </div>
+  <script>
+  // 2027 offer line on the phone bar (2026-10-22). Shows unless: this is a page with its own ask, the visitor closed it, or it is 4/1/2027+.
+  (() => {
+    const p = document.querySelector('.call-bar .cb-offer'); if (!p) return;
+    const skip = /\/(season-pass|join-the-crew|thank-you|soil-check|winter-walk)\//.test(location.pathname);
+    let closed = false; try { closed = localStorage.getItem('gng_offer_bar') === 'closed'; } catch (e) {}
+    if (skip || closed || new Date() >= new Date(2027, 3, 1)) return;
+    p.hidden = false;
+    const push = (event) => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event, page: location.pathname }); };
+    p.querySelector('a').addEventListener('click', () => push('offer_bar_click'));
+    p.querySelector('.cb-x').addEventListener('click', () => { p.hidden = true; push('offer_bar_close'); try { localStorage.setItem('gng_offer_bar', 'closed'); } catch (e) {} });
+  })();
+  </script>
 
   <script>
   // VISITOR STATS (2026-10-07). Runs on the live site only, never on localhost.

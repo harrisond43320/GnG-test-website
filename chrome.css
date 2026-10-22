@@ -235,6 +235,14 @@ html.rvz-open { overflow: hidden; }
   .site-head .menu-btn .menu-word { display: inline; }
 }
 @media (max-width: 365px) { .site-head .brand img { height: 44px; } }
+/* 2026-10-22: 320px phones (first iPhone SE): the header row was ~40px too wide and the page scrolled sideways. Smaller logo, side padding and gaps here only. */
+@media (max-width: 340px) {
+  .site-head .head-in { padding-left: 14px; padding-right: 14px; gap: 8px; }
+  .site-head .brand img { height: 38px; }
+  .site-head .head-ctas { gap: 6px; }
+  .site-head .head-ctas .phone { padding-left: 12px; padding-right: 12px; }
+  .site-head .menu-btn { padding: 0 8px; gap: 4px; }
+}
 
 /* 2026-10-08 LESS SCROLL (Harrison: "less scroll time, easy to find"). The phone footer was still ~1.6 screens.
    Logo + icons on one row, the short blurb hidden on phones, link lists tighter (taps stay 40px+). */
@@ -331,6 +339,16 @@ div.call-bar a { min-height: 48px; padding: 10px 12px; font-size: 15px; gap: 6px
 div.call-bar a.cb-reach { padding: 10px 14px; }
 div.call-bar a.cb-reach svg { flex: none; width: 18px; height: 18px; }
 @media (max-width: 359px) { div.call-bar a { padding: 10px 9px; font-size: 14px; } div.call-bar a.cb-reach { padding: 10px 10px; } div.call-bar a.cb-reach svg { display: none; } }
+/* 2027 offer line on the phone bar (2026-10-22, Harrison picked "option 2"): one thin row above the 3 buttons, inside the same coal bar.
+   Flat: white words, lime 5%, a hairline under it. Markup + script in _partials/footer.html. */
+div.call-bar .cb-offer { grid-column: 1 / -1; display: flex; align-items: center; gap: 4px; margin: 0; padding: 0 0 6px 6px; border-bottom: 1px solid rgba(255,255,255,.14); }
+div.call-bar .cb-offer[hidden] { display: none; }
+div.call-bar .cb-offer a { flex: 1; display: flex; align-items: center; gap: 6px; min-height: 40px; padding: 0; justify-content: flex-start; font: 600 14px/1.25 var(--font-body); color: #fff; white-space: normal; text-decoration: none; }
+div.call-bar .cb-offer a b { color: var(--lime, #66b84a); font-weight: 800; }
+div.call-bar .cb-offer a svg { flex: none; color: var(--lime, #66b84a); }
+div.call-bar .cb-x { flex: none; display: grid; place-items: center; width: 40px; height: 40px; margin: 0 -2px 0 0; padding: 0; border: 0; border-radius: 10px; background: transparent; color: rgba(255,255,255,.75); cursor: pointer; }
+div.call-bar .cb-x:focus-visible, div.call-bar .cb-offer a:focus-visible { outline: 3px solid var(--lime, #66b84a); outline-offset: 2px; }
+@media (max-width: 899px) { body:has(.call-bar .cb-offer:not([hidden])) footer.site { padding-bottom: 170px; } }
 /* phone menu: plan button, then Call and Text side by side */
 .menu-ctas .reach-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
 .menu-ctas .reach-row .btn { min-height: 48px; justify-content: center; gap: 8px; }
