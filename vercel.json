@@ -1,6 +1,6 @@
 {
   "redirects": [
-    { "source": "/:path((?!googleaa07dbb6e3e71547\\.html$).*)", "has": [{ "type": "host", "value": "gng-test-website.vercel.app" }], "destination": "https://www.grassngardens.com/:path", "permanent": true },
+    { "source": "/:path((?!googleaa07dbb6e3e71547\\.html$).*)", "has": [{ "type": "host", "value": "gng-test-website.vercel.app" }], "destination": "https://www.grassngardens.com/:path", "statusCode": 301 },
     { "source": "/leaf-removal", "destination": "/fall-cleanup/", "permanent": true },
     { "source": "/spring-fall-cleanup", "destination": "/fall-cleanup/", "permanent": true },
     { "source": "/mulching", "destination": "/mulch-beds/", "permanent": true },
