@@ -28,13 +28,13 @@
   <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../site.css" />
   <link rel="stylesheet" href="../chrome.css" />
-  <!-- FALL / AFTER switch. The fall offer (second pass free, 30 yards, book by Sunday 10/25) shows until the end of
-       Sunday 2026-10-25 and then hides by itself. To preview: add ?season=fall or ?season=after to the address.
+  <!-- FALL / AFTER switch. The fall offer (second pass free, 30 yards, book by Saturday 10/31) shows until the end of
+       Saturday 2026-10-31 and then hides by itself. To preview: add ?season=fall or ?season=after to the address.
        Anything marked data-fall is the fall offer. Anything marked data-after shows once the fall offer is over. -->
   <script>
     (function () {
       var q = /[?&]season=(fall|after)/.exec(location.search);
-      var fall = q ? q[1] === 'fall' : Date.now() < Date.UTC(2026, 9, 26, 4);
+      var fall = q ? q[1] === 'fall' : Date.now() < Date.UTC(2026, 10, 1, 4);
       document.documentElement.setAttribute('data-season', fall ? 'fall' : 'after');
     })();
   </script>
@@ -62,7 +62,7 @@
   <style>
     /* 2026-10-15: SOIL CHECK (software lead magnet for the Double Pass, Thick Grass Plan). Phone first: Harrison texts the
        link. Plan: lead-magnet-packages/aeration-screwdriver-test.md (9b and 11). Flat, brand tokens only.
-       Fall-only bits carry data-fall and hide by themselves after Sun 10/25 (see the switch in the head). */
+       Fall-only bits carry data-fall and hide by themselves after Sat 10/31 (see the switch in the head). */
     .page-hero.short { min-height: clamp(320px, 42svh, 440px); }
     [data-season="after"] [data-fall] { display: none !important; }
     [data-season="fall"] [data-after] { display: none !important; }
@@ -153,7 +153,7 @@
 
   <div class="topbar">
     <!-- 2026-10-15: in fall the old line below is hidden (it carries data-after), which left an empty blue bar. This line fills it. -->
-    <p data-fall>Last round of aeration. The second pass is free. Last day is Sunday 10/25.</p>
+    <p data-fall>Last round of aeration. The second pass is free. Last day is Saturday 10/31.</p>
     <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan-form&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
   </div>
 
@@ -291,11 +291,11 @@
       </div>
     </header>
 
-    <!-- FALL LINE. Harrison: delete this whole block on Mon 10/26. It also hides by itself after Sunday 10/25. -->
+    <!-- FALL LINE. Harrison: delete this whole block on Sun 11/1. It also hides by itself after Saturday 10/31. -->
     <div class="fall-strip" data-fall>
       <div class="wrap">
         <!-- 2026-10-15: matches Text 1 / Text 2 (aeration-launch-playbook.md section 6) -->
-        <p class="draft">Last round of aeration this year. We aerate the last two weeks of October. <b>The second pass is free.</b> You pay for one pass and we go over your yard twice. Room for <b>30 yards</b>. Last day to get on the list is <b>Sunday 10/25</b>.</p>
+        <p class="draft">Last round of aeration this year. We aerate the last two weeks of October. <b>The second pass is free.</b> You pay for one pass and we go over your yard twice. Room for <b>30 yards</b>. Last day to get on the list is <b>Saturday 10/31</b>.</p>
       </div>
     </div>
     <!-- /FALL LINE -->
@@ -417,7 +417,7 @@
               </div>
               <p class="sc-over draft" data-over hidden>Text AERATE and we'll send your price.</p>
 
-              <p class="sc-over draft" data-fall>Room for 30 yards. Last day to get on the list is Sunday 10/25. Reply AERATE and I'll add you.</p>
+              <p class="sc-over draft" data-fall>Room for 30 yards. Last day to get on the list is Saturday 10/31. Reply AERATE and I'll add you.</p>
               <div class="sc-cta">
                 <a class="btn btn-lime" href="sms:+14406679642?&amp;body=AERATE" data-sms>Text AERATE to <span style="white-space:nowrap">(440) 667-9642</span></a>
               </div>
