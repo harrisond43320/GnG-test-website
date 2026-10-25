@@ -38,27 +38,53 @@
   // is on screen; it pauses when scrolled away. Skipped on Save-Data, 2g/3g and reduced motion (the photo stays).
   // Phones and small panels get the 576px cut, big sharp screens the 720px cut. Keep the same code in the homepage script.
   (() => {
+    // 2026-10-25: (1) a header with data-broll-wide also gets a 16:9 loop behind the words on computers (the horizontal clips;
+    // chrome.css darkens it under the words). Phones never load it. (2) Both loops start as soon as this script runs (Harrison:
+    // "when you load up, the video instantly pops up and starts rolling"), not 1.5s after the load event.
     const box = document.querySelector('.hero-photo[data-broll-lg]');
-    if (!box) return;
+    const hero = document.querySelector('header.vid-hero[data-broll-wide]');
+    if (!box && !hero) return;
     const net = navigator.connection || {};
     if (matchMedia('(prefers-reduced-motion: reduce)').matches || net.saveData || /2g|3g/.test(net.effectiveType || '')) return;
-    const start = () => {
-      const r = box.getBoundingClientRect();
+    const mk = (src, cls) => {
       const v = document.createElement('video');
-      v.className = 'hero-vid'; v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
+      v.className = cls; v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
       ['muted', 'playsinline', 'disablepictureinpicture'].forEach(a => v.setAttribute(a, ''));
       v.setAttribute('aria-hidden', 'true'); v.setAttribute('tabindex', '-1');
-      v.src = innerWidth >= 960 && r.width * (devicePixelRatio || 1) > 620 ? box.dataset.brollLg : box.dataset.brollSm;
-      v.addEventListener('playing', () => { v.classList.add('on'); box.classList.add('vid-on'); }, { once: true });
-      box.appendChild(v);
-      new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(box);
+      v.src = src;
+      return v;
     };
-    const go = () => setTimeout(() => {
-      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); start(); } });
-      io.observe(box);
-    }, 1500);
-    if (document.readyState === 'complete') go(); else addEventListener('load', go);
-  })();
+    const watch = (v, el) => new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(el);
+    const desktop = innerWidth >= 960;
+    const tile = () => {
+      if (!box) return;
+      const r = box.getBoundingClientRect();
+      const v = mk(desktop && r.width * (devicePixelRatio || 1) > 620 ? box.dataset.brollLg : box.dataset.brollSm, 'hero-vid');
+      v.addEventListener('playing', () => { v.classList.add('on'); box.classList.add('vid-on'); }, { once: true });
+      box.appendChild(v); watch(v, box);
+      return v;
+    };
+    const wide = () => {
+      if (!hero || !desktop) return;
+      const w = mk(hero.dataset.brollWide, 'hero-wide');
+      w.addEventListener('playing', () => { w.classList.add('on'); hero.classList.add('wide-on'); }, { once: true });
+      const pic = hero.querySelector('.hero-wide-pic'); hero.insertBefore(w, pic ? pic.nextSibling : hero.firstChild); watch(w, hero);
+    };
+    // Timing (2026-10-25, measured with speed-test.ps1): the tile can start the moment the page is parsed on computers at no cost
+    // (desktop 100). The wide loop covers the whole header, so the moment it shows it counts as the page's biggest paint: starting
+    // it at once scored desktop 87 (LCP 2.3s); after load + WIDE_DELAY it scores 100 and people see it about a second later.
+    // Phones keep the old timing (load + 1.5s, once the header is on screen): starting the loop with the still cost 3-5 phone points.
+    // Measured 10/25 with speed-test.ps1: load + 1.5s still scored 83-85 (the test keeps watching for a bit after load), load + 3s
+    // scores 100. Chrome streams the tile loop lazily, so 'wait until it has buffered' took 7s and is no good. WIDE_DELAY = 0 makes the
+    // wide loop start at once (desktop 87) if Harrison ever wants that over the score.
+    const WIDE_DELAY = 0;   // 10/25 v6: the wide still (page CSS background) is the biggest paint, so the loop can start at once
+    const after = (fn, ms) => { const go = () => setTimeout(fn, ms); if (document.readyState === 'complete') go(); else addEventListener('load', go); };
+    // v8: on computers both loops start the moment the wide still has painted (about 0.2s on broadband). Started together with it,
+    // the loops hog the line and the still (the header's biggest paint) lands late (desktop 86, LCP 2.5s).
+    const st = hero && hero.querySelector('.hero-wide-still');
+    const both = () => { tile(); after(wide, WIDE_DELAY); };
+    if (desktop) { if (st && !st.complete) st.addEventListener('load', both, { once: true }); else both(); }
+    else if (box) after(() => { const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); tile(); } }); io.observe(box); }, 1500);  })();
   // Header shadow + phone/tablet menu
   const head = document.querySelector('.site-head');
   if (head) {

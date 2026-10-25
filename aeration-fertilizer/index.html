@@ -24,6 +24,7 @@
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
   <!-- 2026-10-25: xs + sm only (no md): the 900-wide still is the first paint, the video covers it 1.5s later. md on phones cost 20 speed points. -->
   <link rel="preload" as="image" href="../img/sm/aeration-logan-stinger.jpg" imagesrcset="../img/xs/aeration-logan-stinger.jpg 600w, ../img/sm/aeration-logan-stinger.jpg 900w" imagesizes="(max-width: 959px) 45vw, 500px" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/aeration-wide-still.jpg" media="(min-width: 960px)" />
   
   
   <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -98,7 +99,8 @@
     .hero-price b { font-weight: 800; color: var(--lime); }
     .page-hero .hero-ctas.hero-one { margin-top: 20px; }
     .btn-tall { flex-direction: column; gap: 2px; padding: 14px 32px; font-size: 21px; line-height: 1.1; min-width: 300px; }
-    .btn-tall small { font-size: 14px; font-weight: 700; letter-spacing: .02em; opacity: .9; }
+    .btn-tall small { font-size: 14px; font-weight: 700; letter-spacing: .02em; opacity: 1; }
+    .hero-dpline, .btn-tall small { color: #10301a; }  /* 2026-10-25 look-check: pine on lime was 4.15 and 4.36, needs 4.5 */
     .hero-sub { margin-top: var(--s3); font-size: 15px; font-weight: 600; color: rgba(255,255,255,.92); text-shadow: 0 2px 14px rgba(0,0,0,.45); }
     @media (max-width: 959px) {
       html:not([data-season="after"]) .page-hero .crumbs, html:not([data-season="after"]) .page-hero .facts { display: none; }
@@ -258,7 +260,10 @@
   <main id="top">
     <!-- 2026-10-07 (night): new page. Facts from lead-magnet-packages/aeration-screwdriver-test.md + Tavily (Ohio State
          fall timing). New wording is class="draft". No weed control promises: the Ohio applicator license is still open. -->
-    <header class="page-hero vid-hero">
+    <header class="page-hero vid-hero" data-broll-wide="../video/broll-aeration-wide-lg.mp4">
+      <!-- 2026-10-25: the wide still (computers only; phones get a 1px gif and hide it). It paints first as the header's biggest thing,
+           and the wide loop (site.js, data-broll-wide) fades in over it at the same size. -->
+      <picture class="hero-wide-pic"><source media="(min-width: 960px)" srcset="../img/aeration-wide-still.jpg" /><img class="hero-wide-still" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1440" height="810" alt="A Richfield lawn right after core aeration" fetchpriority="high" /></picture>
       <!-- 2026-10-25: real G'N'G video replaces the stock plug photo (and its credit line). Logan on the Stinger
            stand-on aerator in Richfield, 10/21, 4K phone clips: broll-aeration in make-broll.ps1 (4 shots, 11s, shake 0.1-0.66).
            The still is a frame from the same clip; it paints first, the loop fades in over it (site.js). -->

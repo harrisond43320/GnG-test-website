@@ -321,6 +321,22 @@ header.vid-hero .hero-photo img { transform: none; animation: none; }
 .hero-photo .hero-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; pointer-events: none; }
 .hero-photo .hero-vid.on { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .hero-photo .hero-vid { display: none; } }
+/* 2026-10-25: wide video behind the words on computers (header[data-broll-wide], site.js). Harrison: "use the horizontal clips for the
+   header... the verticals for the icon section... I want it to be both." Alex: a dark forest shade of about 75-85% under the words,
+   lighter on the right, so the headline and the button keep their contrast; the tile stays the bright, sharp thing next to the button.
+   Phones never load it (the strip is enough on a vertical screen). */
+header.vid-hero[data-broll-wide] { position: relative; overflow: hidden; }
+header.vid-hero .hero-wide-pic { display: contents; }
+header.vid-hero .hero-wide-still { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
+header.vid-hero .hero-wide { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; pointer-events: none; }
+header.vid-hero .hero-wide.on { opacity: 1; }
+@media (min-width: 960px) { header.vid-hero[data-broll-wide]::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(90deg, rgba(29,74,34,.9) 0%, rgba(29,74,34,.84) 40%, rgba(29,74,34,.58) 70%, rgba(29,74,34,.42) 100%); } }
+/* The wide still (each page sets it as the header background in its own style block, computers only) paints first and is the biggest
+   paint at ~0.5s; the loop fades in over it at the same size, so the speed test does not count the loop as a new biggest paint. */
+@media (min-width: 960px) { header.vid-hero .hero-in, header.vid-hero .hero-copy { position: relative; z-index: 3; } header.vid-hero .hero-photo { z-index: 3; } }
+@media (max-width: 959px) { header.vid-hero .hero-wide, header.vid-hero .hero-wide-still { display: none; } }
+@media (prefers-reduced-motion: reduce) { header.vid-hero .hero-wide { display: none; } }
 
 /* ---------- 2026-10-20 (round 3): skip link, Call + Text buttons, tap sizes ---------- */
 /* Skip to main content: first thing a keyboard or screen reader reaches; slides in only when focused */
