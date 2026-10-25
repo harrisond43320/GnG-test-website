@@ -83,49 +83,53 @@
     .hero-credit { position: absolute; right: 12px; bottom: 8px; z-index: 3; font-size: 11px; line-height: 1.3; color: rgba(255,255,255,.62); }
     .hero-credit a { color: inherit; text-decoration: none; }
     /* 2026-10-15 DOUBLE PASS section (the offer; badge CSS is in home/chrome.css). Pine ground, white card with the lime cartoon shadow like .soil-card. */
-    .dp { scroll-margin-top: 90px; background: var(--pine); color: #fff; border-top: 4px solid var(--lime); border-bottom: 4px solid var(--lime); padding: var(--s12) 0; }
-    @media (min-width: 768px) { .dp { padding: var(--s16) 0; } }
-    .dp[data-season="after"] [data-dp-fall] { display: none; }
-    .dp:not([data-season="after"]) [data-dp-after] { display: none; }
-    .dp-eye { color: var(--jersey-blue); margin-bottom: var(--s4); }
-    .dp-grid { display: grid; gap: var(--s8); margin-top: var(--s8); }
-    @media (min-width: 960px) {
-      .dp-grid { grid-template-columns: 1.1fr .9fr; grid-template-areas: "head card" "rest card"; column-gap: var(--s16); align-items: start; }
-      .dp-head { grid-area: head; } .dp-card { grid-area: card; } .dp-rest { grid-area: rest; }
+    /* 2026-10-25 v3 (Alex, phone-first). While the Double Pass runs (body[data-season="fall"]) the header IS the offer, said once:
+       lime line, small H1 (Google keeps it), the offer in the big lettering, the price line, ONE tall button, "We text back your price."
+       Phones: no crumbs, eyebrow, lede or pills, and a 230px video strip, so the button sits in the first screen and a half.
+       The white band under it only explains (why, the 3 things, the Soil Check link). After 10/31 the normal header comes back. */
+    html[data-season="after"] .page-hero [data-hero-fall] { display: none; }
+    html:not([data-season="after"]) .page-hero [data-hero-after] { display: none; }
+    html:not([data-season="after"]) .topbar { display: none; }
+    html:not([data-season="after"]) .page-hero h1 { margin-top: 10px; max-width: none; font-family: var(--font-body); font-style: normal; font-weight: 700; font-size: 15px; line-height: 1.2; letter-spacing: .2em; color: var(--jersey-blue); -webkit-text-stroke: 0; text-shadow: none; }
+    .hero-dpline { display: inline-block; margin-top: var(--s4); padding: 7px 12px; border-radius: 6px; background: var(--lime); color: var(--pine); font-weight: 800; font-size: 14px; line-height: 1.2; letter-spacing: .14em; text-transform: uppercase; }
+    .hero-offer { margin-top: var(--s3); max-width: 12ch; font-family: var(--font-display); font-weight: 400; font-style: italic; text-transform: uppercase; font-size: clamp(42px, 5.4vw, 84px); line-height: .98; letter-spacing: .03em; color: #fff; -webkit-text-stroke: .1em var(--pine); paint-order: stroke fill; text-shadow: .05em .06em 0 var(--forest); }
+    .hero-offer > span { display: block; margin-bottom: .12em; font-family: var(--font-body); font-style: normal; font-weight: 800; font-size: .34em; line-height: 1.2; letter-spacing: 0; text-transform: none; -webkit-text-stroke: 0; text-shadow: 0 2px 18px rgba(0,0,0,.45); }
+    .hero-price { margin-top: var(--s4); max-width: 30em; font-size: 18px; line-height: 1.45; font-weight: 600; color: #fff; text-shadow: 0 2px 18px rgba(0,0,0,.45); }
+    .hero-price b { font-weight: 800; color: var(--lime); }
+    .page-hero .hero-ctas.hero-one { margin-top: 20px; }
+    .btn-tall { flex-direction: column; gap: 2px; padding: 14px 32px; font-size: 21px; line-height: 1.1; min-width: 300px; }
+    .btn-tall small { font-size: 14px; font-weight: 700; letter-spacing: .02em; opacity: .9; }
+    .hero-sub { margin-top: var(--s3); font-size: 15px; font-weight: 600; color: rgba(255,255,255,.92); text-shadow: 0 2px 14px rgba(0,0,0,.45); }
+    @media (max-width: 959px) {
+      html:not([data-season="after"]) .page-hero .crumbs, html:not([data-season="after"]) .page-hero .facts { display: none; }
+      html:not([data-season="after"]) header.vid-hero .hero-photo { aspect-ratio: auto; height: 230px; max-height: none; }
+      html:not([data-season="after"]) .page-hero .hero-offer { font-size: clamp(38px, 10.6vw, 50px); }
+      .btn-tall { width: 100%; }
     }
-    .dp .sec-h, .dp .sec-h b { color: #fff; }
-    .dp-lede { margin-top: var(--s4); font-size: 20px; line-height: 1.5; font-weight: 600; max-width: 30em; }
-    .dp-card { background: #fff; color: var(--ink); border: 3px solid var(--ink); border-radius: 22px; box-shadow: 9px 9px 0 var(--lime); padding: var(--s6); }
-    .dp-card .eyebrow { color: var(--forest); }
-    .dp-list { list-style: none; display: grid; gap: var(--s4); margin-top: var(--s4); }
-    .dp-list li { display: grid; grid-template-columns: 26px 1fr; column-gap: var(--s3); row-gap: 2px; align-items: start; }
-    .dp-list li::before { content: ""; grid-row: span 2; width: 26px; height: 26px; border-radius: 50%; background: var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d4a22' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 12.5l4.2 4.2L18.5 8'/%3E%3C/svg%3E") center / 18px no-repeat; }
-    .dp-list b { font-size: 18px; line-height: 1.3; color: var(--ink); }
-    .dp-list span { font-size: 16px; line-height: 1.5; color: var(--ink-muted); }
-    .dp-block + .dp-block { margin-top: var(--s6); }
-    .dp-rest h3 { font-family: var(--font-body); font-weight: 700; font-size: 14px; line-height: 1.2; letter-spacing: .18em; text-transform: uppercase; color: var(--jersey-blue); }
-    .dp-rest p { margin-top: 6px; font-size: 17px; line-height: 1.55; color: rgba(255,255,255,.92); }
-    .dp-ticket { background: rgba(255,255,255,.07); border-left: 6px solid var(--lime); border-radius: 0 14px 14px 0; padding: var(--s4) var(--s6); }
-    .dp-ticket .dp-limit { font-weight: 600; }
-    .dp-ticket .dp-limit b { font-weight: 800; color: #fff; }
-    .dp-ctas { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s6); }
+    div.call-bar { transition: transform .25s ease-out; }
+    div.call-bar.cb-away { transform: translateY(120%); }
+    /* the band: white, one sentence, 3 things in a row on computers, the Soil Check link */
+    .dp { scroll-margin-top: 90px; background: #fff; color: var(--ink); border-top: 4px solid var(--lime); border-bottom: 4px solid var(--lime); padding: 36px 0; }
+    @media (min-width: 768px) { .dp { padding: var(--s12) 0; } }
+    html[data-season="after"] .dp [data-dp-fall] { display: none; }
+    html:not([data-season="after"]) .dp [data-dp-after] { display: none; }
+    .dp .sec-h, .dp .sec-h b { color: var(--pine); }
+    .dp-lede { font-size: 19px; line-height: 1.5; font-weight: 600; color: var(--pine); max-width: 34em; }
+    .dp-row { list-style: none; display: grid; gap: var(--s4); margin-top: var(--s6); }
+    @media (min-width: 760px) { .dp-row { grid-template-columns: repeat(3, 1fr); gap: var(--s8); } }
+    .dp-row li { display: grid; grid-template-columns: 26px 1fr; column-gap: var(--s3); row-gap: 2px; align-items: start; }
+    .dp-row li::before { content: ""; grid-row: span 2; width: 26px; height: 26px; border-radius: 50%; background: var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d4a22' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 12.5l4.2 4.2L18.5 8'/%3E%3C/svg%3E") center / 18px no-repeat; }
+    .dp-row b { font-size: 18px; line-height: 1.3; color: var(--ink); }
+    .dp-row span { font-size: 16px; line-height: 1.5; color: var(--ink-muted); }
+    .dp-after { margin-top: var(--s6); font-size: 16px; line-height: 1.5; color: var(--ink-muted); }
+    .dp-after a { color: var(--pine); font-weight: 700; text-decoration: none; padding: 2px 6px; border-radius: 6px; background: rgba(102,184,74,.22); box-shadow: 0 0 0 1px rgba(102,184,74,.35); }  /* soft lime highlight, no underline (Harrison) */
+    .dp-after a:hover, .dp-after a:focus-visible { background: rgba(102,184,74,.4); }
+    .dp-ctas { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: 20px; }
     .dp-ctas .btn { flex: 1 1 240px; justify-content: center; }
     .dp .btn-lime { --btn-shadow: var(--ink); }
-    .dp-proof { margin-top: var(--s12); display: grid; gap: var(--s6); }
-    .dp-proof[hidden] { display: none; }
-    @media (min-width: 760px) { .dp-proof { grid-template-columns: 260px 1fr; align-items: start; } }
-    .dp-vid { margin: 0; width: 100%; max-width: 260px; }
-    /* 2026-10-25: 4:5 box (the shape of the B-roll cut) instead of 9:16; a one-line label under it */
-    .dp-vid .box { position: relative; aspect-ratio: 4 / 5; max-height: 56svh; background: var(--forest); border: 3px solid #fff; border-radius: 18px; overflow: hidden; }
-    .dp-vid figcaption { margin-top: 8px; font-size: 14px; line-height: 1.35; color: rgba(255,255,255,.82); }
-    .dp-vid video { display: block; width: 100%; height: 100%; object-fit: cover; background: #000; }
-    .dp-vid .ph { position: absolute; inset: 0; display: grid; place-content: center; gap: var(--s2); padding: var(--s4); text-align: center; }
-    .dp-vid .ph b { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 20px; line-height: 1.1; }
-    .dp-vid .ph span { font-size: 15px; line-height: 1.4; }
-    .dp-photos { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s3); }
-    .dp-photos img { width: 100%; height: auto; border-radius: 14px; border: 3px solid #fff; }
-    .dp-photos:empty { display: none; }
   </style>
+  <!-- 2026-10-25: Double Pass season switch, decided before the page paints (fall until Sat 10/31 night; ?season=after / ?season=fall to preview). The script under the section does the rest. -->
+  <script>document.documentElement.setAttribute('data-season', (/[?&]season=after/.test(location.search) || (!/[?&]season=fall/.test(location.search) && Date.now() >= Date.UTC(2026, 10, 1, 4))) ? 'after' : 'fall');</script>
 </head>
 <body>
   <a class="skip" href="#top">Skip to main content</a>
@@ -261,11 +265,25 @@
       <div class="hero-photo" data-broll-lg="../video/broll-aeration-lg.mp4" data-broll-sm="../video/broll-aeration-sm.mp4"><img src="../img/sm/aeration-logan-stinger.jpg" srcset="../img/xs/aeration-logan-stinger.jpg 600w, ../img/sm/aeration-logan-stinger.jpg 900w" sizes="(max-width: 959px) 45vw, 500px" width="900" height="1125" alt="Logan running the stand-on aerator across a Richfield front lawn" fetchpriority="high" /></div>
       <div class="wrap hero-in">
         <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Aeration and fertilizer</li></ol>
-        <p class="eyebrow reveal">Richfield, Ohio</p>
+        <!-- 2026-10-25 v3 (Alex, phone-first): while the Double Pass runs the header IS the offer, said once: lime line, small H1 (Google keeps it),
+             the offer in the big lettering, the price line, ONE tall button, "We text back your price." Phones hide crumbs, eyebrow, lede and pills
+             and get a 230px video strip. After 10/31 (data-season="after", set by the script under the section) the normal header comes back. -->
+        <p class="hero-dpline reveal draft" data-hero-fall>Double Pass. This fall only.</p>
+        <p class="eyebrow reveal" data-hero-after>Richfield, Ohio</p>
         <h1 class="reveal d1">Aeration and fertilizer</h1>
-        <p class="lede reveal d2 draft">Grass 'n' Gardens aerates, overseeds and feeds lawns in Richfield and nearby towns. Thicker grass and deeper roots, year after year.</p>
-        <div class="hero-ctas reveal d3">
-          <!-- 2026-10-15: the Soil Check page is the main button now (Harrison: nowhere to find it). The screwdriver test is still on this page. -->
+        <div data-hero-fall>
+          <p class="hero-offer reveal d1"><span class="draft">Pay for one pass.</span> <b class="draft">Second pass free<span class="dot">.</span></b></p>
+          <p class="hero-price reveal d2 draft">From <b>$150</b>. Room for <b>30 yards</b>. Last day is <b>Saturday 10/31</b>.</p>
+          <!-- GUARANTEE SLOT: one line here if Harrison picks one. Don't invent it. -->
+          <div class="hero-ctas hero-one reveal d3">
+            <a class="btn btn-lime btn-tall" href="sms:+14406679642?&amp;body=AERATE">Text AERATE <small>(440) 667-9642</small></a>
+          </div>
+          <p class="hero-sub reveal d3 draft">We text back your price.</p>
+          <!-- REVIEW SLOT: one real customer line (first name + town) here when Harrison gives one. -->
+        </div>
+        <p class="lede reveal d2 draft" data-hero-after>Grass 'n' Gardens aerates, overseeds and feeds lawns in Richfield and nearby towns. Thicker grass and deeper roots, year after year.</p>
+        <div class="hero-ctas reveal d3" data-hero-after>
+          <!-- 2026-10-15: the Soil Check page is the main button (Harrison: nowhere to find it). The screwdriver test is still on this page. -->
           <a class="btn btn-lime" href="../soil-check/?src=aeration">Take the 20-second Soil Check
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="#soil-test">Try the screwdriver test</a>
@@ -282,56 +300,19 @@
          Offer facts are locked in lead-magnet-packages/aeration-launch-playbook.md (sections 2, 6, 11). New wording is class="draft".
          After Saturday 10/31 the script below the section swaps it to "Full for this fall" (preview: ?season=after, or ?season=fall).
          No guarantee line on purpose: Harrison hasn't decided one. -->
-    <section class="dp" id="double-pass" aria-labelledby="dp-h">
+    <section class="dp" id="double-pass" aria-label="Double Pass">
       <div class="wrap">
         <div data-dp-fall>
-          <p class="eyebrow dp-eye draft">This fall only</p>
-          <span class="dp-badge lg" role="img" aria-label="Double Pass, Thick Grass Plan">
-            <svg class="dp-ico" viewBox="-1 -1 42 42" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#66b84a"/><g fill="none" stroke="#1d4a22" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 15h15M22 10.8l4.5 4.2-4.5 4.2"/><path d="M28.5 25h-15M18 20.8L13.5 25l4.5 4.2"/></g></svg>
-            <span><span class="dp-name">Double Pass</span><span class="dp-sub">Thick Grass Plan</span></span>
-          </span>
-          <div class="dp-grid">
-            <div class="dp-head">
-              <h2 class="sec-h left" id="dp-h"><span class="draft">Pay for one pass.</span> <b class="draft">Second pass free<span class="dot">.</span></b></h2>
-              <p class="dp-lede draft">We go over your yard twice and you pay for one pass.</p>
-            </div>
-            <div class="dp-card">
-              <p class="eyebrow draft">What you get</p>
-              <ul class="dp-list">
-                <li><b class="draft">Core aeration, 2 passes</b><span class="draft">We go over your whole yard twice.</span></li>
-                <li><b class="draft">We flag sprinkler heads and dog fence lines</b><span class="draft">We do it before we start, so nothing gets hit.</span></li>
-                <li><b class="draft">A before photo and a screwdriver photo</b><span class="draft">You see where your soil started.</span></li>
-                <li><b class="draft">Riley texts you the day before</b><span class="draft">You know when we're coming.</span></li>
-                <li><b class="draft">You don't need to be home</b><span class="draft">Leave the gate unlocked and the dog inside.</span></li>
-              </ul>
-            </div>
-            <div class="dp-rest">
-              <div class="dp-block">
-                <h3 class="draft">Why two passes</h3>
-                <p class="draft">Two passes make twice the holes. More air and water get down to the roots. That's how you get thick grass next spring.</p>
-              </div>
-              <div class="dp-block dp-ticket">
-                <h3 class="draft">Your price</h3>
-                <p class="draft">We price by the size of your grass. The minimum is $150. See your price in 20 seconds.</p>
-                <p class="dp-limit draft">Room for <b>30 yards</b>. Last day to get on the list is <b>Saturday 10/31</b>. We aerate the last two weeks of October.</p>
-              </div>
-              <!-- GUARANTEE SLOT: nothing here until Harrison decides one. Don't invent a line. -->
-              <div class="dp-ctas">
-                <a class="btn btn-lime" href="sms:+14406679642?&amp;body=AERATE">Text AERATE to <span style="white-space:nowrap">(440) 667-9642</span></a>
-                <a class="btn btn-ghost" href="../soil-check/?src=double-pass">Take the Soil Check</a>
-              </div>
-            </div>
-          </div>
-          <!-- PROOF SLOT: Logan's video and before and after photos. Hidden until filled (set DP_VIDEO_SRC / DP_PHOTOS in the script at the bottom).
-               On localhost or with ?drafts an empty box shows as a reminder. -->
-          <div class="dp-proof" data-dp-proof hidden>
-            <figure class="dp-vid" data-dp-vid>
-              <div class="box" data-dp-box>
-                <div class="ph" data-dp-ph><b>Video goes here</b><span>Logan's aeration video.</span></div>
-              </div>
-            </figure>
-            <div class="dp-photos" data-dp-photos></div>
-          </div>
+          <!-- 2026-10-25 v3 (Alex, phone-first): the offer, price and button now live in the header, said ONCE. This band only explains it:
+               the why sentence, the 3 things you get, the Soil Check link. The 10/25 v2 (white section, badge, headline, button, tap-to-play
+               tile, pine card) and the 10/15 original are in docs/site-history.md. -->
+          <p class="dp-lede draft">We go over your yard twice. More air and water get to the roots, so you get thick grass next spring.</p>
+          <ul class="dp-row">
+            <li><b class="draft">Core aeration, 2 passes</b><span class="draft">We go over your whole yard twice.</span></li>
+            <li><b class="draft">We flag sprinkler heads and dog fence lines</b><span class="draft">Before we start, so nothing gets hit.</span></li>
+            <li><b class="draft">You don't need to be home</b><span class="draft">Riley texts you the day before. Leave the gate unlocked and the dog inside.</span></li>
+          </ul>
+          <p class="dp-after draft">Want your price first? <a href="../soil-check/?src=double-pass">Do the 20-second check.</a></p>
         </div>
 
         <!-- AFTER Saturday 10/31 (the only content once the fall list closes) -->
@@ -348,7 +329,21 @@
         </div>
       </div>
     </section>
-    <script>(function () { var s = document.getElementById('double-pass'), q = /[?&]season=(fall|after)/.exec(location.search); if (q ? q[1] === 'after' : Date.now() >= Date.UTC(2026, 10, 1, 4)) s.setAttribute('data-season', 'after'); })();</script>
+    <script>(function () {
+      var s = document.getElementById('double-pass'), h = document.querySelector('.page-hero'), q = /[?&]season=(fall|after)/.exec(location.search);
+      var after = q ? q[1] === 'after' : Date.now() >= Date.UTC(2026, 10, 1, 4);
+      document.body.setAttribute('data-season', after ? 'after' : 'fall');
+      if (after) { s.setAttribute('data-season', 'after'); if (h) h.setAttribute('data-season', 'after'); return; }
+      // 2026-10-25 v3 (Alex): while the offer runs, the phone bar says the same thing as the header ("Double Pass ends Sat 10/31" + Text AERATE)
+      // and stays out of the way while the header button is on screen. The 2027 strip at the top is hidden by CSS (body[data-season="fall"]).
+      document.addEventListener('DOMContentLoaded', function () {
+        var bar = document.querySelector('.call-bar'); if (!bar) return;
+        var plan = bar.querySelector('.btn-lime'); if (plan) { plan.href = 'sms:+14406679642?&body=AERATE'; plan.textContent = 'Text AERATE'; }
+        var off = bar.querySelector('.cb-offer a'); if (off) { off.href = 'sms:+14406679642?&body=AERATE'; var sp = off.querySelector('span'); if (sp) sp.innerHTML = 'Double Pass ends <b>Sat 10/31</b>.'; }
+        var btn = document.querySelector('[data-hero-fall] .btn');
+        if (btn && 'IntersectionObserver' in window) new IntersectionObserver(function (e) { bar.classList.toggle('cb-away', e[0].isIntersecting); }).observe(btn);
+      });
+    })();</script>
     <!-- /DOUBLE PASS -->
 
     <!-- THE SOIL TEST (signature of this page) -->
@@ -708,33 +703,6 @@
       show();
     })();
 
-    // 2026-10-15 DOUBLE PASS proof slot. Fill these when Logan's video and the before and after photos are ready (files go in this folder).
-    // Hidden for visitors until one of them is set. On localhost or with ?drafts an empty box shows as a reminder.
-    (() => {
-      // 2026-10-25: the close-up aeration loop (plugs coming out, the machine; broll-aeration-proof in make-broll.ps1), so it isn't
-      // the header loop again. Muted, plays by itself, loops. Poster = the header's xs still (already loaded, so no extra fetch).
-      const DP_VIDEO_SRC = '../video/broll-aeration-proof-sm.mp4';
-      const DP_VIDEO_POSTER = '../img/xs/aeration-logan-stinger.jpg';
-      const DP_VIDEO_LABEL = 'Logan on the aerator in Richfield. Oct 21, 2026.';
-      const DP_PHOTOS = [];         // for example [{ src: '../img/sm/aeration-after.jpg', alt: 'Lawn right after the second pass' }]
-      const wrap = document.querySelector('[data-dp-proof]');
-      if (!wrap) return;
-      const fig = wrap.querySelector('[data-dp-vid]'), box = wrap.querySelector('[data-dp-box]'), ph = wrap.querySelector('[data-dp-ph]'), grid = wrap.querySelector('[data-dp-photos]');
-      const draft = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]drafts/.test(location.search);
-      if (DP_VIDEO_SRC) {
-        const v = document.createElement('video');
-        v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata'; v.src = DP_VIDEO_SRC;
-        ['muted', 'playsinline', 'disablepictureinpicture'].forEach(a => v.setAttribute(a, ''));
-        v.setAttribute('aria-label', DP_VIDEO_LABEL);
-        if (DP_VIDEO_POSTER) v.poster = DP_VIDEO_POSTER;
-        ph.remove(); box.appendChild(v);
-        if (DP_VIDEO_LABEL) { const c = document.createElement('figcaption'); c.className = 'draft'; c.textContent = DP_VIDEO_LABEL; fig.appendChild(c); }
-        // plays only while on screen (and not at all with reduced motion: the poster stays)
-        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(box);
-      } else if (!draft) { fig.remove(); }
-      DP_PHOTOS.forEach(p => { const i = document.createElement('img'); i.src = p.src; i.alt = p.alt || ''; i.loading = 'lazy'; i.decoding = 'async'; grid.appendChild(i); });
-      if (DP_VIDEO_SRC || DP_PHOTOS.length || draft) wrap.hidden = false;
-    })();
   </script>
   <!-- FAQ for Google / AI answers. Built from the FAQ section by websites/faq-jsonld.ps1; rebuild after editing the FAQ. -->
   <script type="application/ld+json" id="faq-ld">
