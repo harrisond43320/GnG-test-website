@@ -22,7 +22,8 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <link rel="preload" as="image" href="../img/stock-aeration-plugs.jpg" imagesrcset="../img/sm/stock-aeration-plugs.jpg 900w, ../img/md/stock-aeration-plugs.jpg 1200w, ../img/stock-aeration-plugs.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
+  <!-- 2026-10-25: xs + sm only (no md): the 900-wide still is the first paint, the video covers it 1.5s later. md on phones cost 20 speed points. -->
+  <link rel="preload" as="image" href="../img/sm/aeration-logan-stinger.jpg" imagesrcset="../img/xs/aeration-logan-stinger.jpg 600w, ../img/sm/aeration-logan-stinger.jpg 900w" imagesizes="(max-width: 959px) 45vw, 500px" fetchpriority="high" />
   
   
   <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -113,8 +114,10 @@
     .dp-proof { margin-top: var(--s12); display: grid; gap: var(--s6); }
     .dp-proof[hidden] { display: none; }
     @media (min-width: 760px) { .dp-proof { grid-template-columns: 260px 1fr; align-items: start; } }
-    .dp-vid { margin: 0; width: 100%; max-width: 230px; }
-    .dp-vid .box { position: relative; aspect-ratio: 9 / 16; max-height: 56svh; background: var(--forest); border: 3px solid #fff; border-radius: 18px; overflow: hidden; }
+    .dp-vid { margin: 0; width: 100%; max-width: 260px; }
+    /* 2026-10-25: 4:5 box (the shape of the B-roll cut) instead of 9:16; a one-line label under it */
+    .dp-vid .box { position: relative; aspect-ratio: 4 / 5; max-height: 56svh; background: var(--forest); border: 3px solid #fff; border-radius: 18px; overflow: hidden; }
+    .dp-vid figcaption { margin-top: 8px; font-size: 14px; line-height: 1.35; color: rgba(255,255,255,.82); }
     .dp-vid video { display: block; width: 100%; height: 100%; object-fit: cover; background: #000; }
     .dp-vid .ph { position: absolute; inset: 0; display: grid; place-content: center; gap: var(--s2); padding: var(--s4); text-align: center; }
     .dp-vid .ph b { font-family: var(--font-display); font-weight: 400; text-transform: uppercase; font-size: 20px; line-height: 1.1; }
@@ -251,11 +254,11 @@
   <main id="top">
     <!-- 2026-10-07 (night): new page. Facts from lead-magnet-packages/aeration-screwdriver-test.md + Tavily (Ohio State
          fall timing). New wording is class="draft". No weed control promises: the Ohio applicator license is still open. -->
-    <header class="page-hero">
-      <!-- 2026-10-15: hero swapped to aeration plugs (Harrison: more converting header). Stock until a real G'N'G
-           plug photo comes in: Oregon State University on Flickr, CC BY-SA 2.0, so the credit line must stay. -->
-      <div class="hero-photo"><img src="../img/stock-aeration-plugs.jpg" srcset="../img/sm/stock-aeration-plugs.jpg 900w, ../img/md/stock-aeration-plugs.jpg 1200w, ../img/stock-aeration-plugs.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="Plugs of dirt pulled out by an aerator, lying on the grass and in a hand" fetchpriority="high" style="--pos: center 40%" /></div>
-      <small class="hero-credit">Photo: <a href="https://www.flickr.com/photos/33247428@N08/8704115339" target="_blank" rel="noopener">Oregon State University</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></small>
+    <header class="page-hero vid-hero">
+      <!-- 2026-10-25: real G'N'G video replaces the stock plug photo (and its credit line). Logan on the Stinger
+           stand-on aerator in Richfield, 10/21, 4K phone clips: broll-aeration in make-broll.ps1 (4 shots, 11s, shake 0.1-0.66).
+           The still is a frame from the same clip; it paints first, the loop fades in over it (site.js). -->
+      <div class="hero-photo" data-broll-lg="../video/broll-aeration-lg.mp4" data-broll-sm="../video/broll-aeration-sm.mp4"><img src="../img/sm/aeration-logan-stinger.jpg" srcset="../img/xs/aeration-logan-stinger.jpg 600w, ../img/sm/aeration-logan-stinger.jpg 900w" sizes="(max-width: 959px) 45vw, 500px" width="900" height="1125" alt="Logan running the stand-on aerator across a Richfield front lawn" fetchpriority="high" /></div>
       <div class="wrap hero-in">
         <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Aeration and fertilizer</li></ol>
         <p class="eyebrow reveal">Richfield, Ohio</p>
@@ -708,8 +711,11 @@
     // 2026-10-15 DOUBLE PASS proof slot. Fill these when Logan's video and the before and after photos are ready (files go in this folder).
     // Hidden for visitors until one of them is set. On localhost or with ?drafts an empty box shows as a reminder.
     (() => {
-      const DP_VIDEO_SRC = '';      // for example 'aeration.mp4'
-      const DP_VIDEO_POSTER = '';   // optional still, for example 'aeration.jpg'
+      // 2026-10-25: the close-up aeration loop (plugs coming out, the machine; broll-aeration-proof in make-broll.ps1), so it isn't
+      // the header loop again. Muted, plays by itself, loops. Poster = the header's xs still (already loaded, so no extra fetch).
+      const DP_VIDEO_SRC = '../video/broll-aeration-proof-sm.mp4';
+      const DP_VIDEO_POSTER = '../img/xs/aeration-logan-stinger.jpg';
+      const DP_VIDEO_LABEL = 'Logan on the aerator in Richfield. Oct 21, 2026.';
       const DP_PHOTOS = [];         // for example [{ src: '../img/sm/aeration-after.jpg', alt: 'Lawn right after the second pass' }]
       const wrap = document.querySelector('[data-dp-proof]');
       if (!wrap) return;
@@ -717,9 +723,14 @@
       const draft = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]drafts/.test(location.search);
       if (DP_VIDEO_SRC) {
         const v = document.createElement('video');
-        v.controls = true; v.playsInline = true; v.preload = 'metadata'; v.src = DP_VIDEO_SRC;
+        v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata'; v.src = DP_VIDEO_SRC;
+        ['muted', 'playsinline', 'disablepictureinpicture'].forEach(a => v.setAttribute(a, ''));
+        v.setAttribute('aria-label', DP_VIDEO_LABEL);
         if (DP_VIDEO_POSTER) v.poster = DP_VIDEO_POSTER;
         ph.remove(); box.appendChild(v);
+        if (DP_VIDEO_LABEL) { const c = document.createElement('figcaption'); c.className = 'draft'; c.textContent = DP_VIDEO_LABEL; fig.appendChild(c); }
+        // plays only while on screen (and not at all with reduced motion: the poster stays)
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(box);
       } else if (!draft) { fig.remove(); }
       DP_PHOTOS.forEach(p => { const i = document.createElement('img'); i.src = p.src; i.alt = p.alt || ''; i.loading = 'lazy'; i.decoding = 'async'; grid.appendChild(i); });
       if (DP_VIDEO_SRC || DP_PHOTOS.length || draft) wrap.hidden = false;
