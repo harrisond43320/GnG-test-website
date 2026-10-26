@@ -24,7 +24,6 @@
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
   <!-- 2026-10-25: xs + sm only (no md): the 900-wide still is the first paint, the video covers it 1.5s later. md on phones cost 20 speed points. -->
   <link rel="preload" as="image" href="../img/sm/aeration-logan-stinger.jpg" imagesrcset="../img/xs/aeration-logan-stinger.jpg 600w, ../img/sm/aeration-logan-stinger.jpg 900w" imagesizes="(max-width: 959px) 45vw, 500px" fetchpriority="high" />
-  <link rel="preload" as="image" href="../img/aeration-wide-still.jpg" media="(min-width: 960px)" />
   
   
   <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -260,10 +259,9 @@
   <main id="top">
     <!-- 2026-10-07 (night): new page. Facts from lead-magnet-packages/aeration-screwdriver-test.md + Tavily (Ohio State
          fall timing). New wording is class="draft". No weed control promises: the Ohio applicator license is still open. -->
-    <header class="page-hero vid-hero" data-broll-wide="../video/broll-aeration-wide-lg.mp4">
-      <!-- 2026-10-25: the wide still (computers only; phones get a 1px gif and hide it). It paints first as the header's biggest thing,
-           and the wide loop (site.js, data-broll-wide) fades in over it at the same size. -->
-      <picture class="hero-wide-pic"><source media="(min-width: 960px)" srcset="../img/aeration-wide-still.jpg" /><img class="hero-wide-still" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1440" height="810" alt="A Richfield lawn right after core aeration" fetchpriority="high" /></picture>
+    <!-- 2026-10-25 (Alex + Charlie + Customer Care): no wide loop behind the words on this page. A 4s single-shot repeat under a promise
+         reads as cheap and two moving things fight the words; the tile carries the one real clip. Plain forest green behind the words. -->
+    <header class="page-hero vid-hero">
       <!-- 2026-10-25: real G'N'G video replaces the stock plug photo (and its credit line). Logan on the Stinger
            stand-on aerator in Richfield, 10/21, 4K phone clips: broll-aeration in make-broll.ps1 (4 shots, 11s, shake 0.1-0.66).
            The still is a frame from the same clip; it paints first, the loop fades in over it (site.js). -->
@@ -509,6 +507,19 @@
           <details class="qa">
             <summary><h3 class="draft">How much does aeration cost?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
             <div class="qa-a"><p class="draft">It depends on how big your lawn is. Send us your address and Harrison texts you the price today. <a href="../?need=aeration#plan-form">Get my yard plan</a></p></div>
+          </details>
+          <!-- 2026-10-25 (Harrison's answers, same night): seed is an add-on we quote; once a year. Draft until he OKs the words. -->
+          <details class="qa">
+            <summary><h3 class="draft">Should I overseed after aeration?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">If your grass is thin, yes. Right after aeration is the best time, because the seed drops into the holes and roots before winter. Seed is an add-on. Grass 'n' Gardens quotes it with your aeration price, by the size of your yard.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3 class="draft">How often should a lawn be aerated?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">Once a year, every fall, for most lawns around Richfield. That keeps the soil loose so water and food get down to the roots. If a screwdriver won't go in (take the Soil Check), the lawn is packed and needs it this year for sure.</p></div>
+          </details>
+          <details class="qa">
+            <summary><h3 class="draft">What do I do after you aerate?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
+            <div class="qa-a"><p class="draft">Leave the plugs. They break down in a week or two with rain and mowing. Mow like normal. If we put seed down, keep the lawn damp for two weeks so it sprouts.</p></div>
           </details>
         </div>
       </div>
@@ -761,6 +772,30 @@
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
                                                   "text":  "It depends on how big your lawn is. Send us your address and Harrison texts you the price today."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Should I overseed after aeration?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "If your grass is thin, yes. Right after aeration is the best time, because the seed drops into the holes and roots before winter. Seed is an add-on. Grass \u0027n\u0027 Gardens quotes it with your aeration price, by the size of your yard."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "How often should a lawn be aerated?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Once a year, every fall, for most lawns around Richfield. That keeps the soil loose so water and food get down to the roots. If a screwdriver won\u0027t go in (take the Soil Check), the lawn is packed and needs it this year for sure."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "What do I do after you aerate?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Leave the plugs. They break down in a week or two with rain and mowing. Mow like normal. If we put seed down, keep the lawn damp for two weeks so it sprouts."
                                               }
                        }
                    ]

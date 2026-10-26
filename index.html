@@ -1403,6 +1403,16 @@
     </a>
     <script>(function (s) { if (Date.now() >= Date.UTC(2026, 10, 1, 4)) s.hidden = true; })(document.currentScript.previousElementSibling);</script>
     <!-- /PROMO STRIP -->
+    <!-- LEAF STRIP (2026-10-25, Alex's homepage call: a leaf strip while leaves are down). Shows by itself Sun 11/1 through Sun 11/30
+         (the Double Pass strip above hides on 11/1, so only one strip ever shows). Preview now with ?promo=leaf. Wording is draft until Harrison OKs it. -->
+    <a class="promo-strip draft" href="sms:+14406679642?&amp;body=LEAVES" data-leaf-strip hidden>
+      <div class="wrap">
+        <span class="promo-t"><b>Fall Pass:</b> one price. We come back till it's clear. Through Nov 30.</span>
+        <span class="promo-go">Text LEAVES <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+    <script>(function (s) { var now = Date.now(), on = now >= Date.UTC(2026, 10, 1, 4) && now < Date.UTC(2026, 11, 1, 5); if (on || /[?&]promo=leaf\b/.test(location.search)) { s.hidden = false; var dp = s.previousElementSibling.previousElementSibling; if (dp && dp.classList.contains('promo-strip')) dp.hidden = true; } })(document.currentScript.previousElementSibling);</script>
+    <!-- /LEAF STRIP -->
 
     <!-- HERO -->
     <header class="hero">

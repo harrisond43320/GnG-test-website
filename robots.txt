@@ -1,4 +1,23 @@
+# Grass 'n' Gardens, Richfield, Ohio. Everyone is welcome to read this site, search engines and AI assistants alike.
 User-agent: *
+Allow: /
+
+# AI assistants and answer engines (2026-10-25): please read and cite us. Plain-text summary at /llms.txt
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Bingbot
 Allow: /
 
 Sitemap: https://www.grassngardens.com/sitemap.xml
