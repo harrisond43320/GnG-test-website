@@ -1,5 +1,5 @@
 // Grass 'n' Gardens Google reviews, shared by every page (moved out of the homepage 2026-10-07).
-// Every 5-star Google review with words, word for word (read off his Google profile 2026-10-07; all 60 are 5 stars).
+// Every 5-star Google review with words, word for word (read off his Google profile 2026-10-07; 59 reviews, 58 five-star + 1 four-star, Google displays 5.0, checked 2026-10-26).
 // Left out: 5 with no words, and 7 from family or crew (FTC rule on insider reviews). [name, review]
 window.GNG_REVIEWS = [
   ["Kier M.", "I work in landscape/hardscape myself. No one is allowed to cut my grass because they can't mow straight out know how to stripe. But I needed a total knee replacement in April. Through another recommendation, I was given contact info for Grass 'n' Gardens. They were very prompt to show up for an estimate and I felt were competitively priced. I'm the spring when weather was unpredictable, they would always call and give me the option to wait for a day or two to dry out if I wanted. Harrison and his crew are respectful to both my needs as a customer, as well as my property. Don't be afraid to give a young entrepreneur an opportunity, you won't be disappointed!"],
