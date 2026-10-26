@@ -2,7 +2,7 @@
 <!-- 2026-10-07. Every page Google should find (thank-you is left out on purpose: it's noindex). Change the address when the site moves to grassngardens.com. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.grassngardens.com/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/five-before-we-drive/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://www.grassngardens.com/five-before-we-drive/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://www.grassngardens.com/lawn-mowing/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.grassngardens.com/fall-cleanup/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.grassngardens.com/spring-cleanup/</loc><lastmod>2026-10-07</lastmod></url>
@@ -16,9 +16,11 @@
   <url><loc>https://www.grassngardens.com/join-the-crew/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.grassngardens.com/refer/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.grassngardens.com/yard-of-the-month/</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://www.grassngardens.com/richfield-oh/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/broadview-heights-oh/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/brecksville-oh/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.grassngardens.com/richfield-oh/</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://www.grassngardens.com/broadview-heights-oh/</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://www.grassngardens.com/brecksville-oh/</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://www.grassngardens.com/bath-oh/</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://www.grassngardens.com/granger-oh/</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://www.grassngardens.com/about/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.grassngardens.com/faq/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.grassngardens.com/our-work/</loc><lastmod>2026-10-07</lastmod></url>
