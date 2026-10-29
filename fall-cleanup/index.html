@@ -25,6 +25,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
   <link rel="preload" as="image" href="../img/fall-cleanup-wide-still.jpg" media="(min-width: 960px)" />
+  <link rel="preload" as="image" href="../img/xs/fall-cleanup-strip-still.jpg" media="(max-width: 959px)" fetchpriority="high" />
   
   
   <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -237,10 +238,12 @@
   <main id="top">
     <!-- 2026-10-07: new page. Fall Pass lines come from the approved copy bank (call script + texts, 2026-10-01).
          Anything reworded or new is class="draft" (see with ?drafts). No prices on marketing pages. -->
-    <header class="page-hero vid-hero" data-broll-wide="../video/broll-fall-cleanup-wide-lg.mp4">
+    <header class="page-hero vid-hero vid-strip" data-broll-wide="../video/broll-fall-cleanup-wide-lg.mp4">
       <!-- 2026-10-25: the wide still (computers only; phones get a 1px gif and hide it). It paints first as the header's biggest thing,
            and the wide loop (site.js, data-broll-wide) fades in over it at the same size. -->
       <picture class="hero-wide-pic"><source media="(min-width: 960px)" srcset="../img/fall-cleanup-wide-still.jpg" /><img class="hero-wide-still" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1440" height="810" alt="Two Grass N Gardens crew with backpack blowers on a mulch bed in Richfield" fetchpriority="high" /></picture>
+      <!-- 2026-10-29: phones had no video (the 10/25 tile became the review card). The phone strip is the same leaf loop at 640x360, under the small H1. -->
+      <div class="hero-photo" data-broll-lg="../video/broll-fall-cleanup-wide-sm.mp4" data-broll-sm="../video/broll-fall-cleanup-wide-sm.mp4"><img src="../img/xs/fall-cleanup-strip-still.jpg" width="640" height="360" alt="Two Grass N Gardens crew blowing leaves off a mulch bed" fetchpriority="high" /></div>
       <div class="wrap hero-in">
         <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Fall cleanups</li></ol>
         <!-- 2026-10-25 (Alex, phone-first, same recipe as aeration v3): while leaf season runs the header IS the Fall Pass offer. After Nov 30

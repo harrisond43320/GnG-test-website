@@ -337,6 +337,16 @@ header.vid-hero .hero-wide.on { opacity: 1; }
 @media (min-width: 960px) { header.vid-hero .hero-in, header.vid-hero .hero-copy { position: relative; z-index: 3; } header.vid-hero .hero-photo { z-index: 3; } }
 @media (max-width: 959px) { header.vid-hero .hero-wide, header.vid-hero .hero-wide-still { display: none; } }
 @media (prefers-reduced-motion: reduce) { header.vid-hero .hero-wide { display: none; } }
+/* 2026-10-29 .vid-strip (Harrison: "the leaf B-roll doesn't show on the phone"). One loop per device: computers get the wide loop behind the
+   words (data-broll-wide), phones get the SAME footage as a short 16:9 strip under the headline (the .hero-photo, data-broll-sm = <name>-wide-sm.mp4),
+   so the button stays on the first screen. Computers hide the strip and give the words its room back (or they wrap into a taller header
+   when the fonts land: CLS 0.23 on lawn-mowing 10/29). site.js skips a hidden strip, so computers never download it. */
+@media (min-width: 960px) {
+  header.vid-hero.vid-strip .hero-photo { display: none; }
+  header.vid-hero.vid-strip .hero-in { padding-right: var(--s12); }
+  header.vid-hero.vid-strip .hero-in .lede { max-width: 40em; }
+}
+@media (max-width: 959px) { header.vid-hero.vid-strip .hero-photo { aspect-ratio: 16 / 9; max-height: none; } }
 
 /* ---------- 2026-10-20 (round 3): skip link, Call + Text buttons, tap sizes ---------- */
 /* Skip to main content: first thing a keyboard or screen reader reaches; slides in only when focused */

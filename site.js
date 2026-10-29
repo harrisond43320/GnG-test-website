@@ -57,7 +57,7 @@
     const watch = (v, el) => new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }).observe(el);
     const desktop = innerWidth >= 960;
     const tile = () => {
-      if (!box) return;
+      if (!box || getComputedStyle(box).display === 'none') return;   // 2026-10-29: a page that hides the tile on computers (lawn-mowing) loads only the wide loop
       const r = box.getBoundingClientRect();
       const v = mk(desktop && r.width * (devicePixelRatio || 1) > 620 ? box.dataset.brollLg : box.dataset.brollSm, 'hero-vid');
       v.addEventListener('playing', () => { v.classList.add('on'); box.classList.add('vid-on'); }, { once: true });

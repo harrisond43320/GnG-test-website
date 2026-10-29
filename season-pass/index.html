@@ -24,7 +24,8 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <link rel="preload" as="image" href="../img/gbp-big-yard.jpg" imagesrcset="../img/xs/gbp-big-yard.jpg 600w, ../img/sm/gbp-big-yard.jpg 900w, ../img/md/gbp-big-yard.jpg 1200w, ../img/gbp-big-yard.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/season-pass-wide-still.jpg" media="(min-width: 960px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/xs/season-pass-strip-still.jpg" media="(max-width: 959px)" fetchpriority="high" />
   
   
   <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -188,8 +189,10 @@
     <!-- 2026-10-07: new page. The homepage ticket opens this page (Harrison: "click on the ticket... finance the mowing").
          It's prepay, not financing (real financing has legal rules); Harrison picked "pay up front, save 5%".
          Terms = the ticket's lines (the locked 3-part guarantee + 5% prepay). New wording is class="draft". -->
-    <header class="page-hero">
-      <div class="hero-photo"><img src="../img/gbp-big-yard.jpg" srcset="../img/xs/gbp-big-yard.jpg 600w, ../img/sm/gbp-big-yard.jpg 900w, ../img/md/gbp-big-yard.jpg 1200w, ../img/gbp-big-yard.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="Wide back lawn with fresh mowing stripes under a blue sky" fetchpriority="high" style="--pos: center 55%" /></div>
+    <header class="page-hero vid-hero vid-strip" data-broll-wide="../video/broll-season-pass-wide-lg.mp4">
+      <!-- 2026-10-29: Riley's 4K shoot, broll-season-pass-wide (make-broll.ps1): the stripes all season, then the crew. Computers: loop behind the words; phones: the strip. -->
+      <picture class="hero-wide-pic"><source media="(min-width: 960px)" srcset="../img/season-pass-wide-still.jpg" /><img class="hero-wide-still" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1280" height="720" alt="Grass N Gardens zero-turn mower coming down fresh stripes" fetchpriority="high" /></picture>
+      <div class="hero-photo" data-broll-lg="../video/broll-season-pass-wide-sm.mp4" data-broll-sm="../video/broll-season-pass-wide-sm.mp4"><img src="../img/xs/season-pass-strip-still.jpg" width="640" height="360" alt="Grass N Gardens zero-turn mower coming down fresh stripes" fetchpriority="high" /></div>
       <div class="wrap hero-in">
         <ol class="crumbs reveal"><li><a href="../">Home</a></li><li aria-current="page">2027 Season Pass</li></ol>
         <p class="eyebrow reveal">2027 weekly mowing</p>

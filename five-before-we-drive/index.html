@@ -24,7 +24,8 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <link rel="preload" as="image" href="../img/edge-curve.jpg" imagesrcset="../img/xs/edge-curve.jpg 600w, ../img/sm/edge-curve.jpg 900w, ../img/edge-curve.jpg 1200w" imagesizes="(max-width: 767px) 50vw, 100vw" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/five-wide-still.jpg" media="(min-width: 960px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/xs/five-strip-still.jpg" media="(max-width: 959px)" fetchpriority="high" />
   
   
   <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -179,8 +180,10 @@
 
   <main id="top">
     <!-- 2026-10-15: new page, the Five Before We Drive promise. Words marked class="draft" are for Harrison to OK (see them with ?drafts). The five check names and the remedy line are approved. -->
-    <header class="page-hero">
-      <div class="hero-photo"><img src="../img/edge-curve.jpg" srcset="../img/xs/edge-curve.jpg 600w, ../img/sm/edge-curve.jpg 900w, ../img/edge-curve.jpg 1200w" sizes="(max-width: 767px) 50vw, 100vw" alt="A crisp curved edge between a striped lawn and a fresh mulch bed" fetchpriority="high" style="--pos: center 60%" /></div>
+    <header class="page-hero vid-hero vid-strip" data-broll-wide="../video/broll-five-wide-lg.mp4">
+      <!-- 2026-10-29: the checks on camera, broll-five-wide (make-broll.ps1): edges crisp, stripes clean to the edge, blown clean. -->
+      <picture class="hero-wide-pic"><source media="(min-width: 960px)" srcset="../img/five-wide-still.jpg" /><img class="hero-wide-still" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1280" height="720" alt="A string trimmer resting on a crisp sidewalk edge" fetchpriority="high" /></picture>
+      <div class="hero-photo" data-broll-lg="../video/broll-five-wide-sm.mp4" data-broll-sm="../video/broll-five-wide-sm.mp4"><img src="../img/xs/five-strip-still.jpg" width="640" height="360" alt="A string trimmer resting on a crisp sidewalk edge" fetchpriority="high" /></div>
       <div class="wrap hero-in">
         <ol class="crumbs reveal"><li><a href="../">Home</a></li><li aria-current="page">Our promise</li></ol>
         <p class="eyebrow reveal">Our promise</p>

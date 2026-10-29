@@ -24,7 +24,9 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <link rel="preload" as="image" href="../img/gbp-mower-house.jpg" imagesrcset="../img/ph/gbp-mower-house.jpg 576w, ../img/sm/gbp-mower-house.jpg 900w, ../img/md/gbp-mower-house.jpg 1200w, ../img/gbp-mower-house.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/mowing-wide-still.jpg" media="(min-width: 960px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="../img/xs/mowing-strip-still.jpg" media="(max-width: 959px)" fetchpriority="high" />
+  <!-- 2026-10-29: computers get only the wide loop behind the words (Harrison 10/25: no two loops at once), so the phone tile hides there. -->
   
   
   <link rel="preload" href="../fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="../fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -182,8 +184,12 @@
   <main id="top">
     <!-- 2026-10-07: new page. Words marked class="draft" are mine for Harrison to OK (see them with ?drafts).
          Facts come from his Google profile ("Same crew, same day every week. We mow, trim, edge..."), the copy bank and the homepage. -->
-    <header class="page-hero">
-      <div class="hero-photo"><img src="../img/gbp-mower-house.jpg" srcset="../img/ph/gbp-mower-house.jpg 576w, ../img/sm/gbp-mower-house.jpg 900w, ../img/md/gbp-mower-house.jpg 1200w, ../img/gbp-mower-house.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="Stand-on mower cutting straight stripes toward a big brick house" fetchpriority="high" style="--pos: center 72%" /></div>
+    <header class="page-hero vid-hero vid-strip" data-broll-wide="../video/broll-mowing-wide-lg.mp4">
+      <!-- 2026-10-29: Riley's 4K mowing shoot (broll-mowing-wide + broll-mowing in make-broll.ps1). Same recipe as the leaf page:
+           computers = the wide loop behind the words under the forest shade (still paints first, the loop fades in over it);
+           phones = the 4:5 tile under the headline. Order: mower rolling at you, the deck, a crisp mulch edge, the stripes, driving off. -->
+      <picture class="hero-wide-pic"><source media="(min-width: 960px)" srcset="../img/mowing-wide-still.jpg" /><img class="hero-wide-still" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1280" height="720" alt="Grass N Gardens zero-turn mower rolling down fresh stripes" fetchpriority="high" /></picture>
+      <div class="hero-photo" data-broll-lg="../video/broll-mowing-wide-sm.mp4" data-broll-sm="../video/broll-mowing-wide-sm.mp4"><img src="../img/xs/mowing-strip-still.jpg" width="640" height="360" alt="Grass N Gardens zero-turn mower coming down fresh stripes" fetchpriority="high" /></div>
       <div class="wrap hero-in">
         <ol class="crumbs reveal"><li><a href="../">Home</a></li><li><a href="../#services">Services</a></li><li aria-current="page">Weekly mowing</li></ol>
         <p class="eyebrow reveal">Richfield, Ohio</p>
