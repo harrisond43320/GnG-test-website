@@ -1,8 +1,9 @@
-/* 2026-10-20: 3 font files, not 5 (speed). Barlow 400 also draws 500, Barlow 700 also draws 600 and 800. */
+/* 2026-10-20: 3 font files, not 5 (speed). 2026-10-31 lettering: semi-bold (600) gets its own file again (23 KB) so lead-in lines and labels are not drawn bold. Barlow 400 still draws 500; 700 draws 800. */
 /* Fonts served from our own site (2026-10-08 speed pass; were Google Fonts). Latin only, files in fonts/. */
 @font-face { font-family: 'Alfa Slab One'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/alfa-slab-one-400.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400 500; font-display: swap; src: url(fonts/barlow-400.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600 800; font-display: swap; src: url(fonts/barlow-700.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap; src: url(fonts/barlow-600.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Barlow'; font-style: normal; font-weight: 700 800; font-display: swap; src: url(fonts/barlow-700.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 /* G'N'G shared header dropdown + footer columns (2026-10-07). Every page links this file.
    Goes with _partials/header.html and _partials/footer.html. */
 /* ---------- header: Services dropdown (desktop) ---------- */
@@ -28,7 +29,7 @@
 @media (min-width: 1180px) and (max-width: 1339px) {
   .site-head .brand img { height: 72px; }
   .site-head .menu ul { gap: 0; }
-  .site-head .menu > ul > li > a, .site-head .menu .sub-btn { padding: 10px 7px; font-size: 15px; }
+  .site-head .menu > ul > li > a, .site-head .menu .sub-btn { padding: 10px 7px; font-size: 16px; }
   .site-head .head-ctas .phone { padding-left: 16px; padding-right: 16px; }
 }
 .menu .sub a { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; font-size: 16px; }
@@ -43,7 +44,7 @@
 /* Yard Score button by the phone (same cartoon family as the Menu button) */
 .score-btn {
   display: none; align-items: center; gap: 8px; height: 48px; padding: 0 14px 0 11px; flex: none;
-  font-weight: 700; font-size: 15px; line-height: 1.05; color: var(--pine); text-decoration: none; white-space: nowrap;
+  font-weight: 700; font-size: 16px; line-height: 1.05; color: var(--pine); text-decoration: none; white-space: nowrap;
   background: #fff; border: 2.5px solid var(--pine); border-radius: 6px; box-shadow: 0 4px 0 0 var(--pine);
   transition: transform .18s var(--ease-out), box-shadow .18s var(--ease-out);
 }
@@ -62,14 +63,14 @@
 }
 .score-card > svg:first-child { flex: none; color: var(--forest); }
 .score-card span { flex: 1; }
-.score-card b { display: block; font-size: 19px; }
+.score-card b { display: block; font-size: 20px; }
 .score-card small { display: block; font-size: 14px; font-weight: 500; color: var(--ink-muted); }
 .score-card:hover { transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--lime); }
 .score-card:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--lime); }
 .score-card:focus-visible { outline: 3px solid var(--forest); outline-offset: 3px; }
 
 /* phone menu: services grouped under a small label */
-.menu-panel .grp { padding: 14px 4px 4px; font-size: 14px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-muted); }
+.menu-panel .grp { padding: 14px 4px 4px; font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
 .menu-panel li.sub-li a { padding-left: 18px; font-size: 18px; font-weight: 600; }
 
 /* ---------- footer: more links + social icons (every page) ---------- */
@@ -77,12 +78,12 @@
 @media (min-width: 900px) { .foot-cols { grid-template-columns: 1.3fr 1fr 1fr 1fr; } }
 .foot-cols .fc-brand { grid-column: 1 / -1; }
 @media (min-width: 900px) { .foot-cols .fc-brand { grid-column: auto; } }
-.foot-cols h2 { font-family: var(--font-body); font-size: 14px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.55); }
+.foot-cols h2 { font-family: var(--font-body); font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.55); }
 .foot-cols ul { list-style: none; display: grid; gap: 2px; margin-top: var(--s3); }
-.foot-cols li a { display: inline-block; padding: 6px 0; font-size: 15px; font-weight: 600; color: rgba(255,255,255,.82); border-radius: 4px; transition: color .2s var(--ease-out); }
+.foot-cols li a { display: inline-block; padding: 6px 0; font-size: 16px; font-weight: 600; color: rgba(255,255,255,.82); border-radius: 4px; transition: color .2s var(--ease-out); }
 .foot-cols li a:hover { color: var(--lime); }
 .foot-cols li a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
-.foot-cols .fc-brand p { margin-top: var(--s4); max-width: 30ch; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.65); }
+.foot-cols .fc-brand p { margin-top: var(--s4); max-width: 30ch; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,.65); }
 @media (max-width: 899px) { .foot-cols li a { padding: 10px 0; } }
 .soc { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s6); list-style: none; }
 .soc a {
@@ -112,7 +113,7 @@
 }
 .app-get[hidden] { display: none; }
 .app-get img { flex: none; width: 36px; height: 36px; border-radius: 9px; }
-.app-get b { display: block; font-weight: 700; font-size: 15px; }
+.app-get b { display: block; font-weight: 700; font-size: 16px; }
 .app-get small { display: block; font-size: 14px; color: rgba(255, 255, 255, .7); }
 .app-get:hover { background: rgba(255, 255, 255, .1); }
 .app-get:active { transform: scale(.98); }
@@ -131,7 +132,7 @@
 @keyframes sheet-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 .app-sheet img { width: 64px; height: 64px; border-radius: 15px; }
 .app-sheet h2 { margin-top: var(--s3); font-family: var(--font-display); font-weight: 400; font-size: 24px; line-height: 1.1; text-transform: uppercase; color: var(--pine); }
-.app-sheet ol { margin: var(--s4) 0 0; padding-left: 1.3em; text-align: left; font-size: 17px; line-height: 1.5; }
+.app-sheet ol { margin: var(--s4) 0 0; padding-left: 1.3em; text-align: left; font-size: 16px; line-height: 1.5; }
 .app-sheet li + li { margin-top: var(--s2); }
 .app-sheet li svg { vertical-align: -3px; color: #1a73e8; }
 .app-sheet .btn { margin-top: var(--s6); width: 100%; justify-content: center; }
@@ -182,15 +183,15 @@ html.rvz-open { overflow: hidden; }
 .rvz-x:active { transform: scale(.92); }
 .rvz-x:focus-visible, .rvz-nav button:focus-visible, .rvz-g:focus-visible { outline: 3px solid var(--forest, #307537); outline-offset: 2px; }
 .rvz-card header { display: flex; align-items: center; gap: 12px; padding-right: 52px; }
-.rvz-av { flex: none; width: 52px; height: 52px; border-radius: 50%; border: 2px solid #18201b; display: grid; place-items: center; font-weight: 700; font-size: 22px; color: #fff; }
+.rvz-av { flex: none; width: 52px; height: 52px; border-radius: 50%; border: 2px solid #18201b; display: grid; place-items: center; font-weight: 700; font-size: 20px; color: #fff; }
 .rvz-who { flex: 1; min-width: 0; line-height: 1.25; }
-.rvz-who b { display: block; font-size: 19px; font-weight: 700; }
+.rvz-who b { display: block; font-size: 20px; font-weight: 700; }
 .rvz-who span { font-size: 14px; color: #5f6368; }
 .rvz-stars { margin-top: 12px; color: #fbbc04; font-size: 20px; letter-spacing: 2px; }
 .rvz-short { margin-top: 16px; padding: 14px 16px; border-radius: 12px; background: #eef7e9; }
-.rvz-tag { font-size: 14px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--forest, #307537); }
+.rvz-tag { font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--forest, #307537); }
 .rvz-pts { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.rvz-pts li { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px 6px 8px; border-radius: 999px; background: var(--lime, #66b84a); color: var(--pine, #1d4a22); font-weight: 700; font-size: 15px; line-height: 1.2; }
+.rvz-pts li { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px 6px 8px; border-radius: 999px; background: var(--lime, #66b84a); color: var(--pine, #1d4a22); font-weight: 700; font-size: 16px; line-height: 1.2; }
 .rvz-text { margin: 18px 0 0; font-size: clamp(18px, 2.2vw, 22px); line-height: 1.55; font-weight: 500; color: #202124; }
 .rvz-text mark { background: linear-gradient(transparent 50%, rgba(102, 184, 74, .45) 50%); color: inherit; padding: 0 2px; border-radius: 2px; }
 .rvz-card footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(24, 32, 27, .12); }
@@ -203,12 +204,12 @@ html.rvz-open { overflow: hidden; }
 .rvz-nav button:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--pine, #1d4a22); }
 .rvz-nav button:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--pine, #1d4a22); }
 .rvz-count { min-width: 64px; text-align: center; font-size: 14px; font-weight: 600; color: #5f6368; }
-.rvz-g { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 8px; font-weight: 700; font-size: 15px; color: #1a73e8; text-decoration: none; background: rgba(26, 115, 232, .08); transition: background-color .2s; }
+.rvz-g { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 8px; font-weight: 700; font-size: 16px; color: #1a73e8; text-decoration: none; background: rgba(26, 115, 232, .08); transition: background-color .2s; }
 .rvz-g:hover { background: rgba(26, 115, 232, .16); }
 @media (max-width: 600px) {
   .rvz { width: calc(100vw - 32px); }
   .rvz-card { padding: 20px; max-height: 84vh; box-shadow: 6px 6px 0 var(--lime, #66b84a); }
-  .rvz-av { width: 44px; height: 44px; font-size: 19px; }
+  .rvz-av { width: 44px; height: 44px; font-size: 20px; }
   .rvz-pts li { font-size: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -222,7 +223,7 @@ html.rvz-open { overflow: hidden; }
 @media (max-width: 767px) {
   .foot-cols { gap: var(--s6) var(--s4); padding-bottom: var(--s8); margin-bottom: var(--s8); grid-template-columns: 1fr; }
   .foot-cols ul:not(.soc) { display: flex; flex-wrap: wrap; column-gap: var(--s4); row-gap: 0; margin-top: var(--s2); }
-  .foot-cols li a { display: inline-flex; align-items: center; min-height: 44px; padding: 0; font-size: 15px; }
+  .foot-cols li a { display: inline-flex; align-items: center; min-height: 44px; padding: 0; font-size: 16px; }
   .foot-cols .fc-brand p { margin-top: var(--s3); }
   .foot-cols .soc { margin-top: var(--s4); }
 }
@@ -286,7 +287,7 @@ html.rvz-open { overflow: hidden; }
 .dp-badge { display: inline-flex; align-items: center; gap: .6em; font-size: 16px; line-height: 1; background: var(--pine); color: #fff; border: .16em solid var(--lime); box-shadow: inset 0 0 0 .09em var(--pine), inset 0 0 0 .16em rgba(167, 203, 224, .6); border-radius: .75em; padding: .65em 1.05em .65em .7em; max-width: 100%; }
 .dp-badge .dp-ico { flex: none; width: 2.1em; height: 2.1em; display: block; }
 .dp-badge .dp-name { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.6em; letter-spacing: .01em; text-transform: uppercase; color: #fff; white-space: nowrap; }
-.dp-badge .dp-sub { display: block; margin-top: .45em; font-family: var(--font-body); font-weight: 700; font-size: .875em; letter-spacing: .15em; text-transform: uppercase; color: var(--jersey-blue); white-space: nowrap; }
+.dp-badge .dp-sub { display: block; margin-top: .45em; font-family: var(--font-body); font-weight: 700; font-size: .875em; letter-spacing: .08em; text-transform: uppercase; color: var(--jersey-blue); white-space: nowrap; }
 .dp-badge.lg { font-size: 20px; }
 @media (max-width: 400px) { .dp-badge.lg { font-size: min(17px, calc((100vw - 56px) / 17.7)); } }
 
@@ -346,7 +347,13 @@ header.vid-hero .hero-wide.on { opacity: 1; }
   header.vid-hero.vid-strip .hero-in { padding-right: var(--s12); }
   header.vid-hero.vid-strip .hero-in .lede { max-width: 40em; }
 }
-@media (max-width: 959px) { header.vid-hero.vid-strip .hero-photo { aspect-ratio: 16 / 9; max-height: none; } }
+@media (max-width: 959px) {
+  header.vid-hero.vid-strip .hero-photo { aspect-ratio: 16 / 9; max-height: none; }
+  /* 2026-10-31 clean-up plan #2: 64px of top padding left an empty band over the first line on phones; 20px lifts the button and reviews up the first screen.
+     On phones .hero-in is display: contents on some pages, so the padding lives on the header itself. */
+  header.vid-hero.vid-strip { padding-top: 20px; }
+  header.vid-hero.vid-strip .hero-in { padding-top: 20px; }
+}
 
 /* ---------- 2026-10-20 (round 3): skip link, Call + Text buttons, tap sizes ---------- */
 /* Skip to main content: first thing a keyboard or screen reader reaches; slides in only when focused */
@@ -361,7 +368,7 @@ header.vid-hero .hero-wide.on { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .skip { transition: none; } }
 /* sticky bar: Get my yard plan (wide) + Call + Text, all 48px tall */
 div.call-bar { grid-template-columns: 1fr auto auto; gap: 8px; padding: 8px; }
-div.call-bar a { min-height: 48px; padding: 10px 12px; font-size: 15px; gap: 6px; white-space: nowrap; }
+div.call-bar a { min-height: 48px; padding: 10px 12px; font-size: 16px; gap: 6px; white-space: nowrap; }
 div.call-bar a.cb-reach { padding: 10px 14px; }
 div.call-bar a.cb-reach svg { flex: none; width: 18px; height: 18px; }
 @media (max-width: 359px) { div.call-bar a { padding: 10px 9px; font-size: 14px; } div.call-bar a.cb-reach { padding: 10px 10px; } div.call-bar a.cb-reach svg { display: none; } }
@@ -385,3 +392,46 @@ div.call-bar .cb-x:focus-visible, div.call-bar .cb-offer a:focus-visible { outli
   .foot .meta.towns a { display: inline-block; padding: 12px 6px; }
   .qa-a a, .gets a, .lede a, .copy a { padding-top: 10px; padding-bottom: 10px; }
 }
+
+/* 2026-10-31 clean-up plan #1: one banner at a time. A head script sets html[data-promo] = leaf (until Dec 1) or presell.
+   Leaf: the top bar shows the Fall Pass line; presell: the 2027 save-5% line. Pages whose header is the offer hide the bar (hidden attr). */
+.topbar[hidden] { display: none; }
+.topbar .tb-leaf { display: none; }
+html[data-promo="leaf"] .topbar .tb-leaf { display: block; }
+html[data-promo="leaf"] .topbar .tb-presell { display: none; }
+/* 2026-10-31 plan #4: a hidden Text button (when the main bar button already texts) must not keep its flex box. */
+div.call-bar a[hidden] { display: none; }
+
+/* ---------- 2026-10-31 lettering clean-up (Harrison: "not AI slop, as expensive as possible") ----------
+   Same two fonts. Alfa Slab One only big: the one outlined hero line per page, section punch lines (32px+), the phone, numbers.
+   Card and item titles move to Barlow bold in normal case. Long phrases stop being spaced-out capitals; short labels stay caps at .08em.
+   The Google review cards keep their Google look (Harrison 10/31).
+   chrome.css loads BEFORE each page's own <style>, so these rules carry html:not(#_) (an id-weight no-op) to win over page rules without !important. */
+html:not(#_) :is(.svc h3, .pair h3, .vs-card h3, .form-card h3, .hoa-card h3, .reach-tile b, .done-big, .street-h b,
+  .job h3, .next li b, .fit-card h3, .pay h3, .perk h3, .ww-visits h3, .sc-fail h4, .sc-vid .ph b, .app-sheet h2) {
+  font-family: var(--font-body); font-weight: 700; font-style: normal; text-transform: none;
+  letter-spacing: 0; font-size: 20px; line-height: 1.25;
+}
+@media (max-width: 767px) {
+  html:not(#_) :is(.svc h3, .pair h3, .vs-card h3, .form-card h3, .hoa-card h3, .reach-tile b, .done-big, .street-h b,
+    .job h3, .next li b, .fit-card h3, .pay h3, .perk h3, .ww-visits h3, .sc-fail h4, .sc-vid .ph b, .app-sheet h2) { font-size: 20px; }
+}
+/* long phrases in sentence case, not spaced capitals */
+html:not(#_) :is(.trust li, .hero-dpline, .record) { text-transform: none; letter-spacing: 0; font-weight: 600; }
+html:not(#_) .trust li { font-size: 16px; }
+/* brand minimum is 14px */
+html:not(#_) .hero-proof .hp-top small { font-size: 14px; }
+/* 2026-10-31 clean-up plan #9: opened from the home-screen icon (the "app"), start calm: no promo banner on top.
+   The Text/Call bar and the page itself stay. (Customer Care: "show no promo and no popups".) */
+@media (display-mode: standalone) { .topbar { display: none; } }
+
+/* 2026-10-31 clean-up plan #5: on phones the bottom bar always carries Call and Text, so the hero's extra "Call or text" outline button
+   is a repeat. One main button per screen; the small header call icon stays (Charlie: never bury Call). */
+@media (max-width: 899px) {
+  html:not(#_) :is(header.hero, header.page-hero) .hero-ctas a.btn-ghost:is([href^="tel:"], [href^="sms:"]) { display: none; }
+}
+
+/* 2026-10-31 plan #5: the bar slides away while the header's main button is on screen (footer.html script). Was page-only on fall-cleanup/aeration. */
+div.call-bar { transition: transform .25s ease; }
+div.call-bar.cb-away { transform: translateY(120%); }
+@media (prefers-reduced-motion: reduce) { div.call-bar { transition: none; } }

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <!-- 2026-10-31: one banner at a time (top bar: Fall Pass until Dec 1, then the 2027 save-5% line). -->
+  <script>document.documentElement.dataset.promo = Date.now() < Date.UTC(2026, 11, 1, 5) ? 'leaf' : 'presell';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Yard of the Month | Grass 'n' Gardens, Richfield OH</title>
   <!-- 2026-10-15 Google Search Console ownership tag (public by design) -->
@@ -62,7 +64,7 @@
     .yotm-hero .hero-copy { padding-bottom: var(--s12); }
     /* desktop: the lawn runs under the words too, so they stop above it (lawn 110px + room) */
     @media (min-width: 960px) { .yotm-hero .hero-copy { padding-bottom: 170px; } }
-    .yotm-hero .eyebrow { margin-top: var(--s4); color: var(--jersey-blue); letter-spacing: .24em; font-size: clamp(14px, 1.3vw, 16px); }
+    .yotm-hero .eyebrow { margin-top: var(--s4); color: var(--jersey-blue); letter-spacing: .08em; font-size: clamp(14px, 1.3vw, 16px); }
     /* the one logo-lettering headline on the page (same recipe as .page-hero h1) */
     .yotm-hero h1 {
       margin-top: var(--s4); max-width: 10ch;
@@ -70,7 +72,7 @@
       font-size: clamp(48px, 7.6vw, 108px); line-height: .95; letter-spacing: .03em;
       color: #fff; -webkit-text-stroke: .1em var(--pine); paint-order: stroke fill; text-shadow: .05em .06em 0 var(--forest);
     }
-    .yotm-hero .lede { margin-top: var(--s6); color: #fff; font-size: clamp(18px, 1.6vw, 21px); font-weight: 500; line-height: 1.5; max-width: 32em; }
+    .yotm-hero .lede { margin-top: var(--s6); color: #fff; font-size: clamp(18px, 1.6vw, 20px); font-weight: 500; line-height: 1.5; max-width: 32em; }
     .yotm-hero .hero-ctas, .ask .hero-ctas { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s8); }
 
     /* the sign, planted in a striped lawn. The board stands fully above the grass; only the stakes go in. */
@@ -86,11 +88,11 @@
       background: #fff; border: 6px solid var(--pine); box-shadow: 8px 8px 0 var(--lime);
     }
     .board img { width: 48px; height: 48px; margin: 0 auto; }
-    .board .s-top { margin-top: var(--s2); font-size: 14px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--forest); }
+    .board .s-top { margin-top: var(--s2); font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--forest); }
     .board .s-big { margin-top: var(--s2); font-family: var(--font-display); font-size: clamp(32px, 3.4vw, 44px); line-height: .98; text-transform: uppercase; color: var(--pine); }
     .board .s-mo {
       display: inline-block; margin-top: var(--s4); padding: 6px 16px; border-radius: 6px; background: var(--lime); color: var(--pine);
-      font-weight: 700; font-size: 17px; letter-spacing: .14em; text-transform: uppercase; border: 2px solid var(--pine);
+      font-weight: 700; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; border: 2px solid var(--pine);
     }
     .legs { position: relative; height: 100px; }
     .stake { position: absolute; top: -6px; width: 8px; height: 100%; border-radius: 0 0 3px 3px; background: #9aa3a0; border: 1.5px solid #5d6663; }
@@ -110,12 +112,12 @@
     }
     .win { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; background: #fff; border: 2px solid var(--line-light); }
     .win .ph { position: relative; aspect-ratio: 3 / 4; display: grid; place-items: center; background: repeating-linear-gradient(90deg, #eaf3e6 0 16px, #dcebd5 16px 32px); }
-    .win .ph span { padding: 4px 10px; border-radius: 6px; background: #fff; font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--forest); }
+    .win .ph span { padding: 4px 10px; border-radius: 6px; background: #fff; font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--forest); }
     .win .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .win .mo { padding: var(--s3) var(--s3) 0; font-family: var(--font-display); font-size: clamp(15px, 1.25vw, 19px); line-height: 1.1; text-transform: uppercase; color: var(--pine); }
     .win .who { padding: 2px var(--s3) var(--s3); font-size: 14px; line-height: 1.4; color: var(--ink-muted); }
     .win.won { border-color: var(--pine); box-shadow: 5px 5px 0 var(--lime); }
-    .win.won .ph::after { content: "Winner"; position: absolute; left: 8px; top: 8px; padding: 3px 8px; border-radius: 5px; background: var(--lime); color: var(--pine); border: 2px solid var(--pine); font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .win.won .ph::after { content: "Winner"; position: absolute; left: 8px; top: 8px; padding: 3px 8px; border-radius: 5px; background: var(--lime); color: var(--pine); border: 2px solid var(--pine); font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .row-hint { margin-top: var(--s2); text-align: center; font-size: 14px; font-weight: 600; color: var(--ink-muted); }
     @media (min-width: 900px) { .row-hint { display: none; } }
   </style>
@@ -124,7 +126,8 @@
   <a class="skip" href="#top">Skip to main content</a>
 
   <div class="topbar">
-    <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan-form&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
+    <p class="tb-leaf draft">Fall Pass: book by Fri Nov 13. Text LEAVES, get your Leaf Map and price within 24 hours. <a href="../fall-cleanup/?src=topbar">See the Fall Pass</a></p>
+    <p class="tb-presell" data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../#plan-form&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
   </div>
 
   <!-- @header -->
@@ -144,7 +147,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
             <div class="sub" id="sub-services">
               <a href="../lawn-mowing/"><span>Weekly mowing<small>Same crew, same day every week</small></span></a>
-              <a href="../fall-cleanup/"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
+              <a href="../fall-cleanup/"><span>Fall cleanups<small><span class="draft">The Fall Pass: proof every visit, first visit in 3 days</span></small></span></a>
               <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
               <a href="../yard-design/"><span>Planting and bed refresh<small>The right plant in the right spot</small></span></a>
@@ -427,7 +430,7 @@
         </div>
       </div>
       <div class="foot">
-        <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
+        <p class="rec">Record &middot; <b>59</b> reviews &middot; <b>5.0</b> average</p>
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
         <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a> &middot; <a href="../bath-oh/">Bath</a> &middot; <a href="../granger-oh/">Granger</a></p>
         <button class="app-get" type="button" data-app-get hidden>
@@ -450,26 +453,17 @@
   </dialog>
 
   <div class="call-bar">
-    <!-- 2026-10-22: the 2027 save-5% offer as a thin line above the buttons (Harrison picked "option 2"). Starts hidden;
-         the script under the bar shows it, except on the season pass page itself, after a visitor closes it, or after 3/31/2027. -->
-    <p class="cb-offer" hidden><a class="draft" href="../season-pass/"><span>Save <b>5%</b> on 2027 mowing. Pay by March 31.</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><button type="button" class="cb-x" aria-label="Hide the 2027 offer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></p>
+    <!-- 2026-10-31 clean-up plan #4: the save-5% line came out of the bar (it repeated the top banner). The bar is the page's one ask plus Call; when the ask is itself a text, the plain Text button hides (script below). -->
     <a class="btn btn-lime" href="../#plan-form">Get my yard plan</a>
     <!-- 2026-10-20: Call and Text are two buttons now (events click_to_call / click_to_text come from site.js) -->
     <a class="btn btn-ghost cb-reach" href="tel:+14406679642" aria-label="Call Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="draft">Call</span></a>
     <a class="btn btn-ghost cb-reach" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
   </div>
   <script>
-  // 2027 offer line on the phone bar (2026-10-22). Shows unless: this is a page with its own ask, the visitor closed it, or it is 4/1/2027+.
-  (() => {
-    const p = document.querySelector('.call-bar .cb-offer'); if (!p) return;
-    const skip = /\/(season-pass|join-the-crew|thank-you|soil-check|winter-walk)\//.test(location.pathname);
-    let closed = false; try { closed = localStorage.getItem('gng_offer_bar') === 'closed'; } catch (e) {}
-    if (skip || closed || new Date() >= new Date(2027, 3, 1)) return;
-    p.hidden = false;
-    const push = (event) => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event, page: location.pathname }); };
-    p.querySelector('a').addEventListener('click', () => push('offer_bar_click'));
-    p.querySelector('.cb-x').addEventListener('click', () => { p.hidden = true; push('offer_bar_close'); try { localStorage.setItem('gng_offer_bar', 'closed'); } catch (e) {} });
-  })();
+  // 2026-10-31: when the bar's main button already texts us (Text LEAVES, Text Harrison), hide the second Text button.
+  (() => { const bar = document.querySelector('.call-bar'); if (!bar) return; const main = bar.querySelector('a.btn-lime'); if (main && /^sms:/.test(main.getAttribute('href') || '')) bar.querySelectorAll('a.cb-reach[href^="sms:"]').forEach(a => { a.hidden = true; }); })();
+  // 2026-10-31 clean-up plan #5: one main button per screen. While the header's own main button is on screen, the bar slides away (same as fall-cleanup since 10/25).
+  (() => { const bar = document.querySelector('.call-bar'); const hb = [...document.querySelectorAll('header.hero .btn-lime, header.page-hero .btn-lime')].find(b => b.offsetParent !== null); if (!bar || !hb || !('IntersectionObserver' in window)) return; new IntersectionObserver(([e]) => bar.classList.toggle('cb-away', e.isIntersecting)).observe(hb); })();
   </script>
 
   <script>

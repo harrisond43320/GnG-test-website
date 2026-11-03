@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <!-- 2026-10-31: one banner at a time (top bar: Fall Pass until Dec 1, then the 2027 save-5% line). -->
+  <script>document.documentElement.dataset.promo = Date.now() < Date.UTC(2026, 11, 1, 5) ? 'leaf' : 'presell';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Grass 'n' Gardens | Lawn Care &amp; Landscaping, Richfield OH</title>
   <!-- 2026-10-15 Google Search Console ownership tag (public by design) -->
@@ -118,7 +120,7 @@
       background: var(--bg);
       color: var(--fg);
       font-family: var(--font-body);
-      font-size: 17px;
+      font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       overflow-x: clip;
@@ -136,7 +138,7 @@
     .dot { color: var(--lime); }
     .eyebrow {
       font-family: var(--font-body); font-weight: 600; font-size: 14px; line-height: 1;
-      letter-spacing: .22em; text-transform: uppercase;
+      letter-spacing: .08em; text-transform: uppercase;
     }
     .lede { font-size: 18px; line-height: 1.7; max-width: 34em; }
 
@@ -165,7 +167,7 @@
     .btn-dark { background: var(--ink); color: #fff; }
     .btn-dark:hover { background: var(--forest); }
     .link {
-      display: inline-flex; align-items: center; gap: var(--s2); font-weight: 600; font-size: 15px;
+      display: inline-flex; align-items: center; gap: var(--s2); font-weight: 600; font-size: 16px;
       border-radius: 6px; transition: opacity .2s var(--ease-out);
     }
     .link svg { transition: transform .35s var(--spring); }
@@ -210,7 +212,7 @@
     @media (max-width: 640px) { .site-head .phone { padding: 12px 13px; } .site-head .phone .num { display: none; } }
     .menu-btn {
       display: inline-flex; align-items: center; gap: var(--s2); height: 48px; padding: 0 14px;
-      font: inherit; font-weight: 700; font-size: 15px; color: var(--pine); cursor: pointer;
+      font: inherit; font-weight: 700; font-size: 16px; color: var(--pine); cursor: pointer;
       background: #fff; border: 2.5px solid var(--pine); border-radius: 6px; box-shadow: 0 4px 0 0 var(--pine);
       transition: transform .18s var(--ease-out), box-shadow .18s var(--ease-out);
     }
@@ -264,7 +266,8 @@
        painted half-loaded as the biggest paint, so slide 2 won at 7.1s and home phone dropped to 68. Pine shows meanwhile. */
     /* 2026-10-08 speed pass: photo 1 never fades. It stays shown as the bottom layer and photos 2-5 fade in and out
        on top of it (same 35s loop, same look). Browsers then count it as the first big paint instead of photo 2. */
-    .hero-photo .broll img:nth-child(1) { opacity: 0; animation-name: broll-first; animation-delay: 0s; }
+    /* 2026-10-31: one photo now (no slide 2 to steal the biggest paint), so it shows as it loads instead of waiting for onload (.ld); phone LCP swung 1.4-3.6s. */
+    .hero-photo .broll img:nth-child(1) { opacity: 1; animation-name: broll-first; animation-delay: 0s; }
     .hero-photo .broll img:nth-child(1).ld { opacity: 1; }
     @keyframes broll-first {
       0%    { transform: scale(1.023); }
@@ -285,6 +288,11 @@
       24%  { opacity: 0; transform: scale(1.1); }
       100% { opacity: 0; transform: scale(1.1); }
     }
+    /* 2026-10-31 clean-up plan #7: computers get broll-home-wide over the photo (script at the end). No z-index, so the header shade (::after) stays on top. */
+    .hero-photo .home-loop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; pointer-events: none; }
+    .hero-photo .home-loop.on { opacity: 1; }
+    .hero-photo:has(.home-loop.on)::after { background: linear-gradient(to top, var(--bg) 0%, rgba(20,28,23,.55) 18%, rgba(20,28,23,0) 45%), linear-gradient(to right, rgba(12,18,14,.82) 0%, rgba(12,18,14,.6) 45%, rgba(12,18,14,0) 78%); } /* 2026-11-01 round 4: the words stay calm over the moving shots */
+    @media (max-width: 959px), (prefers-reduced-motion: reduce) { .hero-photo .home-loop { display: none; } }
     .hero h1, .hero .lede, .trust li { text-shadow: 0 2px 18px rgba(0,0,0,.45); }
     @media (prefers-reduced-motion: reduce) {
       .hero-photo .broll img { animation: none; }
@@ -292,15 +300,15 @@
     }
     .hero-copy { position: relative; z-index: 3; padding-top: var(--s16); padding-bottom: var(--s16); }
     @media (min-width: 900px) { .hero-copy { padding-bottom: var(--s24); } }
-    .hero .eyebrow { color: var(--jersey-blue); font-weight: 700; letter-spacing: .24em; font-size: clamp(14px, 1.3vw, 16px); }
+    .hero .eyebrow { color: var(--jersey-blue); font-weight: 700; letter-spacing: .08em; font-size: clamp(14px, 1.3vw, 16px); }
     .hero h1 {
       font-family: var(--font-display); font-weight: 750; letter-spacing: -0.04em;
       font-size: clamp(54px, 9vw, 120px); line-height: .92; margin-top: var(--s4);
     }
     .hero h1 .thin { font-weight: 250; display: block; letter-spacing: -0.03em; }
-    .hero .lede { color: #fff; margin-top: var(--s6); font-size: clamp(18px, 1.6vw, 21px); font-weight: 500; line-height: 1.5; }
+    .hero .lede { color: #fff; margin-top: var(--s6); font-size: clamp(18px, 1.6vw, 20px); font-weight: 500; line-height: 1.5; }
     .trust { list-style: none; margin-top: var(--s8); display: grid; gap: var(--s3); }
-    .trust li { display: flex; align-items: center; gap: var(--s3); font-size: 14px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #fff; line-height: 1.3; }
+    .trust li { display: flex; align-items: center; gap: var(--s3); font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; line-height: 1.3; }
     .trust svg { flex: none; color: var(--lime); }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s8); }
     /* 2026-10-07 (late): Yard Score line under the hero buttons */
@@ -308,6 +316,11 @@
     .hero-score svg { flex: none; color: var(--lime); transition: transform .35s var(--spring); }
     .hero-score b { color: var(--lime); }
     .hero-score:hover svg { transform: rotate(40deg); }
+    .hero-hoa { display: flex; width: fit-content; margin-top: var(--s4); padding: 8px 16px 8px 12px; border: 2px solid rgba(255,255,255,.55); border-radius: 999px; background: rgba(12,18,14,.35); }
+    .hero-hoa:hover { border-color: var(--lime); }
+    .hero-hoa + .hero-score { margin-top: var(--s2); }
+    .hero-reply { margin-top: var(--s3); font-size: 16px; font-weight: 500; color: rgba(255,255,255,.88); }
+    .hero-reply b { color: #fff; font-weight: 700; }
     .hero-score:hover b { text-shadow: 0 0 10px rgba(102,184,74,.45); }
     .hero-score:active { transform: translateY(1px); }
     .hero-score:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
@@ -339,10 +352,10 @@
     .svc:active { transform: translateY(-2px) scale(.99); }
     .svc-body { padding: var(--s6); }
     .svc h3 { font-family: var(--font-display); font-weight: 700; font-size: 26px; line-height: 1.1; letter-spacing: -0.02em; }
-    .svc p { margin-top: var(--s2); font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.72); }
+    .svc p { margin-top: var(--s2); font-size: 16px; line-height: 1.55; color: rgba(255,255,255,.72); }
     .svc .tag {
       position: absolute; top: var(--s4); left: var(--s4);
-      font-size: 14px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600;
+      font-size: 14px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600;
       background: var(--lime); color: #1d4a22; padding: 5px 9px; border-radius: 999px;
     }
 
@@ -353,7 +366,7 @@
     .reviews { padding: var(--s24) 0 var(--s24); border-top: 1px solid var(--line-light); }
     .record {
       display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s2) var(--s6);
-      margin-top: var(--s8); font-weight: 600; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-muted);
+      margin-top: var(--s8); font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted);
     }
     .record b { color: var(--forest); }
     /* Google review "screenshots": cartoon sticker look, thick outline + hard shadow + tilt */
@@ -367,6 +380,9 @@
     .rv-track .gshot p { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
     .rv-static .rv-track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 18px; touch-action: auto; cursor: auto; }
     .rv-hint { margin: 0; text-align: center; font-size: 14px; font-weight: 600; opacity: .6; }
+    .rv-pin-wrap { margin-bottom: var(--s8); }
+    .gshot.rv-pin { max-width: 640px; margin: 0 auto; --tilt: -.6deg; }
+    .gshot.rv-pin p { display: block; -webkit-line-clamp: unset; overflow: visible; }
     .rv-static ~ .rv-hint { display: none; }
     .rv-static .rv-track .gshot { scroll-snap-align: center; }
     @media (max-width: 767px) {
@@ -432,7 +448,7 @@
     @media (min-width: 900px) { .foot { grid-template-columns: auto 1fr auto; align-items: center; } }
     .foot .logo-tile { display: inline-block; background: #fff; border-radius: 10px; padding: 8px 12px; }
     .foot .logo-tile img { height: 44px; width: auto; }
-    .foot .rec { font-size: 14px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+    .foot .rec { font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.6); }
     .foot .rec b { color: var(--lime); }
     .foot .meta { font-size: 14px; color: rgba(255,255,255,.55); line-height: 1.6; }
     .foot .meta a:hover { color: #fff; }
@@ -445,7 +461,7 @@
       background: #1c2620; /* coal, flat (2026-10-13) */
       border: 1px solid rgba(255,255,255,.16);
     }
-    .call-bar a { justify-content: center; padding: 14px 10px; font-size: 15px; }
+    .call-bar a { justify-content: center; padding: 14px 10px; font-size: 16px; }
     @media (min-width: 900px) { .call-bar { display: none; } }
 
     /* ---------- reveal ---------- */
@@ -513,7 +529,7 @@
     .chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
     .chips span {
       display: inline-flex; align-items: center; padding: 10px 14px; border-radius: 999px; cursor: pointer;
-      border: 2px solid var(--line-light); background: var(--mist); font-size: 15px; font-weight: 600; color: var(--ink);
+      border: 2px solid var(--line-light); background: var(--mist); font-size: 16px; font-weight: 600; color: var(--ink);
       transition: transform .3s var(--spring), background-color .2s var(--ease-out), border-color .2s var(--ease-out), color .2s var(--ease-out);
     }
     .chips span:hover { border-color: var(--forest); }
@@ -546,7 +562,7 @@
     }
     .reach-tile svg { color: var(--lime); margin-bottom: var(--s2); }
     .reach-tile b { font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1; text-transform: uppercase; letter-spacing: .01em; }
-    .reach-tile span { font-size: 15px; color: rgba(255,255,255,.78); overflow-wrap: anywhere; }
+    .reach-tile span { font-size: 16px; color: rgba(255,255,255,.78); overflow-wrap: anywhere; }
     .reach-tile:hover { transform: translateY(-4px); background: rgba(255,255,255,.1); border-color: var(--lime); }
     .reach-tile:active { transform: translateY(0) scale(.98); }
     .reach-tile:focus-visible, .socials a:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
@@ -554,7 +570,7 @@
     .socials { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s2); margin-top: var(--s8); }
     .socials a {
       display: inline-flex; align-items: center; gap: var(--s2); padding: 10px 16px; border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.25); font-size: 15px; font-weight: 600; color: #fff;
+      border: 1px solid rgba(255,255,255,.25); font-size: 16px; font-weight: 600; color: #fff;
       transition: transform .35s var(--spring), background-color .2s var(--ease-out), border-color .2s var(--ease-out);
     }
     .socials a:hover { background: rgba(255,255,255,.1); border-color: #fff; transform: translateY(-2px); }
@@ -607,7 +623,7 @@
     .season { background: var(--bg); }
     .ticket h2 b { color: var(--pine); }
     .stack-list { list-style: none; display: grid; gap: var(--s3); margin-top: var(--s8); }
-    .stack-list li { position: relative; padding-left: 36px; font-size: 17px; font-weight: 600; line-height: 1.4; }
+    .stack-list li { position: relative; padding-left: 36px; font-size: 16px; font-weight: 600; line-height: 1.4; }
     .stack-list li::before {
       content: "\2713"; position: absolute; left: 0; top: -1px; width: 24px; height: 24px; border-radius: 6px;
       display: grid; place-items: center; background: var(--lime); color: var(--pine); font-weight: 800; font-size: 14px;
@@ -672,11 +688,11 @@
     .next li {
       counter-increment: step; position: relative; padding: var(--s6) var(--s6) var(--s6); border-radius: var(--radius);
       background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
-      font-size: 15px; line-height: 1.5; color: rgba(255,255,255,.78);
+      font-size: 16px; line-height: 1.5; color: rgba(255,255,255,.78);
     }
     .next li::before {
       content: counter(step); display: grid; place-items: center; width: 32px; height: 32px; margin-bottom: var(--s3);
-      border-radius: 50%; background: var(--lime); color: var(--pine); font-weight: 800; font-size: 15px;
+      border-radius: 50%; background: var(--lime); color: var(--pine); font-weight: 800; font-size: 16px;
     }
     .next li b { display: block; color: #fff; font-size: 16px; margin-bottom: var(--s1); }
     .mini-quote { margin-top: var(--s6); padding: var(--s6); border-left: 4px solid var(--jersey-blue); background: rgba(255,255,255,.04); border-radius: 0 var(--radius) var(--radius) 0; }
@@ -827,7 +843,7 @@
     .tk-top {
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s2);
       padding-bottom: var(--s4); margin-bottom: var(--s6); border-bottom: 2px dashed var(--line-light);
-      font-size: 14px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--forest);
+      font-size: 14px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--forest);
     }
     .tk-admit { background: var(--pine); color: #fff; padding: 5px 10px; border-radius: 4px; }
     .ticket .dot { color: var(--lime); }
@@ -838,26 +854,26 @@
         var(--pine) 0 4px, transparent 4px 6px, var(--forest) 6px 9px, transparent 9px 11px,
         var(--pine) 11px 12px, transparent 12px 15px, var(--lime) 15px 18px, transparent 18px 20px);
     }
-    .tk-code .code { font-size: 14px; font-weight: 700; letter-spacing: .2em; color: var(--ink-muted); }
+    .tk-code .code { font-size: 14px; font-weight: 700; letter-spacing: .08em; color: var(--ink-muted); }
     .tk-stub {
       position: relative; display: flex; flex-direction: column; gap: var(--s4);
       padding: var(--s8) var(--s6); background: var(--pine); color: #fff;
       border-top: 3px dashed rgba(255,255,255,.55);
     }
     @media (min-width: 900px) { .tk-stub { justify-content: center; padding: var(--s12) var(--s8); border-top: 0; border-left: 3px dashed rgba(255,255,255,.55); } }
-    .tk-stub .pass-label { color: var(--jersey-blue); font-weight: 700; font-size: 14px; letter-spacing: .18em; text-transform: uppercase; }
+    .tk-stub .pass-label { color: var(--jersey-blue); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
     .tk-stamp {
       align-self: flex-start; display: grid; place-content: center; justify-items: center; gap: 2px;
       width: 156px; height: 156px; border-radius: 50%; margin: var(--s2) 0 var(--s2) var(--s2);
       border: 4px solid var(--lime); outline: 2px dashed rgba(102,184,74,.85); outline-offset: -13px;
       color: var(--lime); text-transform: uppercase; text-align: center; line-height: 1; transform: rotate(-12deg);
     }
-    .tk-stamp span { font-size: 14px; font-weight: 800; letter-spacing: .2em; }
+    .tk-stamp span { font-size: 14px; font-weight: 800; letter-spacing: .08em; }
     .tk-stamp b { font-family: var(--font-display); font-weight: 400; font-size: 60px; line-height: .95; color: #fff; }
     .ticket.in .tk-stamp, .ticket.no-reveal .tk-stamp { animation: tk-stamp .55s var(--spring) .35s both; }
     @keyframes tk-stamp { from { opacity: 0; transform: rotate(-12deg) scale(1.7); } to { opacity: 1; transform: rotate(-12deg) scale(1); } }
-    .tk-count { align-self: flex-start; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.1); font-weight: 700; font-size: 15px; }
-    .tk-count b { color: var(--lime); font-size: 19px; }
+    .tk-count { align-self: flex-start; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.1); font-weight: 700; font-size: 16px; }
+    .tk-count b { color: var(--lime); font-size: 20px; }
     .tk-stub .pass-scarce { color: rgba(255,255,255,.9); font-size: 16px; font-weight: 600; line-height: 1.5; }
     .tk-stub .btn { align-self: flex-start; }
     /* the whole ticket is one big link: a hit area under everything (mouse/touch only; the button is the real link
@@ -865,7 +881,7 @@
     .tk-in { isolation: isolate; }
     .tk-hit { position: absolute; inset: 0; z-index: 1; }
     .tk-stub .btn { position: relative; z-index: 2; }
-    .tk-stub .pass-call { position: relative; z-index: 2; display: inline-flex; align-items: center; min-height: 44px; align-self: flex-start; color: #fff; font-weight: 700; font-size: 15px; border-radius: 6px; padding: 0 8px; margin-left: -8px; background: rgba(255,255,255,.08); }
+    .tk-stub .pass-call { position: relative; z-index: 2; display: inline-flex; align-items: center; min-height: 44px; align-self: flex-start; color: #fff; font-weight: 700; font-size: 16px; border-radius: 6px; padding: 0 8px; margin-left: -8px; background: rgba(255,255,255,.08); }
     .tk-stub .pass-call:hover { background: rgba(255,255,255,.16); color: var(--lime); }
     .tk-stub .pass-call:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
     .tk-more {
@@ -893,13 +909,13 @@
     .reel-slide.is-on img { transform: scale(1.1); }
     .reel-slide figcaption {
       position: absolute; top: var(--s4); left: var(--s4); padding: 6px 12px; border-radius: 6px;
-      background: var(--lime); color: var(--pine); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase;
+      background: var(--lime); color: var(--pine); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
     }
     .reel-bar {
       position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: var(--s3);
       padding: var(--s8) var(--s4) var(--s4); background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,0));
     }
-    .reel-title { font-weight: 700; font-size: 15px; color: #fff; white-space: nowrap; }
+    .reel-title { font-weight: 700; font-size: 16px; color: #fff; white-space: nowrap; }
     .reel-pips { flex: 1; display: flex; gap: 6px; }
     .reel-pips i { position: relative; flex: 1; height: 4px; border-radius: 4px; background: rgba(255,255,255,.3); overflow: hidden; }
     .reel-pips i::after { content: ""; position: absolute; inset: 0; background: var(--lime); transform: scaleX(0); transform-origin: left; }
@@ -942,7 +958,7 @@
     }
     .app-get[hidden] { display: none; }
     .app-get img { flex: none; width: 36px; height: 36px; border-radius: 9px; }
-    .app-get b { display: block; font-weight: 700; font-size: 15px; }
+    .app-get b { display: block; font-weight: 700; font-size: 16px; }
     .app-get small { display: block; font-size: 14px; color: rgba(255, 255, 255, .7); }
     .app-get:hover { background: rgba(255, 255, 255, .1); }
     .app-get:active { transform: scale(.98); }
@@ -961,7 +977,7 @@
     @keyframes sheet-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
     .app-sheet img { width: 64px; height: 64px; border-radius: 15px; }
     .app-sheet h2 { margin-top: var(--s3); font-family: var(--font-display); font-weight: 400; font-size: 24px; line-height: 1.1; text-transform: uppercase; color: var(--pine); }
-    .app-sheet ol { margin: var(--s4) 0 0; padding-left: 1.3em; text-align: left; font-size: 17px; line-height: 1.5; }
+    .app-sheet ol { margin: var(--s4) 0 0; padding-left: 1.3em; text-align: left; font-size: 16px; line-height: 1.5; }
     .app-sheet li + li { margin-top: var(--s2); }
     .app-sheet li svg { vertical-align: -3px; color: #1a73e8; }
     .app-sheet .btn { margin-top: var(--s6); width: 100%; justify-content: center; }
@@ -1026,7 +1042,7 @@
       .svc-row { margin-top: var(--s8); }
       .svc { min-height: 300px; }
       .vs { align-items: stretch; margin-top: var(--s8); }
-      .vs-card li { padding: 10px 0; font-size: 15px; }
+      .vs-card li { padding: 10px 0; font-size: 16px; }
       .swipe-hint { display: block; margin-top: 2px; text-align: center; font-size: 14px; font-weight: 600; opacity: .6; }
 
       /* the yard plan: smaller "what happens next" steps */
@@ -1088,7 +1104,7 @@
     .jump ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s2); }
     .jump a {
       display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px;
-      border: 2px solid var(--line-light); background: #fff; color: var(--pine); font-size: 15px; font-weight: 600;
+      border: 2px solid var(--line-light); background: #fff; color: var(--pine); font-size: 16px; font-weight: 600;
       text-decoration: none; white-space: nowrap;
       transition: transform .3s var(--spring), border-color .2s var(--ease-out), background-color .2s var(--ease-out);
     }
@@ -1129,10 +1145,10 @@
 
     /* six service cards: 3 + 3 on laptops, one row on wide screens */
     @media (min-width: 1024px) { .svc-row { grid-template-columns: repeat(3, 1fr); } }
-    @media (min-width: 1280px) { .svc-row { grid-template-columns: repeat(6, 1fr); } .svc { min-height: 360px; } .svc h3 { font-size: 22px; } .svc-body { padding: var(--s4); } }
+    @media (min-width: 1280px) { .svc-row { grid-template-columns: repeat(6, 1fr); } .svc { min-height: 360px; } .svc h3 { font-size: 20px; } .svc-body { padding: var(--s4); } }
 
     /* send a neighbor: one quiet line under the reviews (soft highlight, no underline) */
-    .refer-line { margin-top: var(--s8); text-align: center; font-size: 17px; font-weight: 600; color: var(--ink-muted); }
+    .refer-line { margin-top: var(--s8); text-align: center; font-size: 16px; font-weight: 600; color: var(--ink-muted); }
     .refer-line a { display: inline-block; margin-left: 4px; padding: 4px 10px; border-radius: 6px; background: rgba(102, 184, 74, .18); color: var(--pine); font-weight: 600; text-decoration: none; transition: background-color .2s var(--ease-out); }
     .refer-line a:hover { background: rgba(102, 184, 74, .3); }
     .refer-line a:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
@@ -1144,9 +1160,9 @@
     .promise-row { display: grid; gap: var(--s8); align-items: center; }
     @media (min-width: 1000px) { .promise-row { grid-template-columns: .9fr 1.6fr; } }
     .promise .eyebrow { color: var(--jersey-blue); }
-    .promise h2 { margin-top: var(--s3); font-family: var(--font-body); font-weight: 600; font-size: var(--fs-lead); line-height: 1.2; color: rgba(255,255,255,.9); }
-    .promise h2 b { display: block; margin-top: 6px; font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 4.4vw, 58px); line-height: 1; text-transform: uppercase; letter-spacing: .01em; color: #fff; }
-    .promise p.rem { margin-top: var(--s4); font-size: 17px; line-height: 1.5; color: rgba(255,255,255,.85); }
+    .promise-top h2 { margin-top: var(--s3); font-family: var(--font-body); font-weight: 600; font-size: var(--fs-lead); line-height: 1.2; color: rgba(255,255,255,.9); }
+    .promise-top h2 b { display: block; margin-top: 6px; font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 4.4vw, 58px); line-height: 1; text-transform: uppercase; letter-spacing: .01em; color: #fff; }
+    .promise p.rem { margin-top: var(--s4); font-size: 16px; line-height: 1.5; color: rgba(255,255,255,.85); }
     .promise p.rem b { color: #fff; }
     .promise p.rem a { display: inline-block; margin-top: 4px; color: #fff; font-weight: 700; padding: 1px 6px; border-radius: 5px; background: rgba(255,255,255,.12); text-decoration: none; }
     .promise p.rem a:hover { background: rgba(255,255,255,.22); }
@@ -1154,7 +1170,7 @@
     .checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s3); list-style: none; counter-reset: chk; }
     .checks li {
       counter-increment: chk; display: flex; flex-direction: column; gap: var(--s2); padding: var(--s4); border-radius: 14px;
-      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); font-weight: 700; font-size: 17px; line-height: 1.25; color: #fff;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); font-weight: 700; font-size: 16px; line-height: 1.25; color: #fff;
     }
     .checks li::before { content: counter(chk); font-family: var(--font-display); font-size: 34px; line-height: 1; color: var(--lime); }
     @media (min-width: 768px) { .checks { grid-template-columns: repeat(5, 1fr); } }
@@ -1192,7 +1208,7 @@
       .mini-quote { display: none; } /* the reviews are right below */
       .plan-grid { gap: var(--s6); }
       .plan .reel { aspect-ratio: 4 / 3; margin-top: var(--s6); } /* the stand-in slideshow: a little shorter on phones */
-      .area-line { font-size: 15px; }
+      .area-line { font-size: 16px; }
     }
 
     /* 2026-10-07 (night): yard plan form, one question at a time (no JavaScript = all steps show) */
@@ -1208,7 +1224,7 @@
     .fstep-nav .btn { flex: 1; margin-top: 0; }
     .fstep-back {
       min-height: 44px; padding: 0 14px; border: 0; border-radius: 8px; background: rgba(29, 74, 34, .08); cursor: pointer;
-      font: inherit; font-size: 15px; font-weight: 700; color: var(--pine); transition: background-color .2s var(--ease-out);
+      font: inherit; font-size: 16px; font-weight: 700; color: var(--pine); transition: background-color .2s var(--ease-out);
     }
     .fstep-back:hover { background: rgba(29, 74, 34, .16); }
     .fstep-back:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
@@ -1228,14 +1244,14 @@
     .rep-head { display: flex; align-items: center; gap: var(--s3); padding: 2px 4px var(--s3); border-bottom: 1px solid var(--line-light); }
     .rep-head img { flex: none; width: 34px; height: 34px; }
     .rep-head span { flex: 1; line-height: 1.2; }
-    .rep-head b { display: block; font-size: 15px; }
+    .rep-head b { display: block; font-size: 16px; }
     .rep-head small { font-size: 14px; color: var(--ink-muted); }
-    .rep-tag { padding: 3px 8px; border-radius: 999px; background: var(--mist); font-style: normal; font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-muted); }
+    .rep-tag { padding: 3px 8px; border-radius: 999px; background: var(--mist); font-style: normal; font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
     .rep-msg { margin-top: var(--s3); padding: var(--s3); border-radius: 18px 18px 18px 6px; background: #eef3ec; }
     .rep-msg img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; }
-    .rep-msg p { margin-top: var(--s3); font-size: 15px; font-weight: 600; line-height: 1.4; }
+    .rep-msg p { margin-top: var(--s3); font-size: 16px; font-weight: 600; line-height: 1.4; }
     .rep-checks { list-style: none; display: grid; gap: 6px; margin-top: var(--s3); }
-    .rep-checks li { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
+    .rep-checks li { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; }
     .rep-checks li::before {
       content: "\2713"; flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px;
       border: 2px solid var(--pine); background: var(--lime); color: var(--pine); font-size: 14px; font-weight: 800;
@@ -1253,12 +1269,12 @@
 
     /* 2026-10-07 (night): "we're probably already on your street": town totals as big-number chips */
     .street { max-width: 900px; margin: var(--s12) auto 0; text-align: center; }
-    .street-h { font-size: 17px; line-height: 1.5; color: rgba(255,255,255,.75); }
+    .street-h { font-size: 16px; line-height: 1.5; color: rgba(255,255,255,.75); }
     .street-h b { display: block; font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.15; text-transform: uppercase; color: #fff; margin-bottom: 6px; }
     .street-towns { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s2); margin-top: var(--s6); }
     .street-towns a, .street-towns span {
       display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 14px 6px 8px; border-radius: 999px;
-      background: rgba(255,255,255,.06); border: 1px solid var(--line-dark); color: #fff; font-weight: 700; font-size: 15px; text-decoration: none;
+      background: rgba(255,255,255,.06); border: 1px solid var(--line-dark); color: #fff; font-weight: 700; font-size: 16px; text-decoration: none;
     }
     .street-towns b { display: grid; place-items: center; min-width: 32px; height: 32px; padding: 0 6px; border-radius: 999px; background: var(--lime); color: var(--pine); font-family: var(--font-display); font-weight: 400; font-size: 16px; }
     .street-towns a { border-color: rgba(102,184,74,.5); transition: background-color .2s var(--ease-out), transform .3s var(--spring); }
@@ -1268,14 +1284,50 @@
     .street-towns a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
     .street .area-line { margin-top: var(--s4); }
     @media (max-width: 767px) { .street { margin-top: var(--s8); } .street-towns a, .street-towns span { font-size: 14px; } }
-  </style>
+
+    /* 2026-10-31 home step 2: five + ticket in one pine section; services as 4 photo rows */
+    .promise .checks { margin-top: var(--s8); }
+    /* the ticket sits on a light band at the foot of the pine section (a pine stub on pine ground disappeared) */
+    .promise-ticket { margin: var(--s16) calc(50% - 50vw) calc(var(--s16) * -1); padding: var(--s12) calc(50vw - 50%); background: var(--mist); overflow-x: clip; }
+    .svc-list { margin-top: var(--s12); display: grid; gap: var(--s3); }
+    @media (min-width: 768px) { .svc-list { grid-template-columns: repeat(2, 1fr); gap: var(--s4); } }
+    .svc-item { display: grid; grid-template-columns: 168px 1fr 22px; align-items: center; gap: var(--s4); padding: 10px var(--s4) 10px 10px;
+      border-radius: var(--radius); background: var(--coal-raised); border: 1px solid var(--line-dark); color: #fff; text-decoration: none;
+      transition: border-color .2s var(--ease-out), background-color .2s var(--ease-out); }
+    .svc-item img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: calc(var(--radius) - 6px); }
+    .svc-item h3 { font-family: var(--font-body); font-weight: 700; font-size: 20px; line-height: 1.25; }
+    .svc-txt > span { display: block; margin-top: 4px; font-size: 16px; line-height: 1.45; color: rgba(255,255,255,.75); }
+    .svc-tag { display: inline-block; margin-left: 4px; padding: 2px 8px; border-radius: 999px; background: var(--lime); color: var(--pine);
+      font-style: normal; font-size: 14px; font-weight: 700; vertical-align: 2px; }
+    .svc-chev { color: var(--lime); transition: transform .35s var(--spring); }
+    .svc-item:hover { border-color: var(--lime); background: #2c3a31; }
+    .svc-item:hover .svc-chev { transform: translateX(4px); }
+    .svc-item:active { transform: scale(.99); }
+    .svc-item:focus-visible, .svc-more a:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+    .svc-more { margin-top: var(--s6); text-align: center; font-size: 16px; font-weight: 600; color: rgba(255,255,255,.75); }
+    .svc-more a { display: inline-block; margin: 4px 0 0 6px; padding: 4px 12px; border-radius: 999px; background: rgba(102,184,74,.2); color: #fff; text-decoration: none; }
+    .svc-more a:hover { background: rgba(102,184,74,.35); }
+    @media (max-width: 767px) {
+      .svc-list { margin-top: var(--s8); }
+      .svc-item { grid-template-columns: 76px 1fr 18px; gap: var(--s4); padding: 8px 14px 8px 8px; }
+      .svc-item h3 { font-size: 20px; }
+      .svc-txt > span { display: none; } /* phones: photo, name, arrow (a list you can scan); the page behind each row has the detail */
+      .promise .checks { margin-top: var(--s6); }
+      .promise-ticket { margin: var(--s8) calc(50% - 50vw) -48px; padding: var(--s8) calc(50vw - 50%) var(--s6); }
+      .promise-ticket .tk-more { display: none; } /* the lime button right under it says the same */
+      /* 2026-11-01: the form comes up sooner on phones (Alex, blind grade). "Why customers pick us" is in the menu as Why G'N'G; "See all on Google" stays. */
+      .reviews .more { margin-top: var(--s6); }
+      .reviews .more .btn-dark { display: none; }
+      .reviews .refer-line { margin-top: var(--s6); }
+    }  </style>
 </head>
 <body>
   <a class="skip" href="#top">Skip to main content</a>
 
   <!-- TOP BAR (TruGreen-style offer bar). Carries the live offer: one line, real deadline, one link. -->
   <div class="topbar">
-    <p data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="#season">Save my spot</a></p>
+    <p class="tb-leaf draft">Fall Pass: book by Fri Nov 13. Text LEAVES, get your Leaf Map and price within 24 hours. <a href="../fall-cleanup/?src=topbar">See the Fall Pass</a></p>
+    <p class="tb-presell" data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="#season">Save my spot</a></p>
   </div>
 
   <!-- @header -->
@@ -1295,7 +1347,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
             <div class="sub" id="sub-services">
               <a href="../lawn-mowing/"><span>Weekly mowing<small>Same crew, same day every week</small></span></a>
-              <a href="../fall-cleanup/"><span>Fall cleanups<small>The Fall Pass: one price, till it's clear</small></span></a>
+              <a href="../fall-cleanup/"><span>Fall cleanups<small><span class="draft">The Fall Pass: proof every visit, first visit in 3 days</span></small></span></a>
               <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
               <a href="../yard-design/"><span>Planting and bed refresh<small>The right plant in the right spot</small></span></a>
@@ -1396,27 +1448,7 @@
   <!-- /@header -->
 
   <main id="top">
-
-    <!-- PROMO STRIP (2026-10-15, fall aeration). To pull it: delete this whole block through the script below. It also hides
-         itself on Sun 11/1 (the date is in the script). Wording is Harrison's. The Soil Check page stays noindex. -->
-    <a class="promo-strip" href="../soil-check/?src=home">
-      <div class="wrap">
-        <span class="promo-t"><b>Double Pass, Thick Grass Plan:</b> second pass free. Book by Sat 10/31.</span>
-        <span class="promo-go">Take the Soil Check <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-    </a>
-    <script>(function (s) { if (Date.now() >= Date.UTC(2026, 10, 1, 4)) s.hidden = true; })(document.currentScript.previousElementSibling);</script>
-    <!-- /PROMO STRIP -->
-    <!-- LEAF STRIP (2026-10-25, Alex's homepage call: a leaf strip while leaves are down). Shows by itself Sun 11/1 through Sun 11/30
-         (the Double Pass strip above hides on 11/1, so only one strip ever shows). Preview now with ?promo=leaf. Wording is draft until Harrison OKs it. -->
-    <a class="promo-strip draft" href="sms:+14406679642?&amp;body=LEAVES" data-leaf-strip hidden>
-      <div class="wrap">
-        <span class="promo-t"><b>Fall Pass:</b> one price. We come back till it's clear. Through Nov 30.</span>
-        <span class="promo-go">Text LEAVES <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-    </a>
-    <script>(function (s) { var now = Date.now(), on = now >= Date.UTC(2026, 10, 1, 4) && now < Date.UTC(2026, 11, 1, 5); if (on || /[?&]promo=leaf\b/.test(location.search)) { s.hidden = false; var dp = s.previousElementSibling.previousElementSibling; if (dp && dp.classList.contains('promo-strip')) dp.hidden = true; } })(document.currentScript.previousElementSibling);</script>
-    <!-- /LEAF STRIP -->
+    <!-- 2026-10-31: the Double Pass strip (expired 10/31) and the leaf strip came out; the top bar is the one banner now (Fall Pass until Dec 1, then save 5%). -->
 
     <!-- HERO -->
     <header class="hero">
@@ -1424,13 +1456,10 @@
         <!-- B-roll (2026-10-06): the brightest real job photos, slow drift + crossfade.
              Not loading="lazy": they start invisible, so the browser never loaded them and the hero went blank. Low priority instead.
              Lighter shading than before, so the photos read clear; the text keeps its own soft shadow. -->
-        <div class="broll" role="img" aria-label="Striped lawns, a stand-on mower, fresh mulch beds and the Grass 'n' Gardens crew on a job">
+        <!-- 2026-10-31 clean-up plan #7: one photo, no slideshow (Baymard: no carousels; on computers it was caught mid-fade). Computers: broll-home-wide loop fades in over it (script at the end). -->
+        <div class="broll" role="img" aria-label="A Grass 'n' Gardens mower on a freshly striped lawn">
           <!-- 2026-10-06: swapped to Harrison's own Google Business photos ("By owner" only, his OK). gbp-* = cropped to 4:3. -->
           <img src="img/gbp-mower-stripes.jpg" srcset="img/ph/gbp-mower-stripes.jpg 576w, img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" onload="this.classList.add('ld')" style="--pos: 70% 55%" />
-          <img data-src="img/gallery-12.jpg" data-srcset="img/ph/gallery-12.jpg 576w, img/sm/gallery-12.jpg 900w, img/md/gallery-12.jpg 1200w, img/gallery-12.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 55%" />
-          <img data-src="img/gbp-crew-mowing.jpg" data-srcset="img/ph/gbp-crew-mowing.jpg 576w, img/sm/gbp-crew-mowing.jpg 900w, img/md/gbp-crew-mowing.jpg 1200w, img/gbp-crew-mowing.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 30% 50%" />
-          <img data-src="img/stripes-estate-crew.jpg" data-srcset="img/ph/stripes-estate-crew.jpg 576w, img/sm/stripes-estate-crew.jpg 900w, img/md/stripes-estate-crew.jpg 1200w, img/stripes-estate-crew.jpg 1500w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: 40% 70%" />
-          <img data-src="img/crew-mulch.jpg" data-srcset="img/ph/crew-mulch.jpg 576w, img/sm/crew-mulch.jpg 900w, img/md/crew-mulch.jpg 1200w, img/crew-mulch.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="low" decoding="async" style="--pos: center 40%" />
         </div>
       </div>
       <div class="wrap hero-copy">
@@ -1447,27 +1476,56 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
         </div>
+        <!-- 2026-11-01 (Harrison: "Yes, Harrison texts back today, I can do that for sure"): the reply promise sits right under the button (Alex, blind grade: it cut the fear of an unknown ask). Same words as lower on the page. -->
+        <p class="hero-reply reveal d3"><b>Harrison texts you today.</b> From his own phone.</p>
+        <!-- 2026-11-01: HOA boards and property managers (40% of the plan) had no way in above the fold (round 4: an outlined button, above the Yard Score line, so it shows on the first computer screen); same words as the HOA line in the ask section. -->
+        <a class="hero-score hero-hoa reveal d3" href="../hoa-commercial/"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4"/></svg><span>HOA or business? <b>See what our bid includes</b></span></a>
         <!-- 2026-10-07 (late, Harrison: people won't find the Yard Score): one line under the buttons -->
         <a class="hero-score reveal d3" href="../yard-score/"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg><span class="draft">Not sure what you need? <b>Get your Yard Score</b> in 4 taps.</span></a>
       </div>
     </header>
 
-    <!-- QUICK LINKS (2026-10-07, late). 2026-10-07 night: cut from 13 to 8 (Harrison OK): the offer, the Yard Score, the full-plan services, HOA, reviews. Everything else is in the menu + footer. -->
-    <nav class="jump" aria-label="Quick links">
+    <!-- 2026-10-31 clean-up plan #6: the quick links came out (Alex: the menu has them). -->
+
+    <!-- 2026-10-31 clean-up plan #6: reviews moved up to second (Alex: proof before the ask). -->
+    <section class="light reviews" id="reviews">
       <div class="wrap">
-        <span class="jump-label">Jump to</span>
-        <ul>
-          <li><a class="hot" href="../season-pass/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v8a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2z"/><path d="M15 6v12" stroke-dasharray="2 2.5"/></svg>2027 Season Pass</a></li>
-          <li><a href="../yard-score/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg>Yard Score</a></li>
-          <li><a href="../lawn-mowing/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V9M9 20V6M14 20V9M19 20V5"/></svg>Weekly mowing</a></li>
-          <li><a href="../aeration-fertilizer/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13M9 16h6l-3 5z"/><path d="M3 12h4M17 12h4"/></svg>Aeration and fertilizer</a></li>
-          <li><a href="../mulch-beds/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="13" r="4"/><circle cx="16" cy="12" r="5"/><path d="M2 20h20"/></svg>Mulch, beds and bushes</a></li>
-          <li><a href="../fall-cleanup/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-14 15-15-1 10-7 15-15 15z"/><path d="M5 19l8-8"/></svg>Fall cleanups</a></li>
-          <li><a href="../hoa-commercial/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6"/></svg>HOA and commercial</a></li>
-          <li><a href="../why-gng/"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>59 reviews</a></li>
-        </ul>
+        <h2 class="stack reveal"><span class="thin">59 reviews.</span><span class="heavy draft">5.0 on Google<span class="dot">.</span></span></h2>
+        <!-- 2026-11-01: the record row under this heading came out (it repeated "59 reviews, 5.0" right under the same words; the footer and the header still carry it) -->
       </div>
-    </nav>
+
+      <!-- 2026-10-07 (Harrison): every Google review, in two rows that slide past each other as you scroll.
+           Row 1 drifts right, row 2 drifts left. Filled from the reviews list in the script below.
+           Reviews from family and crew are left out (FTC rule on insider reviews). -->
+      <!-- 2026-11-01 round 4 (Customer Care + Alex: the moving cards are always cut off, so nobody reads one whole review on a phone):
+           one full review stays still above the rows. Word for word from reviews.js. -->
+      <div class="wrap rv-pin-wrap">
+        <article class="gshot rv-pin reveal">
+          <header><span class="av" style="background:#188038" aria-hidden="true">K</span>
+            <span class="who"><b>Katie E.</b><span>Google review</span></span><svg class="glogo" width="22" height="22" aria-label="Google review"><use href="#g-logo"/></svg></header>
+          <div class="rate" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>They were very responsive and had strong communication from start to finish. They showed up on time, spread over 10 yards of mulch and left everything spotless. The crew was respectful and clearly takes pride in what they do. We couldn’t be happier with the results and would recommend them for your next landscaping project!</p>
+        </article>
+      </div>      <div class="rv-rows" role="region" aria-label="Google reviews from our customers">
+        <div class="rv-track" data-dir="1"></div>
+        <div class="rv-track" data-dir="-1"></div>
+      </div>
+      <p class="rv-hint draft" aria-hidden="true">&larr; Slide a row to read more &rarr;</p>
+
+      <div class="wrap more">
+        <a class="btn btn-dark" href="../why-gng/">Why customers pick us
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <!-- 2026-10-07: opens the reviews list on Google for anyone (Harrison's own link only works signed in to his account) -->
+        <a class="btn btn-ghost" href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">See all 59 on Google
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+
+      <!-- SEND A NEIGHBOR, one line (2026-10-07: the big card moved out; the full story is on refer/).
+           Rule locked 2026-10-03: a neighbor signs a yearly plan -> you both save 5%. Never tied to reviews. -->
+      <div class="wrap">
+        <p class="refer-line reveal"><span class="draft">Know someone who'd want this?</span> <a href="../refer/"><b>Send a neighbor.</b> You both save 5%.</a></p>
+      </div>
+    </section>
 
     <!-- WATCH THIS FIRST + YARD PLAN FORM, right under the hero (2026-10-07, TruGreen-style: the ask comes first).
          Harrison (2026-10-07): the "cheapest landscaper? watch this first" video belongs right with the form, because
@@ -1476,26 +1534,9 @@
     <section class="plan" id="plan">
       <div class="wrap plan-grid">
         <div class="plan-copy reveal">
-          <p class="eyebrow">Before you hire anyone</p>
-          <h2>Looking for the cheapest landscaper? <b>See this first<span class="dot">.</span></b></h2>
-          <!-- Photo reel of real 2026 jobs. Stands in for the "what we got done in one year" video;
-               when the video is filmed, put it here. Plays by itself, pause button for anyone who wants it still. -->
-          <div class="reel" role="region" aria-roledescription="slideshow" aria-label="Our 2026 season in photos">
-            <figure class="reel-slide is-on"><img loading="lazy" fetchpriority="low" src="img/sm/gbp-house-stripes.jpg" srcset="img/xs/gbp-house-stripes.jpg 600w, img/sm/gbp-house-stripes.jpg 900w, img/md/gbp-house-stripes.jpg 1200w, img/gbp-house-stripes.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Fresh mowing stripes across a front lawn up to a stone and siding house" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img data-src="img/sm/gbp-front-bed.jpg" data-srcset="img/xs/gbp-front-bed.jpg 600w, img/sm/gbp-front-bed.jpg 900w, img/md/gbp-front-bed.jpg 1200w, img/gbp-front-bed.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Long fresh mulch bed with shrubs and a red maple along the front of a house" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>Mulch and beds</figcaption></figure>
-            <figure class="reel-slide"><img data-src="img/sm/ba-brick-after.jpg" data-srcset="img/xs/ba-brick-after.jpg 600w, img/sm/ba-brick-after.jpg 900w, img/md/ba-brick-after.jpg 1200w, img/ba-brick-after.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Front bed of a brick house cleared and covered in fresh black mulch" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>Bed cleanup</figcaption></figure>
-            <figure class="reel-slide"><img data-src="img/sm/gbp-mower-drive.jpg" data-srcset="img/xs/gbp-mower-drive.jpg 600w, img/sm/gbp-mower-drive.jpg 900w, img/md/gbp-mower-drive.jpg 1200w, img/gbp-mower-drive.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Mower on a freshly striped front lawn by the driveway" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>Weekly mowing</figcaption></figure>
-            <figure class="reel-slide"><img data-src="img/sm/gbp-hedge.jpg" data-srcset="img/xs/gbp-hedge.jpg 600w, img/sm/gbp-hedge.jpg 900w, img/md/gbp-hedge.jpg 1200w, img/gbp-hedge.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Tall hedge trimmed flat and square along the side of a house" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>Bush trimming</figcaption></figure>
-            <figure class="reel-slide"><img data-src="img/sm/gbp-walk-beds.jpg" data-srcset="img/xs/gbp-walk-beds.jpg 600w, img/sm/gbp-walk-beds.jpg 900w, img/md/gbp-walk-beds.jpg 1200w, img/gbp-walk-beds.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Curved walkway lined with fresh mulch beds and shrubs" loading="lazy" decoding="async" fetchpriority="low" /><figcaption>Beds and edging</figcaption></figure>
-            <div class="reel-bar">
-              <span class="reel-title">Our 2026 season</span>
-              <span class="reel-pips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-              <button class="reel-toggle" type="button" aria-label="Pause the photos" aria-pressed="false">
-                <svg class="i-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
-                <svg class="i-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
-              </button>
-            </div>
-          </div>
+          <p class="eyebrow">Your yard plan</p>
+          <!-- 2026-10-31 clean-up plan #6: the 6-photo reel and its "cheapest landscaper? see this first" heading came out (Customer Care: it read as a pitch; Alex: cut it). Words from step 3 below; draft. -->
+          <h2><span class="draft">Tell me about your yard.</span> <b class="draft">We write out your whole year<span class="dot">.</span></b></h2>
         </div>
 
         <div class="form-card reveal d1" id="plan-form">
@@ -1525,7 +1566,7 @@
                 <label class="chip-extra"><input type="checkbox" name="need" value="design" /><span>Planting and bed refresh</span></label>
                 <label class="chip-extra"><input type="checkbox" name="need" value="soilcheck" /><span>Free Soil Check</span></label>
                 <label class="chip-extra"><input type="checkbox" name="need" value="trees" /><span>Small tree work</span></label>
-                <label class="chip-extra"><input type="checkbox" name="need" value="hoa" /><span>HOA or business property</span></label>
+                <label><input type="checkbox" name="need" value="hoa" /><span>HOA or business property</span></label><!-- 2026-11-01: out from under "more" (Customer Care: an HOA manager found no choice for him on step 1) -->
                 <label><input type="checkbox" name="need" value="other" id="need-other" /><span>Something else</span></label>
               </fieldset>
               <label class="if-other other-need">What else? <input name="need_other" placeholder="Type it here" /></label>
@@ -1613,117 +1654,46 @@
         <h2 class="stack reveal"><span class="thin">Your yard has</span><span class="heavy">a season<span class="dot">.</span></span></h2>
         <p class="lede reveal d1"><span class="draft">We mow all summer and clean up in spring and fall. You don't have to call us every season.</span></p>
 
-        <!-- 2026-10-07 (Harrison: "click on these sections to go more in depth"): each card opens its own page. -->
-        <div class="svc-row">
-          <a class="svc reveal" href="../lawn-mowing/">
-            <img src="img/sm/stripes-farmhouse.jpg" srcset="img/xs/stripes-farmhouse.jpg 600w, img/sm/stripes-farmhouse.jpg 900w, img/stripes-farmhouse.jpg 1170w" sizes="(max-width: 767px) 200px, 40vw" alt="Crisscross mowing stripes across a big front lawn up to a white farmhouse" loading="lazy" fetchpriority="low" />
-            <div class="svc-body"><h3>Weekly mowing</h3><p class="draft">Same day every week. We edge and blow off the drive every time.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-          </a>
-          <a class="svc reveal d1" href="../fall-cleanup/">
-            <span class="tag">Fall Pass</span>
-            <img src="img/sm/leaf-after.jpg" srcset="img/xs/leaf-after.jpg 600w, img/sm/leaf-after.jpg 900w, img/leaf-after.jpg 1200w" sizes="(max-width: 767px) 200px, 40vw" alt="Beds and stone walk cleared of leaves after a fall cleanup" loading="lazy" fetchpriority="low" />
-            <div class="svc-body"><h3>Fall cleanups</h3><p>One price for the whole leaf season. We keep coming back till it's clear.</p><span class="go">See the Fall Pass <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-          </a>
-          <a class="svc reveal d2" href="../mulch-beds/">
-            <img src="img/sm/gbp-curved-bed.jpg" srcset="img/xs/gbp-curved-bed.jpg 600w, img/sm/gbp-curved-bed.jpg 900w, img/gbp-curved-bed.jpg 1200w" sizes="(max-width: 767px) 200px, 40vw" alt="Curved black mulch bed with round shrubs along a white house" loading="lazy" fetchpriority="low" />
-            <div class="svc-body"><h3>Mulch and beds</h3><p class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-          </a>
-          <a class="svc reveal d3" href="../spring-cleanup/">
-            <img src="img/sm/gallery-14.jpg" srcset="img/xs/gallery-14.jpg 600w, img/sm/gallery-14.jpg 900w, img/gallery-14.jpg 1200w" sizes="(max-width: 767px) 200px, 40vw" alt="Fresh mulch bed with hostas along a ranch home" loading="lazy" fetchpriority="low" />
-            <div class="svc-body"><h3>Spring cleanups</h3><p class="draft">Sticks and dead leaves gone before your first mow.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-          </a>
-          <a class="svc reveal d1" href="../yard-design/">
-            <span class="tag">Custom</span>
-            <img src="img/sm/gbp-planter-boxes.jpg" srcset="img/xs/gbp-planter-boxes.jpg 600w, img/sm/gbp-planter-boxes.jpg 900w, img/md/gbp-planter-boxes.jpg 1200w, img/gbp-planter-boxes.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="New raised planter boxes and a mulch bed beside a white house" loading="lazy" fetchpriority="low" />
-            <div class="svc-body"><h3>Planting</h3><p class="draft">New plants and tired beds redone. The right plant in the right spot.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-          </a>
-          <!-- 2026-10-07: 6th card, so aeration + fertilizer is one tap from the homepage too -->
-          <a class="svc reveal d2" href="../aeration-fertilizer/">
-            <img src="img/sm/gbp-big-yard.jpg" srcset="img/xs/gbp-big-yard.jpg 600w, img/sm/gbp-big-yard.jpg 900w, img/md/gbp-big-yard.jpg 1200w, img/gbp-big-yard.jpg 1600w" sizes="(max-width: 767px) 200px, 40vw" alt="Wide back lawn with fresh mowing stripes under a blue sky" loading="lazy" fetchpriority="low" />
-            <div class="svc-body"><h3>Aeration and fertilizer</h3><p class="draft">Thicker grass. We check your soil first, and that part is free.</p><span class="go">See how it works <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-          </a>
+        <!-- 2026-10-31 home step 2: 4 photo rows instead of 6 swipe cards (Baymard: on phones people miss what is off to the side of a swipe row).
+             Spring cleanups and planting are one tap away on the line under them. -->
+        <div class="svc-list">
+          <a class="svc-item reveal" href="../lawn-mowing/">
+            <img src="img/xs/stripes-farmhouse.jpg" srcset="img/xs/stripes-farmhouse.jpg 600w" sizes="(max-width: 767px) 76px, 168px" loading="lazy" fetchpriority="low" alt="Crisscross mowing stripes across a big front lawn up to a white farmhouse" />
+            <span class="svc-txt"><h3>Weekly mowing</h3><span class="draft">Same day every week. We edge and blow off the drive every time.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+          <a class="svc-item reveal d1" href="../fall-cleanup/">
+            <img src="img/xs/leaf-after.jpg" srcset="img/xs/leaf-after.jpg 600w" sizes="(max-width: 767px) 76px, 168px" loading="lazy" fetchpriority="low" alt="Beds and stone walk cleared of leaves after a fall cleanup" />
+            <span class="svc-txt"><h3>Fall cleanups <em class="svc-tag">Fall Pass</em></h3><span class="draft">Set visits for your yard, plus one free. A photo every visit.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+          <a class="svc-item reveal d2" href="../mulch-beds/">
+            <img src="img/xs/gbp-curved-bed.jpg" srcset="img/xs/gbp-curved-bed.jpg 600w" sizes="(max-width: 767px) 76px, 168px" loading="lazy" fetchpriority="low" alt="Curved black mulch bed with round shrubs along a white house" />
+            <span class="svc-txt"><h3>Mulch and beds</h3><span class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+          <a class="svc-item reveal d3" href="../aeration-fertilizer/">
+            <img src="img/xs/gbp-big-yard.jpg" srcset="img/xs/gbp-big-yard.jpg 600w" sizes="(max-width: 767px) 76px, 168px" loading="lazy" fetchpriority="low" alt="Wide back lawn with fresh mowing stripes under a blue sky" />
+            <span class="svc-txt"><h3>Aeration and fertilizer</h3><span class="draft">Thicker grass. We check your soil first, and that part is free.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
         </div>
-        <p class="swipe-hint" aria-hidden="true">Swipe for more &rarr;</p>
-      </div>
+        <p class="svc-more reveal">Also: <a href="../spring-cleanup/">Spring cleanups</a> <a href="../yard-design/">Planting</a></p>      </div>
     </section>
 
     <!-- REVIEWS (real Google reviews, trimmed) -->
-    <section class="light reviews" id="reviews">
-      <div class="wrap">
-        <h2 class="stack reveal"><span class="thin">59 reviews.</span><span class="heavy draft">5.0 on Google<span class="dot">.</span></span></h2>
-        <p class="record reveal d1"><span>Record</span><span><b>60</b> reviews</span><span><b>5.0</b> average</span><span><b>0</b> under five</span></p>
-      </div>
 
-      <!-- 2026-10-07 (Harrison): every Google review, in two rows that slide past each other as you scroll.
-           Row 1 drifts right, row 2 drifts left. Filled from the reviews list in the script below.
-           Reviews from family and crew are left out (FTC rule on insider reviews). -->
-      <div class="rv-rows" role="region" aria-label="Google reviews from our customers">
-        <div class="rv-track" data-dir="1"></div>
-        <div class="rv-track" data-dir="-1"></div>
-      </div>
-      <p class="rv-hint draft" aria-hidden="true">&larr; Slide a row to read more &rarr;</p>
-
-      <div class="wrap more">
-        <a class="btn btn-dark" href="../why-gng/">Why customers pick us
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <!-- 2026-10-07: opens the reviews list on Google for anyone (Harrison's own link only works signed in to his account) -->
-        <a class="btn btn-ghost" href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">See all 59 on Google
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-      </div>
-
-      <!-- SEND A NEIGHBOR, one line (2026-10-07: the big card moved out; the full story is on refer/).
-           Rule locked 2026-10-03: a neighbor signs a yearly plan -> you both save 5%. Never tied to reviews. -->
-      <div class="wrap">
-        <p class="refer-line reveal"><span class="draft">Know someone who'd want this?</span> <a href="../refer/"><b>Send a neighbor.</b> You both save 5%.</a></p>
-      </div>
-    </section>
-
-    <!-- WHY US, SHORT (2026-10-07). The full Five Before We Drive scroll, the night field and "How we stack up"
-         moved to why-gng (Harrison: less scrolling, keep what converts). Same 5 checks and the same remedy. -->
+    <!-- 2026-10-31 home step 2: the five checks and the 2027 ticket are ONE section now. They said the same thing twice (the ticket listed
+         "Miss one? We're back the next day, free" right under the promise), and two sections cost 2.2 phone screens. The sample visit
+         text came out (a 2027 HomeWorks feature; restore from $TEMP\home-index-before-step2.html). id="five" and id="season" both stay
+         (the top bar links #season). The 5% terms: brainstorms/2026-09-30-scaling-roadmap.md Q2, Q9; ends March 31, 2027 (data-offer-only). -->
     <section class="promise" id="five">
-      <div class="wrap promise-row">
-        <div class="reveal">
+      <div class="wrap">
+        <div class="promise-top reveal">
           <p class="eyebrow">Our promise</p>
           <h2>Five checks <b>before we drive<span class="dot">.</span></b></h2>
-          <p class="rem"><b>Miss one?</b> Text us. We're back the next day, for free. If it rains, the next dry day. <a href="../why-gng/#compare">See how we stack up</a></p>
-          <p class="rem draft">Starting in 2027, you get a text like this after every visit. A photo of your yard and all 5 checks.</p>
         </div>
-        <!-- 2026-10-07 (night): FIVE BEFORE WE DRIVE REPORT (Harrison: "yep"). The text each customer gets after every visit:
-             a photo + the 5 checks ticked. Proof the promise was kept, every week. The crew sends it from HomeWorks (from Dec 2026).
-             SAMPLE ONLY until HomeWorks is set up. Photo = a real G'N'G yard. -->
-        <figure class="report reveal d1" aria-label="Sample of the text you get after every visit">
-          <div class="rep-head">
-            <img src="brand_assets/logos/mark-sm.png" alt="" width="34" height="34" loading="lazy" fetchpriority="low" />
-            <span><b>Grass 'n' Gardens</b><small>Today, 10:42 AM</small></span>
-            <em class="rep-tag">Sample</em>
-          </div>
-          <div class="rep-msg">
-            <img src="img/sm/gbp-brick-colonial.jpg" srcset="img/xs/gbp-brick-colonial.jpg 600w, img/sm/gbp-brick-colonial.jpg 900w, img/md/gbp-brick-colonial.jpg 1200w" sizes="(max-width: 767px) 200px, 420px" alt="Sample photo: a big front lawn mowed in sharp stripes up to a brick house" loading="lazy" fetchpriority="low" style="object-position: center 62%" />
-            <p class="draft">All done at your place. All 5 checks passed.</p>
-            <ol class="rep-checks">
-              <li>Edges crisp</li>
-              <li>Everything blown clean</li>
-              <li>Nothing left behind</li>
-              <li>Gates latched</li>
-              <li>No clumps</li>
-            </ol>
-            <p class="draft">Something look off? Reply here. We're back tomorrow, free.</p>
-          </div>
-        </figure>
-      </div>
-    </section>
-
-    <!-- 2027 MOWING SEASON OFFER (the TruGreen "save X% on the season" move, done with our guarantee).
-         Terms = the locked 3-part guarantee + 5% prepay (brainstorms/2026-09-30-scaling-roadmap.md Q2, Q9).
-         Urgency only (Harrison, 2026-10-05): 5% ends March 31, 2027, the day before mowing starts (CMO agent pick, Harrison asked for its call). No spot count. -->
-    <section class="season" id="season" data-offer-only>
-      <div class="wrap">
-        <!-- The ticket (2026-10-06, Harrison: "make this 2027 mowing ticket look a little more fun").
-             Same sticker language as the review cards he likes: thick outline, hard shadow, a little tilt.
-             Notches + perforation, a rubber-stamp 5%, a barcode made of mowing stripes, a live day count. -->
-        <!-- 2026-10-07 (Harrison: "click on the ticket"): the whole ticket opens the Season Pass page.
-             Notches are real cut-outs now (masks), so the outline and lime shadow follow them. -->
-        <div class="ticket reveal">
+        <ol class="checks reveal d1">
+          <li>Edges crisp</li>
+          <li>Everything blown clean</li>
+          <li>Nothing left behind</li>
+          <li>Gates latched</li>
+          <li>No clumps</li>
+        </ol>
+        <p class="rem reveal d1"><b>Miss one?</b> Text us. We're back the next day, for free. If it rains, the next dry day. <a href="../why-gng/#compare">See how we stack up</a></p>
+        <div class="promise-ticket" id="season" data-offer-only>        <div class="ticket reveal">
           <div class="tk-drop"><div class="tk-shape"><div class="tk-in">
             <a class="tk-hit" href="../season-pass/" tabindex="-1" aria-hidden="true"></a>
             <div class="tk-main">
@@ -1732,7 +1702,6 @@
               <ul class="stack-list">
                 <li>Weekly mowing, the same day every week</li>
                 <li>Five Before We Drive on every visit</li>
-                <li>Miss one? We're back the next day, free</li>
                 <!-- 2026-10-07: the 30-day and moving lines live on the Season Pass page (shorter ticket here) -->
               </ul>
               <div class="tk-code" aria-hidden="true"><span class="bars"></span><span class="code">GNG &middot; 2027 &middot; WEEKLY MOWING</span></div>
@@ -1748,6 +1717,7 @@
               <a class="pass-call" href="tel:+14406679642">Or call Harrison: (440) 667-9642</a>
             </div>
           </div></div></div>
+        </div>
         </div>
       </div>
     </section>
@@ -1793,6 +1763,26 @@
     </section>
   </main>
 
+  <script>
+  // 2026-10-31 clean-up plan #7: on computers a muted loop of Riley's 4K clips (broll-home-wide, make-broll.ps1) fades in over the
+  // header photo after the page has loaded, so the photo stays the first big paint (speed). Phones keep the photo. Until the truck-wrap video.
+  (function () {
+    if (innerWidth < 960 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var c = navigator.connection || {}; if (c.saveData || /2g|3g/.test(c.effectiveType || '')) return;
+    var box = document.querySelector('.hero .hero-photo'); if (!box) return;
+    var go = function () {
+      var v = document.createElement('video');
+      v.className = 'home-loop'; v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
+      ['muted', 'playsinline', 'disablepictureinpicture'].forEach(function (a) { v.setAttribute(a, ''); });
+      v.setAttribute('aria-hidden', 'true'); v.setAttribute('tabindex', '-1');
+      v.src = './video/broll-home-wide-lg.mp4';
+      v.addEventListener('playing', function () { v.classList.add('on'); }, { once: true });
+      box.appendChild(v);
+      new IntersectionObserver(function (e) { if (e[0].isIntersecting) v.play().catch(function () {}); else v.pause(); }).observe(box);
+    };
+    if (document.readyState === 'complete') go(); else addEventListener('load', go);
+  })();
+  </script>
   <!-- @footer -->
   <!-- FOOTER (2026-10-07: one footer for every page; edit _partials/footer.html, then run sync-partials.ps1).
        Social links: Instagram, Facebook, YouTube, TikTok, Nextdoor (TikTok and Nextdoor found on the Google profile 2026-10-07). Add more when Harrison sends them. -->
@@ -1848,7 +1838,7 @@
         </div>
       </div>
       <div class="foot">
-        <p class="rec">Record &middot; <b>60</b> reviews &middot; <b>5.0</b> average &middot; <b>0</b> under five</p>
+        <p class="rec">Record &middot; <b>59</b> reviews &middot; <b>5.0</b> average</p>
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
         <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a> &middot; <a href="../bath-oh/">Bath</a> &middot; <a href="../granger-oh/">Granger</a></p>
         <button class="app-get" type="button" data-app-get hidden>
@@ -1871,26 +1861,17 @@
   </dialog>
 
   <div class="call-bar">
-    <!-- 2026-10-22: the 2027 save-5% offer as a thin line above the buttons (Harrison picked "option 2"). Starts hidden;
-         the script under the bar shows it, except on the season pass page itself, after a visitor closes it, or after 3/31/2027. -->
-    <p class="cb-offer" hidden><a class="draft" href="../season-pass/"><span>Save <b>5%</b> on 2027 mowing. Pay by March 31.</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><button type="button" class="cb-x" aria-label="Hide the 2027 offer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></p>
+    <!-- 2026-10-31 clean-up plan #4: the save-5% line came out of the bar (it repeated the top banner). The bar is the page's one ask plus Call; when the ask is itself a text, the plain Text button hides (script below). -->
     <a class="btn btn-lime" href="#plan-form">Get my yard plan</a>
     <!-- 2026-10-20: Call and Text are two buttons now (events click_to_call / click_to_text come from site.js) -->
     <a class="btn btn-ghost cb-reach" href="tel:+14406679642" aria-label="Call Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="draft">Call</span></a>
     <a class="btn btn-ghost cb-reach" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
   </div>
   <script>
-  // 2027 offer line on the phone bar (2026-10-22). Shows unless: this is a page with its own ask, the visitor closed it, or it is 4/1/2027+.
-  (() => {
-    const p = document.querySelector('.call-bar .cb-offer'); if (!p) return;
-    const skip = /\/(season-pass|join-the-crew|thank-you|soil-check|winter-walk)\//.test(location.pathname);
-    let closed = false; try { closed = localStorage.getItem('gng_offer_bar') === 'closed'; } catch (e) {}
-    if (skip || closed || new Date() >= new Date(2027, 3, 1)) return;
-    p.hidden = false;
-    const push = (event) => { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event, page: location.pathname }); };
-    p.querySelector('a').addEventListener('click', () => push('offer_bar_click'));
-    p.querySelector('.cb-x').addEventListener('click', () => { p.hidden = true; push('offer_bar_close'); try { localStorage.setItem('gng_offer_bar', 'closed'); } catch (e) {} });
-  })();
+  // 2026-10-31: when the bar's main button already texts us (Text LEAVES, Text Harrison), hide the second Text button.
+  (() => { const bar = document.querySelector('.call-bar'); if (!bar) return; const main = bar.querySelector('a.btn-lime'); if (main && /^sms:/.test(main.getAttribute('href') || '')) bar.querySelectorAll('a.cb-reach[href^="sms:"]').forEach(a => { a.hidden = true; }); })();
+  // 2026-10-31 clean-up plan #5: one main button per screen. While the header's own main button is on screen, the bar slides away (same as fall-cleanup since 10/25).
+  (() => { const bar = document.querySelector('.call-bar'); const hb = [...document.querySelectorAll('header.hero .btn-lime, header.page-hero .btn-lime')].find(b => b.offsetParent !== null); if (!bar || !hb || !('IntersectionObserver' in window)) return; new IntersectionObserver(([e]) => bar.classList.toggle('cb-away', e.isIntersecting)).observe(hb); })();
   </script>
 
   <script>
@@ -1952,7 +1933,7 @@
       if (!tracks.length) return;
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
       tracks.forEach((t, r) => {
-        const mine = reviews.map((rv, i) => [rv, i]).filter(([, i]) => i % tracks.length === r);
+        const mine = reviews.map((rv, i) => [rv, i]).filter(([rv]) => rv[0] !== 'Katie E.').filter(([, i]) => i % tracks.length === r); // Katie E. is pinned above the rows
         const set = mine.map(([rv, i]) => card(rv, i)).join('');
         t.innerHTML = reduced ? set : set + `<div class="rv-copy" aria-hidden="true">${set}</div>`;
       });
@@ -2042,7 +2023,7 @@
       new IntersectionObserver(([e]) => {
         onScreen = e.isIntersecting;
         if (onScreen && !raf) { last = 0; lastY = scrollY; raf = requestAnimationFrame(step); }
-      }, { rootMargin: '100px 0px' }).observe(document.querySelector('.rv-rows'));
+      }, { rootMargin: '-20% 0px' }).observe(document.querySelector('.rv-rows')); // 2026-11-01: was 100px; the rows slid a card over before a phone reached them, so the first card seen was the last (shortest) review
       document.addEventListener('visibilitychange', () => { if (!document.hidden && onScreen && !raf) { last = 0; raf = requestAnimationFrame(step); } });
     })();
 
