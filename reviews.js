@@ -1,8 +1,9 @@
 // Grass 'n' Gardens Google reviews, shared by every page (moved out of the homepage 2026-10-07).
-// Every 5-star Google review with words, word for word (read off his Google profile 2026-10-07; 59 reviews, 58 five-star + 1 four-star, Google displays 5.0, checked 2026-10-26).
+// Every 5-star Google review with words, word for word (read off his Google profile 2026-10-07; 63 reviews (4.9 on Google 11/3), 58 five-star + 1 four-star, Google displays 5.0, checked 2026-10-26).
 // Left out: 5 with no words, and 7 from family or crew (FTC rule on insider reviews). [name, review]
 window.GNG_REVIEWS = [
   ["Kier M.", "I work in landscape/hardscape myself. No one is allowed to cut my grass because they can't mow straight out know how to stripe. But I needed a total knee replacement in April. Through another recommendation, I was given contact info for Grass 'n' Gardens. They were very prompt to show up for an estimate and I felt were competitively priced. I'm the spring when weather was unpredictable, they would always call and give me the option to wait for a day or two to dry out if I wanted. Harrison and his crew are respectful to both my needs as a customer, as well as my property. Don't be afraid to give a young entrepreneur an opportunity, you won't be disappointed!"],
+  ["Brandon W.", "I can’t say enough great things about Harrison and his team at Grass n’ Gardens! They maintained our property all season long, and their work was exceptional. From mowing and trimming bushes to weeding, fresh mulch, and fall leaf cleanup, they did an outstanding job with everything. Harrison and his team are professional, dependable, hardworking, and genuinely care about their customers. Their attention to detail, pride in their work, and commitment to doing things right really set them apart. It’s refreshing to work with a company that truly values quality and customer relationships, relative to my last company. I highly recommend Grass n’ Gardens! Great people, exceptional service, and outstanding results!"],
   ["Clay T.", "What a great team to help us on our Landscaping needs. They were efficient and fast and did everything we contracted for. We could not be more pleased with their work."],
   ["Katie E.", "They were very responsive and had strong communication from start to finish. They showed up on time, spread over 10 yards of mulch and left everything spotless. The crew was respectful and clearly takes pride in what they do. We couldn’t be happier with the results and would recommend them for your next landscaping project!"],
   ["Pat M.", "Amazing weeding and mulching plus trim and cleaning up by Grass n Gardens. Love seeing the results even on a rainy day!"],
@@ -19,6 +20,8 @@ window.GNG_REVIEWS = [
   ["Donovan J.", "Absolutely phenomenal job on my front and back yards. They made sure to take the details serious and not miss any little edging or anything. I was very impressed and will be calling with them again!"],
   ["Brianne C.", "Grass 'n' Gardens did a beautiful job edging and mulching our flower beds! From start to finish Harrison was so professional! He promptly returned my phone call, gave us a quick quote, fast turn around to mulch, and at a great price! He did such an amazing job that we hired him to mow our lawn weekly!! Do not hesitate to go with Harrison and Grass 'n' Gardens!!"],
   ["Darlene B.", "They do a great job in a timely fashion. Dylan just weeded my beds and did a great job. They are professional and respectful."],
+  ["Wade N.", "Great team, will definitely hire again"],
+  ["Jerry R.", "Did an amazing job, nice people, would hire again 👍"],
   ["Christopher F.", "Harrison and his team do a fantastic job! They are reliable and trustworthy. Very professional!"],
   ["Rene Z.", "Great crew and Great experience. Thank you for a much needed clean up and mow."],
   ["Tom K.", "Harrison and his team are very professional, courteous, and do a great job!"],
