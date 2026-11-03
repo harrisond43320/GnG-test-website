@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Grass N Gardens | TikTok sign-in done</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;600;700&display=swap">
+<style>
+  :root { --forest:#307537; --pine:#1d4a22; --lime:#66b84a; --sky:#a7cbe0; --ink:#111; --paper:#fff; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Barlow, system-ui, sans-serif; color:var(--ink); background:var(--paper); }
+  main { max-width:640px; margin:0 auto; padding:40px 16px 60px; }
+  h1 { font-family:"Alfa Slab One", serif; font-weight:400; color:var(--pine); font-size:30px; margin:0 0 8px; }
+  p { font-size:18px; line-height:1.45; margin:0 0 14px; }
+  .box { background:#f1f7f1; border:2px solid var(--forest); border-radius:12px; padding:16px; margin:18px 0; word-break:break-all; font-family:ui-monospace, Consolas, monospace; font-size:18px; min-height:60px; }
+  button { font:700 18px Barlow, sans-serif; color:#fff; background:var(--forest); border:0; border-radius:10px; padding:14px 22px; cursor:pointer; }
+  button:active { background:var(--pine); }
+  .ok { color:var(--forest); font-weight:700; }
+  .bad { color:#b3261e; font-weight:700; }
+  small { display:block; margin-top:24px; color:#555; font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>TikTok sign-in done</h1>
+  <p id="msg">Copy the code below. Paste it into the setup window on the computer.</p>
+  <div class="box" id="code">Looking for the code…</div>
+  <button id="copy" type="button">Copy the code</button>
+  <p id="done" class="ok" hidden>Copied. Go back to the setup window and paste it.</p>
+  <small>This page only shows the code. It does not save it or send it anywhere. Grass N Gardens Landscaping LLC, Richfield, Ohio.</small>
+</main>
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var code = q.get("code"), err = q.get("error"), desc = q.get("error_description");
+    var box = document.getElementById("code"), msg = document.getElementById("msg"), btn = document.getElementById("copy");
+    if (err) {
+      msg.className = "bad"; msg.textContent = "TikTok said no: " + err + (desc ? " (" + desc + ")" : "") + ". Close this tab and try the setup again.";
+      box.textContent = "No code."; btn.hidden = true; return;
+    }
+    if (!code) { msg.textContent = "No code in this address. Start from the setup window on the computer, not from here."; box.textContent = "No code."; btn.hidden = true; return; }
+    box.textContent = code;
+    btn.addEventListener("click", function () {
+      var done = function () { document.getElementById("done").hidden = false; btn.textContent = "Copied"; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done, function () { selectBox(); });
+      else selectBox();
+      function selectBox() { var r = document.createRange(); r.selectNodeContents(box); var s = getSelection(); s.removeAllRanges(); s.addRange(r); msg.textContent = "Press Ctrl+C (or hold and Copy on the phone)."; }
+    });
+  })();
+</script>
+</body>
+</html>
