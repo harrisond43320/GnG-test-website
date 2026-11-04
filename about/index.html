@@ -396,7 +396,10 @@
     if (GA_ID) {
       window.gtag = function () { window.dataLayer.push(arguments); };
       window.gtag('js', new Date()); window.gtag('config', GA_ID);
-      add('https://www.googletagmanager.com/gtag/js?id=' + GA_ID);
+      // 2026-11-03: Google's script loads on the first tap or scroll, or 4s after the page loads, so it never slows the first look
+      const ga = () => { if (ga.done) return; ga.done = true; add('https://www.googletagmanager.com/gtag/js?id=' + GA_ID); };
+      ['pointerdown', 'scroll', 'keydown'].forEach(e => addEventListener(e, ga, { once: true, passive: true }));
+      addEventListener('load', () => setTimeout(ga, 4000), { once: true });
     }
     // Every event the pages log in dataLayer also goes to the stats tools (past ones too).
     const send = o => {

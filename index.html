@@ -321,6 +321,10 @@
     .hero-hoa + .hero-score { margin-top: var(--s2); }
     .hero-reply { margin-top: var(--s3); font-size: 16px; font-weight: 500; color: rgba(255,255,255,.88); }
     .hero-reply b { color: #fff; font-weight: 700; }
+    /* 2026-11-03: Fall Pass header through Nov 30, the everyday one from Dec 1 (class set by the script in the header photo) */
+    .hero-copy[data-season="main"], .after-fall .hero-copy[data-season="fall"] { display: none; }
+    .after-fall .hero-copy[data-season="main"] { display: block; }
+    @media (min-width: 900px) { .hero-copy[data-season="fall"] h1 .thin { font-size: .62em; } } /* the longer thin line stays on the shaded left side */
     .hero-score:hover b { text-shadow: 0 0 10px rgba(102,184,74,.45); }
     .hero-score:active { transform: translateY(1px); }
     .hero-score:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
@@ -1457,12 +1461,48 @@
              Not loading="lazy": they start invisible, so the browser never loaded them and the hero went blank. Low priority instead.
              Lighter shading than before, so the photos read clear; the text keeps its own soft shadow. -->
         <!-- 2026-10-31 clean-up plan #7: one photo, no slideshow (Baymard: no carousels; on computers it was caught mid-fade). Computers: broll-home-wide loop fades in over it (script at the end). -->
-        <div class="broll" role="img" aria-label="A Grass 'n' Gardens mower on a freshly striped lawn">
+        <div class="broll" role="img" aria-label="The Grass 'n' Gardens crew clearing leaves">
           <!-- 2026-10-06: swapped to Harrison's own Google Business photos ("By owner" only, his OK). gbp-* = cropped to 4:3. -->
-          <img src="img/gbp-mower-stripes.jpg" srcset="img/ph/gbp-mower-stripes.jpg 576w, img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" onload="this.classList.add('ld')" style="--pos: 70% 55%" />
+          <!-- 2026-11-03 (Harrison: "let's sell the fall pass then on the homepage"): Fall Pass header through Nov 30. From Dec 1 the script below puts the mowing photo and header back by itself. -->
+          <img src="img/fall-cleanup-wide-still.jpg" srcset="img/xs/fall-cleanup-wide-still.jpg 600w, img/sm/fall-cleanup-wide-still.jpg 900w, img/md/fall-cleanup-wide-still.jpg 1200w, img/fall-cleanup-wide-still.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" onload="this.classList.add('ld')" style="--pos: 40% 50%"
+            data-main-src="img/gbp-mower-stripes.jpg" data-main-srcset="img/ph/gbp-mower-stripes.jpg 576w, img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" />
+          <script>
+            (function () {
+              var now = new Date();
+              if (now >= new Date(2026, 11, 1)) {
+                var i = document.currentScript.previousElementSibling;
+                i.srcset = i.dataset.mainSrcset; i.src = i.dataset.mainSrc; i.style.setProperty('--pos', '70% 55%');
+                i.parentNode.setAttribute('aria-label', "A Grass 'n' Gardens mower on a freshly striped lawn");
+                document.documentElement.classList.add('after-fall');
+              }
+              // lines with data-until drop off the morning of that date (no dead deadline on the page)
+              addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('[data-until]').forEach(function (e) { if (now >= new Date(e.dataset.until + 'T00:00:00')) e.remove(); });
+              });
+            })();
+          </script>
         </div>
       </div>
-      <div class="wrap hero-copy">
+      <!-- 2026-11-03: Fall Pass header (through Nov 30). Words are Harrison's locked Leaf Map lines and the live fall-cleanup page's. -->
+      <div class="wrap hero-copy" data-season="fall">
+        <p class="eyebrow reveal"><span class="draft">Fall Pass.</span> Richfield, Ohio</p>
+        <h1 class="reveal d1"><span class="thin">Leaves gone every time.</span>Proof every visit<span class="dot">.</span></h1>
+        <p class="lede reveal d2" data-until="2026-11-14"><span class="draft">Book by Fri Nov 13. First visit within 3 days.</span></p>
+        <ul class="trust reveal d3">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>63 Google reviews. 4.9 average.</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11"/></svg>108 homes served in 2026</li>
+        </ul>
+        <div class="hero-ctas reveal d3">
+          <a class="btn btn-lime" href="sms:+14406679642?&amp;body=LEAVES" data-leafmap="home-hero">Text LEAVES
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+          <a class="btn btn-ghost" href="../fall-cleanup/?src=home-hero">See the Fall Pass</a>
+        </div>
+        <p class="hero-reply reveal d3"><span class="draft">Text your address. <b>Harrison texts back your Leaf Map and price within 24 hours.</b></span></p>
+        <a class="hero-score hero-hoa reveal d3" href="../hoa-commercial/"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4"/></svg><span>HOA or business? <b>See what our bid includes</b></span></a>
+      </div>
+      <!-- The everyday header. Kept in a template through Nov 30 (so the page has one h1); on Dec 1 the script after it swaps it in. -->
+      <template id="hero-main">
+      <div class="wrap hero-copy" data-season="main">
         <p class="eyebrow reveal">Richfield, Ohio</p>
         <h1 class="reveal d1"><span class="thin">Lawn care where</span>nothing gets missed<span class="dot">.</span></h1>
         <p class="lede reveal d2"><span class="draft">Weekly mowing and cleanups around Richfield. We check your yard 5 ways before we pull out of the driveway.</span></p>
@@ -1483,6 +1523,12 @@
         <!-- 2026-10-07 (late, Harrison: people won't find the Yard Score): one line under the buttons -->
         <a class="hero-score reveal d3" href="../yard-score/"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-5"/><circle cx="12" cy="12" r="1.5"/></svg><span class="draft">Not sure what you need? <b>Get your Yard Score</b> in 4 taps.</span></a>
       </div>
+      </template>
+      <script>
+        if (document.documentElement.classList.contains('after-fall')) {
+          document.querySelector('.hero-copy[data-season="fall"]').replaceWith(document.getElementById('hero-main').content.cloneNode(true));
+        }
+      </script>
     </header>
 
     <!-- 2026-10-31 clean-up plan #6: the quick links came out (Alex: the menu has them). -->
@@ -1775,7 +1821,8 @@
       v.className = 'home-loop'; v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
       ['muted', 'playsinline', 'disablepictureinpicture'].forEach(function (a) { v.setAttribute(a, ''); });
       v.setAttribute('aria-hidden', 'true'); v.setAttribute('tabindex', '-1');
-      v.src = './video/broll-home-wide-lg.mp4';
+      // 2026-11-03: the leaf loop (same as fall-cleanup) through Nov 30, Riley's mowing loop from Dec 1
+      v.src = document.documentElement.classList.contains('after-fall') ? './video/broll-home-wide-lg.mp4' : './video/broll-fall-cleanup-wide-lg.mp4';
       v.addEventListener('playing', function () { v.classList.add('on'); }, { once: true });
       box.appendChild(v);
       new IntersectionObserver(function (e) { if (e[0].isIntersecting) v.play().catch(function () {}); else v.pause(); }).observe(box);
@@ -1890,7 +1937,10 @@
     if (GA_ID) {
       window.gtag = function () { window.dataLayer.push(arguments); };
       window.gtag('js', new Date()); window.gtag('config', GA_ID);
-      add('https://www.googletagmanager.com/gtag/js?id=' + GA_ID);
+      // 2026-11-03: Google's script loads on the first tap or scroll, or 4s after the page loads, so it never slows the first look
+      const ga = () => { if (ga.done) return; ga.done = true; add('https://www.googletagmanager.com/gtag/js?id=' + GA_ID); };
+      ['pointerdown', 'scroll', 'keydown'].forEach(e => addEventListener(e, ga, { once: true, passive: true }));
+      addEventListener('load', () => setTimeout(ga, 4000), { once: true });
     }
     // Every event the pages log in dataLayer also goes to the stats tools (past ones too).
     const send = o => {
