@@ -9,7 +9,7 @@
   // Scroll reveal (2026-10-07: starts as soon as a bit shows, so nothing waits on screen)
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }), { threshold: .05, rootMargin: '0px 0px -16px 0px' });
+  }), { threshold: 0, rootMargin: '0px 0px 25% 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
   // Slideshow photos 2-5 wait until the page is ready (2026-10-07). Later the same day, more speed: each one loads
@@ -19,7 +19,7 @@
     const imgs = [...document.querySelectorAll('img[data-src]')];
     imgs.filter(i => !i.closest('.broll')).forEach(load);
     const roll = imgs.filter(i => i.closest('.broll'));
-    if (!roll.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return; // still hero = photo 1 only
+    if (!roll.length || matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(max-width: 767px)').matches) return; // still hero = photo 1 only (phones too since 2026-11-10: slides 2-5 never download)
     let on = true;
     const check = () => {
       const t = performance.now() / 1000;
@@ -48,7 +48,7 @@
     if (matchMedia('(prefers-reduced-motion: reduce)').matches || net.saveData || /2g|3g/.test(net.effectiveType || '')) return;
     const mk = (src, cls) => {
       const v = document.createElement('video');
-      v.className = cls; v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
+      v.className = cls; v.muted = true; v.defaultMuted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata';
       ['muted', 'playsinline', 'disablepictureinpicture'].forEach(a => v.setAttribute(a, ''));
       v.setAttribute('aria-hidden', 'true'); v.setAttribute('tabindex', '-1');
       v.src = src;
@@ -187,6 +187,22 @@
     document.querySelectorAll('[data-offer-only]').forEach(el => { el.hidden = true; });
   }
 
+    // 2026-11-06: Text LEAVES buttons. Log every tap. Computers can't send a text, so there the button goes to the address box at /leaves/.
+    // Same code in site.js. After Fri 11/13 the banner stops naming the date (?season=after previews it).
+    (function () {
+      var q = /[?&]season=(fall|after)/.exec(location.search);
+      var over = q ? q[1] === 'after' : Date.now() >= Date.UTC(2026, 10, 14, 5);
+      if (over) document.querySelectorAll('.tb-leaf').forEach(function (p) { if (p.firstChild) p.firstChild.textContent = 'Leaves still down? Get your Leaf Map and price within 24 hours. '; });
+      if (matchMedia('(hover: hover) and (pointer: fine)').matches) document.querySelectorAll('[data-leafmap]').forEach(function (a) {
+        a.href = '../leaves/?src=' + encodeURIComponent(a.dataset.leafmap);
+        if (a.firstChild) a.firstChild.textContent = 'Get my Leaf Map ';
+        var s = a.querySelector('small'); if (s) s.remove();
+      });
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('[data-leafmap]');
+        if (a) (window.dataLayer = window.dataLayer || []).push({ event: 'leaf_map', spot: a.dataset.leafmap, page: location.pathname });
+      });
+    })();
   // Phone app helper: saves the site for fast opening and a no-internet screen (see ../home/sw.js)
   if ('serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('../home/sw.js').catch(() => {}));
 })();

@@ -435,3 +435,31 @@ html:not(#_) .hero-proof .hp-top small { font-size: 14px; }
 div.call-bar { transition: transform .25s ease; }
 div.call-bar.cb-away { transform: translateY(120%); }
 @media (prefers-reduced-motion: reduce) { div.call-bar { transition: none; } }
+
+/* ===== 2026-11-10 phone feel, round 1 (research\2026-11-10-phone-redesign\03 + 02). Phones only; computers unchanged. ===== */
+/* A. No idle animation on touch phones: no button glint, hero photo pushes in once then stops, slideshows sit on photo 1, no will-change. */
+@media (hover: none) and (pointer: coarse) {
+  html:not(#_) .btn::before { display: none; animation: none; }
+}
+@keyframes kb-once { from { transform: scale(1.023); } to { transform: scale(1.1); } }
+@media (max-width: 767px) {
+  html:not(#_) .broll img { animation: none; will-change: auto; }
+  html:not(#_) .broll img:first-child { opacity: 1; animation: kb-once 12s ease-out 1 forwards; }
+  /* B. Reveal: show at once on phones, keep the tilt on review cards and the ticket */
+  html:not(#_) .reveal, html:not(#_) .reveal.in { opacity: 1; transform: none; transition: none; }
+  html:not(#_) .gshot.reveal, html:not(#_) .gshot.reveal.in { transform: rotate(var(--tilt, -1.2deg)); }
+  html:not(#_) .ticket.reveal, html:not(#_) .ticket.reveal.in { transform: rotate(-1deg); }
+}
+@media (prefers-reduced-motion: reduce) { .broll img:first-child { animation: none !important; } }
+
+/* B. Slimmer fixed chrome on phones: header 56px, bottom bar 56px (same words, same buttons, taps stay 44px+) */
+@media (max-width: 767px) {
+  html:not(#_) .site-head .head-in { height: 54px; }
+  html:not(#_) .site-head .brand img { height: 38px; }
+  html:not(#_) .site-head .head-ctas .phone, html:not(#_) .site-head .menu-btn { min-height: 44px; }
+  html:not(#_) .topbar { min-height: 34px; padding-top: 5px; padding-bottom: 5px; line-height: 1.25; }
+  html:not(#_) div.call-bar { padding: 4px; gap: 6px; }
+  html:not(#_) div.call-bar a { min-height: 44px; padding-top: 6px; padding-bottom: 6px; }
+}
+@media (max-width: 380px) { html:not(#_) .site-head .brand img { height: 36px; } }
+
