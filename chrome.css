@@ -319,7 +319,8 @@ header.vid-hero .hero-photo img { transform: none; animation: none; }
   header.vid-hero .hero-photo { position: relative; inset: auto; order: 1; aspect-ratio: 4 / 5; max-height: 72svh; margin: var(--s6) var(--gut) 0; }
 }
 @media (min-width: 768px) and (max-width: 959px) { header.vid-hero { --gut: var(--s12); } header.vid-hero .hero-photo { max-width: 560px; } }
-.hero-photo .hero-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; pointer-events: none; }
+/* 2026-11-11 night: header video fade-ins .3s (were 1.2s). Harrison on a computer: "every video loads in really slowly"; the long fade showed the still and the moving video on top of each other. */
+.hero-photo .hero-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .3s ease; pointer-events: none; }
 .hero-photo .hero-vid.on { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .hero-photo .hero-vid { display: none; } }
 /* 2026-10-25: wide video behind the words on computers (header[data-broll-wide], site.js). Harrison: "use the horizontal clips for the
@@ -329,7 +330,7 @@ header.vid-hero .hero-photo img { transform: none; animation: none; }
 header.vid-hero[data-broll-wide] { position: relative; overflow: hidden; }
 header.vid-hero .hero-wide-pic { display: contents; }
 header.vid-hero .hero-wide-still { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
-header.vid-hero .hero-wide { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; pointer-events: none; }
+header.vid-hero .hero-wide { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .3s ease; pointer-events: none; }
 header.vid-hero .hero-wide.on { opacity: 1; }
 @media (min-width: 960px) { header.vid-hero[data-broll-wide]::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background: linear-gradient(90deg, rgba(29,74,34,.9) 0%, rgba(29,74,34,.84) 40%, rgba(29,74,34,.58) 70%, rgba(29,74,34,.42) 100%); } }

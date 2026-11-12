@@ -289,7 +289,7 @@
       100% { opacity: 0; transform: scale(1.1); }
     }
     /* 2026-10-31 clean-up plan #7: computers get broll-home-wide over the photo (script at the end). No z-index, so the header shade (::after) stays on top. */
-    .hero-photo .home-loop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; pointer-events: none; }
+    .hero-photo .home-loop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .3s ease; pointer-events: none; } /* 2026-11-11 night: was 1.2s. The still is frame 1 of the loop, so a long fade showed two sets of leaves at once (Harrison: "loads in really slowly"). */
     .hero-photo .home-loop.on { opacity: 1; }
     .hero-photo:has(.home-loop.on)::after { background: linear-gradient(to top, var(--bg) 0%, rgba(20,28,23,.55) 18%, rgba(20,28,23,0) 45%), linear-gradient(to right, rgba(12,18,14,.82) 0%, rgba(12,18,14,.6) 45%, rgba(12,18,14,0) 78%); } /* 2026-11-01 round 4: the words stay calm over the moving shots */
     @media (min-width: 768px) and (max-width: 959px), (prefers-reduced-motion: reduce) { .hero-photo .home-loop { display: none; } }
@@ -1896,8 +1896,19 @@
       // 2026-11-03: the leaf loop (same as fall-cleanup) through Nov 30, the mowing loop from Dec 1
       if (ph && c.downlink && c.downlink < 2.5 && !/[?&]loop=1/.test(location.search)) return; // slow link: the still stays (?loop=1 forces it, for cdp-test, which runs on slow 4G)
       /* 2026-11-11: each file name is written out whole. gng-deploy-copy.ps1 only finds whole '...video/x.mp4' strings; built in pieces, the tall loop was left out of the repo copy. */
-      v.src = ph ? (c.downlink >= 8 ? './video/broll-home-leaf-tall-lg.mp4' : './video/broll-home-leaf-tall-sm.mp4') : !fall ? './video/broll-home-wide-lg.mp4' : './video/broll-fall-cleanup-wide-lg.mp4';
+      // 2026-11-11 night (Harrison: "only the best quality B-roll"): computers whose header is over 1400 real pixels wide get the 1080p cut (-xl), unless the link reports slow. Others keep the 720p cut.
+      var big = box.getBoundingClientRect().width * (devicePixelRatio || 1) > 1400 && (!(c.downlink && c.downlink < 6) || /[?&]xl=1/.test(location.search)); // ?xl=1 forces it (the headless test browser guesses 1.55 Mbps) // 3, not 8: Chrome's speed guess read under 8 on a fast link and held the sharp cut back (tested 11/11) // 2026-11-12: 6, not 3. The 1080p cut needs about 5.7 Mbps; on a 5 Mbps link it stopped and started 7 times in 10 seconds (desk-scan -Mbps 5)
+      v.src = ph ? (c.downlink >= 8 ? './video/broll-home-leaf-tall-lg.mp4' : './video/broll-home-leaf-tall-sm.mp4') : !fall ? (big ? './video/broll-home-wide-xl.mp4' : './video/broll-home-wide-lg.mp4') : (big ? './video/broll-fall-cleanup-wide-xl.mp4' : './video/broll-fall-cleanup-wide-lg.mp4');
       v.addEventListener('playing', function () { v.classList.add('on'); }, { once: true });
+      /* 2026-11-12: safety net for the 1080p cut. If it stops to buffer twice before it has fully downloaded, the link is too slow for it (Safari reports no link speed at all), so swap to the 720p cut at the same spot. The still shows for the moment in between. */
+      if (big) { var stalls = 0; v.addEventListener('waiting', function () {
+        if (!/-xl\.mp4/.test(v.src) || v.currentTime < .1) return;
+        var b = v.buffered; if (b.length && v.duration && b.end(b.length - 1) >= v.duration - .5) return;
+        if (++stalls < 2) return;
+        var t = v.currentTime; v.classList.remove('on'); v.src = v.src.replace('-xl.mp4', '-lg.mp4');
+        v.addEventListener('loadedmetadata', function () { try { v.currentTime = t; } catch (e) {} v.play().catch(function () {}); }, { once: true });
+        v.addEventListener('playing', function () { v.classList.add('on'); }, { once: true });
+      }); }
       box.appendChild(v);
       new IntersectionObserver(function (e) { if (e[0].isIntersecting) v.play().catch(function () {}); else v.pause(); }).observe(box);
     };
