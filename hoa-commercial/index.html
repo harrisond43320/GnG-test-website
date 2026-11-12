@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <!-- 2026-10-31: one banner at a time (top bar: Fall Pass until Dec 1, then the 2027 save-5% line). -->
+  <!-- 2026-10-31: one banner at a time (top bar: none until Dec 1, then the 2027 save-5% line). -->
   <script>document.documentElement.dataset.promo = Date.now() < Date.UTC(2026, 11, 1, 5) ? 'leaf' : 'presell';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>HOA &amp; Commercial Lawn Care, Richfield OH | Grass 'n' Gardens</title>
@@ -71,7 +71,6 @@
   <a class="skip" href="#top">Skip to main content</a>
 
   <div class="topbar" hidden><!-- 2026-11-03: hidden on the HOA page (Alex + Charlie, blind grade: a homeowner offer on a board page) -->
-    <p class="tb-leaf draft">Fall Pass: book by Fri Nov 13. Text LEAVES, get your Leaf Map and price within 24 hours. <a href="../fall-cleanup/?src=topbar">See the Fall Pass</a></p>
     <p class="tb-presell" data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../?need=hoa#plan-form&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../season-pass/">Save my spot</a></p>
   </div>
 
@@ -92,7 +91,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
             <div class="sub" id="sub-services">
               <a href="../lawn-mowing/"><span>Weekly mowing<small>Same crew, same day every week</small></span></a>
-              <a href="../fall-cleanup/"><span>Fall cleanups<small><span class="draft">The Fall Pass: proof every visit, first visit in 3 days</span></small></span></a>
+              <a href="../fall-cleanup/"><span>Fall cleanups<small>A photo every visit</small></span></a>
               <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
               <a href="../yard-design/"><span>Planting and bed refresh<small>The right plant in the right spot</small></span></a>
@@ -195,7 +194,7 @@
   <main id="top">
     <!-- 2026-10-07 (night): new page, all wording is draft. G'N'G has no HOA clients yet (client list = 108 homes),
          so nothing here claims HOA experience. Waiting on Harrison: insurance limits (never invent), real HOA/commercial facts. -->
-    <header class="page-hero vid-hero vid-strip" data-broll-wide="../video/broll-hoa-wide-lg.mp4">
+    <header class="page-hero vid-hero vid-strip busy-hoa" data-broll-wide="../video/broll-hoa-wide-lg.mp4">
       <!-- 2026-11-03 (Harrison: "use that footage... anything to boost the score"): broll-hoa-wide in make-broll.ps1. Opens on the five-man
            leaf crew (a real team is what a board wants to see), three blowers on a bed island, the zero-turn on a big corner lot, the stripes.
            Faces far or turned away; the trailer pan is not used. Was: gbp-open-lawn photo. -->
@@ -211,11 +210,14 @@
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span class="draft">Month-by-month calendar</span></li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>5 checks before we drive</li>
         </ul>
+        <p class="hero-rec reveal d2"><span class="st" aria-hidden="true">★★★★★</span>64 Google reviews. 5.0 average.</p>
         <div class="hero-ctas reveal d3">
           <a class="btn btn-lime" href="../?need=hoa#plan-form">Ask for a bid
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="mailto:grassngardens4u@gmail.com?subject=Bid%20request">Email Harrison</a>
         </div>
+        <!-- 2026-11-11 (busy cuts, phones only): the board-meeting line moved up here from "For the board" below; it is hidden on computers and the list item below is hidden on phones. -->
+        <p class="hoa-board draft">Harrison comes to your board meeting and answers questions in person.</p>
       </div>
     </header>
     <!-- 2026-11-03: proof from an HOA right under the header (blind grade: both HOA scores stalled at 7 on 'no HOA proof'). Heather B. is the HOA client (Harrison 11/3); her Google review word for word. Was Jamie S. (a homeowner) near the bottom. -->
@@ -254,7 +256,7 @@
               <li><i class="yes" aria-hidden="true"></i><span class="draft">The entrance gets extra care. It's what every neighbor sees every day.</span></li>
               <li><i class="yes" aria-hidden="true"></i><span class="draft">One price for the year, split into the same bill each month.</span></li>
               <li><i class="yes" aria-hidden="true"></i><span class="draft">A written list of what's included and what isn't. No surprises in July.</span></li>
-              <li><i class="yes" aria-hidden="true"></i><span class="draft">Harrison comes to your board meeting and answers questions in person.</span></li>
+              <li class="hoa-board-src"><i class="yes" aria-hidden="true"></i><span class="draft">Harrison comes to your board meeting and answers questions in person.</span></li>
             </ul>
           </article>
         </div>
@@ -285,7 +287,7 @@
             <ul class="gets">
               <li><b>Weekly mowing</b><span class="draft">Same crew, same day every week. Edged and blown clean. <a href="../lawn-mowing/">See mowing</a></span></li>
               <li><b>Mulch, beds and bushes</b><span class="draft">Entrance beds, islands and the shrubs along the road. <a href="../mulch-beds/">See beds</a></span></li>
-              <li><b>Fall and spring cleanups</b><span class="draft">Leaves off the common areas before they kill the grass. <a href="../fall-cleanup/">See the Fall Pass</a></span></li>
+              <li><b>Fall and spring cleanups</b><span class="draft">Leaves off the common areas before they kill the grass. <a href="../fall-cleanup/">See fall cleanups</a></span></li>
               <li><b>Aeration and fertilizer</b><span class="draft">Thicker grass on the areas everyone walks on. <a href="../aeration-fertilizer/">See aeration</a></span></li>
               <li><b>Small tree work</b><span class="draft">Low limbs over sidewalks and signs cut back.</span></li>
             </ul>
@@ -413,7 +415,7 @@
       <div class="foot">
         <p class="rec">Record &middot; <b>64</b> reviews &middot; <b>5.0</b> average</p>
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
-        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a> &middot; <a href="../bath-oh/">Bath</a> &middot; <a href="../granger-oh/">Granger</a></p>
+        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a> &middot; <a href="../bath-oh/">Bath</a> &middot; <a href="../granger-oh/">Granger</a> &middot; <a href="../hinckley-oh/">Hinckley</a> &middot; <a href="../north-royalton-oh/">North Royalton</a></p>
         <button class="app-get" type="button" data-app-get hidden>
           <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" fetchpriority="low" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
@@ -441,10 +443,30 @@
     <a class="btn btn-ghost cb-reach" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
   </div>
   <script>
+  // 2026-11-10 ten-of-ten step 1: on phones, every button that used to open the home form opens a text to Harrison with the first words filled in
+  // (MOW, LEAVES, PLAN ...). Computers keep the form (a text link does nothing there). Links that carry ?ref= (Yard Score, referrals, pre-sell) keep the form
+  // so the lead source is not lost. Plain Text links get the page's word too. This runs before the bar scripts below on purpose.
+  (() => {
+    const seg = location.pathname.split('/').filter(Boolean)[0] || 'home';
+    if (/^(thank-you|soil-check|your-year|yard-score|join-the-crew|winter-walk)$/.test(seg)) return;
+    const byPage = { 'lawn-mowing': 'MOW', 'five-before-we-drive': 'MOW', 'mulch-beds': 'MULCH', 'yard-design': 'PLANT', 'aeration-fertilizer': 'AERATE', 'fall-cleanup': 'LEAVES', 'leaves': 'LEAVES', 'spring-cleanup': 'SPRING', 'hoa-commercial': 'BID', 'season-pass': 'SEASON' };
+    const byNeed = { mowing: 'MOW', mulch: 'MULCH', design: 'PLANT', aeration: 'AERATE', leaves: 'LEAVES', spring: 'SPRING', hoa: 'BID', season2027: 'SEASON' };
+    const sms = w => 'sms:+14406679642?&body=' + encodeURIComponent(w + (w === 'BID' ? ' the property address is ' : ' my address is '));
+    const pageWord = byPage[seg] || 'PLAN';
+    document.querySelectorAll('a[href="sms:+14406679642"]').forEach(a => { a.href = sms(pageWord); });
+    if (!matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+    document.querySelectorAll('a[href*="#plan-form"]').forEach(a => {
+      const h = a.getAttribute('href') || ''; if (/[?&]ref=/.test(h)) return;
+      const need = (h.match(/[?&]need=([a-z0-9]+)/) || [])[1];
+      a.href = sms(byNeed[need] || pageWord); a.setAttribute('data-ask-text', byNeed[need] || pageWord);
+    });
+  })();
   // 2026-10-31: when the bar's main button already texts us (Text LEAVES, Text Harrison), hide the second Text button.
   (() => { const bar = document.querySelector('.call-bar'); if (!bar) return; const main = bar.querySelector('a.btn-lime'); if (main && /^sms:/.test(main.getAttribute('href') || '')) bar.querySelectorAll('a.cb-reach[href^="sms:"]').forEach(a => { a.hidden = true; }); })();
   // 2026-10-31 clean-up plan #5: one main button per screen. While the header's own main button is on screen, the bar slides away (same as fall-cleanup since 10/25).
   (() => { const bar = document.querySelector('.call-bar'); const hb = [...document.querySelectorAll('header.hero .btn-lime, header.page-hero .btn-lime')].find(b => b.offsetParent !== null); if (!bar || !hb || !('IntersectionObserver' in window)) return; new IntersectionObserver(([e]) => bar.classList.toggle('cb-away', e.isIntersecting)).observe(hb); })();
+  // 2026-11-10 ten-of-ten step 1: the bar also steps aside while any of the page's own main buttons or a form is on screen, so it never covers them.
+  (() => { const bar = document.querySelector('.call-bar'); if (!bar || !('IntersectionObserver' in window)) return; const asks = [...document.querySelectorAll('main .btn-lime, .form-card')].filter(b => !b.closest('.call-bar, .site-head, header.hero, header.page-hero')); if (!asks.length) return; const on = new Set(); const io = new IntersectionObserver(es => { es.forEach(e => { on[e.isIntersecting ? 'add' : 'delete'](e.target); }); bar.classList.toggle('cb-ask', on.size > 0); }); asks.forEach(b => io.observe(b)); })();
   </script>
 
   <script>

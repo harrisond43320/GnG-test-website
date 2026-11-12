@@ -230,7 +230,7 @@
       position: absolute; top: var(--s4); left: var(--s4); padding: 6px 12px; border-radius: 6px;
       background: rgba(0,0,0,.6); color: #fff; font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
     }
-    .ba-shot.after figcaption { background: var(--lime); color: var(--pine); }
+    .ba-shot.after figcaption { background: var(--lime); color: #17391b; } /* 2026-11-11: deeper pine on lime, same as .btn-lime (was 4.15 to 1) */
     .ba-cap { grid-column: 1 / -1; font-size: 16px; color: rgba(255,255,255,.75); }
     .ba-cap b { color: #fff; }
     .shots { display: grid; gap: var(--s4); margin-top: var(--s8); grid-template-columns: repeat(2, 1fr); }
@@ -346,6 +346,7 @@
     .qa-a a {
       color: var(--forest); font-weight: 700; text-decoration: none;
       padding: 1px 6px; border-radius: 5px; background: rgba(102, 184, 74, .15);
+      white-space: nowrap; /* 2026-11-11: the pill broke across two lines on phones; longest link is 25 letters, fits a 390 screen */
       -webkit-box-decoration-break: clone; box-decoration-break: clone;
       transition: background-color .2s var(--ease-out), color .2s var(--ease-out);
     }

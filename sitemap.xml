@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 2026-10-07. Every page Google should find (thank-you is left out on purpose: it's noindex). Change the address when the site moves to grassngardens.com. -->
+<!-- 2026-11-11: lastmod = the day the page last really changed (re-stamp after each push). Every page Google should find (thank-you is left out on purpose: it's noindex). Change the address when the site moves to grassngardens.com. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.grassngardens.com/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/five-before-we-drive/</loc><lastmod>2026-10-26</lastmod></url>
-  <url><loc>https://www.grassngardens.com/lawn-mowing/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/fall-cleanup/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/spring-cleanup/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/mulch-beds/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/yard-design/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/season-pass/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/why-gng/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/aeration-fertilizer/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/hoa-commercial/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.grassngardens.com/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/five-before-we-drive/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://www.grassngardens.com/lawn-mowing/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/fall-cleanup/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/spring-cleanup/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/mulch-beds/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/yard-design/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/season-pass/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/why-gng/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/aeration-fertilizer/</loc><lastmod>2026-11-10</lastmod></url>
+  <url><loc>https://www.grassngardens.com/hoa-commercial/</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://www.grassngardens.com/your-year/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://www.grassngardens.com/join-the-crew/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/refer/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.grassngardens.com/refer/</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://www.grassngardens.com/yard-of-the-month/</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://www.grassngardens.com/richfield-oh/</loc><lastmod>2026-10-26</lastmod></url>
-  <url><loc>https://www.grassngardens.com/broadview-heights-oh/</loc><lastmod>2026-10-26</lastmod></url>
-  <url><loc>https://www.grassngardens.com/brecksville-oh/</loc><lastmod>2026-10-26</lastmod></url>
-  <url><loc>https://www.grassngardens.com/bath-oh/</loc><lastmod>2026-10-26</lastmod></url>
-  <url><loc>https://www.grassngardens.com/granger-oh/</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://www.grassngardens.com/richfield-oh/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/broadview-heights-oh/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/brecksville-oh/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/bath-oh/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/hinckley-oh/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/north-royalton-oh/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/granger-oh/</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://www.grassngardens.com/about/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/faq/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/our-work/</loc><lastmod>2026-10-07</lastmod></url>
+  <url><loc>https://www.grassngardens.com/faq/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/our-work/</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://www.grassngardens.com/yard-score/</loc><lastmod>2026-10-07</lastmod></url>
-  <url><loc>https://www.grassngardens.com/privacy/</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://www.grassngardens.com/terms/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://www.grassngardens.com/privacy/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.grassngardens.com/terms/</loc><lastmod>2026-11-11</lastmod></url>
 </urlset>

@@ -394,11 +394,12 @@ div.call-bar .cb-x:focus-visible, div.call-bar .cb-offer a:focus-visible { outli
 }
 
 /* 2026-10-31 clean-up plan #1: one banner at a time. A head script sets html[data-promo] = leaf (until Dec 1) or presell.
-   Leaf: the top bar shows the Fall Pass line; presell: the 2027 save-5% line. Pages whose header is the offer hide the bar (hidden attr). */
+   Leaf (until Dec 1): NO top bar (Fall Pass canceled 2026-11-11, the bar is hidden); presell: the 2027 save-5% line. Pages whose header is the offer hide the bar (hidden attr). */
 .topbar[hidden] { display: none; }
 .topbar .tb-leaf { display: none; }
 html[data-promo="leaf"] .topbar .tb-leaf { display: block; }
 html[data-promo="leaf"] .topbar .tb-presell { display: none; }
+html[data-promo="leaf"] .topbar { display: none; }
 /* 2026-10-31 plan #4: a hidden Text button (when the main bar button already texts) must not keep its flex box. */
 div.call-bar a[hidden] { display: none; }
 
@@ -433,7 +434,7 @@ html:not(#_) .hero-proof .hp-top small { font-size: 14px; }
 
 /* 2026-10-31 plan #5: the bar slides away while the header's main button is on screen (footer.html script). Was page-only on fall-cleanup/aeration. */
 div.call-bar { transition: transform .25s ease; }
-div.call-bar.cb-away { transform: translateY(120%); }
+div.call-bar.cb-away, div.call-bar.cb-ask { transform: translateY(120%); } /* 2026-11-10: cb-ask = one of the page's own main buttons or a form is on screen */
 @media (prefers-reduced-motion: reduce) { div.call-bar { transition: none; } }
 
 /* ===== 2026-11-10 phone feel, round 1 (research\2026-11-10-phone-redesign\03 + 02). Phones only; computers unchanged. ===== */
@@ -463,3 +464,75 @@ div.call-bar.cb-away { transform: translateY(120%); }
 }
 @media (max-width: 380px) { html:not(#_) .site-head .brand img { height: 36px; } }
 
+
+/* 2026-11-10 ten-of-ten step 3: thumb-size taps on phones (44px tall). Text links grow by padding with a matching pull-back, so nothing on the page moves. */
+@media (max-width: 899px) {
+  html:not(#_) .foot-cols li a { min-height: 44px; }
+  html:not(#_) .foot-cols .soc { gap: 4px; }
+  html:not(#_) .foot-cols .soc a { width: 44px; height: 44px; }
+  html:not(#_) .foot .meta.towns a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 8px; }
+  html:not(#_) .topbar a { display: inline-block; padding: 12px 6px; margin: -12px 0 -12px 2px; }
+  html:not(#_) .site-head .brand { display: inline-flex; align-items: center; min-height: 44px; margin-block: -3px; }
+  html:not(#_) .ask a:not(.btn), html:not(#_) .promise a:not(.btn), html:not(#_) .intro a:not(.btn), html:not(#_) section.light p a:not(.btn) { padding-top: 12px; padding-bottom: 12px; }
+}
+
+/* 2026-11-10 ten-of-ten step 2: FIRST PHONE SCREEN = headline, proof, button. The record line sits right above the header buttons on every inner page.
+   Phones: the breadcrumb box and the tag chip come out (the trail stays in the page data for Google), and on video headers the order is
+   headline, video strip, record line, buttons, then the longer words. */
+.hero-rec { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: var(--s4) 0 0; font: 600 16px/1.3 var(--font-body); color: #fff; }
+.hero-rec .st { color: #9bdc80; font-size: 18px; letter-spacing: 2px; } /* 2026-11-11: lighter lime, plain lime read 3.1 to 4.15 to 1 over the header photos (look check) */
+@media (max-width: 767px) {
+  html:not(#_) .page-hero .crumbs, html:not(#_) .page-hero .eyebrow { display: none; }
+  html:not(#_) header.vid-hero .hero-rec { order: 2; margin-top: 14px; }
+  html:not(#_) header.vid-hero .hero-ctas { order: 3; margin-top: 12px; }
+  html:not(#_) header.vid-hero .lede, html:not(#_) header.vid-hero .facts { order: 4; }
+  html:not(#_) header.vid-hero.vid-strip .hero-photo { margin-top: 14px; }
+}
+/* Season Pass on phones: the deal line goes above the button and the days-left chip comes out (2026-11-10, ten-of-ten step 2). */
+@media (max-width: 767px) {
+  html:not(#_) header.vid-hero .tk-count { display: none; }
+  html:not(#_) header.vid-hero:has(.tk-count) .lede { order: 2; }
+}
+
+/* 2026-11-11 night: BUSY CUTS (phones only unless noted; computers look the same). See library/research/2026-11-10-ten-of-ten/04-too-busy.md (a). */
+img { height: auto; } /* a real width/height on an <img> is now only an aspect-ratio hint (CLS); any class rule that sets a height still wins */
+.hoa-board, .why-glink-quiet, .hero-sub .hs-short, .lv-toggle { display: none; }
+@media (max-width: 767px) {
+  /* A1: the light-blue banner is off on phones (home already hid it). Nothing is sticky under it, so nothing shifts. */
+  html:not(#_) .topbar { display: none; }
+  /* A2: town pages = one pill, below the button */
+  html:not(#_) .town-hero .hero-in { display: flex; flex-direction: column; align-items: flex-start; }
+  html:not(#_) .town-hero .hero-in > * { max-width: 100%; }
+  html:not(#_) .town-hero .hero-rec { order: 2; }
+  html:not(#_) .town-hero .hero-ctas { order: 3; }
+  html:not(#_) .town-hero .facts { order: 4; margin-top: 14px; }
+  html:not(#_) .town-hero .facts li:nth-child(n+2) { display: none; }
+  /* A3: lawn-mowing keeps "Miss one? Back next day, free" */
+  html:not(#_) .busy-mow .facts li:nth-child(-n+2) { display: none; }
+  /* A4: hoa-commercial keeps "Month-by-month calendar"; the board-meeting line moves up under the buttons */
+  html:not(#_) .busy-hoa .facts li:nth-child(odd) { display: none; }
+  html:not(#_) .busy-hoa .hoa-board { display: block; order: 3; margin-top: 12px; font: 600 16px/1.4 var(--font-body); color: #fff; }
+  html:not(#_) .hoa-board-src { display: none; }
+  /* A5: why-gng, one button, the Google link under the card, one number statement */
+  html:not(#_) .why-glink, html:not(#_) .score .sc-main { display: none; }
+  html:not(#_) .why-glink-quiet { display: flex; align-items: center; min-height: 44px; margin-top: 4px; font: 600 16px/1.3 var(--font-body); color: #fff; text-decoration: none; }
+  /* A6: fall-cleanup, the green tag chip goes and the line under the button is one short sentence */
+  html:not(#_) .hero-dpline { display: none; }
+  html:not(#_) .hero-sub .hs-full { display: none; }
+  html:not(#_) .hero-sub .hs-short { display: inline; }
+  /* A7: faq, short photo strip and no second heading block before question 1 */
+  html:not(#_) .faq-hero { min-height: 0; }
+  html:not(#_) .faq-hero .hero-in { padding-top: 24px; padding-bottom: 24px; }
+  html:not(#_) .faq .faq-side { display: none; }
+}
+/* A8: leaves, on touch phones the tap line opens the 3-box form (the script in the page sets data-collapsed) */
+@media (max-width: 767px) and ((hover: none) or (pointer: coarse)) {
+  html:not(#_) .lv-text .lv-toggle { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 44px; margin-top: 8px; padding: 10px 12px; border: 0; background: none; font: 600 16px/1.3 var(--font-body); color: inherit; cursor: pointer; }
+  html:not(#_) .lv-card[data-collapsed] { display: none; }
+}
+/* 2026-11-11: town links in body copy (B5): soft highlight, no underline */
+/* 2026-11-11 late: on phones the 44px tap box made each highlight tall, so the boxes ran into the lines above and below.
+   The tap box stays tall; the highlight is now a band the height of the words, centered in it. */
+.town-line a { font-weight: 700; padding: 2px 6px; border-radius: 5px; background: linear-gradient(rgba(102, 184, 74, .2), rgba(102, 184, 74, .2)) center / 100% 1.45em no-repeat; }
+.pass-covers { margin-top: 14px; font-weight: 600; }
+@media (max-width: 767px) { html:not(#_) .busy-pass .pass-covers { order: 2; margin-top: 14px; line-height: 1.45; } }

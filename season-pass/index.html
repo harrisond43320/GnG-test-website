@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <!-- 2026-10-31: one banner at a time (top bar: Fall Pass until Dec 1, then the 2027 save-5% line). -->
+  <!-- 2026-10-31: one banner at a time (top bar: none until Dec 1, then the 2027 save-5% line). -->
   <script>document.documentElement.dataset.promo = Date.now() < Date.UTC(2026, 11, 1, 5) ? 'leaf' : 'presell';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>2027 Mowing Season Pass: Save 5% | Grass 'n' Gardens</title>
@@ -67,7 +67,6 @@
   <a class="skip" href="#top">Skip to main content</a>
 
   <div class="topbar" hidden>
-    <p class="tb-leaf draft">Fall Pass: book by Fri Nov 13. Text LEAVES, get your Leaf Map and price within 24 hours. <a href="../fall-cleanup/?src=topbar">See the Fall Pass</a></p>
     <p class="tb-presell" data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;../?need=season2027#plan-form&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="../?need=season2027#plan-form">Save my spot</a></p>
   </div>
 
@@ -88,7 +87,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
             <div class="sub" id="sub-services">
               <a href="../lawn-mowing/"><span>Weekly mowing<small>Same crew, same day every week</small></span></a>
-              <a href="../fall-cleanup/"><span>Fall cleanups<small><span class="draft">The Fall Pass: proof every visit, first visit in 3 days</span></small></span></a>
+              <a href="../fall-cleanup/"><span>Fall cleanups<small>A photo every visit</small></span></a>
               <a href="../spring-cleanup/"><span>Spring cleanups<small>Ready before your first mow</small></span></a>
               <a href="../mulch-beds/"><span>Mulch, beds and bushes<small>Weeds out, fresh mulch, sharp edge</small></span></a>
               <a href="../yard-design/"><span>Planting and bed refresh<small>The right plant in the right spot</small></span></a>
@@ -192,7 +191,7 @@
     <!-- 2026-10-07: new page. The homepage ticket opens this page (Harrison: "click on the ticket... finance the mowing").
          It's prepay, not financing (real financing has legal rules); Harrison picked "pay up front, save 5%".
          Terms = the ticket's lines (the locked 3-part guarantee + 5% prepay). New wording is class="draft". -->
-    <header class="page-hero vid-hero vid-strip" data-broll-wide="../video/broll-season-pass-wide-lg.mp4">
+    <header class="page-hero vid-hero vid-strip busy-pass" data-broll-wide="../video/broll-season-pass-wide-lg.mp4">
       <!-- 2026-10-29: the 4K shoot, broll-season-pass-wide (make-broll.ps1): the stripes all season, then the crew. Computers: loop behind the words; phones: the strip. -->
       <picture class="hero-wide-pic"><source media="(min-width: 960px)" srcset="../img/season-pass-wide-still.jpg" /><img class="hero-wide-still" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1280" height="720" alt="Grass N Gardens zero-turn mower turning onto a fresh-cut lawn" fetchpriority="high" /></picture>
       <div class="hero-photo" data-broll-lg="../video/broll-season-pass-wide-sm.mp4" data-broll-sm="../video/broll-season-pass-wide-sm.mp4"><img src="../img/xs/season-pass-strip-still.jpg" width="640" height="360" alt="Grass N Gardens zero-turn mower turning onto a fresh-cut lawn" fetchpriority="high" /></div>
@@ -201,7 +200,9 @@
         <p class="eyebrow reveal">2027 weekly mowing</p>
         <h1 class="reveal d1">Season Pass</h1>
         <p class="lede reveal d2">Pay for the whole 2027 season by March 31 and save 5%. That's the day before we start mowing.</p>
+        <p class="pass-covers reveal d2 draft">It covers weekly mowing, the same crew on the same day every week, all season.</p>
         <p class="tk-count reveal d2" data-countdown hidden><b data-days></b>&nbsp;<span data-days-word>days</span>&nbsp;left to save</p>
+        <p class="hero-rec reveal d2"><span class="st" aria-hidden="true">★★★★★</span>64 Google reviews. 5.0 average.</p>
         <div class="hero-ctas reveal d3">
           <a class="btn btn-lime" href="../?need=season2027#plan-form">Save my 2027 spot
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -248,7 +249,7 @@
       <div class="wrap">
         <h2 class="sec-h reveal" style="text-align:center"><span class="draft">How the</span> <b class="draft">Season Pass works<span class="dot">.</span></b></h2>
         <ol class="how reveal d1" style="--n:4">
-          <li><b class="draft">Get your price.</b><span class="draft">Send your address. Harrison texts you today.</span></li>
+          <li><b class="draft">Get your price.</b><span class="draft">Send your address. Harrison texts you within 24 hours.</span></li>
           <li><b class="draft">Pay by March 31.</b><span class="draft">Pay for the whole season up front and save 5%.</span></li>
           <li><b class="draft">We start April 1.</b><span class="draft">Same crew, same day every week, all season.</span></li>
           <li><b class="draft">Five checks every visit.</b><span>Miss one? We're back the next day, free.</span></li>
@@ -327,7 +328,7 @@
           </details>
           <details class="qa">
             <summary><h3 class="draft">How much is the Season Pass?</h3><span class="qa-ic" aria-hidden="true"></span></summary>
-            <div class="qa-a"><p class="draft">It depends on your yard. Send us your address and Harrison texts you the price today, with the 5% already taken off. <a href="../?need=season2027#plan-form">Save my 2027 spot</a></p></div>
+            <div class="qa-a"><p class="draft">It depends on your yard. Send us your address and Harrison texts you the price within 24 hours, with the 5% already taken off. <a href="../?need=season2027#plan-form">Save my 2027 spot</a></p></div>
           </details>
           <!-- 2026-10-25 (Harrison's answers, same night): no auto-renew, cancel anytime with unused mows refunded, rain = next dry day. Draft until he OKs the words. -->
           <details class="qa">
@@ -349,7 +350,7 @@
     <section class="ask">
       <div class="wrap">
         <h2 class="stack reveal"><span class="thin draft">Lock in</span><span class="heavy draft">your 2027 spot<span class="dot">.</span></span></h2>
-        <p class="lede reveal d1 draft">Send your address. Harrison texts you the price today. Pay by March 31 and save 5%.</p>
+        <p class="lede reveal d1 draft">Send your address. Harrison texts you the price within 24 hours. Pay by March 31 and save 5%.</p>
         <a class="big-phone reveal d2" href="tel:+14406679642">(440) 667-9642</a>
         <div class="center reveal d3">
           <a class="btn btn-lime" href="../?need=season2027#plan-form">Save my 2027 spot
@@ -417,7 +418,7 @@
       <div class="foot">
         <p class="rec">Record &middot; <b>64</b> reviews &middot; <b>5.0</b> average</p>
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
-        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a> &middot; <a href="../bath-oh/">Bath</a> &middot; <a href="../granger-oh/">Granger</a></p>
+        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a> &middot; <a href="../bath-oh/">Bath</a> &middot; <a href="../granger-oh/">Granger</a> &middot; <a href="../hinckley-oh/">Hinckley</a> &middot; <a href="../north-royalton-oh/">North Royalton</a></p>
         <button class="app-get" type="button" data-app-get hidden>
           <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" fetchpriority="low" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
@@ -445,10 +446,30 @@
     <a class="btn btn-ghost cb-reach" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
   </div>
   <script>
+  // 2026-11-10 ten-of-ten step 1: on phones, every button that used to open the home form opens a text to Harrison with the first words filled in
+  // (MOW, LEAVES, PLAN ...). Computers keep the form (a text link does nothing there). Links that carry ?ref= (Yard Score, referrals, pre-sell) keep the form
+  // so the lead source is not lost. Plain Text links get the page's word too. This runs before the bar scripts below on purpose.
+  (() => {
+    const seg = location.pathname.split('/').filter(Boolean)[0] || 'home';
+    if (/^(thank-you|soil-check|your-year|yard-score|join-the-crew|winter-walk)$/.test(seg)) return;
+    const byPage = { 'lawn-mowing': 'MOW', 'five-before-we-drive': 'MOW', 'mulch-beds': 'MULCH', 'yard-design': 'PLANT', 'aeration-fertilizer': 'AERATE', 'fall-cleanup': 'LEAVES', 'leaves': 'LEAVES', 'spring-cleanup': 'SPRING', 'hoa-commercial': 'BID', 'season-pass': 'SEASON' };
+    const byNeed = { mowing: 'MOW', mulch: 'MULCH', design: 'PLANT', aeration: 'AERATE', leaves: 'LEAVES', spring: 'SPRING', hoa: 'BID', season2027: 'SEASON' };
+    const sms = w => 'sms:+14406679642?&body=' + encodeURIComponent(w + (w === 'BID' ? ' the property address is ' : ' my address is '));
+    const pageWord = byPage[seg] || 'PLAN';
+    document.querySelectorAll('a[href="sms:+14406679642"]').forEach(a => { a.href = sms(pageWord); });
+    if (!matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+    document.querySelectorAll('a[href*="#plan-form"]').forEach(a => {
+      const h = a.getAttribute('href') || ''; if (/[?&]ref=/.test(h)) return;
+      const need = (h.match(/[?&]need=([a-z0-9]+)/) || [])[1];
+      a.href = sms(byNeed[need] || pageWord); a.setAttribute('data-ask-text', byNeed[need] || pageWord);
+    });
+  })();
   // 2026-10-31: when the bar's main button already texts us (Text LEAVES, Text Harrison), hide the second Text button.
   (() => { const bar = document.querySelector('.call-bar'); if (!bar) return; const main = bar.querySelector('a.btn-lime'); if (main && /^sms:/.test(main.getAttribute('href') || '')) bar.querySelectorAll('a.cb-reach[href^="sms:"]').forEach(a => { a.hidden = true; }); })();
   // 2026-10-31 clean-up plan #5: one main button per screen. While the header's own main button is on screen, the bar slides away (same as fall-cleanup since 10/25).
   (() => { const bar = document.querySelector('.call-bar'); const hb = [...document.querySelectorAll('header.hero .btn-lime, header.page-hero .btn-lime')].find(b => b.offsetParent !== null); if (!bar || !hb || !('IntersectionObserver' in window)) return; new IntersectionObserver(([e]) => bar.classList.toggle('cb-away', e.isIntersecting)).observe(hb); })();
+  // 2026-11-10 ten-of-ten step 1: the bar also steps aside while any of the page's own main buttons or a form is on screen, so it never covers them.
+  (() => { const bar = document.querySelector('.call-bar'); if (!bar || !('IntersectionObserver' in window)) return; const asks = [...document.querySelectorAll('main .btn-lime, .form-card')].filter(b => !b.closest('.call-bar, .site-head, header.hero, header.page-hero')); if (!asks.length) return; const on = new Set(); const io = new IntersectionObserver(es => { es.forEach(e => { on[e.isIntersecting ? 'add' : 'delete'](e.target); }); bar.classList.toggle('cb-ask', on.size > 0); }); asks.forEach(b => io.observe(b)); })();
   </script>
 
   <script>
@@ -530,7 +551,7 @@
                            "name":  "How much is the Season Pass?",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "It depends on your yard. Send us your address and Harrison texts you the price today, with the 5% already taken off."
+                                                  "text":  "It depends on your yard. Send us your address and Harrison texts you the price within 24 hours, with the 5% already taken off."
                                               }
                        },
                        {

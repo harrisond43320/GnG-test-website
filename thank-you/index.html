@@ -8,7 +8,7 @@
   <meta name="google-site-verification" content="ifAO7aAjGJsyzlkFDGzVgzoni2hk1tMZr-bx9Za9348" />
   <meta name="msvalidate.01" content="38DD63390CB33D5A37F951DF21F44A79" />
   <link rel="canonical" href="https://www.grassngardens.com/thank-you/" />
-  <meta name="description" content="You're all set. Harrison with Grass 'n' Gardens in Richfield, Ohio will text you today." />
+  <meta name="description" content="You're all set. Harrison with Grass 'n' Gardens in Richfield, Ohio will text you within 24 hours." />
   <!-- Thank-you page after the yard plan form. Kept out of Google; also the clean "conversion" page for Google Ads. -->
   <meta name="robots" content="noindex" />
   <meta name="theme-color" content="#141c17" />
@@ -281,12 +281,12 @@
           </div>
           <div class="if-sent">
             <h2 class="draft">Harrison has it.</h2>
-            <p class="draft">He texts you back today from his own phone. You never have to come outside or be home.</p>
+            <p class="draft">He texts you back within 24 hours from his own phone. You never have to come outside or be home.</p>
             <a class="btn btn-lime btn-big" href="tel:+14406679642">Want it faster? Call (440) 667-9642</a>
           </div>
           <div class="if-none">
             <h2 class="draft">Text Harrison your address.</h2>
-            <p class="draft">Tell him what you need. He texts you back today.</p>
+            <p class="draft">Tell him what you need. He texts you back within 24 hours.</p>
             <a class="btn btn-lime btn-big" href="sms:+14406679642">Text (440) 667-9642</a>
             <p class="alt draft">Rather fill out the form? <a href="../#plan-form">Get my yard plan</a></p>
           </div>
@@ -300,7 +300,7 @@
         <h2 class="sec-h">Here's what <b>happens next<span class="dot">.</span></b></h2>
         <ol class="next">
           <li><b>You send it.</b> Takes 30 seconds.</li>
-          <li><b>Harrison texts you today.</b> From his own phone.</li>
+          <li><b>Harrison texts you within 24 hours.</b> From his own phone.</li>
           <li><b class="draft">We write out your whole year.</b> <span class="draft">Harrison looks your yard up and walks it himself. You never have to come outside or be home. Want to walk it together? Just ask.</span></li>
         </ol>
         <div class="after-grid">
@@ -381,7 +381,7 @@
       <div class="foot">
         <p class="rec">Record &middot; <b>64</b> reviews &middot; <b>5.0</b> average</p>
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
-        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a> &middot; <a href="../bath-oh/">Bath</a> &middot; <a href="../granger-oh/">Granger</a></p>
+        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a> &middot; <a href="../bath-oh/">Bath</a> &middot; <a href="../granger-oh/">Granger</a> &middot; <a href="../hinckley-oh/">Hinckley</a> &middot; <a href="../north-royalton-oh/">North Royalton</a></p>
         <button class="app-get" type="button" data-app-get hidden>
           <img src="../app/icon-192.png" alt="" width="36" height="36" loading="lazy" fetchpriority="low" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>
@@ -409,10 +409,30 @@
     <a class="btn btn-ghost cb-reach" href="sms:+14406679642" aria-label="Text Harrison at (440) 667-9642"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Text</span></a>
   </div>
   <script>
+  // 2026-11-10 ten-of-ten step 1: on phones, every button that used to open the home form opens a text to Harrison with the first words filled in
+  // (MOW, LEAVES, PLAN ...). Computers keep the form (a text link does nothing there). Links that carry ?ref= (Yard Score, referrals, pre-sell) keep the form
+  // so the lead source is not lost. Plain Text links get the page's word too. This runs before the bar scripts below on purpose.
+  (() => {
+    const seg = location.pathname.split('/').filter(Boolean)[0] || 'home';
+    if (/^(thank-you|soil-check|your-year|yard-score|join-the-crew|winter-walk)$/.test(seg)) return;
+    const byPage = { 'lawn-mowing': 'MOW', 'five-before-we-drive': 'MOW', 'mulch-beds': 'MULCH', 'yard-design': 'PLANT', 'aeration-fertilizer': 'AERATE', 'fall-cleanup': 'LEAVES', 'leaves': 'LEAVES', 'spring-cleanup': 'SPRING', 'hoa-commercial': 'BID', 'season-pass': 'SEASON' };
+    const byNeed = { mowing: 'MOW', mulch: 'MULCH', design: 'PLANT', aeration: 'AERATE', leaves: 'LEAVES', spring: 'SPRING', hoa: 'BID', season2027: 'SEASON' };
+    const sms = w => 'sms:+14406679642?&body=' + encodeURIComponent(w + (w === 'BID' ? ' the property address is ' : ' my address is '));
+    const pageWord = byPage[seg] || 'PLAN';
+    document.querySelectorAll('a[href="sms:+14406679642"]').forEach(a => { a.href = sms(pageWord); });
+    if (!matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+    document.querySelectorAll('a[href*="#plan-form"]').forEach(a => {
+      const h = a.getAttribute('href') || ''; if (/[?&]ref=/.test(h)) return;
+      const need = (h.match(/[?&]need=([a-z0-9]+)/) || [])[1];
+      a.href = sms(byNeed[need] || pageWord); a.setAttribute('data-ask-text', byNeed[need] || pageWord);
+    });
+  })();
   // 2026-10-31: when the bar's main button already texts us (Text LEAVES, Text Harrison), hide the second Text button.
   (() => { const bar = document.querySelector('.call-bar'); if (!bar) return; const main = bar.querySelector('a.btn-lime'); if (main && /^sms:/.test(main.getAttribute('href') || '')) bar.querySelectorAll('a.cb-reach[href^="sms:"]').forEach(a => { a.hidden = true; }); })();
   // 2026-10-31 clean-up plan #5: one main button per screen. While the header's own main button is on screen, the bar slides away (same as fall-cleanup since 10/25).
   (() => { const bar = document.querySelector('.call-bar'); const hb = [...document.querySelectorAll('header.hero .btn-lime, header.page-hero .btn-lime')].find(b => b.offsetParent !== null); if (!bar || !hb || !('IntersectionObserver' in window)) return; new IntersectionObserver(([e]) => bar.classList.toggle('cb-away', e.isIntersecting)).observe(hb); })();
+  // 2026-11-10 ten-of-ten step 1: the bar also steps aside while any of the page's own main buttons or a form is on screen, so it never covers them.
+  (() => { const bar = document.querySelector('.call-bar'); if (!bar || !('IntersectionObserver' in window)) return; const asks = [...document.querySelectorAll('main .btn-lime, .form-card')].filter(b => !b.closest('.call-bar, .site-head, header.hero, header.page-hero')); if (!asks.length) return; const on = new Set(); const io = new IntersectionObserver(es => { es.forEach(e => { on[e.isIntersecting ? 'add' : 'delete'](e.target); }); bar.classList.toggle('cb-ask', on.size > 0); }); asks.forEach(b => io.observe(b)); })();
   </script>
 
   <script>

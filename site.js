@@ -192,10 +192,10 @@
     (function () {
       var q = /[?&]season=(fall|after)/.exec(location.search);
       var over = q ? q[1] === 'after' : Date.now() >= Date.UTC(2026, 10, 14, 5);
-      if (over) document.querySelectorAll('.tb-leaf').forEach(function (p) { if (p.firstChild) p.firstChild.textContent = 'Leaves still down? Get your Leaf Map and price within 24 hours. '; });
+      if (over) document.querySelectorAll('.tb-leaf').forEach(function (p) { if (p.firstChild) p.firstChild.textContent = 'Leaves still down? Get your price within 24 hours. '; });
       if (matchMedia('(hover: hover) and (pointer: fine)').matches) document.querySelectorAll('[data-leafmap]').forEach(function (a) {
         a.href = '../leaves/?src=' + encodeURIComponent(a.dataset.leafmap);
-        if (a.firstChild) a.firstChild.textContent = 'Get my Leaf Map ';
+        if (a.firstChild) a.firstChild.textContent = 'Get my leaf price ';
         var s = a.querySelector('small'); if (s) s.remove();
       });
       document.addEventListener('click', function (e) {
