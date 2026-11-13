@@ -1670,51 +1670,9 @@
         }
       </script>
     </header>
-    <!-- 2026-11-12 preview switch: ?order=plan = yard plan above the reviews (Claude says yes; needs Harrison's yes before it is the default). -->
-    <script>
-      if (/[?&]order=plan/.test(location.search)) document.addEventListener('DOMContentLoaded', function () {
-        var p = document.getElementById('plan'), r = document.getElementById('reviews');
-        if (p && r) r.parentNode.insertBefore(p, r);
-      });
     </script>
 
     <!-- 2026-10-31 clean-up plan #6: the quick links came out (Alex: the menu has them). -->
-
-    <!-- 2026-10-31 clean-up plan #6: reviews moved up to second (Alex: proof before the ask). -->
-    <section class="light reviews" id="reviews">
-      <div class="wrap">
-        <h2 class="stack reveal"><span class="thin">64 reviews.</span><span class="heavy draft">5.0 on Google<span class="dot">.</span></span></h2>
-        <!-- 2026-11-01: the record row under this heading came out (it repeated "59 reviews, 5.0" right under the same words; the footer and the header still carry it) -->
-      </div>
-
-      <!-- 2026-10-07 (Harrison): every Google review, in two rows that slide past each other as you scroll.
-           Row 1 drifts right, row 2 drifts left. Filled from the reviews list in the script below.
-           Reviews from family and crew are left out (FTC rule on insider reviews). -->
-      <!-- 2026-11-01 round 4 (Customer Care + Alex: the moving cards are always cut off, so nobody reads one whole review on a phone):
-           one full review stays still above the rows. Word for word from reviews.js. -->
-      <div class="wrap rv-pin-wrap">
-        <article class="gshot rv-pin reveal">
-          <header><span class="av" style="background:#188038" aria-hidden="true">K</span>
-            <span class="who"><b>Katie E.</b><span>Google review</span></span><svg class="glogo" width="22" height="22" aria-label="Google review"><use href="#g-logo"/></svg></header>
-          <div class="rate" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>They were very responsive and had strong communication from start to finish. They showed up on time, spread over 10 yards of mulch and left everything spotless. The crew was respectful and clearly takes pride in what they do. We couldn’t be happier with the results and would recommend them for your next landscaping project!</p>
-        </article>
-      </div>      <div class="rv-rows" role="region" aria-label="Google reviews from our customers">
-        <div class="rv-track" data-dir="1"></div>
-        <div class="rv-track" data-dir="-1"></div>
-      </div>
-      <p class="rv-hint draft" aria-hidden="true">&larr; Slide a row to read more &rarr;</p>
-
-      <div class="wrap more">
-        <a class="btn btn-dark" href="../why-gng/">Why customers pick us
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <!-- 2026-10-07: opens the reviews list on Google for anyone (Harrison's own link only works signed in to his account) -->
-        <a class="btn btn-ghost" href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">See all 64 on Google
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-      </div>
-
-    </section>
-
     <!-- WATCH THIS FIRST + YARD PLAN FORM, right under the hero (2026-10-07, TruGreen-style: the ask comes first).
          Harrison (2026-10-07): the "cheapest landscaper? watch this first" video belongs right with the form, because
          watching it first is what gets people to send it. Until the video is filmed, the photo reel plays here.
@@ -1840,6 +1798,44 @@
         </div>
       </div>
     </section>
+
+    <!-- 2026-11-12 night (Harrison: "1 and 2, push"): the yard plan now comes BEFORE the reviews by default (was the ?order=plan preview). -->
+
+    <!-- 2026-10-31 clean-up plan #6: reviews moved up to second (Alex: proof before the ask). -->
+    <section class="light reviews" id="reviews">
+      <div class="wrap">
+        <h2 class="stack reveal"><span class="thin">64 reviews.</span><span class="heavy draft">5.0 on Google<span class="dot">.</span></span></h2>
+        <!-- 2026-11-01: the record row under this heading came out (it repeated "59 reviews, 5.0" right under the same words; the footer and the header still carry it) -->
+      </div>
+
+      <!-- 2026-10-07 (Harrison): every Google review, in two rows that slide past each other as you scroll.
+           Row 1 drifts right, row 2 drifts left. Filled from the reviews list in the script below.
+           Reviews from family and crew are left out (FTC rule on insider reviews). -->
+      <!-- 2026-11-01 round 4 (Customer Care + Alex: the moving cards are always cut off, so nobody reads one whole review on a phone):
+           one full review stays still above the rows. Word for word from reviews.js. -->
+      <div class="wrap rv-pin-wrap">
+        <article class="gshot rv-pin reveal">
+          <header><span class="av" style="background:#188038" aria-hidden="true">K</span>
+            <span class="who"><b>Katie E.</b><span>Google review</span></span><svg class="glogo" width="22" height="22" aria-label="Google review"><use href="#g-logo"/></svg></header>
+          <div class="rate" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p>They were very responsive and had strong communication from start to finish. They showed up on time, spread over 10 yards of mulch and left everything spotless. The crew was respectful and clearly takes pride in what they do. We couldn’t be happier with the results and would recommend them for your next landscaping project!</p>
+        </article>
+      </div>      <div class="rv-rows" role="region" aria-label="Google reviews from our customers">
+        <div class="rv-track" data-dir="1"></div>
+        <div class="rv-track" data-dir="-1"></div>
+      </div>
+      <p class="rv-hint draft" aria-hidden="true">&larr; Slide a row to read more &rarr;</p>
+
+      <div class="wrap more">
+        <a class="btn btn-dark" href="../why-gng/">Why customers pick us
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <!-- 2026-10-07: opens the reviews list on Google for anyone (Harrison's own link only works signed in to his account) -->
+        <a class="btn btn-ghost" href="https://www.google.com/search?q=Grass+%27n%27+Gardens&amp;kgmid=/g/11z2hh7ltb#lrd=0x8e901f29245b6c0d:0xf27d7415d03a3dd8,1,,,," target="_blank" rel="noopener">See all 64 on Google
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+
+    </section>
+
 
     <!-- INTRO + SERVICES (horizontal cards; the old sideways accordion is gone) -->
     <section class="intro" id="services">
