@@ -355,8 +355,8 @@
     .hero-rail span { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; min-height: 32px; padding: 3px 6px; }
     .hero-rail a:hover { border-color: var(--lime); }
     .hero-rail a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
-    .hero-rail .ri { display: none; width: 18px; height: 18px; flex: none; fill: none; stroke: var(--forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    html.rail-icons .hero-rail .ri { display: block; }
+    .hero-rail .ri { display: block; width: 18px; height: 18px; flex: none; fill: none; stroke: var(--forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    /* 2026-11-13 (Harrison: "i like the icon on the plan put the same thing on the top"): icons always on, ?icons=1 switch retired. */
     .hero-rail .rail-offer { display: none; justify-content: center; background: var(--lime); }
     .hero-rail .rail-offer b { font-family: "Alfa Slab One", serif; font-weight: 400; font-size: 32px; line-height: 1; }
     .hero-rail .rail-offer span { flex: 0 0 auto; min-height: 0; padding-top: 6px; }
@@ -369,7 +369,7 @@
       .hero-rail a { width: 92px; font-size: 14px; }
       .hero-rail img { height: 56px; }
       .hero-rail span { min-height: 30px; padding: 2px 4px; }
-      html.rail-icons .hero-rail .ri { width: 16px; height: 16px; }
+      .hero-rail .ri { width: 16px; height: 16px; }
       /* shrunk: icon + word pills, 40px tall */
       .rail-band.mini { padding: 4px 0; }
       .rail-band.mini .hero-rail a { width: auto; flex-direction: row; border-radius: 22px; }
@@ -1548,14 +1548,14 @@
        Switches: ?offer=1 = the offer card in the first spot (placeholder words until his 2027 offer is finished), ?icons=1 = icons on the big cards too.
        Styles: the SERVICE RAIL note. His asks, word for word: ideas\2026-11-12-home-design-round.md -->
   <div class="rail-band" id="rail-band">
-    <script>(function(){var s=location.search,d=document.documentElement;if(/[?&]offer=1/.test(s))d.classList.add('rail-offer-on');if(/[?&]icons=1/.test(s))d.classList.add('rail-icons');})();</script>
+    <script>(function(){var s=location.search,d=document.documentElement;if(/[?&]offer=1/.test(s))d.classList.add('rail-offer-on');})();</script>
     <div class="wrap">
       <nav class="hero-rail" aria-label="Our services">
         <a class="rail-offer" href="#plan"><b>2027</b><span class="draft">Yard plan</span></a>
         <a class="rail-leaves" href="../fall-cleanup/?src=home-rail"><img src="img/rail/leaves.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"/><path d="M5 19l8-8"/></svg>Leaves</span></a>
         <a href="../lawn-mowing/?src=home-rail"><img src="img/rail/mowing.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15h13l1-5H6z"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 10l3-6"/></svg>Mowing</span></a>
         <a href="../mulch-beds/?src=home-rail"><img src="img/rail/mulch.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19h20l-5-8-3 3-3-5-5 6z"/><path d="M8 16h.01M12 15h.01M15 17h.01"/></svg>Mulch</span></a>
-        <a href="../aeration-fertilizer/?src=home-rail"><img src="img/rail/aeration.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18"/><rect x="5" y="10" width="3" height="9" rx="1.5"/><rect x="10.5" y="10" width="3" height="9" rx="1.5"/><rect x="16" y="10" width="3" height="9" rx="1.5"/></svg>Aeration</span></a>
+        <a href="../aeration-fertilizer/?src=home-rail"><img src="img/rail/aeration.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>Aeration</span></a>
         <a href="../spring-cleanup/?src=home-rail"><img src="img/rail/spring.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M5 15h14M5 15v5M9.5 15v5M14.5 15v5M19 15v5"/></svg>Spring cleanup</span></a>
         <a href="../yard-design/?src=home-rail"><img src="img/rail/planting.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="6"/><path d="M12 16v5M7 21h10"/></svg>Planting</span></a>
         <a class="rail-hoa" href="../hoa-commercial/?src=home-rail"><img src="img/rail/hoa.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4"/></svg>HOA</span></a>
@@ -1710,7 +1710,7 @@
                 <label><input type="checkbox" name="need" value="everything" /><span class="draft"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg>Everything, all year</span></label>
                 <label><input type="checkbox" name="need" value="season2027" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>2027 mowing</span></label>
                 <label><input type="checkbox" name="need" value="mowing" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15h13l1-5H6z"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 10l3-6"/></svg>Weekly mowing</span></label>
-                <label><input type="checkbox" name="need" value="aeration" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18"/><rect x="5" y="10" width="3" height="9" rx="1.5"/><rect x="10.5" y="10" width="3" height="9" rx="1.5"/><rect x="16" y="10" width="3" height="9" rx="1.5"/></svg>Aeration and fertilizer</span></label>
+                <label><input type="checkbox" name="need" value="aeration" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>Aeration and fertilizer</span></label>
                 <label><input type="checkbox" name="need" value="mulch" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19h20l-5-8-3 3-3-5-5 6z"/><path d="M8 16h.01M12 15h.01M15 17h.01"/></svg>Mulch and beds</span></label>
                 <label><input type="checkbox" name="need" value="bushes" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12"/></svg>Bush trimming</span></label>
                 <label><input type="checkbox" name="need" value="leaves" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"/><path d="M5 19l8-8"/></svg>Leaf cleanup</span></label>
