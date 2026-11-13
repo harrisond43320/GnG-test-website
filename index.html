@@ -38,8 +38,8 @@
     "name": "Grass 'n' Gardens",
     "slogan": "Five Before We Drive",
     "url": "https://www.grassngardens.com/",
-    "description": "Yearly lawn care plans for homes and HOAs in Richfield, Ohio and nearby towns. Mowing, aeration, fertilizer, bush trimming, mulch, leaf removal, small tree work and snow plowing. Every visit ends with Five Before We Drive: five checks before the truck leaves. Named plans: Double Pass (aeration and fertilizer) and Season Pass (mowing).",
-    "knowsAbout": ["Five Before We Drive", "Leaf cleanup", "Double Pass aeration and fertilizer", "Season Pass mowing plan", "lawn care in Richfield Ohio"],
+    "description": "Yearly lawn care plans for homes and HOAs in Richfield, Ohio and nearby towns. Mowing, aeration, fertilizer, bush trimming, mulch, leaf removal and small tree work. Every visit ends with Five Before We Drive: five checks before the truck leaves. Named plan: Double Pass (aeration and fertilizer).",
+    "knowsAbout": ["Five Before We Drive", "Leaf cleanup", "Double Pass aeration and fertilizer", "lawn care in Richfield Ohio"],
     "logo": "https://www.grassngardens.com/brand_assets/logos/lockup-horizontal-web.png",
     "image": ["https://www.grassngardens.com/img/gbp-mower-stripes.jpg", "https://www.grassngardens.com/img/gbp-mower-house.jpg", "https://www.grassngardens.com/img/crew-mulch.jpg"],
     "hasMap": "https://share.google/uGzNJkLJjozxgZWSS",
@@ -52,14 +52,13 @@
     "areaServed": [{ "@type": "City", "name": "Richfield" }, { "@type": "City", "name": "Bath" }, { "@type": "City", "name": "Hinckley" }, { "@type": "City", "name": "Granger" }, { "@type": "City", "name": "Brecksville" }, { "@type": "City", "name": "Broadview Heights" }, { "@type": "City", "name": "North Royalton" }, { "@type": "City", "name": "Akron" }, { "@type": "City", "name": "Medina" }],
     "openingHoursSpecification": [ { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "06:30", "closes": "19:00" }, { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "08:00", "closes": "17:00" } ],
     "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Lawn care and landscaping services", "itemListElement": [
-      { "@type": "Offer", "name": "Season Pass", "itemOffered": { "@type": "Service", "name": "Weekly lawn mowing", "url": "https://www.grassngardens.com/season-pass/" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Weekly lawn mowing", "url": "https://www.grassngardens.com/lawn-mowing/" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Five Before We Drive: five checks before every truck leaves", "url": "https://www.grassngardens.com/five-before-we-drive/" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Spring cleanup", "url": "https://www.grassngardens.com/spring-cleanup/" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mulching, bed care and bush trimming", "url": "https://www.grassngardens.com/mulch-beds/" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Planting and bed refresh", "url": "https://www.grassngardens.com/yard-design/" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Edging and trimming" } },
       { "@type": "Offer", "name": "Double Pass", "itemOffered": { "@type": "Service", "name": "Aeration and fertilizing", "url": "https://www.grassngardens.com/aeration-fertilizer/" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Snow plowing and shoveling" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Small tree work" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial and HOA property care", "url": "https://www.grassngardens.com/hoa-commercial/" } }
     ] },
@@ -342,6 +341,45 @@
       .hero-chips a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
     }
     .hero-chips { display: none; }
+    /* 2026-11-12 SERVICE RAIL, round 2 on localhost (Harrison 11/11: "our services with the pictures that kind of scroll up across of the header, just like
+       Amazon has it"; 11/12 night: "I do like the top header for sure"; "the spacing on like the mowing and leaves can be smaller").
+       The row lives in its own pine band under the menu (markup right after the header). Small picture cards you swipe sideways; never moves by itself.
+       Phones: the band sticks under the menu and shrinks to icon + word pills (.mini, set by the script in the band).
+       ?offer=1 = offer card first (placeholder). ?icons=1 = icons on the big cards too (he asked to see both). Full ask: ideas\2026-11-12-home-design-round.md */
+    .rail-band { position: relative; z-index: 60; background: var(--pine); padding: 8px 0 6px; }
+    .hero-rail { display: flex; gap: 8px; padding: 2px 2px 4px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-snap-type: x proximity; }
+    .hero-rail::-webkit-scrollbar { display: none; }
+    @media (min-width: 1000px) { .hero-rail { justify-content: safe center; } }
+    .hero-rail a { flex: 0 0 auto; width: 116px; display: flex; flex-direction: column; overflow: hidden; background: #fff; border: 2px solid var(--pine); border-radius: 10px; color: var(--pine); font-size: 16px; font-weight: 700; line-height: 1.1; text-align: center; text-decoration: none; scroll-snap-align: start; }
+    .hero-rail img { display: block; width: 100%; height: 72px; object-fit: cover; background: var(--forest); }
+    .hero-rail span { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; min-height: 32px; padding: 3px 6px; }
+    .hero-rail a:hover { border-color: var(--lime); }
+    .hero-rail a:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+    .hero-rail .ri { display: none; width: 18px; height: 18px; flex: none; fill: none; stroke: var(--forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    html.rail-icons .hero-rail .ri { display: block; }
+    .hero-rail .rail-offer { display: none; justify-content: center; background: var(--lime); }
+    .hero-rail .rail-offer b { font-family: "Alfa Slab One", serif; font-weight: 400; font-size: 32px; line-height: 1; }
+    .hero-rail .rail-offer span { flex: 0 0 auto; min-height: 0; padding-top: 6px; }
+    html.rail-offer-on .hero-rail .rail-offer { display: flex; }
+    html.after-fall .hero-rail .rail-leaves { order: 1; }
+    html.after-fall .hero-rail .rail-hoa { order: 2; }
+    @media (max-width: 767px) {
+      .rail-band { position: sticky; top: 54px; padding: 6px 0 5px; }
+      .rail-band .hero-rail { margin: 0 -24px; padding: 2px 24px; scroll-padding-left: 24px; -webkit-mask-image: linear-gradient(to right, #000 88%, transparent 100%); mask-image: linear-gradient(to right, #000 88%, transparent 100%); }
+      .hero-rail a { width: 92px; font-size: 14px; }
+      .hero-rail img { height: 56px; }
+      .hero-rail span { min-height: 30px; padding: 2px 4px; }
+      html.rail-icons .hero-rail .ri { width: 16px; height: 16px; }
+      /* shrunk: icon + word pills, 40px tall */
+      .rail-band.mini { padding: 4px 0; }
+      .rail-band.mini .hero-rail a { width: auto; flex-direction: row; border-radius: 22px; }
+      .rail-band.mini .hero-rail img { display: none; }
+      .rail-band.mini .hero-rail span { min-height: 40px; padding: 0 14px 0 10px; white-space: nowrap; }
+      .rail-band.mini .hero-rail .ri { display: block; width: 18px; height: 18px; }
+      .rail-band.mini .hero-rail .rail-offer { align-items: center; gap: 6px; padding: 0 12px; }
+      .rail-band.mini .hero-rail .rail-offer b { font-size: 18px; }
+      .rail-band.mini .hero-rail .rail-offer span { padding: 0; min-height: 40px; }
+    }
     .hero h1, .hero .lede, .trust li { text-shadow: 0 2px 18px rgba(0,0,0,.45); }
     @media (prefers-reduced-motion: reduce) {
       .hero-photo .broll img { animation: none; }
@@ -596,6 +634,9 @@
     .chips span:active { transform: scale(.95); }
     .chips input:checked + span { background: var(--forest); border-color: var(--forest); color: #fff; }
     .chips input:focus-visible + span { outline: 3px solid var(--forest); outline-offset: 2px; }
+    /* 2026-11-12 (Harrison: "do the same thing with the icons with the yard plan submission, I like that"): the service row's icons on each choice, so people read less. Turns white when picked. */
+    .chips .ci { width: 18px; height: 18px; flex: none; margin-right: 7px; fill: none; stroke: var(--forest); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .chips input:checked + span .ci { stroke: #fff; }
     /* "Other" boxes only show once picked */
     .form-card .if-other { display: none; }
     .chips .chip-extra:not(:has(input:checked)) { display: none; }
@@ -1386,8 +1427,7 @@
   <a class="skip" href="#top">Skip to main content</a>
 
   <!-- TOP BAR (TruGreen-style offer bar). Carries the live offer: one line, real deadline, one link. -->
-  <div class="topbar">
-    <p class="tb-presell" data-after="Mowing season is on. Tell me about your yard and I&#39;ll send you a price. &lt;a href=&quot;#plan&quot;&gt;Get my yard plan&lt;/a&gt;">Pay for your 2027 mowing by March 31 and save 5%. <a href="#season">Save my spot</a></p>
+  <div class="topbar" hidden>
   </div>
 
   <!-- @header -->
@@ -1419,7 +1459,6 @@
               <a class="sub-all" href="./#services">See every service</a>
             </div>
           </li>
-          <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
           <li><a href="../our-work/">Our work</a></li>
           <!-- 2026-10-07 (late, Harrison: the header is too full): About, promise, questions, referral and hiring
@@ -1433,7 +1472,6 @@
               <a href="../why-gng/#reviews"><span>Reviews<small>64 Google reviews, 5.0</small></span></a>
               <a href="../five-before-we-drive/"><span>Our promise<small>Five checks before we drive</small></span></a>
               <a href="../faq/"><span>Questions<small>Cost, area, insurance and more</small></span></a>
-              <a href="../refer/"><span>Send a neighbor<small>You both save 5%</small></span></a>
               <a href="../yard-of-the-month/"><span>Yard of the Month<small>One G'N'G yard gets the sign</small></span></a>
               <a href="../join-the-crew/"><span>Join the crew<small>Crew jobs and pay</small></span></a>
             </div>
@@ -1476,7 +1514,6 @@
           <li class="sub-li"><a href="../soil-check/?src=menu">Soil Check</a></li>
           <li class="sub-li"><a href="../hoa-commercial/">HOA and commercial</a></li>
           <li class="sub-li"><a href="../your-year/">Build your year</a></li>
-          <li><a href="../season-pass/">2027 Season Pass</a></li>
           <li><a href="../why-gng/">Why G'N'G</a></li>
           <li><a href="../why-gng/#reviews">Reviews</a></li>
           <li><a href="../our-work/">Our work</a></li>
@@ -1485,7 +1522,6 @@
           <li class="sub-li"><a href="../five-before-we-drive/">Our promise</a></li>
           <li class="sub-li"><a href="../faq/">Questions</a></li>
           <li class="sub-li"><a href="../join-the-crew/">Join the crew</a></li>
-          <li class="sub-li"><a href="../refer/">Send a neighbor</a></li>
           <li class="sub-li"><a href="../yard-of-the-month/">Yard of the Month</a></li>
         </ul>
         <div class="menu-ctas">
@@ -1506,6 +1542,47 @@
     </div>
   </header>
   <!-- /@header -->
+  <!-- 2026-11-12 round 2 (Harrison: "I do like the top header for sure"): the service row in its own pine band right under the menu, on every screen size.
+       Swipe sideways; it never moves by itself. Phones: it sticks under the menu and shrinks to icon + word once you scroll ("I like that option to shrink").
+       Leaves first in leaf season; after Nov 30 Mowing leads and Leaves moves near the end (CSS order). Thumbnails 232x144 in img/rail/.
+       Switches: ?offer=1 = the offer card in the first spot (placeholder words until his 2027 offer is finished), ?icons=1 = icons on the big cards too.
+       Styles: the SERVICE RAIL note. His asks, word for word: ideas\2026-11-12-home-design-round.md -->
+  <div class="rail-band" id="rail-band">
+    <script>(function(){var s=location.search,d=document.documentElement;if(/[?&]offer=1/.test(s))d.classList.add('rail-offer-on');if(/[?&]icons=1/.test(s))d.classList.add('rail-icons');})();</script>
+    <div class="wrap">
+      <nav class="hero-rail" aria-label="Our services">
+        <a class="rail-offer" href="#plan"><b>2027</b><span class="draft">Yard plan</span></a>
+        <a class="rail-leaves" href="../fall-cleanup/?src=home-rail"><img src="img/rail/leaves.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"/><path d="M5 19l8-8"/></svg>Leaves</span></a>
+        <a href="../lawn-mowing/?src=home-rail"><img src="img/rail/mowing.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15h13l1-5H6z"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 10l3-6"/></svg>Mowing</span></a>
+        <a href="../mulch-beds/?src=home-rail"><img src="img/rail/mulch.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19h20l-5-8-3 3-3-5-5 6z"/><path d="M8 16h.01M12 15h.01M15 17h.01"/></svg>Mulch</span></a>
+        <a href="../aeration-fertilizer/?src=home-rail"><img src="img/rail/aeration.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18"/><rect x="5" y="10" width="3" height="9" rx="1.5"/><rect x="10.5" y="10" width="3" height="9" rx="1.5"/><rect x="16" y="10" width="3" height="9" rx="1.5"/></svg>Aeration</span></a>
+        <a href="../spring-cleanup/?src=home-rail"><img src="img/rail/spring.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M5 15h14M5 15v5M9.5 15v5M14.5 15v5M19 15v5"/></svg>Spring cleanup</span></a>
+        <a href="../yard-design/?src=home-rail"><img src="img/rail/planting.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="6"/><path d="M12 16v5M7 21h10"/></svg>Planting</span></a>
+        <a class="rail-hoa" href="../hoa-commercial/?src=home-rail"><img src="img/rail/hoa.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4"/></svg>HOA</span></a>
+      </nav>
+    </div>
+    <script>
+      (() => {
+        // Phones: stick right under the menu, and shrink to icon + word after the first scroll.
+        // The band's lost height goes into its bottom margin, so nothing below it jumps.
+        const band = document.getElementById('rail-band'), head = document.querySelector('.site-head');
+        if (!band || !head) return;
+        const mq = matchMedia('(max-width: 767px)');
+        let mini = false;
+        const set = on => {
+          if (on === mini) return;
+          const h0 = band.offsetHeight;
+          band.classList.toggle('mini', on); mini = on;
+          band.style.marginBottom = on ? Math.max(0, h0 - band.offsetHeight) + 'px' : '';
+        };
+        const place = () => { band.style.top = mq.matches ? head.offsetHeight + 'px' : ''; if (!mq.matches) set(false); };
+        const onScroll = () => { if (!mq.matches) return; if (scrollY > 120) set(true); else if (scrollY < 40) set(false); };
+        place(); onScroll();
+        addEventListener('scroll', onScroll, { passive: true });
+        addEventListener('resize', () => { set(false); place(); onScroll(); });
+      })();
+    </script>
+  </div>
 
   <main id="top">
     <!-- 2026-10-31: the Double Pass strip (expired 10/31) and the leaf strip came out; the top bar is the one banner now (Fall Pass until Dec 1, then save 5%). -->
@@ -1561,7 +1638,6 @@
         <p class="hero-quiet reveal d3"><a href="../fall-cleanup/?src=home-hero-ph">See fall cleanups</a><a href="../hoa-commercial/?src=home-hero-ph">HOA or business?</a></p>
         <!-- 2026-11-11 night: services chip row, ON by default on phones (?row=0 turns it off for testing). Leaves first in leaf season. -->
         <script>if (!/[?&]row=0/.test(location.search)) document.documentElement.classList.add('row-on');</script>
-        <nav class="hero-chips" aria-label="Our services"><a href="../fall-cleanup/?src=home-chip">Leaves</a><a href="../lawn-mowing/?src=home-chip">Mowing</a><a href="../mulch-beds/?src=home-chip">Mulch</a><a href="../aeration-fertilizer/?src=home-chip">Aeration</a><a href="../spring-cleanup/?src=home-chip">Spring cleanup</a><a href="../yard-design/?src=home-chip">Planting</a><a href="../hoa-commercial/?src=home-chip">HOA</a></nav>
         <a class="hero-score hero-hoa reveal d3" href="../hoa-commercial/"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4"/></svg><span>HOA or business? <b>See what our bid includes</b></span></a>
       </div>
       <!-- The everyday header. Kept in a template through Nov 30 (so the page has one h1); on Dec 1 the script after it swaps it in. -->
@@ -1581,7 +1657,7 @@
           <a class="btn btn-ghost" href="tel:+14406679642"><span class="draft">Call or text Harrison</span></a>
         </div>
         <!-- 2026-11-01 (Harrison: "Yes, Harrison texts back today, I can do that for sure"): the reply promise sits right under the button (Alex, blind grade: it cut the fear of an unknown ask). Same words as lower on the page. -->
-        <p class="hero-reply reveal d3"><b>Harrison texts you within 24 hours.</b> From his own phone.</p>
+        <p class="hero-reply reveal d3"><b>Harrison texts you within 24 hours.</b> <b class="draft">Guaranteed.</b> From his own phone.</p>
         <!-- 2026-11-01: HOA boards and property managers (40% of the plan) had no way in above the fold (round 4: an outlined button, above the Yard Score line, so it shows on the first computer screen); same words as the HOA line in the ask section. -->
         <a class="hero-score hero-hoa reveal d3" href="../hoa-commercial/"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4"/></svg><span>HOA or business? <b>See what our bid includes</b></span></a>
         <!-- 2026-10-07 (late, Harrison: people won't find the Yard Score): one line under the buttons -->
@@ -1594,6 +1670,13 @@
         }
       </script>
     </header>
+    <!-- 2026-11-12 preview switch: ?order=plan = yard plan above the reviews (Claude says yes; needs Harrison's yes before it is the default). -->
+    <script>
+      if (/[?&]order=plan/.test(location.search)) document.addEventListener('DOMContentLoaded', function () {
+        var p = document.getElementById('plan'), r = document.getElementById('reviews');
+        if (p && r) r.parentNode.insertBefore(p, r);
+      });
+    </script>
 
     <!-- 2026-10-31 clean-up plan #6: the quick links came out (Alex: the menu has them). -->
 
@@ -1630,11 +1713,6 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
 
-      <!-- SEND A NEIGHBOR, one line (2026-10-07: the big card moved out; the full story is on refer/).
-           Rule locked 2026-10-03: a neighbor signs a yearly plan -> you both save 5%. Never tied to reviews. -->
-      <div class="wrap">
-        <p class="refer-line reveal"><span class="draft">Know someone who'd want this?</span> <a href="../refer/"><b>Send a neighbor.</b> You both save 5%.</a></p>
-      </div>
     </section>
 
     <!-- WATCH THIS FIRST + YARD PLAN FORM, right under the hero (2026-10-07, TruGreen-style: the ask comes first).
@@ -1671,19 +1749,19 @@
               <fieldset class="chips">
                 <legend>What do you need?</legend>
                 <!-- 2026-10-07 (night): "Everything, all year" first: that's the ideal customer (full yearly plan) -->
-                <label><input type="checkbox" name="need" value="everything" /><span class="draft">Everything, all year</span></label>
-                <label><input type="checkbox" name="need" value="season2027" /><span data-after="2027 mowing">2027 mowing (save 5%)</span></label>
-                <label><input type="checkbox" name="need" value="mowing" /><span>Weekly mowing</span></label>
-                <label><input type="checkbox" name="need" value="aeration" /><span>Aeration and fertilizer</span></label>
-                <label><input type="checkbox" name="need" value="mulch" /><span>Mulch and beds</span></label>
-                <label><input type="checkbox" name="need" value="bushes" /><span>Bush trimming</span></label>
-                <label><input type="checkbox" name="need" value="leaves" /><span>Leaf cleanup</span></label>
-                <label class="chip-extra"><input type="checkbox" name="need" value="spring" /><span>Spring cleanup</span></label>
-                <label class="chip-extra"><input type="checkbox" name="need" value="design" /><span>Planting and bed refresh</span></label>
-                <label class="chip-extra"><input type="checkbox" name="need" value="soilcheck" /><span>Free Soil Check</span></label>
-                <label class="chip-extra"><input type="checkbox" name="need" value="trees" /><span>Small tree work</span></label>
-                <label><input type="checkbox" name="need" value="hoa" /><span>HOA or business property</span></label><!-- 2026-11-01: out from under "more" (Customer Care: an HOA manager found no choice for him on step 1) -->
-                <label><input type="checkbox" name="need" value="other" id="need-other" /><span>Something else</span></label>
+                <label><input type="checkbox" name="need" value="everything" /><span class="draft"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg>Everything, all year</span></label>
+                <label><input type="checkbox" name="need" value="season2027" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>2027 mowing</span></label>
+                <label><input type="checkbox" name="need" value="mowing" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15h13l1-5H6z"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 10l3-6"/></svg>Weekly mowing</span></label>
+                <label><input type="checkbox" name="need" value="aeration" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18"/><rect x="5" y="10" width="3" height="9" rx="1.5"/><rect x="10.5" y="10" width="3" height="9" rx="1.5"/><rect x="16" y="10" width="3" height="9" rx="1.5"/></svg>Aeration and fertilizer</span></label>
+                <label><input type="checkbox" name="need" value="mulch" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19h20l-5-8-3 3-3-5-5 6z"/><path d="M8 16h.01M12 15h.01M15 17h.01"/></svg>Mulch and beds</span></label>
+                <label><input type="checkbox" name="need" value="bushes" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12"/></svg>Bush trimming</span></label>
+                <label><input type="checkbox" name="need" value="leaves" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"/><path d="M5 19l8-8"/></svg>Leaf cleanup</span></label>
+                <label class="chip-extra"><input type="checkbox" name="need" value="spring" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M5 15h14M5 15v5M9.5 15v5M14.5 15v5M19 15v5"/></svg>Spring cleanup</span></label>
+                <label class="chip-extra"><input type="checkbox" name="need" value="design" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="6"/><path d="M12 16v5M7 21h10"/></svg>Planting and bed refresh</span></label>
+                <label class="chip-extra"><input type="checkbox" name="need" value="soilcheck" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></svg>Free Soil Check</span></label>
+                <label class="chip-extra"><input type="checkbox" name="need" value="trees" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-5M12 3l6 8H6z"/><path d="M12 8l7 9H5z"/></svg>Small tree work</span></label>
+                <label><input type="checkbox" name="need" value="hoa" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4"/></svg>HOA or business property</span></label><!-- 2026-11-01: out from under "more" (Customer Care: an HOA manager found no choice for him on step 1) -->
+                <label><input type="checkbox" name="need" value="other" id="need-other" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>Something else</span></label>
               </fieldset>
               <label class="if-other other-need">What else? <input name="need_other" placeholder="Type it here" /></label>
               <p class="fstep-err" data-fstep-err role="alert" hidden>Pick at least one.</p>
@@ -1725,8 +1803,7 @@
             <!-- 2026-10-07 referral rule (locked 2026-10-03): when you sign a yearly plan, the neighbor who sent you
                  gets 5% off their next year and you get 5% off your first. This is how Harrison knows who to credit. -->
             <label class="if-other referred"><span>Who sent you? <small>(optional)</small></span>
-              <input name="referred_by" autocomplete="off" placeholder="Their name" />
-              <small class="draft">Sign a yearly plan and you both save 5%.</small></label>
+              <input name="referred_by" autocomplete="off" placeholder="Their name" /></label>
             <label class="hp" aria-hidden="true">Leave this empty <input name="website" tabindex="-1" autocomplete="off" /></label>
             <!-- ad tracking: filled from the URL by the script below, so every lead shows which ad or campaign sent it -->
             <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" />
@@ -1753,7 +1830,7 @@
           <!-- What happens next: a real sequence, so the numbers carry meaning. Step 3 is copy-bank wording. -->
           <ol class="next">
             <li><b>You send it.</b> Takes 30 seconds.</li>
-            <li><b>Harrison texts you within 24 hours.</b> From his own phone.</li>
+            <li><b>Harrison texts you within 24 hours.</b> <b class="draft">Guaranteed.</b> From his own phone.</li>
             <li><b class="draft">We write out your whole year.</b> <span class="draft">Harrison looks your yard up and walks it himself. You never have to come outside or be home. Want to walk it together? Just ask.</span></li>
           </ol>
           <figure class="mini-quote">
@@ -1794,7 +1871,7 @@
     <!-- 2026-10-31 home step 2: the five checks and the 2027 ticket are ONE section now. They said the same thing twice (the ticket listed
          "Miss one? We're back the next day, free" right under the promise), and two sections cost 2.2 phone screens. The sample visit
          text came out (a 2027 HomeWorks feature; restore from $TEMP\home-index-before-step2.html). id="five" and id="season" both stay
-         (the top bar links #season). The 5% terms: brainstorms/2026-09-30-scaling-roadmap.md Q2, Q9; ends March 31, 2027 (data-offer-only). -->
+         (the top bar links #season). 2026-11-12 (Harrison: "get rid of the season pass"): the ticket block is gone; the page is in site/_retired/season-pass. -->
     <section class="promise" id="five">
       <div class="wrap">
         <div class="promise-top reveal">
@@ -1809,32 +1886,6 @@
           <li>No clumps</li>
         </ol>
         <p class="rem reveal d1"><b>Miss one?</b> Text us. We're back the next day, for free. If it rains, the next dry day. <a href="../why-gng/#compare">See how we stack up</a></p>
-        <div class="promise-ticket" id="season" data-offer-only>        <div class="ticket reveal">
-          <div class="tk-drop"><div class="tk-shape"><div class="tk-in">
-            <a class="tk-hit" href="../season-pass/" tabindex="-1" aria-hidden="true"></a>
-            <div class="tk-main">
-              <p class="tk-top"><span class="tk-admit draft">Admit one yard</span><span class="tk-season">2027 season pass</span></p>
-              <h2>Lock in next year's <b>mowing now<span class="dot">.</span></b></h2>
-              <ul class="stack-list">
-                <li>Weekly mowing, the same day every week</li>
-                <li>Five Before We Drive on every visit</li>
-                <!-- 2026-10-07: the 30-day and moving lines live on the Season Pass page (shorter ticket here) -->
-              </ul>
-              <div class="tk-code" aria-hidden="true"><span class="bars"></span><span class="code">GNG &middot; 2027 &middot; WEEKLY MOWING</span></div>
-              <span class="tk-more draft" aria-hidden="true">Tap the ticket to see how it works
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            </div>
-            <div class="tk-stub">
-              <p class="pass-label">Pay the season up front</p>
-              <p class="tk-stamp" aria-label="Save 5 percent"><span>Save</span><b>5%</b><span>by Mar 31</span></p>
-              <p class="tk-count" data-countdown hidden><b data-days></b> <span data-days-word>days</span> left to save</p>
-              <a class="btn btn-lime tk-go" href="../season-pass/">Save my 2027 spot
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-              <a class="pass-call" href="tel:+14406679642">Or call Harrison: (440) 667-9642</a>
-            </div>
-          </div></div></div>
-        </div>
-        </div>
       </div>
     </section>
 
@@ -1949,12 +2000,10 @@
           <h2>G'N'G</h2>
           <ul>
             <li><a href="../why-gng/">Why G'N'G</a></li>
-            <li><a href="../season-pass/">2027 Season Pass</a></li>
             <li><a href="../about/">Meet Harrison</a></li>
             <li><a href="../our-work/">Our work</a></li>
             <li><a href="../faq/">Questions</a></li>
             <li><a href="../your-year/">Build your year</a></li>
-            <li><a href="../refer/">Send a neighbor</a></li>
             <li><a href="../yard-of-the-month/">Yard of the Month</a></li>
             <li><a href="../join-the-crew/">Join the crew</a></li>
           </ul>
@@ -2444,20 +2493,6 @@
       const again = card.querySelector('[data-reopen]');
       if (again) again.addEventListener('click', () => { if (lastHref) openApp(lastHref); });
     });
-
-    // Send a neighbor (2026-10-07): phones open their own share menu (text, Messenger, email...).
-    // Computers copy the link. The link carries ?ref=neighbor, which picks "A friend or neighbor" on the form.
-    document.querySelectorAll('[data-refer]').forEach(b => b.addEventListener('click', async () => {
-      const url = new URL('./?ref=neighbor', location.href).href;
-      const text = "This is who does our yard. Grass 'n' Gardens in Richfield. Tell them I sent you and we both save 5%.";
-      const word = b.querySelector('[data-refer-word]');
-      if (navigator.share) {
-        try { await navigator.share({ title: "Grass 'n' Gardens", text, url }); track('referral_share', { method: 'share' }); } catch (e) {}
-        return;
-      }
-      try { await navigator.clipboard.writeText(text + ' ' + url); word.textContent = 'Link copied. Paste it to them.'; track('referral_share', { method: 'copy' }); }
-      catch (e) { location.href = 'sms:?&body=' + encodeURIComponent(text + ' ' + url); track('referral_share', { method: 'sms' }); }
-    }));
 
     // Calls, texts and emails count as leads too.
     document.addEventListener('click', e => {

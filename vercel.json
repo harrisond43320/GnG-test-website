@@ -30,6 +30,12 @@
     { "source": "/double-pass", "destination": "/aeration-fertilizer/?src=text#double-pass", "statusCode": 302 },
     { "source": "/winter-walk", "destination": "/fall-cleanup/", "statusCode": 301 },
     { "source": "/winter-walk/", "destination": "/fall-cleanup/", "statusCode": 301 },
-    { "source": "/DOUBLE-PASS", "destination": "/aeration-fertilizer/?src=text#double-pass", "statusCode": 302 }
+    { "source": "/DOUBLE-PASS", "destination": "/aeration-fertilizer/?src=text#double-pass", "statusCode": 302 },
+    { "source": "/refer", "destination": "/", "statusCode": 302 },
+    { "source": "/refer/", "destination": "/", "statusCode": 302 },
+    { "source": "/welcome-back", "destination": "/", "statusCode": 302 },
+    { "source": "/welcome-back/", "destination": "/", "statusCode": 302 },
+    { "source": "/season-pass", "destination": "/", "statusCode": 302 },
+    { "source": "/season-pass/", "destination": "/", "statusCode": 302 }
   ]
 }
