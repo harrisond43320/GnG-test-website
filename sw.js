@@ -2,7 +2,7 @@
 // Pages: always try the internet first (so a new push shows up right away), fall back to the saved copy,
 // then to app/offline.html. Photos, CSS and fonts: show the saved copy fast, refresh it in the background.
 // Bump VERSION if this file's rules change. Lives next to the homepage, so in the repo it covers the whole site.
-const VERSION = 'gng-v58'; // 2026-11-13 evening: v58 = team batch (no "free" on redo promise, save-5% gone, 3 tiles, reviews straight), aeration header re-cut, logo back by the form, HOA thumb = Heather's job photo
+const VERSION = 'gng-v59'; // 2026-11-13 night: v59 = Bush trimming card on the home service row (Revere boxwoods photo)
 const PAGES = VERSION + '-pages';
 const FILES = VERSION + '-files';   // css + js: rotates with VERSION
 const IMAGES = 'gng-img-v1';         // photos + fonts: never deleted on a version bump (they keep their names)
