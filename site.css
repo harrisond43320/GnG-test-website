@@ -186,13 +186,13 @@
       background: #fff; color: #202124; border: 3px solid var(--ink); border-radius: 16px;
       box-shadow: 7px 7px 0 var(--ink);
       font-family: Roboto, Arial, sans-serif;
-      transform: rotate(var(--tilt, -1.2deg)); transition: transform .5s var(--spring);
+      transform: rotate(var(--tilt, 0deg)); transition: transform .5s var(--spring);
     }
-    .gshots .gshot:nth-child(3n+2) { --tilt: 1.4deg; }
-    .gshots .gshot:nth-child(3n) { --tilt: -.6deg; }
+    .gshots .gshot:nth-child(3n+2) { --tilt: 0deg; }
+    .gshots .gshot:nth-child(3n) { --tilt: 0deg; }
     .gshot:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
-    .gshot.reveal { transform: translateY(16px) rotate(var(--tilt, -1.2deg)); transition: opacity .5s var(--ease-out), transform .6s var(--spring); }
-    .gshot.reveal.in { transform: rotate(var(--tilt, -1.2deg)); }
+    .gshot.reveal { transform: translateY(16px) rotate(var(--tilt, 0deg)); transition: opacity .5s var(--ease-out), transform .6s var(--spring); }
+    .gshot.reveal.in { transform: rotate(var(--tilt, 0deg)); }
     .gshot.reveal.in:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
     .gshot header { display: flex; align-items: center; gap: var(--s3); }
     .gshot .av { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--ink); display: grid; place-items: center; font-weight: 700; font-size: 18px; color: #fff; }
@@ -530,7 +530,7 @@
 
 /* one real review, big (word for word) */
 .one-review { max-width: 860px; margin: var(--s12) auto 0; }
-.one-review .gshot { padding: var(--s8); --tilt: -1deg; }
+.one-review .gshot { padding: var(--s8); --tilt: 0deg; }
 @media (min-width: 760px) { .one-review .gshot { padding: var(--s12); } }
 .one-review .gshot p { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; }
 

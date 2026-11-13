@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <!-- 2026-10-31: one banner at a time (top bar: none until Dec 1, then the 2027 save-5% line). -->
+  <!-- 2026-11-13: save-5% line removed (dead offer; real deal = pay in full save 10%, Harrison to word it) -->
   <script>document.documentElement.dataset.promo = Date.now() < Date.UTC(2026, 11, 1, 5) ? 'leaf' : 'presell';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Grass 'n' Gardens | Lawn Care &amp; Landscaping, Richfield OH</title>
@@ -12,7 +12,7 @@
   <!-- 2026-10-07: cut to ~150 characters so Google shows all of it (it was 192 and got cut off) -->
   <meta name="description" content="Weekly mowing and cleanups in Richfield, Bath, Hinckley and Brecksville, Ohio. Five checks on every yard before we leave. 64 Google reviews, 5.0 average." />
   <meta property="og:title" content="Grass 'n' Gardens | Lawn Care &amp; Landscaping, Richfield OH" />
-  <meta property="og:description" content="Five checks on every yard before we leave. Miss one and we're back the next day, free." />
+  <meta property="og:description" content="Five checks on every yard before we leave. Miss one and we're back the next day, and you don't pay for that visit." />
   <meta property="og:type" content="website" />
   <!-- share previews (texts, Facebook) need the full web address of the picture -->
   <meta property="og:image" content="https://www.grassngardens.com/img/gbp-mower-stripes.jpg" />
@@ -467,19 +467,19 @@
       margin-top: var(--s8); font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted);
     }
     .record b { color: var(--forest); }
-    /* Google review "screenshots": cartoon sticker look, thick outline + hard shadow + tilt */
+    /* Google review "screenshots": cartoon sticker look, thick outline + hard shadow (2026-11-13: tilt removed, straight and even) */
     /* 2026-10-07: two rows that slide past each other (script moves them; cards keep the sticker look) */
     .rv-rows { display: grid; gap: var(--s6); margin-top: var(--s16); padding: 14px 0 24px; overflow: hidden; }
-    .rv-track, .rv-copy { display: flex; align-items: center; gap: var(--s8); }
+    .rv-track, .rv-copy { display: flex; align-items: stretch; gap: var(--s8); } /* 2026-11-13: cards in a row are one height */
     .rv-track { position: relative; width: max-content; padding: 0 var(--s4); touch-action: pan-y; cursor: grab; }
     .rv-track.dragging { cursor: grabbing; user-select: none; -webkit-user-select: none; }
     .rv-track.dragging .gshot { pointer-events: none; }
-    .rv-track .gshot { flex: 0 0 340px; }
+    .rv-track .gshot { flex: 0 0 340px; display: flex; flex-direction: column; }
     .rv-track .gshot p { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
     .rv-static .rv-track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 18px; touch-action: auto; cursor: auto; }
     .rv-hint { margin: 0; text-align: center; font-size: 14px; font-weight: 600; opacity: .72; /* 2026-11-11 look-check: .6 read 4.3, needs 4.5 */ }
     .rv-pin-wrap { margin-bottom: var(--s8); }
-    .gshot.rv-pin { max-width: 640px; margin: 0 auto; --tilt: -.6deg; }
+    .gshot.rv-pin { max-width: 640px; margin: 0 auto; --tilt: 0deg; }
     .gshot.rv-pin p { display: block; -webkit-line-clamp: unset; overflow: visible; }
     .rv-static ~ .rv-hint { display: none; }
     .rv-static .rv-track .gshot { scroll-snap-align: center; }
@@ -494,15 +494,15 @@
       background: #fff; color: #202124; border: 3px solid var(--ink); border-radius: 16px;
       box-shadow: 7px 7px 0 var(--ink);
       font-family: Roboto, Arial, sans-serif;
-      transform: rotate(var(--tilt, -1.2deg));
+      transform: rotate(var(--tilt, 0deg));
       transition: transform .5s var(--spring);
     }
-    .gshot:nth-child(3n+2) { --tilt: 1.4deg; }
-    .gshot:nth-child(3n) { --tilt: -.6deg; }
+    .gshot:nth-child(3n+2) { --tilt: 0deg; }
+    .gshot:nth-child(3n) { --tilt: 0deg; }
     .gshot:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
     /* keep the tilt through the scroll reveal */
-    .gshot.reveal { transform: translateY(16px) rotate(var(--tilt, -1.2deg)); transition: opacity .5s var(--ease-out), transform .6s var(--spring); }
-    .gshot.reveal.in { transform: rotate(var(--tilt, -1.2deg)); }
+    .gshot.reveal { transform: translateY(16px) rotate(var(--tilt, 0deg)); transition: opacity .5s var(--ease-out), transform .6s var(--spring); }
+    .gshot.reveal.in { transform: rotate(var(--tilt, 0deg)); }
     .gshot.reveal.in:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
     .gshot header { display: flex; align-items: center; gap: var(--s3); }
     .gshot .av {
@@ -1242,6 +1242,15 @@
       .plan-more { margin-top: var(--s4); }
     }
     .plan-more .next { margin-top: 0; }
+    /* 2026-11-13: the 3 steps as one row of 3 equal tiles (icon + a few words), centered, all one height */
+    .next3 { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s2); margin-top: var(--s6); }
+    .next3 li { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: var(--s2); padding: 14px 8px; text-align: center;
+      border-radius: var(--radius); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      font-size: 14px; line-height: 1.3; font-weight: 600; color: #fff; text-wrap: balance; }
+    .next3 svg { flex: none; width: 28px; height: 28px; color: var(--lime); }
+    @media (min-width: 700px) { .next3 { gap: var(--s4); margin-top: var(--s8); } .next3 li { padding: var(--s6) var(--s4); font-size: 16px; } .next3 svg { width: 32px; height: 32px; } }
+    @media (min-width: 960px) { .next3 { margin-top: 0; } }
+    .form-head p b { color: var(--ink); font-weight: 700; }
     @media (min-width: 700px) and (max-width: 959px) { .plan-more .next { margin-top: var(--s4); } }
 
     /* six service cards: 3 + 3 on laptops, one row on wide screens */
@@ -1585,7 +1594,7 @@
   </div>
 
   <main id="top">
-    <!-- 2026-10-31: the Double Pass strip (expired 10/31) and the leaf strip came out; the top bar is the one banner now (Fall Pass until Dec 1, then save 5%). -->
+    <!-- 2026-10-31: the Double Pass strip (expired 10/31) and the leaf strip came out; the top bar is the one banner now (save-5% removed 2026-11-13). -->
 
     <!-- HERO -->
     <header class="hero">
@@ -1693,9 +1702,10 @@
 
         <div class="form-card reveal d1" id="plan-form">
           <div class="form-head">
+            <!-- 2026-11-13 later (Harrison: "I don't like my face in it... go back to my logo for the yard plan"). Logo back; face photo removed. Never put his face here. -->
             <img src="brand_assets/logos/mark-sm.png" alt="" width="52" height="52" loading="lazy" fetchpriority="low" />
             <div><h3>Get my yard plan</h3>
-            <p class="draft">Takes 30 seconds. You never have to come outside or be home.</p></div>
+            <p><b>Harrison texts you within 24 hours.</b> <b class="draft">Guaranteed.</b> From his own phone.</p></div>
           </div>
           <form class="lead-form" novalidate>
             <!-- 2026-10-07 (night): ONE QUESTION AT A TIME (Harrison: "I really like that"). Same fields, 3 short steps:
@@ -1786,10 +1796,11 @@
 
         <div class="plan-more reveal d2">
           <!-- What happens next: a real sequence, so the numbers carry meaning. Step 3 is copy-bank wording. -->
-          <ol class="next">
-            <li><b>You send it.</b> Takes 30 seconds.</li>
-            <li><b>Harrison texts you within 24 hours.</b> <b class="draft">Guaranteed.</b> From his own phone.</li>
-            <li><b class="draft">We write out your whole year.</b> <span class="draft">Harrison looks your yard up and walks it himself. You never have to come outside or be home. Want to walk it together? Just ask.</span></li>
+          <!-- 2026-11-13: three equal tiles, one icon + a few words each (shortened from the old 3 steps; wording is draft). -->
+          <ol class="next3">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg><span class="draft">You send it in 30 seconds</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="draft">Harrison texts you within 24 hours</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg><span class="draft">We write out your whole year</span></li>
           </ol>
           <figure class="mini-quote">
             <blockquote>"I've been able to get a quote, agreed price, and had the work scheduled and done in a matter of days."</blockquote>
@@ -1857,7 +1868,7 @@
             <span class="svc-txt"><h3>Mulch and beds</h3><span class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
           <a class="svc-item reveal d3" href="../aeration-fertilizer/">
             <img width="600" height="450" src="img/xs/gbp-big-yard.jpg" srcset="img/xs/gbp-big-yard.jpg 600w" sizes="(max-width: 767px) 76px, 168px" loading="lazy" fetchpriority="low" alt="Wide back lawn with fresh mowing stripes under a blue sky" />
-            <span class="svc-txt"><h3>Aeration and fertilizer</h3><span class="draft">Thicker grass. We check your soil first, and that part is free.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+            <span class="svc-txt"><h3>Aeration and fertilizer</h3><span class="draft">Thicker grass. We check your soil first, and that part is included.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
         </div>
         <p class="svc-more reveal">Also: <a href="../spring-cleanup/">Spring cleanups</a> <a href="../yard-design/">Planting</a></p>      </div>
     </section>
@@ -1865,7 +1876,7 @@
     <!-- REVIEWS (real Google reviews, trimmed) -->
 
     <!-- 2026-10-31 home step 2: the five checks and the 2027 ticket are ONE section now. They said the same thing twice (the ticket listed
-         "Miss one? We're back the next day, free" right under the promise), and two sections cost 2.2 phone screens. The sample visit
+         "Miss one? We're back the next day, <span class="draft">and you don't pay for that visit</span>" right under the promise), and two sections cost 2.2 phone screens. The sample visit
          text came out (a 2027 HomeWorks feature; restore from $TEMP\home-index-before-step2.html). id="five" and id="season" both stay
          (the top bar links #season). 2026-11-12 (Harrison: "get rid of the season pass"): the ticket block is gone; the page is in site/_retired/season-pass. -->
     <section class="promise" id="five">
@@ -1881,7 +1892,7 @@
           <li>Gates latched</li>
           <li>No clumps</li>
         </ol>
-        <p class="rem reveal d1"><b>Miss one?</b> Text us. We're back the next day, for free. If it rains, the next dry day. <a href="../why-gng/#compare">See how we stack up</a></p>
+        <p class="rem reveal d1"><b>Miss one?</b> Text us. We're back the next day, <span class="draft">and you don't pay for that visit</span>. If it rains, the next dry day. <a href="../why-gng/#compare">See how we stack up</a></p>
       </div>
     </section>
 
@@ -2533,17 +2544,6 @@
     // Button shine: stagger the idle glint so buttons don't all flash together.
     document.querySelectorAll('.btn').forEach((b, i) => b.style.setProperty('--glint-delay', (1.2 + (i * 1.7) % 6).toFixed(1) + 's'));
 
-    // Ticket: live count of days left to save 5% (ends March 31, 2027; the offer hides itself from April 1).
-    const count = document.querySelector('[data-countdown]');
-    if (count) {
-      const end = new Date(2027, 2, 31, 23, 59, 59);
-      const days = Math.ceil((end - new Date()) / 86400000);
-      if (days > 0) {
-        count.querySelector('[data-days]').textContent = days;
-        count.querySelector('[data-days-word]').textContent = days === 1 ? 'day' : 'days';
-        count.hidden = false;
-      }
-    }
 
     // 2026-10-07: ticket notches. On phones the stub sits under the main part, so the notches go where the two meet.
     document.querySelectorAll('.ticket').forEach(t => {

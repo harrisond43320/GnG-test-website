@@ -395,7 +395,7 @@ div.call-bar .cb-x:focus-visible, div.call-bar .cb-offer a:focus-visible { outli
 }
 
 /* 2026-10-31 clean-up plan #1: one banner at a time. A head script sets html[data-promo] = leaf (until Dec 1) or presell.
-   Leaf (until Dec 1): NO top bar (Fall Pass canceled 2026-11-11, the bar is hidden); presell: the 2027 save-5% line. Pages whose header is the offer hide the bar (hidden attr). */
+   Leaf (until Dec 1): NO top bar (Fall Pass canceled 2026-11-11, the bar is hidden); presell: nothing (2026-11-13: save-5% line removed, dead offer; real deal = pay in full save 10%, Harrison to word it). Pages whose header is the offer hide the bar (hidden attr). */
 .topbar[hidden] { display: none; }
 .topbar .tb-leaf { display: none; }
 html[data-promo="leaf"] .topbar .tb-leaf { display: block; }
@@ -449,7 +449,7 @@ div.call-bar.cb-away, div.call-bar.cb-ask { transform: translateY(120%); } /* 20
   html:not(#_) .broll img:first-child { opacity: 1; animation: kb-once 12s ease-out 1 forwards; }
   /* B. Reveal: show at once on phones, keep the tilt on review cards and the ticket */
   html:not(#_) .reveal, html:not(#_) .reveal.in { opacity: 1; transform: none; transition: none; }
-  html:not(#_) .gshot.reveal, html:not(#_) .gshot.reveal.in { transform: rotate(var(--tilt, -1.2deg)); }
+  html:not(#_) .gshot.reveal, html:not(#_) .gshot.reveal.in { transform: rotate(var(--tilt, 0deg)); }
   html:not(#_) .ticket.reveal, html:not(#_) .ticket.reveal.in { transform: rotate(-1deg); }
 }
 @media (prefers-reduced-motion: reduce) { .broll img:first-child { animation: none !important; } }
@@ -508,7 +508,7 @@ img { height: auto; } /* a real width/height on an <img> is now only an aspect-r
   html:not(#_) .town-hero .hero-ctas { order: 3; }
   html:not(#_) .town-hero .facts { order: 4; margin-top: 14px; }
   html:not(#_) .town-hero .facts li:nth-child(n+2) { display: none; }
-  /* A3: lawn-mowing keeps "Miss one? Back next day, free" */
+  /* A3: lawn-mowing keeps "Miss one? Back next day, <span class="draft">you don't pay for that visit</span>" */
   html:not(#_) .busy-mow .facts li:nth-child(-n+2) { display: none; }
   /* A4: hoa-commercial keeps "Month-by-month calendar"; the board-meeting line moves up under the buttons */
   html:not(#_) .busy-hoa .facts li:nth-child(odd) { display: none; }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <!-- 2026-10-31: one banner at a time (top bar: none until Dec 1, then the 2027 save-5% line). -->
+  <!-- 2026-11-13: save-5% line removed (dead offer; real deal = pay in full save 10%, Harrison to word it) -->
   <script>document.documentElement.dataset.promo = Date.now() < Date.UTC(2026, 11, 1, 5) ? 'leaf' : 'presell';</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Why G'N'G? Real Google Reviews | Grass 'n' Gardens</title>
@@ -342,7 +342,7 @@
     @keyframes land { 0% { transform: rotate(var(--tilt)) scale(1); } 35% { transform: rotate(calc(var(--tilt) - 1.5deg)) scale(1.035); } 100% { transform: rotate(var(--tilt)) scale(1); } }
     .feat-grid.met .feat-photo { animation: nudge .5s var(--ease-out); }
     @keyframes nudge { 35% { transform: translateX(-10px); } }
-    .gshot.big { padding: var(--s8); --tilt: -1.2deg; }
+    .gshot.big { padding: var(--s8); --tilt: 0deg; }
     @media (min-width: 960px) { .gshot.big { padding: var(--s12); } }
     .gshot.big .av { width: 52px; height: 52px; font-size: 22px; }
     .gshot.big .who b { font-size: 18px; }
@@ -373,13 +373,13 @@
       background: #fff; color: #202124; border: 3px solid var(--ink); border-radius: 16px;
       box-shadow: 7px 7px 0 var(--ink);
       font-family: Roboto, Arial, sans-serif;
-      transform: rotate(var(--tilt, -1.2deg)); transition: transform .5s var(--spring);
+      transform: rotate(var(--tilt, 0deg)); transition: transform .5s var(--spring);
     }
-    .gshots .gshot:nth-child(3n+2) { --tilt: 1.4deg; }
-    .gshots .gshot:nth-child(3n) { --tilt: -.6deg; }
+    .gshots .gshot:nth-child(3n+2) { --tilt: 0deg; }
+    .gshots .gshot:nth-child(3n) { --tilt: 0deg; }
     .gshot:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
-    .gshot.reveal { transform: translateY(16px) rotate(var(--tilt, -1.2deg)); transition: opacity .5s var(--ease-out), transform .6s var(--spring); }
-    .gshot.reveal.in { transform: rotate(var(--tilt, -1.2deg)); }
+    .gshot.reveal { transform: translateY(16px) rotate(var(--tilt, 0deg)); transition: opacity .5s var(--ease-out), transform .6s var(--spring); }
+    .gshot.reveal.in { transform: rotate(var(--tilt, 0deg)); }
     .gshot.reveal.in:hover { transform: rotate(0) translateY(-6px) scale(1.02); }
     .gshot header { display: flex; align-items: center; gap: var(--s3); }
     .gshot .av { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--ink); display: grid; place-items: center; font-weight: 700; font-size: 18px; color: #fff; }
@@ -1132,7 +1132,7 @@
             <p class="vs-proof">64 Google reviews. 5.0 average.</p>
             <ul>
               <li><i class="ic yes" aria-label="Yes"></i>5 checks every visit</li>
-              <li><i class="ic yes" aria-label="Yes"></i>Missed it? Back next day, free</li>
+              <li><i class="ic yes" aria-label="Yes"></i>Missed it? Back next day, <span class="draft">you don't pay for that visit</span></li>
               <li><i class="ic yes" aria-label="Yes"></i>Names on the jerseys</li>
               <li><i class="ic yes" aria-label="Yes"></i>Mowing, edging and blowing</li>
               <li><i class="ic yes" aria-label="Yes"></i>Spring and fall cleanups</li>

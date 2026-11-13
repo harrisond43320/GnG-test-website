@@ -124,14 +124,7 @@
     const place = () => t.style.setProperty('--ny', (stub.offsetTop + 1.5) + 'px');
     new ResizeObserver(place).observe(inner); place();
   });
-  // Days left to save 5% (ends March 31, 2027)
-  document.querySelectorAll('[data-countdown]').forEach(count => {
-    const days = Math.ceil((new Date(2027, 2, 31, 23, 59, 59) - new Date()) / 86400000);
-    if (days <= 0) return;
-    count.querySelector('[data-days]').textContent = days;
-    count.querySelector('[data-days-word]').textContent = days === 1 ? 'day' : 'days';
-    count.hidden = false;
-  });
+  // 2026-11-13: save-5% line removed (dead offer; real deal = pay in full save 10%, Harrison to word it)
 
   // FAQ: which questions get opened = which worries come up before people call
   let faqReady = false; setTimeout(() => { faqReady = true; }, 1500);
