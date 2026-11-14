@@ -72,7 +72,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <script>/* 2026-11-10: preload the hero that shows now (fall still through Nov 30; the mower photo from Dec 1, same date as the swap in the hero) */document.write(new Date() >= new Date(2026, 11, 1) ? '<link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/ph/gbp-mower-stripes.jpg 576w, img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />' : '<link rel="preload" as="image" media="(max-width: 767px)" href="img/home-leaf-tall-still.jpg" imagesrcset="img/ph/home-leaf-tall-still.jpg 540w, img/home-leaf-tall-still.jpg 720w" imagesizes="100vw" fetchpriority="high" /><link rel="preload" as="image" media="(min-width: 768px)" href="img/fall-cleanup-wide-still.jpg" imagesrcset="img/xs/fall-cleanup-wide-still.jpg 600w, img/sm/fall-cleanup-wide-still.jpg 900w, img/md/fall-cleanup-wide-still.jpg 1200w, img/fall-cleanup-wide-still.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />');</script>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <script>/* 2026-11-10: preload the hero that shows now (fall still through Nov 30; the mower photo from Dec 1, same date as the swap in the hero) */document.write(new Date() >= new Date(2026, 11, 1) ? '<link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/ph/gbp-mower-stripes.jpg 576w, img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />' : '<link rel="preload" as="image" media="(max-width: 767px)" href="img/home-leaf-tall-still.jpg" imagesrcset="img/ph/home-leaf-tall-still.jpg 540w, img/home-leaf-tall-still.jpg 720w" imagesizes="100vw" fetchpriority="high" /><link rel="preload" as="image" media="(min-width: 768px)" href="img/home-leaf-wide-still.jpg" imagesrcset="img/xs/home-leaf-wide-still.jpg 600w, img/sm/home-leaf-wide-still.jpg 900w, img/md/home-leaf-wide-still.jpg 1200w, img/home-leaf-wide-still.jpg 1280w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />');</script>
   
   
   <link rel="preload" href="fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -291,7 +291,7 @@
     .hero-photo .home-loop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .3s ease; pointer-events: none; } /* 2026-11-11 night: was 1.2s. The still is frame 1 of the loop, so a long fade showed two sets of leaves at once (Harrison: "loads in really slowly"). */
     .hero-photo .home-loop.on { opacity: 1; }
     .hero-photo:has(.home-loop.on)::after { background: linear-gradient(to top, var(--bg) 0%, rgba(20,28,23,.55) 18%, rgba(20,28,23,0) 45%), linear-gradient(to right, rgba(12,18,14,.82) 0%, rgba(12,18,14,.6) 45%, rgba(12,18,14,0) 78%); } /* 2026-11-01 round 4: the words stay calm over the moving shots */
-    @media (min-width: 768px) and (max-width: 959px), (prefers-reduced-motion: reduce) { .hero-photo .home-loop { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .hero-photo .home-loop { display: none; } } /* 2026-11-13 late: the 768-959 block came out (Harrison: "I just don't see the B-roll"); a half-width browser window or a tablet got no video at all */
     /* 2026-11-11 (Harrison: the home first screen "doesn't move" and he does not like the header picture): phones get a TALL still and a tall loop
        (broll-home-leaf-tall, make-broll.ps1) cut from the 4K clips, full screen, NO shade on the top half, words on a dark fade at the bottom.
        Fall Pass header only (through Nov 30); from Dec 1 phones go back to the mowing photo until broll-home-tall is built. */
@@ -1430,6 +1430,108 @@
       .reviews .more .btn-dark { display: none; }
       .reviews .refer-line { margin-top: var(--s6); }
     }
+
+    /* ===== 2026-11-13 night: most-converting round (his 11 asks, word for word: ideas\2026-11-13-most-converting-focus.md). Later rules win, so this block stays LAST. ===== */
+    /* OFFER CARD in the service row: a lime block with the year, then the same white label strip as the picture cards. Always on (the ?offer=1 switch is retired). */
+    .hero-rail .rail-offer { display: flex; justify-content: flex-start; background: #fff; }
+    .hero-rail .rail-offer b { display: flex; align-items: center; justify-content: center; height: 72px; background: var(--lime); color: #17391b; font-family: "Alfa Slab One", serif; font-weight: 400; font-size: 32px; line-height: 1; }
+    .hero-rail .rail-offer span { flex: 1; min-height: 32px; padding: 3px 6px; }
+    @media (max-width: 767px) {
+      .hero-rail .rail-offer b { height: 56px; font-size: 26px; }
+      .hero-rail .rail-offer span { min-height: 30px; padding: 2px 4px; }
+      .rail-band.mini .hero-rail .rail-offer { align-items: stretch; gap: 0; padding: 0; }
+      .rail-band.mini .hero-rail .rail-offer b { height: auto; padding: 0 10px; font-size: 18px; }
+      .rail-band.mini .hero-rail .rail-offer span { min-height: 40px; padding: 0 14px 0 8px; }
+    }
+    /* PROOF LINE in the header: rating and count side by side, homes next to it. Phones show both (the homes line used to be hidden there). */
+    .trust { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+    .trust .sep { margin: 0 2px; color: var(--lime); }
+    @media (max-width: 767px) { .hero-copy[data-season="fall"] .trust li:nth-child(2) { display: flex; } .hero-copy[data-season="fall"] .trust { gap: 6px 16px; } }
+    /* his rhyme under the yard plan heading */
+    .plan-rhyme { margin-top: var(--s3); font-size: 18px; font-weight: 600; line-height: 1.3; color: rgba(255,255,255,.92); }
+    /* REVIEWS that stay still: the Google score with its star bars, then three whole reviews. Same sticker look as the cards (thick outline, hard shadow). */
+    .rv-sum { display: flex; align-items: center; gap: var(--s8); max-width: 560px; margin: var(--s8) auto 0; padding: var(--s6); background: #fff; color: #202124; border: 3px solid var(--ink); border-radius: 16px; box-shadow: 7px 7px 0 var(--ink); }
+    .rv-score { flex: none; display: grid; justify-items: center; gap: 6px; text-align: center; }
+    .rv-score b { font-family: var(--font-display); font-weight: 400; font-size: 56px; line-height: 1; color: var(--pine); }
+    .rv-score .rate { color: #fbbc04; font-size: 20px; letter-spacing: 2px; line-height: 1; }
+    .rv-score span:last-child { font-size: 14px; font-weight: 600; color: #5f6368; }
+    .rv-bars { flex: 1; min-width: 0; display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+    .rv-bars li { display: grid; grid-template-columns: 12px 1fr 22px; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; line-height: 1; color: #5f6368; }
+    .rv-bars li > i { display: block; height: 10px; border-radius: 5px; background: #e8eaed; overflow: hidden; }
+    .rv-bars li > i > i { display: block; height: 100%; min-width: 5px; border-radius: 5px; background: #fbbc04; }
+    .rv-bars li > span:last-child { text-align: right; }
+    .rv-three { display: grid; gap: var(--s6); margin-top: var(--s8); }
+    @media (min-width: 900px) { .rv-three { grid-template-columns: repeat(3, 1fr); gap: var(--s8); } }
+    @media (max-width: 767px) { .rv-sum { gap: var(--s4); padding: var(--s4); box-shadow: 5px 5px 0 var(--ink); } .rv-score b { font-size: 44px; } .rv-three { gap: var(--s4); } .rv-three .gshot { padding: var(--s4); } }
+    /* FIVE BEFORE WE DRIVE off the dark block: white ground, pine words, the five checks as one short row of tags. */
+    .promise { padding: var(--s16) 0; background: #fff; color: var(--pine); border-top: 1px solid var(--line-light); }
+    .promise .eyebrow { color: var(--forest); }
+    .promise-top h2 { color: var(--pine); }
+    .promise-top h2 b { color: var(--pine); font-size: clamp(32px, 3.8vw, 46px); }
+    .promise .dot { color: var(--forest); }
+    .promise .checks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--s6); }
+    .promise .checks li { flex-direction: row; align-items: center; gap: 8px; padding: 8px 16px 8px 12px; border-radius: 999px; background: var(--mist); border: 2px solid var(--pine); color: var(--pine); font-size: 16px; }
+    .promise .checks li::before { width: auto; font-size: 20px; color: var(--forest); }
+    .promise p.rem { margin-top: var(--s6); color: var(--ink); }
+    .promise p.rem b { color: var(--pine); }
+    .promise p.rem a { color: var(--pine); background: rgba(102,184,74,.22); }
+    .promise p.rem a:hover { background: rgba(102,184,74,.4); }
+    .promise .wrap { text-align: center; }
+    .promise .checks { justify-content: center; }
+    .promise .checks li { text-align: left; }
+    /* phones: five even rows, full width (he likes symmetry; ragged tags looked messy) */
+    @media (max-width: 767px) { .promise { padding: 40px 0; } .promise .checks { display: grid; grid-template-columns: 1fr; gap: 6px; } .promise .checks li { padding: 8px 14px; border-radius: 12px; } .promise .checks li::before { width: 18px; } }
+    /* the three still reviews show every word, so the "open it bigger" corner mark is off (it sat on the last word) */
+    .rv-three .gshot[data-zoom] { cursor: auto; }
+    .rv-three .gshot[data-zoom]::after { display: none; }
+
+    /* ===== 2026-11-13 late: round 2 (Harrison: offer name up top, highlight the key points, check off the Five as you scroll, plus the grader's 3 leftovers) ===== */
+    /* OFFER NAME: the card in the top row is wider so "Spring to Fall Plan" sits on one line (no icon there), and the name is a lime tag over the plan heading */
+    .hero-rail .rail-offer { width: 168px; }
+    .hero-rail .rail-offer .ri { display: none; }
+    @media (max-width: 767px) { .hero-rail .rail-offer { width: 138px; } .rail-band.mini .hero-rail .rail-offer { width: auto; } }
+    .plan-name { display: inline-block; padding: 7px 14px; border-radius: 999px; background: var(--lime); color: #17391b; font-weight: 700; font-size: 16px; line-height: 1.1; letter-spacing: .08em; text-transform: uppercase; }
+    /* KEY POINTS: a soft lime wash behind the few words that settle a worry (how fast, no hassle, no risk, yours to keep). Never an underline. Four in our own words, plus the key line in each review (round 3). */
+    .hl { padding: 1px 5px; border-radius: 5px; background: rgba(102,184,74,.28); color: inherit; box-shadow: 0 0 8px rgba(102,184,74,.3); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+    .ask .hl, .hero .hl { background: rgba(102,184,74,.4); color: #fff; }
+    .hl.nw { white-space: nowrap; } /* short ones stay in one piece (a wrapped one read as two highlights) */
+    /* FIVE check-off: each row lands, then its check pops, one after another, the first time the list scrolls into view. No motion set = the finished list. */
+    .promise .checks li::after { content: ""; flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--forest) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 14px no-repeat; }
+    .promise .checks li { padding-right: 10px; }
+    .promise .checks li:nth-child(2) { --i: 1; } .promise .checks li:nth-child(3) { --i: 2; } .promise .checks li:nth-child(4) { --i: 3; } .promise .checks li:nth-child(5) { --i: 4; }
+    @media (max-width: 767px) { .promise .checks li::after { margin-left: auto; } }
+    @media (prefers-reduced-motion: no-preference) {
+      .promise .checks.reveal { opacity: 1; transform: none; transition: none; }
+      .promise .checks.reveal:not(.in) li { opacity: 0; }
+      .promise .checks.reveal.in li { animation: chk-row .4s var(--ease-out) both; animation-delay: calc(var(--i, 0) * .32s); }
+      .promise .checks.reveal.in li::after { animation: chk-pop .38s var(--spring) both; animation-delay: calc(var(--i, 0) * .32s + .26s); }
+    }
+    @keyframes chk-row { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    @keyframes chk-pop { 0% { transform: scale(0); } 70% { transform: scale(1.3); } 100% { transform: scale(1); } }
+    /* TOWN PILLS: an even grid (3 across, 2 on phones) in place of ragged wrapping */
+    .street-towns { display: grid; grid-template-columns: repeat(3, minmax(0, 236px)); justify-content: center; gap: 8px; }
+    .street-towns li { display: flex; }
+    .street-towns a, .street-towns span { display: flex; width: 100%; line-height: 1.15; text-align: left; }
+    .br-ph { display: none; }
+    @media (max-width: 599px) { .br-ph { display: inline; } } /* "Bath, Hinckley and Granger" stay on one line, so the two link pills never stack on each other */
+    .street-towns a::after { margin-left: auto; }
+    @media (max-width: 599px) { .street-towns { grid-template-columns: repeat(2, minmax(0, 1fr)); } .street-towns a, .street-towns span { padding-right: 10px; border-radius: 16px; } }
+
+    /* ===== 2026-11-13 night, round 3 (Harrison: "add the highlights on each review like we did before, i also dont like that green combination on the homepage...
+       any way to use our dark green there to tie them in, something to show that its interesting or question"). Claude's read: the bright green words on
+       near-black in the yard plan section. To undo the color part, delete from here to the end of this block. ===== */
+    /* DARK GREEN TIES IT IN: the yard plan and the bottom ask sit on pine, the same green as the service row under the menu. The big words are white.
+       Lime stays for the button, the offer tag, the icons and the dot. The top of the plan section eases in from the header's dark foot (a join, not decoration). */
+    /* 2026-11-13 later (Harrison: "no i like that black you had before"): the pine GROUND is out, the black is back on both sections (the lines that set it are deleted).
+       What stays for his look: the big words in white (lime is then only the button, tag, icons and dot), and the dark green as the three step tiles and the quote box,
+       so the green of the service row shows up again on the black. */
+    .plan h2 b { color: #fff; }
+    .next3 li { background: var(--pine); border-color: rgba(102,184,74,.35); }
+    .mini-quote { background: var(--pine); border-left-color: var(--lime); }
+    /* REVIEW KEY LINES: the same soft wash on the line that matters in each review. The words are the review's own, word for word (the lines come from GNG_REVIEW_POINTS in reviews.js). */
+    .mini-quote .hl { background: rgba(102,184,74,.4); color: #fff; }
+    .gshot .hl { box-shadow: none; background: rgba(102,184,74,.3); }
+    .gshot .hl, .mini-quote .hl { padding: 1px 4px; margin: 0 -4px; } /* the wash hangs over the spaces, so the period after it stays tight to the last word */
   </style>
 </head>
 <body>
@@ -1557,17 +1659,17 @@
        Switches: ?offer=1 = the offer card in the first spot (placeholder words until his 2027 offer is finished), ?icons=1 = icons on the big cards too.
        Styles: the SERVICE RAIL note. His asks, word for word: ideas\2026-11-12-home-design-round.md -->
   <div class="rail-band" id="rail-band">
-    <script>(function(){var s=location.search,d=document.documentElement;if(/[?&]offer=1/.test(s))d.classList.add('rail-offer-on');})();</script>
+    <!-- 2026-11-13 night (Harrison: "get rid of spring cleanup at the top... I want to put our offer in here as well"): the offer card is always on, first spot,
+         and the Spring cleanup card is out (not one of the 8 services; its page stays in the menu). id="services": other pages link to ./#services. -->
     <div class="wrap">
-      <nav class="hero-rail" aria-label="Our services">
-        <a class="rail-offer" href="#plan"><b>2027</b><span class="draft">Yard plan</span></a>
+      <nav class="hero-rail" id="services" aria-label="Our services">
+        <a class="rail-offer" href="#plan"><b>2027</b><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg><span class="draft">Spring to Fall Plan</span></span></a>
         <a class="rail-leaves" href="../fall-cleanup/?src=home-rail"><img src="img/rail/leaves.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 10 11 5 20 4c-1 9-6 15-15 15z"/><path d="M5 19l8-8"/></svg>Leaves</span></a>
         <a href="../lawn-mowing/?src=home-rail"><img src="img/rail/mowing.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15h13l1-5H6z"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 10l3-6"/></svg>Mowing</span></a>
         <a href="../mulch-beds/?src=home-rail"><img src="img/rail/mulch.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19h20l-5-8-3 3-3-5-5 6z"/><path d="M8 16h.01M12 15h.01M15 17h.01"/></svg>Mulch</span></a>
         <!-- 2026-11-13 evening (Harrison: "bush trimming... that's one of our services, it should be in there"). Photo = gallery-21 (round boxwoods, Revere "R" sign in the middle; Harrison picked it over gbp-hedge). -->
         <a href="../mulch-beds/?src=home-rail-trim"><img src="img/rail/trimming.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12"/></svg>Bush trimming</span></a>
         <a href="../aeration-fertilizer/?src=home-rail"><img src="img/rail/aeration.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>Aeration</span></a>
-        <a href="../spring-cleanup/?src=home-rail"><img src="img/rail/spring.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M5 15h14M5 15v5M9.5 15v5M14.5 15v5M19 15v5"/></svg>Spring cleanup</span></a>
         <a href="../yard-design/?src=home-rail"><img src="img/rail/planting.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="6"/><path d="M12 16v5M7 21h10"/></svg>Planting</span></a>
         <a class="rail-hoa" href="../hoa-commercial/?src=home-rail"><img src="img/rail/hoa.jpg" width="116" height="72" alt="" decoding="async" fetchpriority="low" /><span><svg class="ri" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 21v-4h4v4"/></svg>HOA</span></a>
       </nav>
@@ -1611,7 +1713,7 @@
           <!-- 2026-11-11: phones get the tall still (frame 1 of broll-home-leaf-tall, cut from the 4K clip). The Dec 1 script below takes the <source> out. -->
           <picture>
           <source media="(max-width: 767px)" srcset="img/ph/home-leaf-tall-still.jpg 540w, img/home-leaf-tall-still.jpg 720w" sizes="100vw" width="720" height="960" />
-          <img width="1280" height="720" src="img/fall-cleanup-wide-still.jpg" srcset="img/xs/fall-cleanup-wide-still.jpg 600w, img/sm/fall-cleanup-wide-still.jpg 900w, img/md/fall-cleanup-wide-still.jpg 1200w, img/fall-cleanup-wide-still.jpg 1600w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" onload="this.classList.add('ld')" style="--pos: 40% 50%"
+          <img width="1280" height="720" src="img/home-leaf-wide-still.jpg" srcset="img/xs/home-leaf-wide-still.jpg 600w, img/sm/home-leaf-wide-still.jpg 900w, img/md/home-leaf-wide-still.jpg 1200w, img/home-leaf-wide-still.jpg 1280w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" onload="this.classList.add('ld')" style="--pos: 40% 50%"
             data-main-src="img/gbp-mower-stripes.jpg" data-main-srcset="img/ph/gbp-mower-stripes.jpg 576w, img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" />
           </picture>
           <script>
@@ -1637,8 +1739,9 @@
         <p class="eyebrow reveal">Richfield, Ohio</p>
         <h1 class="reveal d1"><span class="thin">Leaves gone every time.</span>Proof every visit<span class="dot">.</span></h1>
         <ul class="trust reveal d3">
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>64 Google reviews. 5.0 average.</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11"/></svg>108 homes served in 2026</li>
+          <!-- 2026-11-13 night: one proof line, rating and count side by side (Baymard), and the homes count shows on phones too. -->
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><span>5.0 on Google <span class="sep" aria-hidden="true">&middot;</span> 64 reviews</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11"/></svg>108 homes in 2026</li>
         </ul>
         <div class="hero-ctas reveal d3">
           <a class="btn btn-lime btn-tall" href="sms:+14406679642?&amp;body=LEAVES%20my%20address%20is%20" data-leafmap="home-hero">Text LEAVES <small>(440) 667-9642</small></a>
@@ -1658,9 +1761,8 @@
         <h1 class="reveal d1"><span class="thin">Lawn care where</span>nothing gets missed<span class="dot">.</span></h1>
         <p class="lede reveal d2"><span class="draft">Weekly mowing and cleanups around Richfield. We check your yard 5 ways before we pull out of the driveway.</span></p>
         <ul class="trust reveal d3">
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg>64 Google reviews. 5.0 average.</li>
-          
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11"/></svg>108 homes served in 2026</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6z"/></svg><span>5.0 on Google <span class="sep" aria-hidden="true">&middot;</span> 64 reviews</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11"/></svg>108 homes in 2026</li>
         </ul>
         <div class="hero-ctas reveal d3">
           <a class="btn btn-lime" href="#plan">Get my yard plan
@@ -1691,15 +1793,15 @@
     <section class="plan" id="plan">
       <div class="wrap plan-grid">
         <div class="plan-copy reveal">
-          <p class="eyebrow">Your yard plan</p>
+          <!-- 2026-11-13 late (Harrison: "it's not the plan, it's the offer, it's the spring to fall plan... that should be like up there"): the offer name, locked 11/12 night with "One call does it all." -->
+          <p class="plan-name draft">The Spring to Fall Plan</p>
           <!-- 2026-10-31 clean-up plan #6: the 6-photo reel and its "cheapest landscaper? see this first" heading came out (Customer Care: it read as a pitch; Alex: cut it). Words from step 3 below; draft. -->
-          <h2><span class="draft">Tell me about your yard.</span> <b class="draft">We write out your whole year<span class="dot">.</span></b></h2>
-          <!-- 2026-11-03 late (Alex: through Nov 30 every section points at the one offer that sells now). Drops off Dec 1. -->
-          <div class="plan-leaf" data-until="2026-12-01">
-            <p class="draft">Leaves down right now? Skip the form.</p>
-            <a class="btn btn-lime" href="sms:+14406679642?&amp;body=LEAVES%20my%20address%20is%20" data-leafmap="home-plan">Text LEAVES
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
-          </div>
+          <!-- 2026-11-13 night round 3 (Harrison: "something to show that its interesting or question"): the lead-in is a question now. Was "Tell me about your yard." Draft until he OKs it. -->
+          <h2><span class="draft">What does your yard need this year?</span> <b class="draft">We write out your whole year<span class="dot">.</span></b></h2>
+          <!-- 2026-11-13 night: his rhyme (11/12: "One call does it all, spring to fall"). The lime offer card in the top row lands here. -->
+          <p class="plan-rhyme draft">One call does it all.</p>
+          <!-- 2026-11-13 late (grader leftover 1, Harrison: "I like them"): the second Text LEAVES button that sat here came out. The header keeps the one Text LEAVES. -->
+
         </div>
 
         <div class="form-card reveal d1" id="plan-form">
@@ -1707,7 +1809,7 @@
             <!-- 2026-11-13 later (Harrison: "I don't like my face in it... go back to my logo for the yard plan"). Logo back; face photo removed. Never put his face here. -->
             <img src="brand_assets/logos/mark-sm.png" alt="" width="52" height="52" loading="lazy" fetchpriority="low" />
             <div><h3>Get my yard plan</h3>
-            <p><b>Harrison texts you within 24 hours.</b> <b class="draft">Guaranteed.</b> From his own phone.</p></div>
+            <p><b>Harrison texts you <mark class="hl nw">within 24 hours.</mark></b> <b class="draft">Guaranteed.</b> From his own phone.</p></div>
           </div>
           <form class="lead-form" novalidate>
             <!-- 2026-10-07 (night): ONE QUESTION AT A TIME (Harrison: "I really like that"). Same fields, 3 short steps:
@@ -1720,7 +1822,7 @@
                 <legend>What do you need?</legend>
                 <!-- 2026-10-07 (night): "Everything, all year" first: that's the ideal customer (full yearly plan) -->
                 <label><input type="checkbox" name="need" value="everything" /><span class="draft"><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg>Everything, all year</span></label>
-                <label><input type="checkbox" name="need" value="season2027" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>2027 mowing</span></label>
+                <label class="chip-extra"><input type="checkbox" name="need" value="season2027" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>2027 mowing</span></label>
                 <label><input type="checkbox" name="need" value="mowing" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15h13l1-5H6z"/><circle cx="7" cy="18" r="2"/><circle cx="15" cy="18" r="2"/><path d="M17 10l3-6"/></svg>Weekly mowing</span></label>
                 <label><input type="checkbox" name="need" value="aeration" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>Aeration and fertilizer</span></label>
                 <label><input type="checkbox" name="need" value="mulch" /><span><svg class="ci" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19h20l-5-8-3 3-3-5-5 6z"/><path d="M8 16h.01M12 15h.01M15 17h.01"/></svg>Mulch and beds</span></label>
@@ -1740,7 +1842,7 @@
             </div>
             <div class="fstep" data-fstep="2">
               <label><span class="draft">Where's the yard?</span> <input name="address" autocomplete="street-address" placeholder="Street and town" required /></label>
-              <p class="fstep-note draft">Harrison looks it up on the map and walks it himself. You never have to come outside.</p>
+              <p class="fstep-note draft">Harrison looks it up on the map and walks it himself. <mark class="hl">You never have to come outside.</mark></p>
               <div class="fstep-nav"><button class="fstep-back" type="button" data-fstep-back>Back</button>
                 <button class="btn btn-lime" type="button" data-fstep-next>Next
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
@@ -1805,7 +1907,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg><span class="draft">We write out your whole year</span></li>
           </ol>
           <figure class="mini-quote">
-            <blockquote>"I've been able to get a quote, agreed price, and had the work scheduled and done in a matter of days."</blockquote>
+            <blockquote>"I've been able to get a quote, agreed price, and had the work <mark class="hl">scheduled and done in a matter of days</mark>."</blockquote>
             <figcaption>Tony A., Google review <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></figcaption>
           </figure>
         </div>
@@ -1817,7 +1919,8 @@
     <!-- 2026-10-31 clean-up plan #6: reviews moved up to second (Alex: proof before the ask). -->
     <section class="light reviews" id="reviews">
       <div class="wrap">
-        <h2 class="stack reveal"><span class="thin">64 reviews.</span><span class="heavy draft">5.0 on Google<span class="dot">.</span></span></h2>
+        <!-- 2026-11-13 late (grader leftover 2): the big heading said the same thing as the score card right under it. It stays for screen readers and search; the score card is what people see. -->
+        <h2 class="sr">64 reviews. 5.0 on Google.</h2>
         <!-- 2026-11-01: the record row under this heading came out (it repeated "59 reviews, 5.0" right under the same words; the footer and the header still carry it) -->
       </div>
 
@@ -1826,18 +1929,42 @@
            Reviews from family and crew are left out (FTC rule on insider reviews). -->
       <!-- 2026-11-01 round 4 (Customer Care + Alex: the moving cards are always cut off, so nobody reads one whole review on a phone):
            one full review stays still above the rows. Word for word from reviews.js. -->
-      <div class="wrap rv-pin-wrap">
-        <article class="gshot rv-pin reveal">
-          <header><span class="av" style="background:#188038" aria-hidden="true">K</span>
-            <span class="who"><b>Katie E.</b><span>Google review</span></span><svg class="glogo" width="22" height="22" aria-label="Google review"><use href="#g-logo"/></svg></header>
-          <div class="rate" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p>They were very responsive and had strong communication from start to finish. They showed up on time, spread over 10 yards of mulch and left everything spotless. The crew was respectful and clearly takes pride in what they do. We couldn’t be happier with the results and would recommend them for your next landscaping project!</p>
-        </article>
-      </div>      <div class="rv-rows" role="region" aria-label="Google reviews from our customers">
-        <div class="rv-track" data-dir="1"></div>
-        <div class="rv-track" data-dir="-1"></div>
+      <!-- 2026-11-13 night (Harrison: "do you think there's a problem with the review slides?... what's the better option?"): the two sliding rows are out.
+           NN/g: rows that move by themselves get skipped like ads. Baymard: people look for the rating, the count and the star breakdown first.
+           Now: the Google score with its star bars (63 five-star + 1 four-star = 64, checked 11/13), then three whole reviews that stay still.
+           Word for word from reviews.js. Every review is still one tap away on Google. -->
+      <div class="wrap">
+        <div class="rv-sum reveal" role="img" aria-label="5.0 out of 5 on Google from 64 reviews. 63 are five stars and 1 is four stars.">
+          <div class="rv-score"><b>5.0</b><span class="rate" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>64 Google reviews</span></div>
+          <ol class="rv-bars" aria-hidden="true">
+            <li><span>5</span><i><i style="width:98.4%"></i></i><span>63</span></li>
+            <li><span>4</span><i><i style="width:1.6%"></i></i><span>1</span></li>
+            <li><span>3</span><i></i><span>0</span></li>
+            <li><span>2</span><i></i><span>0</span></li>
+            <li><span>1</span><i></i><span>0</span></li>
+          </ol>
+        </div>
+        <div class="rv-three">
+          <article class="gshot reveal">
+            <header><span class="av" style="background:#1a73e8" aria-hidden="true">J</span>
+              <span class="who"><b>Jacquelyn G.</b><span>Google review</span></span><svg class="glogo" width="22" height="22" aria-label="Google review"><use href="#g-logo"/></svg></header>
+            <div class="rate" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>Harrison and his crew are doing a fantastic job of mowing our lawn! He is <mark class="hl">very prompt when responding</mark> to any questions and <mark class="hl">checks in with me</mark> to make sure I’m pleased with his work. Wonderful!</p>
+          </article>
+          <article class="gshot reveal">
+            <header><span class="av" style="background:#188038" aria-hidden="true">D</span>
+              <span class="who"><b>Donovan J.</b><span>Google review</span></span><svg class="glogo" width="22" height="22" aria-label="Google review"><use href="#g-logo"/></svg></header>
+            <div class="rate" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>Absolutely phenomenal job on my front and back yards. They made sure to take the details serious and <mark class="hl">not miss any little edging</mark> or anything. I was very impressed and will be calling with them again!</p>
+          </article>
+          <article class="gshot reveal">
+            <header><span class="av" style="background:#9334e6" aria-hidden="true">S</span>
+              <span class="who"><b>Sharon M.</b><span>Google review</span></span><svg class="glogo" width="22" height="22" aria-label="Google review"><use href="#g-logo"/></svg></header>
+            <div class="rate" role="img" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p>Grass ‘n’ Gardens <mark class="hl">mulched my flower beds and they look amazing</mark>. Super friendly, speedy, efficient and at a great price! <mark class="hl">Arrived on time</mark> and were very professional. I highly recommend this group of young specialists!!</p>
+          </article>
+        </div>
       </div>
-      <p class="rv-hint draft" aria-hidden="true">&larr; Slide a row to read more &rarr;</p>
 
       <div class="wrap more">
         <a class="btn btn-dark" href="../why-gng/">Why customers pick us
@@ -1850,30 +1977,9 @@
     </section>
 
 
-    <!-- INTRO + SERVICES (horizontal cards; the old sideways accordion is gone) -->
-    <section class="intro" id="services">
-      <div class="wrap">
-        <h2 class="stack reveal"><span class="thin">Your yard has</span><span class="heavy">a season<span class="dot">.</span></span></h2>
-        <p class="lede reveal d1"><span class="draft">We mow all summer and clean up in spring and fall. You don't have to call us every season.</span></p>
-
-        <!-- 2026-10-31 home step 2: 4 photo rows instead of 6 swipe cards (Baymard: on phones people miss what is off to the side of a swipe row).
-             Spring cleanups and planting are one tap away on the line under them. -->
-        <div class="svc-list">
-          <a class="svc-item reveal" href="../lawn-mowing/">
-            <img width="600" height="450" src="img/xs/stripes-farmhouse.jpg" srcset="img/xs/stripes-farmhouse.jpg 600w" sizes="(max-width: 767px) 76px, 168px" loading="lazy" fetchpriority="low" alt="Crisscross mowing stripes across a big front lawn up to a white farmhouse" />
-            <span class="svc-txt"><h3>Weekly mowing</h3><span class="draft">Same day every week. We edge and blow off the drive every time.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-          <a class="svc-item reveal d1" href="../fall-cleanup/">
-            <img width="600" height="800" src="img/xs/leaf-after.jpg" srcset="img/xs/leaf-after.jpg 600w" sizes="(max-width: 767px) 76px, 168px" loading="lazy" fetchpriority="low" alt="Beds and stone walk cleared of leaves after a fall cleanup" />
-            <span class="svc-txt"><h3>Fall cleanups</h3><span>A photo every visit.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-          <a class="svc-item reveal d2" href="../mulch-beds/">
-            <img width="600" height="800" src="img/xs/gbp-curved-bed.jpg" srcset="img/xs/gbp-curved-bed.jpg 600w" sizes="(max-width: 767px) 76px, 168px" loading="lazy" fetchpriority="low" alt="Curved black mulch bed with round shrubs along a white house" />
-            <span class="svc-txt"><h3>Mulch and beds</h3><span class="draft">We pull the weeds first. Then fresh mulch and a sharp edge.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-          <a class="svc-item reveal d3" href="../aeration-fertilizer/">
-            <img width="600" height="450" src="img/xs/gbp-big-yard.jpg" srcset="img/xs/gbp-big-yard.jpg 600w" sizes="(max-width: 767px) 76px, 168px" loading="lazy" fetchpriority="low" alt="Wide back lawn with fresh mowing stripes under a blue sky" />
-            <span class="svc-txt"><h3>Aeration and fertilizer</h3><span class="draft">Thicker grass. We check your soil first, and that part is included.</span></span><svg class="svc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
-        </div>
-        <p class="svc-more reveal">Also: <a href="../spring-cleanup/">Spring cleanups</a> <a href="../yard-design/">Planting</a></p>      </div>
-    </section>
+    <!-- 2026-11-13 night (Harrison: "Your yard has a season... Is this a necessary slide?... it's just kind of eh"): the intro + 4 service rows are OUT.
+         The picture row under the menu already shows every service, so this section said it twice. The cut markup is saved in
+         library\references\home-season-section-cut-2026-11-13.html. id="services" now sits on the row under the menu. -->
 
     <!-- REVIEWS (real Google reviews, trimmed) -->
 
@@ -1881,6 +1987,8 @@
          "Miss one? We're back the next day, <span class="draft">and you don't pay for that visit</span>" right under the promise), and two sections cost 2.2 phone screens. The sample visit
          text came out (a 2027 HomeWorks feature; restore from $TEMP\home-index-before-step2.html). id="five" and id="season" both stay
          (the top bar links #season). 2026-11-12 (Harrison: "get rid of the season pass"): the ticket block is gone; the page is in site/_retired/season-pass. -->
+    <!-- 2026-11-13 night (Harrison: "Five before we drive... I don't really like the color of that"): off the dark pine block. White ground, pine words,
+         the five checks as one short row of tags, the fix line and one link. Same five checks, same order, word for word. -->
     <section class="promise" id="five">
       <div class="wrap">
         <div class="promise-top reveal">
@@ -1894,7 +2002,7 @@
           <li>Gates latched</li>
           <li>No clumps</li>
         </ol>
-        <p class="rem reveal d1"><b>Miss one?</b> Text us. We're back the next day, <span class="draft">and you don't pay for that visit</span>. If it rains, the next dry day. <a href="../why-gng/#compare">See how we stack up</a></p>
+        <p class="rem reveal d1"><b>Miss one?</b> Text us. We're back the next day, <span class="draft">and <mark class="hl">you don't pay for that visit.</mark></span> <a href="../why-gng/#compare">See how we stack up</a></p>
       </div>
     </section>
 
@@ -1902,7 +2010,7 @@
     <section class="ask" id="ask">
       <div class="wrap">
         <h2 class="stack reveal"><span class="thin">Want yours</span><span class="heavy">written out<span class="dot">?</span></span></h2>
-        <p class="lede reveal d1 draft">I look your yard up and walk it myself, then write out your whole year. You never have to come outside or be home. Want to walk it with me? Just ask and I will. You get it in a day and it's yours to keep, even if you stay with the guy you have now.</p>
+        <p class="lede reveal d1 draft">I look your yard up and walk it myself, then write out your whole year. You get it in a day and <mark class="hl">it's yours to keep</mark>, even if you stay with the guy you have now.</p><!-- 2026-11-13 late (grader leftover 3): two middle sentences cut ("never have to come outside" is on form step 2; "Want to walk it with me? Just ask and I will." is gone from here) -->
         <a class="big-phone reveal d2" href="tel:+14406679642">(440) 667-9642</a>
 
         <!-- every way to reach us -->
@@ -1932,7 +2040,7 @@
             <li><span><b>4</b>North Royalton</span></li>
             <li><span><b>3</b>Medina</span></li>
           </ul>
-          <p class="area-line">We also come out to <a href="../bath-oh/">Bath</a>, Hinckley and <a href="../granger-oh/">Granger</a>.
+          <p class="area-line">We also come out to<br class="br-ph" /> <a href="../bath-oh/">Bath</a>, Hinckley and <a href="../granger-oh/">Granger</a>.
             <span class="area-hoa">HOA or business? <a href="../hoa-commercial/">See what our bid includes</a></span></p>
         </div>
       </div>
@@ -1945,7 +2053,8 @@
   (function () {
     // 2026-11-11: phones (under 768) get the TALL leaf loop while the header is the Fall Pass. 768-959 and phones from Dec 1 keep the photo.
     var fall = !document.documentElement.classList.contains('after-fall'), ph = innerWidth < 768;
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches || (innerWidth < 960 && !(ph && fall))) return;
+    // 2026-11-13 late: 768-959 wide (tablets, half-width browser windows) plays the wide loop too. Only phones from Dec 1 keep the photo (no tall mowing loop yet).
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || (ph && !fall)) return;
     var c = navigator.connection || {}; if (c.saveData || /2g|3g/.test(c.effectiveType || '')) return;
     var box = document.querySelector('.hero .hero-photo'); if (!box) return;
     var go = function () {
@@ -1958,7 +2067,7 @@
       /* 2026-11-11: each file name is written out whole. gng-deploy-copy.ps1 only finds whole '...video/x.mp4' strings; built in pieces, the tall loop was left out of the repo copy. */
       // 2026-11-11 night (Harrison: "only the best quality B-roll"): computers whose header is over 1400 real pixels wide get the 1080p cut (-xl), unless the link reports slow. Others keep the 720p cut.
       var big = box.getBoundingClientRect().width * (devicePixelRatio || 1) > 1400 && (!(c.downlink && c.downlink < 6) || /[?&]xl=1/.test(location.search)); // ?xl=1 forces it (the headless test browser guesses 1.55 Mbps) // 3, not 8: Chrome's speed guess read under 8 on a fast link and held the sharp cut back (tested 11/11) // 2026-11-12: 6, not 3. The 1080p cut needs about 5.7 Mbps; on a 5 Mbps link it stopped and started 7 times in 10 seconds (desk-scan -Mbps 5)
-      v.src = ph ? (c.downlink >= 8 ? './video/broll-home-leaf-tall-lg.mp4' : './video/broll-home-leaf-tall-sm.mp4') : !fall ? (big ? './video/broll-home-wide-xl.mp4' : './video/broll-home-wide-lg.mp4') : (big ? './video/broll-fall-cleanup-wide-xl.mp4' : './video/broll-fall-cleanup-wide-lg.mp4');
+      v.src = ph ? (c.downlink >= 8 ? './video/broll-home-leaf-tall-lg.mp4' : './video/broll-home-leaf-tall-sm.mp4') : !fall ? (big ? './video/broll-home-wide-xl.mp4' : './video/broll-home-wide-lg.mp4') : (big ? './video/broll-home-leaf-wide-xl.mp4' : './video/broll-home-leaf-wide-lg.mp4');
       v.addEventListener('playing', function () { v.classList.add('on'); }, { once: true });
       /* 2026-11-12: safety net for the 1080p cut. If it stops to buffer twice before it has fully downloaded, the link is too slow for it (Safari reports no link speed at all), so swap to the 720p cut at the same spot. The still shows for the moment in between. */
       if (big) { var stalls = 0; v.addEventListener('waiting', function () {
@@ -2030,7 +2139,9 @@
       <div class="foot">
         <p class="rec">Record &middot; <b>64</b> reviews &middot; <b>5.0</b> average</p>
         <p class="meta">Richfield, Ohio &middot; Crew starts at 6:30 AM, Monday to Saturday</p>
-        <p class="meta towns">Lawn care in <a href="../richfield-oh/">Richfield</a> &middot; <a href="../broadview-heights-oh/">Broadview Heights</a> &middot; <a href="../brecksville-oh/">Brecksville</a> &middot; <a href="../bath-oh/">Bath</a> &middot; <a href="../granger-oh/">Granger</a> &middot; <a href="../hinckley-oh/">Hinckley</a> &middot; <a href="../north-royalton-oh/">North Royalton</a></p>
+        <p class="meta towns"><span class="lbl">Lawn care in</span> <a href="../richfield-oh/">Richfield</a> <span class="sep" aria-hidden="true">&middot;</span> <a href="../broadview-heights-oh/">Broadview Heights</a> <span class="sep" aria-hidden="true">&middot;</span> <a href="../brecksville-oh/">Brecksville</a> <span class="sep" aria-hidden="true">&middot;</span> <a href="../bath-oh/">Bath</a> <span class="sep" aria-hidden="true">&middot;</span> <a href="../granger-oh/">Granger</a> <span class="sep" aria-hidden="true">&middot;</span> <a href="../hinckley-oh/">Hinckley</a> <span class="sep" aria-hidden="true">&middot;</span> <a href="../north-royalton-oh/">North Royalton</a></p>
+        <!-- 2026-11-13 night (Harrison: "there is no privacy policy, terms and conditions at the bottom"). -->
+        <p class="meta legal"><span class="lbl">&copy; 2026 Grass N Gardens Landscaping LLC</span> <span class="sep" aria-hidden="true">&middot;</span> <a href="../privacy/">Privacy Policy</a> <span class="sep" aria-hidden="true">&middot;</span> <a href="../terms/">Terms of Service</a></p>
         <button class="app-get" type="button" data-app-get hidden>
           <img src="./app/icon-192.png" alt="" width="36" height="36" loading="lazy" fetchpriority="low" />
           <span><b class="draft">Put G'N'G on your phone</b><small class="draft">One tap to text Harrison next time.</small></span>

@@ -537,3 +537,13 @@ img { height: auto; } /* a real width/height on an <img> is now only an aspect-r
 .town-line a { font-weight: 700; padding: 2px 6px; border-radius: 5px; background: linear-gradient(rgba(102, 184, 74, .2), rgba(102, 184, 74, .2)) center / 100% 1.45em no-repeat; }
 .pass-covers { margin-top: 14px; font-weight: 600; }
 @media (max-width: 767px) { html:not(#_) .busy-pass .pass-covers { order: 2; margin-top: 14px; line-height: 1.45; } }
+
+/* 2026-11-13 night (Harrison, phone view: the bottom by "Put G'N'G on your phone" "looks all fucked up"): on phones the town links and the
+   copyright line wrapped with a dot left hanging at the end of each row and rows that did not line up. Now the label sits on its own row,
+   the links wrap in even rows with no dots, and every link keeps its 44px tap height. Computers keep the dots. */
+@media (max-width: 899px) {
+  html:not(#_) .foot .meta.towns, html:not(#_) .foot .meta.legal { display: flex; flex-wrap: wrap; align-items: center; column-gap: 20px; row-gap: 0; line-height: 1.5; }
+  html:not(#_) .foot .meta .lbl { flex: 0 0 100%; }
+  html:not(#_) .foot .meta .sep { display: none; }
+  html:not(#_) .foot .meta.towns a, html:not(#_) .foot .meta.legal a { display: inline-flex; align-items: center; min-height: 44px; padding: 0; }
+}
