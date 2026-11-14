@@ -547,3 +547,145 @@ img { height: auto; } /* a real width/height on an <img> is now only an aspect-r
   html:not(#_) .foot .meta .sep { display: none; }
   html:not(#_) .foot .meta.towns a, html:not(#_) .foot .meta.legal a { display: inline-flex; align-items: center; min-height: 44px; padding: 0; }
 }
+
+/* 2026-11-14 PHONE HEADER + SIDE MENU (Harrison: "i dont lik the size of the header too small", "the menu bar sucks cant scroll see y gng our work etc",
+   "the green background with the lettering in green for leaves, mowing etc lets make some changes").
+   1. Phones: taller header (68px), bigger logo, 52px Call + Menu buttons, 16px side gutter.
+   2. Phones: the sideways service row on home comes off; the services live in the side menu as picture tiles.
+   3. Phones + tablets: the menu slides in from the right, under the header, over a dim page; every page shows without hunting.
+   4. The "2027" tile is white on forest, never dark green on lime. */
+@media (max-width: 767px) {
+  html:not(#_) .site-head .head-in { height: 68px; padding-left: 16px; padding-right: 16px; gap: 8px; }
+  html:not(#_) .site-head .brand img { height: 48px; }
+  html:not(#_) .site-head .head-ctas { gap: 8px; }
+  html:not(#_) .site-head .head-ctas .phone { width: 52px; height: 52px; min-height: 52px; padding: 0; justify-content: center; }
+  html:not(#_) .site-head .head-ctas .phone svg { width: 22px; height: 22px; }
+  html:not(#_) .site-head .menu-btn { height: 52px; min-height: 52px; padding: 0 14px; gap: 8px; font-size: 18px; }
+  html:not(#_) .site-head .menu-btn .menu-word { display: inline; }
+  html:not(#_) .site-head .menu-btn .bars { width: 20px; }
+  html:not(#_) .rail-band { display: none; }
+}
+@media (max-width: 380px) {
+  html:not(#_) .site-head .brand img { height: 44px; }
+  html:not(#_) .site-head .menu-btn { padding: 0 11px; }
+}
+@media (max-width: 365px) { html:not(#_) .site-head .brand img { height: 40px; } }
+@media (max-width: 340px) {
+  html:not(#_) .site-head .head-in { padding-left: 12px; padding-right: 12px; gap: 6px; }
+  html:not(#_) .site-head .brand img { height: 34px; }
+  html:not(#_) .site-head .head-ctas { gap: 6px; }
+  html:not(#_) .site-head .head-ctas .phone { width: 46px; height: 46px; min-height: 46px; }
+  html:not(#_) .site-head .menu-btn { height: 46px; min-height: 46px; padding: 0 8px; gap: 6px; font-size: 16px; }
+}
+
+/* the side menu (top is set by the script to the header's bottom edge) */
+@keyframes mp-fade { from { opacity: 0; } }
+@keyframes mp-slide { from { transform: translateX(100%); } }
+@media (max-width: 1179px) {
+  html:not(#_) .menu-panel { position: fixed; top: 71px; left: 0; right: 0; bottom: 0; z-index: 75; border: 0; background: rgba(10, 14, 11, .55); animation: mp-fade .25s var(--ease-out); }
+  html:not(#_) .menu-panel[hidden] { display: none; }
+  html:not(#_) .menu-panel > nav {
+    width: min(88vw, 400px); max-width: none; height: 100%; margin: 0 0 0 auto; overflow-y: auto; overscroll-behavior: contain;
+    padding: 14px 16px calc(24px + env(safe-area-inset-bottom)); background: #fff; border-left: 3px solid var(--pine);
+    animation: mp-slide .3s var(--ease-out);
+  }
+  html:has(#menu-panel:not([hidden])) { overflow: hidden; }
+  /* 2027 plan card */
+  html:not(#_) .mp-offer { display: flex; align-items: stretch; min-height: 56px; overflow: hidden; color: var(--pine); text-decoration: none; background: #fff; border: 2.5px solid var(--pine); border-radius: 12px; box-shadow: 4px 4px 0 var(--lime); transition: transform .18s var(--ease-out), box-shadow .18s var(--ease-out); }
+  html:not(#_) .mp-offer b { display: flex; align-items: center; padding: 0 14px; background: var(--forest); color: #fff; font-family: "Alfa Slab One", serif; font-weight: 400; font-size: 24px; line-height: 1; }
+  html:not(#_) .mp-offer span { flex: 1; display: flex; align-items: center; padding: 0 10px 0 12px; font-size: 18px; font-weight: 700; line-height: 1.15; }
+  html:not(#_) .mp-offer svg { flex: none; align-self: center; margin-right: 12px; color: var(--forest); }
+  html:not(#_) .mp-offer:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--lime); }
+  html:not(#_) .mp-offer:focus-visible { outline: 3px solid var(--forest); outline-offset: 3px; }
+  html:not(#_) .mp-lbl { margin: 16px 2px 8px; font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
+  /* services: 2 columns of photo tiles, white with pine words */
+  html:not(#_) .mp-svc { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  html:not(#_) .mp-svc a { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 4px 8px 4px 4px; white-space: normal; font-size: 16px; font-weight: 700; line-height: 1.15; color: var(--pine); background: #fff; border: 2px solid var(--pine); border-radius: 10px; }
+  html:not(#_) .mp-svc img { flex: none; width: 44px; height: 44px; border-radius: 7px; object-fit: cover; background: var(--mist); }
+  html:not(#_) .mp-svc a[aria-current="page"] { background: var(--mist); }
+  html:not(#_) .mp-svc a:active { transform: scale(.97); }
+  /* every other page: 2 columns of plain links */
+  html:not(#_) .mp-pages { list-style: none; display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; }
+  html:not(#_) .mp-pages a { display: flex; align-items: center; min-height: 46px; padding: 6px 4px; white-space: normal; font-size: 18px; font-weight: 700; line-height: 1.15; color: var(--pine); border-bottom: 1px solid var(--line-light); border-radius: 0; }
+  html:not(#_) .mp-pages a[aria-current="page"] { color: var(--forest); background: var(--mist); }
+  html:not(#_) .menu-panel .menu-ctas { grid-template-columns: 1fr; margin-top: 18px; }
+  html:not(#_) .menu-panel .menu-ctas .reach-row { grid-column: auto; }
+}
+/* 4. the 2027 tile in the home service row (computers + tablets) */
+html:not(#_) .hero-rail .rail-offer b { background: var(--forest); color: #fff; }
+/* 2026-11-14: the home "Spring to Fall Plan" tag was dark green on lime (green on green). White on forest, sentence case (long phrases never in spaced caps). */
+html:not(#_) .plan-name { background: var(--forest); color: #fff; letter-spacing: 0; text-transform: none; font-size: 18px; }
+/* 2026-11-14: header fact pills with a draft span inside ("Miss one? Back next day, you don't pay for that visit") split into two columns on phones,
+   because each piece became its own flex item. Those pills now flow as one sentence, icon pinned on the left. */
+html:not(#_) .facts li:has(> span) { display: block; position: relative; padding-left: 40px; }
+html:not(#_) .facts li:has(> span) > svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); }
+
+/* 2026-11-14 ROUND 2: SERVICE CHIPS UNDER THE HEADER + PAGES-ONLY MENU (phones + tablets).
+   Harrison: "they can see it all at the top that scroll with them", "add the logos on them as well. Make the pictures rounded and outlined",
+   "only put what's necessary in the menu". Team check (Alex, Cardone, Customer Care, Charlie): phones = 5 + All, menu = pages, proof first.
+   The chips live inside the sticky header, so they stay on screen while people scroll. Computers keep the old bar + home service row. */
+.svc-chips { display: none; }
+.svc-chips .ri, .svc-chips .chip-all svg, .mp-pages svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 1179px) {
+  html:not(#_) .svc-chips { display: flex; justify-content: space-between; gap: 2px; max-width: 760px; margin: 0 auto; padding: 1px 10px 6px; }
+  html:not(#_) .svc-chips a { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 2px 0 0; color: var(--pine); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+  html:not(#_) .svc-chips i { position: relative; display: block; width: 44px; height: 44px; border-radius: 50%; border: 2.5px solid var(--pine); background: var(--mist); transition: transform .15s var(--ease-out), box-shadow .2s; }
+  html:not(#_) .svc-chips img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  /* the small icon on each photo */
+  html:not(#_) .svc-chips .ri { position: absolute; right: -6px; bottom: -4px; width: 21px; height: 21px; padding: 3px; border-radius: 50%; background: #fff; border: 1.5px solid var(--pine); color: var(--pine); stroke-width: 2.3; }
+  html:not(#_) .svc-chips span { max-width: 100%; font-size: 14px; font-weight: 700; line-height: 1.05; letter-spacing: -.02em; white-space: nowrap; }
+  html:not(#_) .svc-chips .chip-all i { display: grid; place-items: center; background: var(--forest); border-color: var(--forest); color: #fff; }
+  html:not(#_) .svc-chips .chip-all svg { width: 22px; height: 22px; }
+  /* this page's chip gets a lime ring (never lime under green words) */
+  html:not(#_) .svc-chips a[aria-current="page"] i { box-shadow: 0 0 0 3px #fff, 0 0 0 5.5px var(--lime); }
+  html:not(#_) .svc-chips a:active i { transform: scale(.92); }
+  html:not(#_) .svc-chips a:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; border-radius: 10px; }
+  /* the home page's own service row would repeat the chips */
+  html:not(#_) .rail-band { display: none; }
+  /* jump links land below the taller header */
+  html:not(#_) section[id] { scroll-margin-top: 152px; }
+}
+@media (max-width: 767px) { html:not(#_) .svc-chips .chip-more { display: none; } }
+@media (max-width: 374px) {
+  html:not(#_) .svc-chips { padding-left: 8px; padding-right: 8px; gap: 0; }
+  html:not(#_) .svc-chips i { width: 40px; height: 40px; }
+  html:not(#_) .svc-chips span { font-size: 13px; letter-spacing: -.02em; }
+}
+@media (min-width: 768px) and (max-width: 1179px) {
+  html:not(#_) .svc-chips .chip-all { display: none; }
+  html:not(#_) .svc-chips i { width: 50px; height: 50px; }
+  html:not(#_) .svc-chips span { font-size: 16px; }
+}
+/* the menu: pages only, each with a small icon, a little more room */
+@media (max-width: 1179px) {
+  html:not(#_) .menu-panel > nav { padding: 16px 16px calc(24px + env(safe-area-inset-bottom)); }
+  html:not(#_) .menu-panel .mp-pages { margin-top: 14px; column-gap: 10px; row-gap: 8px; }
+  html:not(#_) .menu-panel .mp-pages a { gap: 10px; min-height: 52px; padding: 6px 10px; font-size: 17px; border: 2px solid var(--line-light); border-radius: 12px; background: #fff; }
+  html:not(#_) .menu-panel .mp-pages svg { flex: none; width: 22px; height: 22px; color: var(--forest); }
+  html:not(#_) .menu-panel .mp-pages small { margin-left: auto; padding: 2px 7px; border-radius: 99px; background: var(--forest); color: #fff; font-size: 14px; font-weight: 700; }
+  html:not(#_) .menu-panel .mp-pages a:active { transform: scale(.97); }
+  html:not(#_) .menu-panel .mp-pages a[aria-current="page"] { border-color: var(--forest); background: var(--mist); }
+  html:not(#_) .menu-panel .menu-ctas { margin-top: 16px; }
+}
+/* round 2 fix: equal page columns so "Our promise" stays on one line (the long "Join the crew" was widening its column) */
+@media (max-width: 1179px) {
+  html:not(#_) .menu-panel > nav { width: min(92vw, 400px); padding-left: 14px; padding-right: 14px; }
+  html:not(#_) .menu-panel .mp-pages { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 8px; }
+  html:not(#_) .menu-panel .mp-pages a { gap: 8px; padding: 6px 8px; font-size: 16px; }
+  html:not(#_) .menu-panel .mp-pages svg { width: 20px; height: 20px; }
+}
+/* round 2, part 2 (blind grade: Alex + Customer Care both said the chip row eats the screen; Charlie: "hide it on scroll down, show it on scroll up").
+   The chips float under the header (a spacer holds their room at the top of the page, so nothing jumps), slide up out of sight while
+   someone reads down the page, and come right back on any scroll up or when the menu opens. */
+.svc-wrap, .svc-space { display: none; }
+@media (max-width: 1179px) {
+  html:not(#_) { --chips-h: 70px; }
+  html:not(#_) .svc-wrap { display: block; position: absolute; left: 0; right: 0; top: 100%; margin-top: 3px; overflow: hidden; pointer-events: none; }
+  html:not(#_) .svc-chips { box-sizing: border-box; height: var(--chips-h); max-width: none; align-items: center; padding: 0 max(10px, calc((100% - 760px) / 2)); background: #fff; border-bottom: 3px solid var(--pine); pointer-events: auto; transition: transform .28s var(--ease-out); }
+  html:not(#_) .svc-space { display: block; height: var(--chips-h); background: #fff; }
+  html:not(#_) .site-head.chips-away .svc-chips { transform: translateY(-100%); pointer-events: none; }
+  html:not(#_) .site-head.chips-away .svc-chips a { visibility: hidden; transition: visibility 0s .28s; }
+}
+@media (max-width: 374px) { html:not(#_) { --chips-h: 66px; } html:not(#_) .svc-chips { padding: 0 8px; } }
+@media (min-width: 768px) and (max-width: 1179px) { html:not(#_) { --chips-h: 80px; } }
+@media (prefers-reduced-motion: reduce) { html:not(#_) .svc-chips { transition: none; } }

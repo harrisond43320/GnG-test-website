@@ -95,11 +95,17 @@
   const panel = document.getElementById('menu-panel');
   if (btn && panel) {
     const setMenu = open => {
+      if (open) { const hd = panel.closest(".site-head"), cw = hd.querySelector(".svc-wrap"); hd.classList.remove("chips-away"); panel.style.top = Math.max(0, hd.getBoundingClientRect().bottom, cw && cw.offsetParent ? cw.getBoundingClientRect().bottom : 0) + "px"; } // 2026-11-14: side menu starts under the header + service chips
       btn.setAttribute('aria-expanded', open); panel.hidden = !open;
       btn.querySelector('.menu-word').textContent = open ? 'Close' : 'Menu';
     };
+    // 2026-11-14 round 2: the service chips slide up out of the way while reading down, and come back on any scroll up (Charlie + Alex: screen space)
+    { const hd = document.querySelector('.site-head'); let ly = scrollY;
+      addEventListener('scroll', () => { const y = scrollY; if (!panel.hidden) { ly = y; return; }
+        if (y < 200 || y < ly - 6) hd.classList.remove('chips-away'); else if (y > ly + 6) hd.classList.add('chips-away');
+        if (Math.abs(y - ly) > 6) ly = y; }, { passive: true }); }
     btn.addEventListener('click', () => setMenu(panel.hidden));
-    panel.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+    panel.addEventListener('click', e => { if (e.target.closest('a') || e.target === panel) setMenu(false); }); // tap the dim page = close
     addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { setMenu(false); btn.focus(); } });
     matchMedia('(min-width: 1180px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
   }
@@ -140,6 +146,8 @@
   if (!seen.landing_page) seen.landing_page = location.pathname + location.search;
   try { sessionStorage.setItem('gng_src', JSON.stringify(seen)); } catch (e) {}
 
+  // 2026-11-14: taps on the service chips under the header (proof the chip row gets used; compare by chip in GA4)
+  document.addEventListener('click', e => { const c = e.target.closest('.svc-chips a'); if (c) track('chip_tap', { chip: c.dataset.chip }); });
   // Calls, texts and emails count as leads
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href^="tel:"], a[href^="sms:"], a[href^="mailto:"]');
