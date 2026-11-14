@@ -114,6 +114,21 @@
     }
     div.call-bar { transition: transform .25s ease-out; }
     div.call-bar.cb-away { transform: translateY(120%); }
+    /* 2026-11-14 (Harrison: "i didnt like the green color on the fall clean up page, i like that dark green... more playful and stand out than the others").
+       Computers: the see-through green over the orange leaves read muddy. Now the words sit on SOLID pine cut on a slant with a lime edge,
+       and the leaf video shows bright and clear on the right. Phones: the video frame gets a small tilt, like the review cards. Fall page only. */
+    @media (min-width: 960px) {
+      header.vid-hero[data-broll-wide]::before { background: var(--pine); clip-path: polygon(0 0, max(64%, 860px) 0, max(56%, 760px) 100%, 0 100%); }
+      header.vid-hero[data-broll-wide]::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: var(--lime);
+        clip-path: polygon(max(64%, 860px) 0, calc(max(64%, 860px) + 14px) 0, calc(max(56%, 760px) + 14px) 100%, max(56%, 760px) 100%); }
+      header.vid-hero[data-broll-wide] .hero-in::before { display: none; } /* solid pine needs no dark smudge behind the words */
+    }
+    /* small laptops: the review card covered the end of the "Nothing to buy" line, so the line wraps before the card */
+    @media (min-width: 960px) and (max-width: 1199px) { header.vid-hero .hero-sub { max-width: calc(100% - min(var(--panel-w), 460px) - 32px); } }
+    @media (max-width: 959px) {
+      header.vid-hero.vid-strip .hero-photo { transform: rotate(-1.5deg); }
+    }
+    @media (prefers-reduced-motion: reduce) { header.vid-hero.vid-strip .hero-photo { transform: none; } }
   </style>
 <script>document.documentElement.setAttribute('data-leaf', (/[?&](season=after|leaf=off)/.test(location.search) || (!/[?&]leaf=on/.test(location.search) && Date.now() >= Date.UTC(2026, 11, 1, 5))) ? 'off' : 'on');</script>
 </head>

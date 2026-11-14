@@ -2,7 +2,7 @@
 // Pages: always try the internet first (so a new push shows up right away), fall back to the saved copy,
 // then to app/offline.html. Photos, CSS and fonts: show the saved copy fast, refresh it in the background.
 // Bump VERSION if this file's rules change. Lives next to the homepage, so in the repo it covers the whole site.
-const VERSION = 'gng-v60'; // 2026-11-13 late: v60 = home focus rounds 1 to 3 (plan name, review highlights, question lead-in) + phone footer rows tidy
+const VERSION = 'gng-v61'; // 2026-11-14: v61 = fall-cleanup header on solid pine with a lime slant (Harrison did not like the green), phone video tilt
 const PAGES = VERSION + '-pages';
 const FILES = VERSION + '-files';   // css + js: rotates with VERSION
 const IMAGES = 'gng-img-v1';         // photos + fonts: never deleted on a version bump (they keep their names)
