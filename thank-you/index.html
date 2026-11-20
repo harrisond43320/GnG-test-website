@@ -260,7 +260,7 @@
         <ol class="track rise d2 if-sent" aria-label="Your yard plan, step 3 of 3">
           <li class="done"><span class="pip" aria-hidden="true">&#10003;</span><span class="draft">Filled it out</span></li>
           <li class="done"><span class="pip" aria-hidden="true">&#10003;</span><span class="draft">Sent to Harrison</span></li>
-          <li class="now" aria-current="step"><span class="pip" aria-hidden="true">3</span><span class="draft">Harrison texts you back</span></li>
+          <li class="now" aria-current="step"><span class="pip" aria-hidden="true">3</span><span class="draft" data-call-txt="Harrison calls you">Harrison texts you back</span></li>
         </ol>
 
         <ol class="track rise d2 if-msg" aria-label="Your yard plan, step 2 of 3">
@@ -281,7 +281,7 @@
           </div>
           <div class="if-sent">
             <h2 class="draft">Harrison has it.</h2>
-            <p class="draft">He texts you back within 24 hours from his own phone. You never have to come outside or be home.</p>
+            <p class="draft" data-call-txt="He calls you within 24 hours from his own phone. You never have to come outside or be home.">He texts you back within 24 hours from his own phone. You never have to come outside or be home.</p>
             <a class="btn btn-lime btn-big" href="tel:+14406679642">Want it faster? Call (440) 667-9642</a>
           </div>
           <div class="if-none">
@@ -300,7 +300,7 @@
         <h2 class="sec-h">Here's what <b>happens next<span class="dot">.</span></b></h2>
         <ol class="next">
           <li><b>You send it.</b> Takes 30 seconds.</li>
-          <li><b>Harrison texts you within 24 hours.</b> <b class="draft">Guaranteed.</b> From his own phone.</li>
+          <li><b data-call-txt="Harrison calls you within 24 hours.">Harrison texts you within 24 hours.</b> <b class="draft">Guaranteed.</b> From his own phone.</li>
           <li><b class="draft">We write out your whole year.</b> <span class="draft">Harrison looks your yard up and walks it himself. You never have to come outside or be home. Want to walk it together? Just ask.</span></li>
         </ol>
         <div class="after-grid">
@@ -486,6 +486,8 @@
     const h1 = document.querySelector('[data-h1]');
     if (h1) h1.textContent = sent ? 'Got it!' : ok ? 'Almost done!' : "Let's get you a yard plan.";
     if (sent && lead.first) document.querySelector('[data-thanks]').textContent = 'Thanks, ' + lead.first + '.';
+    // 2026-11-20: came from the "We call you" card, so the page says call, not text
+    if (lead && lead.call) document.querySelectorAll('[data-call-txt]').forEach(el => { el.textContent = el.dataset.callTxt; });
 
     if (ok) {
       const app = lead.app === 'email' ? 'email' : 'text';

@@ -619,6 +619,25 @@
     .form-card select { appearance: none; cursor: pointer;
       background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%231d4a22' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center; }
     .form-card input:focus-visible, .form-card select:focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; border-color: var(--forest); }
+    /* 2026-11-20: "We call you" card in the header, computers only (mouse + wide screen). Phones keep their tap-to-text buttons. */
+    .call-card { display: none; }
+    @media (min-width: 1100px) and (hover: hover) and (pointer: fine) {
+      .call-card { display: block; position: absolute; z-index: 4; width: 380px; padding: var(--s6);
+        right: max(var(--s6), calc((100% - var(--wrap)) / 2 + var(--s6))); bottom: var(--s24); }
+      .call-card h2 { font-family: var(--font-display); font-weight: 400; font-size: 32px; line-height: 1; text-transform: uppercase; color: var(--pine); }
+      .call-card h2 .dot { color: var(--lime); }
+      .call-sub { margin-top: var(--s2); font-size: 16px; line-height: 1.4; color: var(--ink-muted); }
+      .call-sub b { color: var(--ink); }
+      .call-form { display: grid; gap: var(--s3); margin-top: var(--s4); }
+      .call-card input:not([type="checkbox"]) { padding: 9px 12px; }
+      .call-card .form-proof { margin-top: calc(var(--s1) * -1); }
+      .call-card { bottom: calc(var(--s24) + var(--s6)); }
+      .call-form .btn { width: 100%; justify-content: center; }
+      .call-form .form-proof { text-align: center; }
+      /* room for the card: the words stay on the left */
+      .hero .hero-copy { padding-right: calc(380px + var(--s12)); }
+      .hero h1 { font-size: clamp(54px, 6.2vw, 96px); }
+    }
     /* tap-to-pick chips */
     .chips { border: 0; display: flex; flex-wrap: wrap; gap: var(--s2); }
     .chips legend { width: 100%; margin-bottom: var(--s2); font-size: 14px; font-weight: 600; }
@@ -1786,6 +1805,24 @@
           document.querySelector('.hero-copy[data-season="fall"]').replaceWith(document.getElementById('hero-main').content.cloneNode(true));
         }
       </script>
+      <!-- 2026-11-20 (Harrison: "computer layout... we call you line... that's perfect"): computers only.
+           A computer can't tap to text, so the ask sits right in the header: 3 boxes, Harrison calls them.
+           Sends with the same Web3Forms key as the yard plan form (subject "Call me back"). Hidden on phones and tablets. -->
+      <aside class="call-card form-card" aria-labelledby="call-h">
+        <h2 id="call-h">We call you<span class="dot">.</span></h2>
+        <p class="call-sub">Leave your number. <b>Harrison calls you within 24 hours.</b></p>
+        <form class="call-form" novalidate>
+          <div class="row2">
+            <label>Name <input name="name" autocomplete="name" required /></label>
+            <label>Phone <input name="phone" type="tel" autocomplete="tel" required /></label>
+          </div>
+          <label>Where's the yard? <input name="address" autocomplete="street-address" placeholder="Street and town" required /></label>
+          <label class="hp" aria-hidden="true">Leave this empty <input name="website" tabindex="-1" autocomplete="off" /></label>
+          <button class="btn btn-lime" type="submit"><span data-send-word>Call me</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></button>
+          <p class="form-proof"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <b>5.0</b> from 64 Google reviews</p>
+        </form>
+      </aside>
     </header>
     </script>
 
@@ -2616,6 +2653,53 @@
       });
       const again = card.querySelector('[data-reopen]');
       if (again) again.addEventListener('click', () => { if (lastHref) openApp(lastHref); });
+    });
+
+    // 2026-11-20: "We call you" card (computers). Same key; if the service fails, a ready-made email opens instead.
+    document.querySelectorAll('.call-form').forEach(form => {
+      let sending = false;
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        if (sending || !form.reportValidity()) return;
+        if (form.querySelector('[name="website"]').value) return;
+        const val = n => (form.querySelector('[name="' + n + '"]') || {}).value?.trim() || '';
+        const first = val('name').split(/\s+/)[0].slice(0, 30);
+        const msg = ['Please call me back.', 'Name: ' + val('name'), 'Phone: ' + val('phone'), 'Address: ' + val('address'), 'Came from: the We call you box on the home page (computer)'].join('\n');
+        track('form_start', { form: 'call_me' });
+        if (FORM_KEY) {
+          sending = true;
+          const word = form.querySelector('[data-send-word]'), was = word.textContent;
+          word.textContent = 'Sending...';
+          try {
+            const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), 8000);
+            const res = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST', signal: ctl.signal,
+              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+              body: JSON.stringify({
+                access_key: FORM_KEY, subject: 'Call me back: ' + val('name'), from_name: "G'N'G website",
+                name: val('name'), phone: val('phone'), address: val('address'), needs: 'Call me back',
+                utm_source: seen.utm_source || '', utm_medium: seen.utm_medium || '', utm_campaign: seen.utm_campaign || '',
+                gclid: seen.gclid || '', landing_page: seen.landing_page || '', ref: seen.ref || '', message: msg
+              })
+            });
+            clearTimeout(timer);
+            const out = await res.json().catch(() => ({}));
+            if (res.ok && out.success) {
+              track('generate_lead', { form: 'call_me', method: 'form' });
+              try { sessionStorage.setItem('gng_lead', JSON.stringify({ sent: true, first, call: true })); } catch (e) {}
+              location.href = 'thank-you/';
+              return;
+            }
+          } catch (err) {}
+          sending = false; word.textContent = was;
+          track('form_service_fail', { form: 'call_me' });
+        }
+        const href = 'mailto:grassngardens4u@gmail.com?subject=' + encodeURIComponent('Call me back: ' + val('name')) + '&body=' + encodeURIComponent(msg);
+        track('lead_fallback_opened', { form: 'call_me', method: 'email' });
+        try { sessionStorage.setItem('gng_lead', JSON.stringify({ href, app: 'email', first, call: true })); } catch (e) {}
+        (window.__gngOpen || (h => { location.href = h; }))(href);
+        setTimeout(() => { location.href = 'thank-you/'; }, 700);
+      });
     });
 
     // 2026-11-14: taps on the service chips under the header (same as site.js)
