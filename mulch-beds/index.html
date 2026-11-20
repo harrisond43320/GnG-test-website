@@ -273,6 +273,7 @@
         </div>
         <p style="text-align:center; margin-top: var(--s8)"><a class="btn btn-dark" href="../why-gng/">Why customers pick us
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        <p class="sec-intro town-line reveal" style="margin-inline:auto; text-align:center; margin-top:24px">Mulch and beds by town: <a href="../mulch-beds-broadview-heights-oh/">Broadview Heights</a>, <a href="../mulch-beds-akron-oh/">Akron</a> and <a href="../mulch-beds-brecksville-oh/">Brecksville</a>.</p>
       </div>
     </section>
 
@@ -423,7 +424,7 @@
   (() => {
     const seg = location.pathname.split('/').filter(Boolean)[0] || 'home';
     if (/^(thank-you|soil-check|your-year|yard-score|join-the-crew|winter-walk)$/.test(seg)) return;
-    const byPage = { 'lawn-mowing': 'MOW', 'five-before-we-drive': 'MOW', 'mulch-beds': 'MULCH', 'yard-design': 'PLANT', 'aeration-fertilizer': 'AERATE', 'fall-cleanup': 'LEAVES', 'leaves': 'LEAVES', 'spring-cleanup': 'SPRING', 'hoa-commercial': 'BID', 'hoa-commercial-summit-county': 'BID', 'hoa-commercial-brecksville-broadview-heights': 'BID', 'hoa-commercial-akron': 'BID', 'season-pass': 'SEASON' };
+    const byPage = { 'lawn-mowing': 'MOW', 'five-before-we-drive': 'MOW', 'mulch-beds': 'MULCH', 'yard-design': 'PLANT', 'aeration-fertilizer': 'AERATE', 'fall-cleanup': 'LEAVES', 'leaves': 'LEAVES', 'spring-cleanup': 'SPRING', 'hoa-commercial': 'BID', 'hoa-commercial-summit-county': 'BID', 'hoa-commercial-brecksville-broadview-heights': 'BID', 'hoa-commercial-akron': 'BID', 'lawn-mowing-broadview-heights-oh': 'MOW', 'mulch-beds-broadview-heights-oh': 'MULCH', 'lawn-mowing-akron-oh': 'MOW', 'mulch-beds-akron-oh': 'MULCH', 'lawn-mowing-brecksville-oh': 'MOW', 'mulch-beds-brecksville-oh': 'MULCH', 'season-pass': 'SEASON' };
     const byNeed = { mowing: 'MOW', mulch: 'MULCH', design: 'PLANT', aeration: 'AERATE', leaves: 'LEAVES', spring: 'SPRING', hoa: 'BID', season2027: 'SEASON' };
     const sms = w => 'sms:+14406679642?&body=' + encodeURIComponent(w + (w === 'BID' ? ' the property address is ' : ' my address is '));
     const pageWord = byPage[seg] || 'PLAN';

@@ -254,6 +254,7 @@
           <li><b class="draft">We mow and check.</b><span class="draft">Five checks before we pull out, every visit.</span></li>
         </ol>
         <p class="sec-intro town-line reveal d2 draft" style="margin-inline:auto; text-align:center">We mow in <a href="../richfield-oh/">Richfield</a>, <a href="../bath-oh/">Bath</a>, <a href="../brecksville-oh/">Brecksville</a>, <a href="../broadview-heights-oh/">Broadview Heights</a>, <a href="../hinckley-oh/">Hinckley</a>, <a href="../north-royalton-oh/">North Royalton</a> and <a href="../granger-oh/">Granger</a>.</p>
+        <p class="sec-intro town-line reveal d2" style="margin-inline:auto; text-align:center">Mowing by town: <a href="../lawn-mowing-broadview-heights-oh/">Broadview Heights</a>, <a href="../lawn-mowing-akron-oh/">Akron</a> and <a href="../lawn-mowing-brecksville-oh/">Brecksville</a>.</p>
       </div>
     </section>
 
@@ -432,7 +433,7 @@
   (() => {
     const seg = location.pathname.split('/').filter(Boolean)[0] || 'home';
     if (/^(thank-you|soil-check|your-year|yard-score|join-the-crew|winter-walk)$/.test(seg)) return;
-    const byPage = { 'lawn-mowing': 'MOW', 'five-before-we-drive': 'MOW', 'mulch-beds': 'MULCH', 'yard-design': 'PLANT', 'aeration-fertilizer': 'AERATE', 'fall-cleanup': 'LEAVES', 'leaves': 'LEAVES', 'spring-cleanup': 'SPRING', 'hoa-commercial': 'BID', 'hoa-commercial-summit-county': 'BID', 'hoa-commercial-brecksville-broadview-heights': 'BID', 'hoa-commercial-akron': 'BID', 'season-pass': 'SEASON' };
+    const byPage = { 'lawn-mowing': 'MOW', 'five-before-we-drive': 'MOW', 'mulch-beds': 'MULCH', 'yard-design': 'PLANT', 'aeration-fertilizer': 'AERATE', 'fall-cleanup': 'LEAVES', 'leaves': 'LEAVES', 'spring-cleanup': 'SPRING', 'hoa-commercial': 'BID', 'hoa-commercial-summit-county': 'BID', 'hoa-commercial-brecksville-broadview-heights': 'BID', 'hoa-commercial-akron': 'BID', 'lawn-mowing-broadview-heights-oh': 'MOW', 'mulch-beds-broadview-heights-oh': 'MULCH', 'lawn-mowing-akron-oh': 'MOW', 'mulch-beds-akron-oh': 'MULCH', 'lawn-mowing-brecksville-oh': 'MOW', 'mulch-beds-brecksville-oh': 'MULCH', 'season-pass': 'SEASON' };
     const byNeed = { mowing: 'MOW', mulch: 'MULCH', design: 'PLANT', aeration: 'AERATE', leaves: 'LEAVES', spring: 'SPRING', hoa: 'BID', season2027: 'SEASON' };
     const sms = w => 'sms:+14406679642?&body=' + encodeURIComponent(w + (w === 'BID' ? ' the property address is ' : ' my address is '));
     const pageWord = byPage[seg] || 'PLAN';
