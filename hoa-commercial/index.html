@@ -296,6 +296,20 @@
       </div>
     </section>
 
+    <!-- 2026-11-20: links to the 3 area pages (property managers searching by county or town). Wording is draft. -->
+    <section class="sec">
+      <div class="wrap">
+        <p class="eyebrow reveal" style="text-align:center">Where we work</p>
+        <h2 class="sec-h reveal" style="text-align:center; margin-top:12px"><span class="draft">HOA and commercial,</span> <b class="draft">by area<span class="dot">.</span></b></h2>
+        <ul class="gets reveal d1" style="max-width:760px; margin-inline:auto">
+          <li><b>Summit County</b><span class="draft">Richfield, Bath and Akron. <a href="../hoa-commercial-summit-county/">HOA and commercial in Summit County</a></span></li>
+          <li><b>Brecksville and Broadview Heights</b><span class="draft">Cuyahoga County, just north of our Richfield shop. <a href="../hoa-commercial-brecksville-broadview-heights/">See Brecksville and Broadview Heights</a></span></li>
+          <li><b>Akron</b><span class="draft">Commercial lawn care and HOA landscaping in Akron. <a href="../hoa-commercial-akron/">See Akron</a></span></li>
+        </ul>
+        <div class="hoa-cta reveal d2"><a class="btn btn-lime" href="mailto:grassngardens4u@gmail.com?subject=Vendor%20packet%20request"><span class="draft">Get our vendor packet</span></a></div>
+      </div>
+    </section>
+
     <section class="promise">
       <div class="wrap promise-row">
         <div class="reveal">
@@ -448,7 +462,7 @@
   (() => {
     const seg = location.pathname.split('/').filter(Boolean)[0] || 'home';
     if (/^(thank-you|soil-check|your-year|yard-score|join-the-crew|winter-walk)$/.test(seg)) return;
-    const byPage = { 'lawn-mowing': 'MOW', 'five-before-we-drive': 'MOW', 'mulch-beds': 'MULCH', 'yard-design': 'PLANT', 'aeration-fertilizer': 'AERATE', 'fall-cleanup': 'LEAVES', 'leaves': 'LEAVES', 'spring-cleanup': 'SPRING', 'hoa-commercial': 'BID', 'season-pass': 'SEASON' };
+    const byPage = { 'lawn-mowing': 'MOW', 'five-before-we-drive': 'MOW', 'mulch-beds': 'MULCH', 'yard-design': 'PLANT', 'aeration-fertilizer': 'AERATE', 'fall-cleanup': 'LEAVES', 'leaves': 'LEAVES', 'spring-cleanup': 'SPRING', 'hoa-commercial': 'BID', 'hoa-commercial-summit-county': 'BID', 'hoa-commercial-brecksville-broadview-heights': 'BID', 'hoa-commercial-akron': 'BID', 'season-pass': 'SEASON' };
     const byNeed = { mowing: 'MOW', mulch: 'MULCH', design: 'PLANT', aeration: 'AERATE', leaves: 'LEAVES', spring: 'SPRING', hoa: 'BID', season2027: 'SEASON' };
     const sms = w => 'sms:+14406679642?&body=' + encodeURIComponent(w + (w === 'BID' ? ' the property address is ' : ' my address is '));
     const pageWord = byPage[seg] || 'PLAN';
