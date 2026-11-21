@@ -1550,9 +1550,16 @@
     @media (prefers-reduced-motion: no-preference) {
       .promise .checks.reveal { opacity: 1; transform: none; transition: none; }
       .promise .checks.reveal:not(.in) li { opacity: 0; }
-      .promise .checks.reveal.in li { animation: chk-row .4s var(--ease-out) both; animation-delay: calc(var(--i, 0) * .32s); }
-      .promise .checks.reveal.in li::after { animation: chk-pop .38s var(--spring) both; animation-delay: calc(var(--i, 0) * .32s + .26s); }
+      /* 2026-11-20 (Harrison: "the animation could be a little better"): rows land together with empty rings, then each one gets ticked in order: ring fills, check pops, row flashes lime */
+      .promise .checks.reveal.in li { animation: chk-row .45s var(--ease-out) both, chk-flash .9s var(--ease-out) both; animation-delay: calc(var(--i, 0) * .06s), calc(.55s + var(--i, 0) * .45s); }
+      .promise .checks.reveal.in li::after { animation: chk-tick .45s var(--spring) both; animation-delay: calc(.55s + var(--i, 0) * .45s); }
     }
+    @keyframes chk-tick {
+      0% { background-color: transparent; background-size: 0; box-shadow: inset 0 0 0 2px var(--forest); transform: scale(1); }
+      60% { background-color: var(--forest); background-size: 16px; transform: scale(1.25); }
+      100% { background-color: var(--forest); background-size: 14px; box-shadow: inset 0 0 0 2px var(--forest); transform: scale(1); }
+    }
+    @keyframes chk-flash { 0% { background-color: var(--mist); } 35% { background-color: color-mix(in srgb, var(--lime) 35%, var(--mist)); } 100% { background-color: var(--mist); } }
     @keyframes chk-row { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
     @keyframes chk-pop { 0% { transform: scale(0); } 70% { transform: scale(1.3); } 100% { transform: scale(1); } }
     /* TOWN PILLS: an even grid (3 across, 2 on phones) in place of ragged wrapping */
@@ -1866,7 +1873,7 @@
           <p class="plan-name draft">The Spring to Fall Plan</p>
           <!-- 2026-10-31 clean-up plan #6: the 6-photo reel and its "cheapest landscaper? see this first" heading came out (Customer Care: it read as a pitch; Alex: cut it). Words from step 3 below; draft. -->
           <!-- 2026-11-13 night round 3 (Harrison: "something to show that its interesting or question"): the lead-in is a question now. Was "Tell me about your yard." Draft until he OKs it. -->
-          <h2><span class="draft">What does your yard need this year?</span> <b class="draft">We write out your whole year<span class="dot">.</span></b></h2>
+          <h2><span>What does your yard need this year?</span> <b class="draft">We write out your whole year<span class="dot">.</span></b></h2>
           <!-- 2026-11-13 night: his rhyme (11/12: "One call does it all, spring to fall"). The lime offer card in the top row lands here. -->
           <p class="plan-rhyme draft">One call does it all.</p>
           <!-- 2026-11-13 late (grader leftover 1, Harrison: "I like them"): the second Text LEAVES button that sat here came out. The header keeps the one Text LEAVES. -->
