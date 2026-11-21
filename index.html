@@ -72,7 +72,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="G'N'G" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <script>/* 2026-11-10: preload the hero that shows now (fall still through Nov 30; the mower photo from Dec 1, same date as the swap in the hero) */document.write(new Date() >= new Date(2026, 11, 1) ? '<link rel="preload" as="image" href="img/gbp-mower-stripes.jpg" imagesrcset="img/ph/gbp-mower-stripes.jpg 576w, img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />' : '<link rel="preload" as="image" media="(max-width: 767px)" href="img/home-leaf-tall-still.jpg" imagesrcset="img/ph/home-leaf-tall-still.jpg 540w, img/home-leaf-tall-still.jpg 720w" imagesizes="100vw" fetchpriority="high" /><link rel="preload" as="image" media="(min-width: 768px)" href="img/home-leaf-wide-still.jpg" imagesrcset="img/xs/home-leaf-wide-still.jpg 600w, img/sm/home-leaf-wide-still.jpg 900w, img/md/home-leaf-wide-still.jpg 1200w, img/home-leaf-wide-still.jpg 1280w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />');</script>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />  <script>/* 2026-11-10: preload the hero that shows now (fall still through Nov 30; the mower photo from Dec 1, same date as the swap in the hero) */document.write(new Date() >= new Date(2026, 11, 1) || /[?&]dec=1/.test(location.search) ? '<link rel="preload" as="image" media="(max-width: 767px)" href="img/home-tall-still.jpg" imagesrcset="img/ph/home-tall-still.jpg 540w, img/home-tall-still.jpg 720w" imagesizes="100vw" fetchpriority="high" /><link rel="preload" as="image" media="(min-width: 768px)" href="img/gbp-mower-stripes.jpg" imagesrcset="img/ph/gbp-mower-stripes.jpg 576w, img/sm/gbp-mower-stripes.jpg 900w, img/md/gbp-mower-stripes.jpg 1200w, img/gbp-mower-stripes.jpg 1600w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />' : '<link rel="preload" as="image" media="(max-width: 767px)" href="img/home-leaf-tall-still.jpg" imagesrcset="img/ph/home-leaf-tall-still.jpg 540w, img/home-leaf-tall-still.jpg 720w" imagesizes="100vw" fetchpriority="high" /><link rel="preload" as="image" media="(min-width: 768px)" href="img/home-leaf-wide-still.jpg" imagesrcset="img/xs/home-leaf-wide-still.jpg 600w, img/sm/home-leaf-wide-still.jpg 900w, img/md/home-leaf-wide-still.jpg 1200w, img/home-leaf-wide-still.jpg 1280w" imagesizes="(max-width: 767px) 75vw, 100vw" fetchpriority="high" />');</script>
   
   
   <link rel="preload" href="fonts/alfa-slab-one-400.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin />
@@ -294,37 +294,38 @@
     @media (prefers-reduced-motion: reduce) { .hero-photo .home-loop { display: none; } } /* 2026-11-13 late: the 768-959 block came out (Harrison: "I just don't see the B-roll"); a half-width browser window or a tablet got no video at all */
     /* 2026-11-11 (Harrison: the home first screen "doesn't move" and he does not like the header picture): phones get a TALL still and a tall loop
        (broll-home-leaf-tall, make-broll.ps1) cut from the 4K clips, full screen, NO shade on the top half, words on a dark fade at the bottom.
-       Fall Pass header only (through Nov 30); from Dec 1 phones go back to the mowing photo until broll-home-tall is built. */
+       From Dec 1 (2026-11-20, Harrison: "Start it") the same band plays broll-home-tall (mowing) with the everyday words. ?dec=1 previews Dec 1. */
     .hero-photo .broll picture img:nth-child(n) { opacity: 1; animation-name: broll-first; animation-delay: 0s; }
     .hero-mapline, .hero-quiet { display: none; }
     @media (max-width: 767px) {
       html:not(.after-fall) .topbar { display: none; } /* it repeats the Fall Pass header right under it */
       /* 2026-11-11 later (Harrison: "shrink the top... like Amazon"): the picture is a band (about a third of the screen), the headline is one size down,
          the review line sits right under the headline, and the header is only as tall as its words, so the next section peeks in. */
-      html:not(.after-fall) .hero { --pic: clamp(210px, 34svh, 300px); min-height: 0; padding-top: var(--pic); }
-      .hero-copy[data-season="fall"] { display: flex; flex-direction: column; }
-      .hero-copy[data-season="fall"] > * { order: 3; }
-      .hero-copy[data-season="fall"] > .eyebrow, .hero-copy[data-season="fall"] > h1 { order: 0; }
-      .hero-copy[data-season="fall"] > .trust { order: 1; }
-      .hero-copy[data-season="fall"] > .lede { order: 2; }
-      .hero-copy[data-season="fall"] h1 { font-size: 36px; }
+      html:not(.no-band) .hero { --pic: clamp(210px, 34svh, 300px); min-height: 0; padding-top: var(--pic); }
+      .hero-copy:is([data-season="fall"],[data-season="main"]) { display: flex; flex-direction: column; }
+      html.after-fall .hero-copy[data-season="main"] { display: flex; flex-direction: column; } /* beats the desktop display:block so the order rules work */
+      .hero-copy:is([data-season="fall"],[data-season="main"]) > * { order: 3; }
+      .hero-copy:is([data-season="fall"],[data-season="main"]) > .eyebrow, .hero-copy:is([data-season="fall"],[data-season="main"]) > h1 { order: 0; }
+      .hero-copy:is([data-season="fall"],[data-season="main"]) > .trust { order: 1; }
+      .hero-copy:is([data-season="fall"],[data-season="main"]) > .lede { order: 2; }
+      .hero-copy:is([data-season="fall"],[data-season="main"]) h1 { font-size: 36px; }
       /* the work is at the BOTTOM of every clip (crew, machine, leaves on the ground), so the picture sits in the top 66% of the header, anchored to its
          bottom edge and faded out at the foot; the words sit below it on dark. (Full height hid the crew behind the words.) */
-      html:not(.after-fall) .hero-photo { background: rgb(12,18,14); }
-      html:not(.after-fall) .hero-photo .broll { bottom: auto; height: calc(var(--pic) + 72px); overflow: hidden; }
-      html:not(.after-fall) .hero-photo .home-loop { height: calc(var(--pic) + 72px); object-position: 50% 30%; } /* 30%: keeps the crew's head and boots in, drops the foreground */
-      html:not(.after-fall) .hero-photo .broll, html:not(.after-fall) .hero-photo .home-loop { -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); }
-      html:not(.after-fall) .hero-photo .broll picture img { object-position: 50% 30%; }
+      html:not(.no-band) .hero-photo { background: rgb(12,18,14); }
+      html:not(.no-band) .hero-photo .broll { bottom: auto; height: calc(var(--pic) + 72px); overflow: hidden; }
+      html:not(.no-band) .hero-photo .home-loop { height: calc(var(--pic) + 72px); object-position: 50% 30%; } /* 30%: keeps the crew's head and boots in, drops the foreground */
+      html:not(.no-band) .hero-photo .broll, html:not(.no-band) .hero-photo .home-loop { -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); mask-image: linear-gradient(to bottom, #000 68%, transparent 100%); }
+      html:not(.no-band) .hero-photo .broll picture img { object-position: 50% 30%; }
       /* no shade on the photo itself; the dark fade rides behind the words (starts 64px above them), so it fits any phone height */
-      html:not(.after-fall) .hero-photo::after, html:not(.after-fall) .hero-photo:has(.home-loop.on)::after { background: none; }
-      .hero-copy[data-season="fall"]::before { content: ""; position: absolute; z-index: -1; top: -64px; bottom: 0; left: -50vw; right: -50vw; pointer-events: none;
+      html:not(.no-band) .hero-photo::after, html:not(.no-band) .hero-photo:has(.home-loop.on)::after { background: none; }
+      .hero-copy:is([data-season="fall"],[data-season="main"])::before { content: ""; position: absolute; z-index: -1; top: -64px; bottom: 0; left: -50vw; right: -50vw; pointer-events: none;
         background: linear-gradient(to bottom, rgba(12,18,14,0) 0, rgba(12,18,14,.66) 72px, rgba(12,18,14,.82) 45%, rgba(12,18,14,.94) 100%); }
-      .hero-copy[data-season="fall"] { padding-top: 0; padding-bottom: var(--s6); }
-      .hero-copy[data-season="fall"] h1 .thin { font-size: .6em; } /* "Leaves gone every time." on one line */
-      .hero-copy[data-season="fall"] .lede { margin-top: var(--s3); }
-      .hero-copy[data-season="fall"] .trust { margin-top: var(--s4); }
-      .hero-copy[data-season="fall"] .trust li:nth-child(2), .hero-copy[data-season="fall"] .hero-map, .hero-copy[data-season="fall"] .hero-hoa { display: none; }
-      .hero-copy[data-season="fall"] .hero-ctas { margin-top: var(--s4); }
+      .hero-copy:is([data-season="fall"],[data-season="main"]) { padding-top: 0; padding-bottom: var(--s6); }
+      .hero-copy:is([data-season="fall"],[data-season="main"]) h1 .thin { font-size: .6em; } /* "Leaves gone every time." on one line */
+      .hero-copy:is([data-season="fall"],[data-season="main"]) .lede { margin-top: var(--s3); }
+      .hero-copy:is([data-season="fall"],[data-season="main"]) .trust { margin-top: var(--s4); }
+      .hero-copy:is([data-season="fall"],[data-season="main"]) .trust li:nth-child(2), .hero-copy:is([data-season="fall"],[data-season="main"]) .hero-map, .hero-copy:is([data-season="fall"],[data-season="main"]) .hero-hoa { display: none; }
+      .hero-copy:is([data-season="fall"],[data-season="main"]) .hero-ctas { margin-top: var(--s4); }
       .hero-mapline { display: block; margin-top: var(--s3); color: rgba(255,255,255,.92); font-size: 15px; font-weight: 500; line-height: 1.4; text-align: center; }
       .hero-quiet { display: flex; justify-content: center; margin-top: 2px; }
       .hero-quiet a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; color: #fff; font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 8px; }
@@ -1768,7 +1769,7 @@
         <div class="broll" role="img" aria-label="The Grass 'n' Gardens crew clearing leaves">
           <!-- 2026-10-06: swapped to Harrison's own Google Business photos ("By owner" only, his OK). gbp-* = cropped to 4:3. -->
           <!-- 2026-11-03 (Harrison: "let's sell the fall pass then on the homepage"): Fall Pass header through Nov 30. From Dec 1 the script below puts the mowing photo and header back by itself. -->
-          <!-- 2026-11-11: phones get the tall still (frame 1 of broll-home-leaf-tall, cut from the 4K clip). The Dec 1 script below takes the <source> out. -->
+          <!-- 2026-11-11: phones get the tall still (frame 1 of broll-home-leaf-tall, cut from the 4K clip). The Dec 1 script below points the <source> at the mowing still (frame 1 of broll-home-tall). -->
           <picture>
           <source media="(max-width: 767px)" srcset="img/ph/home-leaf-tall-still.jpg 540w, img/home-leaf-tall-still.jpg 720w" sizes="100vw" width="720" height="960" />
           <img width="1280" height="720" src="img/home-leaf-wide-still.jpg" srcset="img/xs/home-leaf-wide-still.jpg 600w, img/sm/home-leaf-wide-still.jpg 900w, img/md/home-leaf-wide-still.jpg 1200w, img/home-leaf-wide-still.jpg 1280w" sizes="(max-width: 767px) 75vw, 100vw" alt="" fetchpriority="high" onload="this.classList.add('ld')" style="--pos: 40% 50%"
@@ -1777,9 +1778,9 @@
           <script>
             (function () {
               var now = new Date();
-              if (now >= new Date(2026, 11, 1)) {
+              if (now >= new Date(2026, 11, 1) || /[?&]dec=1/.test(location.search)) {
                 var i = document.currentScript.parentNode.querySelector('img');
-                var s = i.parentNode.querySelector('source'); if (s) s.remove();
+                var s = i.parentNode.querySelector('source'); if (s) s.srcset = 'img/ph/home-tall-still.jpg 540w, img/home-tall-still.jpg 720w'; // 2026-11-20: phones keep the tall band, now the first frame of broll-home-tall
                 i.srcset = i.dataset.mainSrcset; i.src = i.dataset.mainSrc; i.style.setProperty('--pos', '70% 55%');
                 i.parentNode.setAttribute('aria-label', "A Grass 'n' Gardens mower on a freshly striped lawn");
                 document.documentElement.classList.add('after-fall');
@@ -2159,7 +2160,7 @@
     // 2026-11-11: phones (under 768) get the TALL leaf loop while the header is the Fall Pass. 768-959 and phones from Dec 1 keep the photo.
     var fall = !document.documentElement.classList.contains('after-fall'), ph = innerWidth < 768;
     // 2026-11-13 late: 768-959 wide (tablets, half-width browser windows) plays the wide loop too. Only phones from Dec 1 keep the photo (no tall mowing loop yet).
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches || (ph && !fall)) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; // 2026-11-20: phones from Dec 1 play broll-home-tall (was: the photo, no loop)
     var c = navigator.connection || {}; if (c.saveData || /2g|3g/.test(c.effectiveType || '')) return;
     var box = document.querySelector('.hero .hero-photo'); if (!box) return;
     var go = function () {
@@ -2172,7 +2173,7 @@
       /* 2026-11-11: each file name is written out whole. gng-deploy-copy.ps1 only finds whole '...video/x.mp4' strings; built in pieces, the tall loop was left out of the repo copy. */
       // 2026-11-11 night (Harrison: "only the best quality B-roll"): computers whose header is over 1400 real pixels wide get the 1080p cut (-xl), unless the link reports slow. Others keep the 720p cut.
       var big = box.getBoundingClientRect().width * (devicePixelRatio || 1) > 1400 && (!(c.downlink && c.downlink < 6) || /[?&]xl=1/.test(location.search)); // ?xl=1 forces it (the headless test browser guesses 1.55 Mbps) // 3, not 8: Chrome's speed guess read under 8 on a fast link and held the sharp cut back (tested 11/11) // 2026-11-12: 6, not 3. The 1080p cut needs about 5.7 Mbps; on a 5 Mbps link it stopped and started 7 times in 10 seconds (desk-scan -Mbps 5)
-      v.src = ph ? (c.downlink >= 8 ? './video/broll-home-leaf-tall-lg.mp4' : './video/broll-home-leaf-tall-sm.mp4') : !fall ? (big ? './video/broll-home-wide-xl.mp4' : './video/broll-home-wide-lg.mp4') : (big ? './video/broll-home-leaf-wide-xl.mp4' : './video/broll-home-leaf-wide-lg.mp4');
+      v.src = ph ? (fall ? (c.downlink >= 8 ? './video/broll-home-leaf-tall-lg.mp4' : './video/broll-home-leaf-tall-sm.mp4') : (c.downlink >= 8 ? './video/broll-home-tall-lg.mp4' : './video/broll-home-tall-sm.mp4')) : !fall ? (big ? './video/broll-home-wide-xl.mp4' : './video/broll-home-wide-lg.mp4') : (big ? './video/broll-home-leaf-wide-xl.mp4' : './video/broll-home-leaf-wide-lg.mp4');
       v.addEventListener('playing', function () { v.classList.add('on'); }, { once: true });
       /* 2026-11-12: safety net for the 1080p cut. If it stops to buffer twice before it has fully downloaded, the link is too slow for it (Safari reports no link speed at all), so swap to the 720p cut at the same spot. The still shows for the moment in between. */
       if (big) { var stalls = 0; v.addEventListener('waiting', function () {
